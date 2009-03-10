@@ -1,0 +1,66 @@
+\documentclass[a4paper]{jpconf}
+\usepackage{graphicx}
+\begin{document}
+\title{Use of glide-ins in CMS for production and analysis \jpcs}
+
+\author{Oliver Gutsche, Kristian Hahn, Burt Holzman, Sanjay Padhi, Haifeng Pi, Igor Sfiligoi, Eric Vandering, Frank W\"urthwein (Any one else ??)}
+
+\address{FNAL, MIT, UCSD team}
+
+\ead{cms-dct-wms@fnal.gov}
+
+\begin{abstract}
+With the evolution of various grid federations, the Condor glide-ins represent a key feature in providing a homogeneous pool of resources using late-binding technology. The CMS collaboration uses the glide-in based Workload Management System, glideinWMS, for production (ProdAgent) and distributed analysis (CRAB) of the data. The Condor glide-in daemons traverse to the worker nodes, submitted via Condor-G. Once activated, they preserve the Master-Worker relationships, with the worker first validating the execution environment on the worker node before pulling the jobs sequentially until the expiry of their lifetimes. The combination of late-binding and validation significantly reduces the overall failure rate visible to CMS physicists. We discuss the extensive use of the glideinWMS since the computing challenge, CCRC08, in order to prepare for the forthcoming LHC data-taking period. The key features essential to the success of large-scale production and analysis at CMS resources across major grid federations, including EGEE, OSG and NorduGrid are outlined. Use of glide-ins via the CRAB server mechanism and ProdAgent as well as first hand experience of using the next generation CREAM computing element within the CMS framework is also discussed.
+\end{abstract}
+
+\section{Introduction}
+
+
+
+\section{Late binding based Work Load Management System - GlideinWMS }
+
+
+
+\subsection {Interoperability between EGEE, OSG, and NorduGrid}
+
+
+
+\subsection {Scalability of the system}
+
+
+
+\section{Use of glideinWMS for Monte Carlo Production and Data Reprocessing }
+
+
+
+\section{Use of glideinWMS for data analysis}
+
+
+
+\subsection{CMS User Analysis and CCRC-08}
+
+
+
+\subsection{User analysis using Crabserver}
+
+
+
+\subsection{User level MC production using Crabserver}
+
+
+
+\subsection{Recent results and JobRobots}
+
+
+
+\section{Coherent monitoring interface for the system}
+
+
+
+\section{Experience using next generation CREAM CE}
+
+
+
+\end{document}
+
+
