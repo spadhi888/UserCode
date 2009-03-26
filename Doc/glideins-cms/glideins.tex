@@ -15,6 +15,17 @@ With the evolution of various grid federations, the Condor glide-ins represent a
 
 \section{Introduction}
 
+The CMS collaboration has adopted Grid computing as its base computing model to simplify the deployment and management of the
+tens of thousand CPUs needed to accomplish its mission.
+While the Grid computing paradigm has proven to be a boon for resource providers, 
+allowing them to keep their administrative autonomy over the resources they manage,
+the added abstraction layer has introduced several problems for the users, 
+ranging from higher complexity to decreased reliability.
+
+One solution that has proven to significantly reduce user problems is the late-binding, or pilot technology.  
+A late-binding Workload Management System (WMS) hides the complexity of the Grid environment by dynamically creating 
+a virtual private pool of compute resources, thus giving users an environment similar to a dedicated batch cluster.
+This paper describes the experience of the CMS collaboration with one late-binding WMS implementation called glideinWMS. 
 
 
 \section{Late binding based Work Load Management System - GlideinWMS }
