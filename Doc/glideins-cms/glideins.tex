@@ -28,8 +28,47 @@ a virtual private pool of compute resources, thus giving users an environment si
 This paper describes the experience of the CMS collaboration with one late-binding WMS implementation called glideinWMS. 
 
 
-\section{Late binding based Work Load Management System - GlideinWMS }
+\section{Late binding based Workload Management System - GlideinWMS }
 
+The Grid paradigm calls for the compute resources to be partitioned into multiple independent pools, called Grid sites,
+with only a thin common layer to provide interoperability. 
+Without some additional tools, this approach makes the life of a Grid user quite unpleasant. 
+
+The four major problems the users experience are:
+\begin {itemize}
+\item 
+A user must partition his/her jobs between the resource pools.
+Finding the optimal partition is far from an easy task, as explained below.
+\item
+At any Grid site, the common layer provides only very limited information about the status and policies of the
+batch system that handles the local resource pool.
+This is a necessary evil that allows the common layer to present the information from all the different batch system 
+implementations in a uniform way. 
+\item 
+The common layer provides only very limited information about the progress of a job, once it is accepted at a Grid site.
+Again, this is a necessary evil that allows the common layer to monitor jobs submitted to different batch systems.  
+\item
+Each Grid site is allowed to configure the worker nodes the way it likes, within very permissive limits.
+Users are expected to write their compute jobs in such a way to automatically adapt to any condition they encounter.
+\end{itemize}
+
+The approach taken by the late binding Workload Management Systems (WMS) to ease the user burden is to insulate the 
+users from the Grid layer and create a dynamic virtual private pool of compute resources.
+By doing this, the user gets the impression of running on a single, local, dedicated pool of compute resources
+thus elimitating, or at least reducing the magnitude of the above mentioned major problems:
+\begin {itemize}
+\item 
+By having a single resource pool, no job partitioning is needed.
+\item
+Detailed information about the status and policies of the virtual private pool can be made available, 
+since the user can use the tool provided by the specific implementation of the used late binding WMS instance.
+\item 
+Detailed information about the progress of a job can be made available,
+since the user can use the tool provided by the specific implementation of the used late binding WMS instance.
+\item
+The late binding WMS can reduce the hereogeneity of the compute resources, by either only gathering well defined ones,
+or by providing wrapper scripts that provide common tools and libraries.
+\end{itemize}
 
 
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
