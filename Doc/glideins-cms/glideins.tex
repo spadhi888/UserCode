@@ -52,23 +52,30 @@ Each Grid site is allowed to configure the worker nodes the way it likes, within
 Users are expected to write their compute jobs in such a way to automatically adapt to any condition they encounter.
 \end{itemize}
 
-The approach taken by the late binding Workload Management Systems (WMS) to ease the user burden is to insulate the 
-users from the Grid layer and create a dynamic virtual private pool of compute resources.
-By doing this, the user gets the impression of running on a single, local, dedicated pool of compute resources
-thus elimitating, or at least reducing the magnitude of the above mentioned major problems:
+The approach taken by the late binding Workload Management Systems (WMS) to ease the user burden is 
+to create a dynamic virtual private pool of compute resources by submitting pilot jobs to the Grid sites.
+Once a pilot job starts, it joins the virtual private pool and starts a user job from the late binding WMS job queue.
+
+This insulates the users from the Grid layer, giving users
+the impression of running on a single, local, dedicated pool of compute resources
+and thus elimitating, or at least reducing the magnitude of the above mentioned major problems:
 \begin {itemize}
 \item 
 By having a single resource pool, no job partitioning is needed.
 \item
 Detailed information about the status and policies of the virtual private pool can be made available, 
-since the user can use the tool provided by the specific implementation of the used late binding WMS instance.
+since users can use the tools provided by the specific implementation of the used late binding WMS instance.
 \item 
 Detailed information about the progress of a job can be made available,
-since the user can use the tool provided by the specific implementation of the used late binding WMS instance.
+since users can use the tools provided by the specific implementation of the used late binding WMS instance.
 \item
-The late binding WMS can reduce the hereogeneity of the compute resources, by either only gathering well defined ones,
+The late binding WMS can reduce the hetereogeneity of the compute resources, 
+by either only gathering properly configured worker nodes,
 or by providing wrapper scripts that provide common tools and libraries.
 \end{itemize}
+
+The late binding WMS used by CMS is called \textbf{glideinWMS}. GlideinWMS is based on the Condor batch system, 
+with the addition of a thin layer responsible for the submission of the pilot jobs.
 
 
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
