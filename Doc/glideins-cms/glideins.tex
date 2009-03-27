@@ -31,7 +31,7 @@ This paper describes the experience of the CMS collaboration with one late-bindi
 \section{Late binding based Workload Management System - GlideinWMS }
 
 The Grid paradigm calls for the compute resources to be partitioned into multiple independent pools, called Grid sites,
-with only a thin common layer to provide interoperability. 
+with only a thin common layer to provide interoperability, as shown in Fig. X.
 Without some additional tools, this approach makes the life of a Grid user quite unpleasant. 
 
 The four major problems the users experience are:
@@ -54,7 +54,8 @@ Users are expected to write their compute jobs in such a way to automatically ad
 
 The approach taken by the late binding Workload Management Systems (WMS) to ease the user burden is 
 to create a dynamic virtual private pool of compute resources by submitting pilot jobs to the Grid sites.
-Once a pilot job starts, it joins the virtual private pool and starts a user job from the late binding WMS job queue.
+Once a pilot job starts, it joins the virtual private pool and starts a user job from the late binding WMS job queue, 
+as shown in Fig X.
 
 This insulates the users from the Grid layer, giving users
 the impression of running on a single, local, dedicated pool of compute resources
@@ -77,6 +78,28 @@ or by providing wrapper scripts that provide common tools and libraries.
 The late binding WMS used by CMS is called \textbf{glideinWMS}. GlideinWMS is based on the Condor batch system, 
 with the addition of a thin layer responsible for the submission of the pilot jobs.
 
+A glideinWMS virtual private pool is just a regular Condor pool, 
+where worker node Condor daemons, i.e. \emph{condor_startd} and \emph{condor_starter}, 
+have been downloaded, configured and started by a glideinWMS pilot job; such pilot jobs are known as \emph{glideins}. 
+Since the different Condor daemons are dispersed around the world and use wide area networking to communicate to each other,
+the daemons are configured to use strong, x509 based authentication for authorization and message integrity purposes.
+The worker node Condor daemons are also configured to have a limited lifetime, in order to fit within the wallclock limits 
+of the batch system of the Grid site they are running on.
+For all other practical purposes, the resulting Condor pool is indistinguishable from a dedicated Condor pool without a shared file system.
+
+The submission of glideins is regulated by two types of daemon processes; 
+one or more \textbf{glidein factories} and one or more \textbf{VO frontends}. 
+The two types of processes communicate by means of ClassAds using a dedicated \emph{condor_collector} daemon:
+\begin{enumerate}
+\item A glidein factory advertizes what Grid sites it knows about, and can submit to, together with the characteristics of the site 
+(for example: what versions of CMS software are installed there).
+\item The VO frontend queries the user queues, i.e. the \emph{condor_schedds}, 
+matches the found jobs with the factory ClassAds, 
+and then advertizes how fast should the factory submit new glideins.
+\item Finally, the factory reads the VO frontend ClassAds and starts submitting the glideins at the specified rate.
+\end{enumerate}
+
+All together make the system work as illustrated in Fig. X.
 
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
 
