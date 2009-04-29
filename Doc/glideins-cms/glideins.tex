@@ -1,13 +1,15 @@
 \documentclass[a4paper]{jpconf}
 \usepackage{graphicx}
 \begin{document}
-\title{Use of glide-ins in CMS for production and analysis \jpcs}
+\title{Use of glide-ins in CMS for production and analysis}
 
-\author{Daniel C Bradley, Oliver Gutsche, Kristian Hahn, Burt Holzman, Sanjay Padhi, Haifeng Pi, Igor Sfiligoi, Eric Vandering, Frank W\"urthwein (Any one else ??)}
+\author{Daniel C Bradley$^1$, Oliver Gutsche$^2$, Kristian Hahn$^3$, Burt Holzman$^2$, Sanjay Padhi$^{4,}$\footnote[6]{corresponding author, email: sanjay.padhi@cern.ch}, Haifeng Pi$^4$, Daniele Spiga$^5$, Igor Sfiligoi$^2$, Eric Vandering$^2$, Frank W\"urthwein$^4$}
 
-\address{UWM, FNAL, MIT, UCSD}
-
-\ead{cms-dct-wms@fnal.gov}
+\address{$^1$ University of Wisconsin-Madison, 1150 University Avenue, Madison, WI 53706-1390, USA}
+\address{$^2$ Fermilab, P.O. Box 500, Batavia, IL 60510-5011, USA}
+\address{$^3$ Department of Physics, MIT, 77 Massachusetts Avenue, Cambridge, MA 02139-4307, USA}
+\address{$^4$ University of California, San Diego, 9500 Gilman Drive, La Jolla, CA 92093-0354, USA}
+\address{$^5$ CERN, CH - 1211 Geneva 23, Switzerland}
 
 \begin{abstract}
 With the evolution of various grid federations, the Condor glide-ins represent a key feature in providing a homogeneous pool of resources using late-binding technology. The CMS collaboration uses the glide-in based Workload Management System, glideinWMS, for production (ProdAgent) and distributed analysis (CRAB) of the data. The Condor glide-in daemons traverse to the worker nodes, submitted via Condor-G. Once activated, they preserve the Master-Worker relationships, with the worker first validating the execution environment on the worker node before pulling the jobs sequentially until the expiry of their lifetimes. The combination of late-binding and validation significantly reduces the overall failure rate visible to CMS physicists. We discuss the extensive use of the glideinWMS since the computing challenge, CCRC08, in order to prepare for the forthcoming LHC data-taking period. The key features essential to the success of large-scale production and analysis at CMS resources across major grid federations, including EGEE, OSG and NorduGrid are outlined. Use of glide-ins via the CRAB server mechanism and ProdAgent as well as first hand experience of using the next generation CREAM computing element within the CMS framework is also discussed.
@@ -102,22 +104,58 @@ and then advertizes how fast should the factory submit new glideins.
 All together make the system work as illustrated in Fig. X.
 
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
-In principle, the problem of interoperability between different grids is reduced to having a condor\_G client
-for submission of the glideins for the particular grid. All other incompatibilities can in principle be resolved via appropriate
-configuration of the glideins. In practice, CMS deals with many of the differences between EGEE and OSG inside the CRAB or ProdAgent
-layers of the software stack, thus requiring little special configuration in the glideins.
-As part of our work for CCRC08, we worked with the Condor team
-on the details of submitting glideins via condor\_G to NorduGrid. This resulted in the first ever use of NorduGrid resources for
-data analysis with CRAB. 
-
+In principle, the problem of interoperability between different grids is reduced to having a Condor\_G client
+for submission of the glideins for the particular grid flavor. All other incompatibilities can in principle be 
+resolved via appropriate configuration of the glideins. In practice, CMS deals with many of the differences 
+between EGEE and OSG inside the CRAB or ProdAgent layers of the software stack, thus requiring little special 
+configuration in the glideins. As part of our work for CCRC08, we worked with the Condor team
+on the details of submitting glideins via Condor\_G to the NorduGrid. The method consists of using protocol-specific 
+modules called GAHPs (Grid Ascii Helper Programs) along with logics in the Condor gridmanager for the 
+specific use of it when submitting to the NorduGrid computing element (CE). This resulted in the first ever use of 
+NorduGrid resources for data analysis within CRAB using glideinWMS.
 \subsection {Scalability of the system}
-
-
-
+The scalability of the system has been intensively tested over the WAN, especially over large distances such 
+as between San Diego and Europe. Various components were identified which could have an effect on
+latencies in communications between the glidein startds and the central managers. Many improvements were
+made both in reducing the cost of authentication as well as enhancing the speed in matchmaking and 
+the security sessions. The details of the study can be found in [xx]. The overall improvement from this
+study lead to simulanteous running of jobs in parallel over 22,000 to 25,000 resources as shown in Fig. X.
+More than 500K jobs were submitted with an average running period of 3 hours duration. The successful usage
+of Two-Tier Collector model using a single 1.5GHz Pentium 4 machine, capable of harnessing more than 25K 
+resources gives us the confidence of using the system for collaboration wide data analysis and monte carlo 
+productions.
 \section{Use of glideinWMS for Monte Carlo Production and Data Reprocessing }
+The CMS computing architecture [xx] is based on a tier-organised structure of computing
+resources, based on a Tier-0 centre at CERN, 7 Tier-1 centres for organized mass data processing. 
+The Tier-0 being incharge of storing the data coming from the detector onto mass storage, performing a prompt 
+reconstruction of the data and distributes the data among the Tier-1 centres. The Tier-1 sites archive on
+mass storage its share of data, run data reprocessing, organized group physics analysis for data
+selection and distribute down the selected data to Tier-2’s for user analysis. Tier-1 centres also
+have the responsibility of storing Monte Carlo data produced at the Tier-2 sites. 
 
+Fig. X depicts the dataflows, workflows and computing resources involving the Tier1 sites.
+The workflows and dataflows are conducted using glideinWMS  as well as CMS-specific services 
+built on top of them. Data transfers are managed by the CMS data transfer and placement 
+system PhEDEx [xx]. Tier1's receive from CERN a continuous data stream of reconstructed data, data skimming 
+is then conducted at the Tier-1 sites. Skimming jobs are run on number of filters producing the 
+corresponding output files with the selected events. ProdAgent was used to carry out the skimming workflow. 
+It automatically prepares the skimming jobs for the sample to be filtered, submits to the glideinWMS and finally
+launches the corresponding merge jobs. Fig. X demonstrates the re-reconstruction workflow 
+using the glideinWMS infrastructure. More than X thousand jobs were successfully processed using various 
+Tier1s, within a remarkable efficiency of approximately 96\% within a span of last 3 months. 
+Fig. X shows the number of simultaneous glideins running at various centers over last week. More than X million 
+events as shown in Fig.X are reprocessed and merged, which are then used for physics analyses at
+the Tier2s. 
 
-
+One of the essential features of the glideinWMS is the capability to fill a large number of
+resources, within very short fraction of time. As discussed earlier, many of the reprocessing task 
+workflows involves numerous amount of short jobs. Previous studies have shown that a given CE can 
+afford a rate ~0.1Hz number of jobs. In order to fill 6K resources would normally take about 16.67 hours. 
+The glidein approach on the other hand allows the workers (startds) with ``long'' lived proxies. 
+Each of these startds can pull the client jobs in parallel and can sequentially process them until 
+the expiry of their lifetimes. This provides a scalable solution for Tier1 centers such as FNAL, 
+where a large number of resources are required to be efficiently used, which otherwise would not 
+be possible to harness effectively using traditional early binding approachs.
 \section{Use of glideinWMS for data analysis}
 
 
