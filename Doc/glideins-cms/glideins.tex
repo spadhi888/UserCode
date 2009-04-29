@@ -65,7 +65,7 @@ and thus elimitating, or at least reducing the magnitude of the above mentioned 
 By having a single resource pool, no job partitioning is needed.
 \item
 Detailed information about the status and policies of the virtual private pool can be made available, 
-since users can use the tools provided by the specific implementation of the used late binding WMS instance.
+since users can use the tools provided by the specific implementation of the late binding WMS instance used.
 \item 
 Detailed information about the progress of a job can be made available,
 since users can use the tools provided by the specific implementation of the used late binding WMS instance.
@@ -79,7 +79,7 @@ The late binding WMS used by CMS is called \textbf{glideinWMS}. GlideinWMS is ba
 with the addition of a thin layer responsible for the submission of the pilot jobs.
 
 A glideinWMS virtual private pool is just a regular Condor pool, 
-where worker node Condor daemons, i.e. \emph{condor_startd} and \emph{condor_starter}, 
+where worker node Condor daemons, i.e. \emph{condor\_startd} and \emph{condor\_starter}, 
 have been downloaded, configured and started by a glideinWMS pilot job; such pilot jobs are known as \emph{glideins}. 
 Since the different Condor daemons are dispersed around the world and use wide area networking to communicate to each other,
 the daemons are configured to use strong, x509 based authentication for authorization and message integrity purposes.
@@ -89,11 +89,11 @@ For all other practical purposes, the resulting Condor pool is indistinguishable
 
 The submission of glideins is regulated by two types of daemon processes; 
 one or more \textbf{glidein factories} and one or more \textbf{VO frontends}. 
-The two types of processes communicate by means of ClassAds using a dedicated \emph{condor_collector} daemon:
+The two types of processes communicate by means of ClassAds using a dedicated \emph{condor\_collector} daemon:
 \begin{enumerate}
 \item A glidein factory advertizes what Grid sites it knows about, and can submit to, together with the characteristics of the site 
 (for example: what versions of CMS software are installed there).
-\item The VO frontend queries the user queues, i.e. the \emph{condor_schedds}, 
+\item The VO frontend queries the user queues, i.e. the \emph{condor\_schedds}, 
 matches the found jobs with the factory ClassAds, 
 and then advertizes how fast should the factory submit new glideins.
 \item Finally, the factory reads the VO frontend ClassAds and starts submitting the glideins at the specified rate.
@@ -102,8 +102,13 @@ and then advertizes how fast should the factory submit new glideins.
 All together make the system work as illustrated in Fig. X.
 
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
-
-
+In principle, the problem of interoperability between different grids is reduced to having a condor\_G client
+for submission of the glideins for the particular grid. All other incompatibilities can in principle be resolved via appropriate
+configuration of the glideins. In practice, CMS deals with many of the differences between EGEE and OSG inside the CRAB or ProdAgent
+layers of the software stack, thus requiring little special configuration in the glideins.
+As part of our work for CCRC08, we worked with the Condor team
+on the details of submitting glideins via condor\_G to NorduGrid. This resulted in the first ever use of NorduGrid resources for
+data analysis with CRAB. 
 
 \subsection {Scalability of the system}
 
