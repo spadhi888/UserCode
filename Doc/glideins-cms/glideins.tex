@@ -68,7 +68,7 @@ as shown in Fig.~\ref{fig:glideinWMS}.
 
 This insulates the users from the Grid layer, giving users
 the impression of running on a single, local, dedicated pool of compute resources
-and thus elimitating, or at least reducing the magnitude of the above mentioned major problems:
+and thus eliminating, or at least reducing the magnitude of the above mentioned major problems:
 \begin {itemize}
 \item 
 By having a single resource pool, no job partitioning is needed.
@@ -79,7 +79,7 @@ since users can use the tools provided by the specific implementation of the lat
 Detailed information about the progress of a job can be made available,
 since users can use the tools provided by the specific implementation of the used late binding WMS instance.
 \item
-The late binding WMS can reduce the hetereogeneity of the compute resources, 
+The late binding WMS can reduce the heterogeneity of the compute resources, 
 by either only gathering properly configured worker nodes,
 or by providing wrapper scripts that provide common tools and libraries.
 \end{itemize}
@@ -92,7 +92,7 @@ where worker node Condor daemons, i.e. \emph{condor\_startd} and \emph{condor\_s
 have been downloaded, configured and started by a glideinWMS pilot job; such pilot jobs are known as \emph{glide-ins}. 
 Since the different Condor daemons are dispersed around the world and use wide area networking to communicate to each other,
 the daemons are configured to use strong, X.509 based authentication for authorization and message integrity purposes.
-The worker node Condor daemons are also configured to have a limited lifetime, in order to fit within the wallclock limits 
+The worker node Condor daemons are also configured to have a limited lifetime, in order to fit within the wall-clock limits 
 of the batch system of the Grid site they are running on.
 For all other practical purposes, the resulting Condor pool is indistinguishable from a dedicated Condor pool without a shared file system.
 
@@ -100,11 +100,11 @@ The submission of glide-ins is regulated by two types of daemon processes;
 one or more \textbf{glide-in factories} and one or more \textbf{VO frontends}. 
 The two types of processes communicate by means of ClassAds using a dedicated \emph{condor\_collector} daemon:
 \begin{enumerate}
-\item A glide-in factory advertizes what Grid sites it knows about, and can submit to, together with the characteristics of the site 
+\item A glide-in factory advertises what Grid sites it knows about, and can submit to, together with the characteristics of the site 
 (for example: what versions of CMS software are installed there).
 \item The VO frontend queries the user queues, i.e. the \emph{condor\_schedds}, 
 matches the found jobs with the factory ClassAds, 
-and then advertizes how fast the factory should submit new glide-ins.
+and then advertises how fast the factory should submit new glide-ins.
 \item Finally, the factory reads the VO frontend ClassAds and starts submitting the glide-ins at the specified rate.
 \end{enumerate}
 
@@ -113,7 +113,7 @@ All together make the system work as illustrated in Fig.~\ref{fig:glideinWMS}.
 \begin{center}
 \includegraphics[scale=0.55]{glideinT1stat}
 \end{center}
-\caption{Number of simulatenous running glide-ins for: a) scalability studies and b) CMS data re-processing at Tier-1 centers.}
+\caption{Number of simultaneous running glide-ins for: a) scalability studies and b) CMS data re-processing at Tier-1 centers.}
 \label{fig:glideinT1stat}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,7 +128,7 @@ with the Condor team on the details of submitting glide-ins via Condor-G to grid
 consists of using protocol-specific modules called GAHPs (Grid Ascii Helper Programs) along with logics in the Condor gridmanager for the 
 specific use of it, when submitting to a given grid flavor. This resulted 
 in the first ever use of NorduGrid resources for data analysis within CRAB using glideinWMS. The other grid flavors like 
-EGEE and OSG CEs are accessble using gt2 protocols via the Condor-G client. This developments led to
+EGEE and OSG CEs are accessible using gt2 protocols via the Condor-G client. This developments led to
 a fully interoperable system across various grid flavors for the first time.
 \begin{figure}
 \begin{center}
@@ -145,7 +145,7 @@ as between US and Europe. Various components were identified which could have an
 latencies in communications between the glide-in \emph{startds} and the central managers. Many improvements were
 made both in reducing the cost of authentication, as well as enhancing the speed in matchmaking and 
 the security sessions. The details of the study can be found in \cite{bib:scalability}. The overall improvement 
-from this study lead to the simulanteous running of jobs between 23k to 25k as shown in Fig.~\ref{fig:glideinT1stat}a).
+from this study lead to the simultaneous running of jobs between 23k to 25k as shown in Fig.~\ref{fig:glideinT1stat}a).
 More than 500k jobs were submitted with an average running period of 3 hours. The successful usage
 of the Two-Tier Collector model using a single 1.5GHz Pentium 4 machine, capable of harnessing more than 25k 
 resources gives us the confidence of using the system for collaboration-wide data analysis and monte carlo 
@@ -153,12 +153,12 @@ productions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Use of glideinWMS for Production and Data Reprocessing }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The CMS computing architecture \cite{bib:cms_computing_arch} is based on a tier-organised structure of computing
-resources, based on a Tier-0 centre at CERN and 7 Tier-1 centres for organized mass data processing. 
+The CMS computing architecture \cite{bib:cms_computing_arch} is based on a tier-organized structure of computing
+resources, based on a Tier-0 center at CERN and 7 Tier-1 centers for organized mass data processing. 
 The Tier-0 is in charge of storing the data coming from the detector onto mass storage, performing a prompt 
-reconstruction of the data and distributing the data among the Tier-1 centres. The Tier-1 sites archive on
+reconstruction of the data and distributing the data among the Tier-1 centers. The Tier-1 sites archive on
 mass storage their share of data, run data reprocessing, organized group physics analysis for data
-selection and distribute the selected data to Tier-2s for user analysis. Tier-1 centres also
+selection and distribute the selected data to Tier-2s for user analysis. Tier-1 centers also
 have the responsibility of storing Monte Carlo (MC) data produced at the Tier-2 sites. 
 
 Fig.~\ref{fig:reprocessT1s} depicts the dataflows, workflows and computing resources involving the Tier1 sites.
@@ -175,7 +175,7 @@ in Fig.~\ref{fig:reprocessT1s}
 \begin{center}
 \includegraphics[scale=0.55]{merged_events}
 \end{center}
-\caption{a) Number of simulatineous running glide-ins at Fermilab during Oct.08 - Feb.09. b) Distribution of 
+\caption{a) Number of simultaneous running glide-ins at Fermilab during Oct.08 - Feb.09. b) Distribution of 
 events merged as a function of time, written at various CMS Tier-1 centers.}
 \label{fig:merged_events}
 \end{figure}
@@ -205,10 +205,10 @@ be possible to harness the effectively using traditional early-binding approach.
 The data analysis on a distributed environment is a complex computing task. The CMS Collaboration
 uses CRAB \cite{bib:cms_crab}, either via client or server in order to perform user analyses at the Tier-2 centers.
 CRAB is a CMS specific software layer build on top of a WMS, such as glideinWMS. It simplifies the process 
-of data analysis, job submission and retrival by hiding much of the possible grid complexity from the
+of data analysis, job submission and retrieval by hiding much of the possible grid complexity from the
 end user. The tool splits the analysis task into several jobs based on the requested number of events and
 the location of input dataset via Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
-packaging of the execuatables/libraries before submitting the jobs to the glideinWMS. The glideinWMS based 
+packaging of the executables/libraries before submitting the jobs to the glideinWMS. The glideinWMS based 
 on a tag of \emph{``DESRIED\_GATEKEEPER''} submits pilots/glide-ins to the requested site. Once the glide-ins are activated, 
 it pulls the ``real'' user job from the queue after the matchmaking. During the process of activation, the 
 initially submitted glide-ins perform various checks at the Worker Nodes (WN), such as the presence of the desired 
@@ -222,41 +222,41 @@ to the CMS Dashboard via Monalisa as the transport agent, for user jobs.
 \begin{center}
 \includegraphics[scale=0.55]{glideins_ccrc08}
 \end{center}
-\caption{Usage of glideinWMS during CCRC-08 excercise.}
+\caption{Usage of glideinWMS during CCRC-08 exercise.}
 \label{fig:glideins_ccrc}
 \end{figure}
 The glideinWMS was intensively used during the CCRC-08. The goal was to gain an overall understanding 
 of the performance and readiness of the CMS Tier-2 sites for data analysis. The input datasets needed for CCRC-08 were transferred
 via the PhEDEx. Centrally organized workflows were used for this activity. The site performance
-was evaluated using different types of jobs based on increaseing complexity. The long-running 
+was evaluated using different types of jobs based on increasing complexity. The long-running 
 CPU intensive jobs with moderate I/O, were aimed at understanding the site performance without
 heavy loads on the storage systems. The short-running jobs with local stage out were targeted
 to evaluate the performance of the site storage elements (SE). Intensive I/O with remote stage out
 jobs were used not only to mimic the scenario of a real user performing data analyses, but also
-to understand the site access to the backend storage.
+to understand the site access to the back-end storage.
 
-Over 40 sites across EGEE, OSG and Nordugrid were involved during this excercise. NorduGrid sites 
+Over 40 sites across EGEE, OSG and Nordugrid were involved during this exercise. NorduGrid sites 
 were harnessed for the first time in CMS. Fig.~\ref{fig:glideins_ccrc} shows overall results recorded in the CMS dashboard 
 during the month long exercise. There were a mix of errors at a few sites due to catastrophic storage 
 failures. The overall success rate, without SE issues ranged from 92-99\%, based on more than 200k 
-submitted jobs using glideinWMS. The gliteWMS was also used during this excercise \cite{bib:cms_glite}.
+submitted jobs using glideinWMS. The gliteWMS was also used during this exercise \cite{bib:cms_glite}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Studies using Crabserver and JobRobots}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Crabserver is a novel approach towards decoupling the user activities with the stack of software
 layers responsible for performing the actual workload. The user submission is a simple layer 
-of job submission and retrival using CRAB client. On the otherhand, the Crabserver is expected 
-to have a nucleus of expertize, aggrigated at a given site hosting the aforesaid server. User jobs
+of job submission and retrieval using CRAB client. On the other hand, the Crabserver is expected 
+to have a nucleus of expertize, aggregated at a given site hosting the aforesaid server. User jobs
 are submitted using the information from the DBS, as well as their credentials.
-These are sent to the server using gridftp. Crabserver consists of several daemons that are responsible 
+These are sent to the server using grid-ftp. Crabserver consists of several daemons that are responsible 
 for Jobtracking, Tasktracking, Task lifetime managers, Command managers, etc. These processes
-essentially ensure all the (re)submission/retrival activities of a given task are correctly communicated
+essentially ensure all the (re)submission/retrieval activities of a given task are correctly communicated
 to the WMS, in this case glideinWMS. The glideinWMS then submits them to respective sites 
-by perserving the user identity, as well as privalages via GUMS and glexec. The user credentials
+by preserving the user identity, as well as privileges via GUMS and glexec. The user credentials
 and priorities are maintained by the WMS using Condor.
 
 The University of California, San Diego (UCSD) is one of the centers responsible for hosting 
-the Crabsever using glideinWMS for CMS user analyses. UCSD maintains a developmental as well 
+the Crabserver using glideinWMS for CMS user analyses. UCSD maintains a developmental as well 
 as a production server both of which uses glide-in based WMS. The crabserver was tested to a very large 
 scale using so-called ``JobRobots''. The JobRobots consist of a collection of agents, each 
 managing a specific aspect of the job management (creation, submission, status
@@ -279,7 +279,7 @@ The JobRobot daily statistics are not only used to measure the success rate for 
 but also to evaluate the Crabserver performance at UCSD, before the server can be allowed 
 to be accessed by the general users. More than 25k jobs were submitted within a span of a 
 few days, using JobRobots to the Crabserver. Several issues related to monitoring, 
-submission/retrival, delays, etc. were identified and fixed during this study. Various scalability
+submission/retrieval, delays, etc. were identified and fixed during this study. Various scalability
 related issues are currently under study and are expected to be fixed in the forthcoming
 release version of the server.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -312,7 +312,7 @@ for the users.
 \end{figure}
 The glideinWMS consists of two sets of jobs: pilots (glide-ins) and the user jobs. The
 pilot jobs, as well as the submission rates, are monitored using the information from the \emph{collector},
-\emph{submitter} and the retrived output after the termination of the glide-ins via Condor-G.
+\emph{submitter} and the retrieved output after the termination of the glide-ins via Condor-G.
 Fig.~\ref{fig:glideinT1stat} for example, shows the pilot statistics and its client usage.
 
 However, it is essential both for the end-users and the glideinWMS administrator to have 
@@ -365,22 +365,22 @@ pseudo-interactive monitoring \cite{bib:pseudo_mon}.
 \label{fig:cms_cream}
 \end{figure}
 The Computing Resource Execution And Management (CREAM) is a next generation lightweight service 
-for job management operation at the CE level. Recent developments to Condor-G have focussed on adding 
+for job management operation at the CE level. Recent developments to Condor-G have focused on adding 
 support for CREAM. This is accomplished for the first time by using CREAM specific GHAPs. It consists 
 of various algorithms responsible for communication with the CE at different stages of job submission
 procedure. The responses from the CE are sent back to the Condor Gridmanager, which then updates 
-the state of the jobs based on the provided info. The log retrival is managed by Condor itself.
+the state of the jobs based on the provided info. The log retrieval is managed by Condor itself.
 
 More than 10k jobs are submitted to the resources available via the CREAM CE using the ``modified'' Condor-G as 
 shown in Fig.~\ref{fig:cms_cream}. We observed a 25\% failure rate, mostly due to proxy renewal/delegation. 
-This problem is under investigation with the CREAM developers. Overall based on the sucessful jobs
+This problem is under investigation with the CREAM developers. Overall based on the successful jobs
 the approach towards using CREAM as a future computing element is found to be extremely promising.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 GlideinWMS has been widely used in CMS for central data reprocessing, skimming at the Tier-1 centers, as well
 as user analysis using either CRAB client or server. It provides a homogeneous pool of resources over
-hetrogeneous grid environment. CRAB-based user analysis efficiency benefits significantly from the late
+heterogeneous grid environment. CRAB-based user analysis efficiency benefits significantly from the late
 binding approach. Detailed job monitoring tools associated with the WMS, provides tools for the users to access 
 jobs interactively for debugging. This is expected to enhance the user participation into the debugging 
 infrastructure of the grid. Interface to the next generation CREAM CE has been created using Condor client. 
