@@ -251,7 +251,7 @@ are submitted using the information from the DBS, as well as their credentials.
 These are sent to the server using grid-ftp. Crabserver consists of several daemons that are responsible 
 for Jobtracking, Tasktracking, Task lifetime managers, Command managers, etc. These processes
 essentially ensure all the (re)submission/retrieval activities of a given task are correctly communicated
-to the WMS, in this case glideinWMS. The glideinWMS then submits them to respective sites 
+to the WMS, as illustrated in Fig.~\ref{fig:crabserver}. The glideinWMS then submits them to respective sites 
 by preserving the user identity, as well as privileges via GUMS and glexec. The user credentials
 and priorities are maintained by the WMS using Condor.
 
@@ -276,14 +276,14 @@ level.
 \label{fig:crabserver}
 \end{figure}
 The JobRobot daily statistics are not only used to measure the success rate for each site, 
-but also to evaluate the Crabserver performance at UCSD, before the server can be allowed 
+but also to evaluate the Crabserver performance, before the server can be allowed 
 to be accessed by the general users. More than 25k jobs were submitted within a span of a 
 few days, using JobRobots to the Crabserver. Several issues related to monitoring, 
 submission/retrieval, delays, etc. were identified and fixed during this study. Various scalability
 related issues are currently under study and are expected to be fixed in the forthcoming
 release version of the server.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{User level MC production using Crabserver}
+\subsection{User level MC production using glideinWMS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In CMS the MC production is performed using centrally a organized mechanism. However,
 for small scale understanding of a given origin of physics model, it becomes too cumbersome
@@ -293,7 +293,7 @@ in order for the users to be involved in small scale MC productions.
 A http frontend is used to send production configuration to the system. 
 The system uses X.509 authentication and authorization and also maintains the user priorities. 
 It then creates the production workflow. The task is split into jobs via ProdAgent and then 
-submitted to the glideinWMS as illustrated in Fig.~\ref{fig:user_analysis} It inherits the monitoring of the 
+submitted to the glideinWMS as illustrated in Fig.~\ref{fig:user_analysis}. It inherits the monitoring of the 
 jobs via ProdAgent and glideinWMS tools. 
 Once the jobs are completed it publishes the output into the local DBS instance. The registered 
 dataset in the local DBS can be used by any member from the collaboration, like any other dataset produced 
@@ -369,7 +369,7 @@ for job management operation at the CE level. Recent developments to Condor-G ha
 support for CREAM. This is accomplished for the first time by using CREAM specific GHAPs. It consists 
 of various algorithms responsible for communication with the CE at different stages of job submission
 procedure. The responses from the CE are sent back to the Condor Gridmanager, which then updates 
-the state of the jobs based on the provided info. The log retrieval is managed by Condor itself.
+the state of the jobs based on the provided info. The log retrieval is managed by the Condor.
 
 More than 10k jobs are submitted to the resources available via the CREAM CE using the ``modified'' Condor-G as 
 shown in Fig.~\ref{fig:cms_cream}. We observed a 25\% failure rate, mostly due to proxy renewal/delegation. 
@@ -381,7 +381,7 @@ the approach towards using CREAM as a future computing element is found to be ex
 GlideinWMS has been widely used in CMS for central data reprocessing, skimming at the Tier-1 centers, as well
 as user analysis using either CRAB client or server. It provides a homogeneous pool of resources over
 heterogeneous grid environment. CRAB-based user analysis efficiency benefits significantly from the late
-binding approach. Detailed job monitoring tools associated with the WMS, provides tools for the users to access 
+binding approach. Detailed job monitoring associated with the WMS, provides tools for the users to access 
 jobs interactively for debugging. This is expected to enhance the user participation into the debugging 
 infrastructure of the grid. Interface to the next generation CREAM CE has been created using Condor client. 
 The preliminary results shows a significant potential in this new CE for worldwide usage. 
