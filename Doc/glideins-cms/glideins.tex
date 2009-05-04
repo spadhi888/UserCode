@@ -161,7 +161,7 @@ mass storage their share of data, run data reprocessing, organized group physics
 selection and distribute the selected data to Tier-2s for user analysis. Tier-1 centers also
 have the responsibility of storing Monte Carlo (MC) data produced at the Tier-2 sites. 
 
-Fig.~\ref{fig:reprocessT1s} depicts the dataflows, workflows and computing resources involving the Tier1 sites.
+Fig.~\ref{fig:reprocessT1s} depicts the dataflows, workflows and computing resources involving the Tier-1 sites.
 The workflows and dataflows are conducted using glideinWMS  as well as CMS-specific services 
 built on top of them. Data transfers are managed by the CMS data transfer and placement 
 system PhEDEx \cite{bib:cms_phedex}. Tier-1s receive from CERN a continuous data stream of reconstructed data, data skimming 
@@ -191,7 +191,7 @@ about 16.67 hours.  The glide-in approach, however allows the workers (\emph{sta
 Each of these \emph{startds} can pull the client jobs in parallel and can sequentially process them until 
 the expiry of their lifetimes. This provides a scalable solution for Tier-1 centers such as Fermilab, 
 where a large number of resources are required to be used efficiently, which otherwise would not 
-be possible to harness the effectively using traditional early-binding approach.
+be possible to harness effectively using traditional early-binding approach.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Use of glideinWMS for data analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,17 +391,17 @@ The preliminary results shows a significant potential in this new CE for worldwi
 \begin{thebibliography}{15}
 
 \bibitem{bib:scalability} 
-D. Bradley et al, ``Interoperability and Scalability within glideinWMS'', CHEP 09, Prague, Czech Republic.
+D. Bradley, I. Sfiligoi, S. Padhi, J. Frey and T. Tannenbaum, ``Interoperability and Scalability within glideinWMS'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:cms_computing_arch} 
 CMS Collaboration 2005, CMS Computing Technical Design Report, CERN-LHCC-2005-023.
 \bibitem{bib:cms_phedex}
-J. Rehn et al, ``PhEDEx high-throughput data transfer management system'', CHEP06, Mumbai, India.
+J. Rehn et al., ``PhEDEx high-throughput data transfer management system'', CHEP06, Mumbai, India.
 \bibitem{bib:cms_crab}
 D. Spiga, ``Automatization of User Analysis Workflow in CMS'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:cms_glite}
 A. Fanfani, ``Commissioning Distributed Analysis at the CMS Tier-2 Centers'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:cms_jobmon}
-S. Sarkar, et al., ``A Grid Job Monitoring System'', CHEP 09, Prague, Czech Republic.
+C. Dumitrescu, A. Nowack, S. Padhi and S. Sarkar, ``A Grid Job Monitoring System'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:pseudo_mon}
 D. Bradley, M. Livny and I. Sfiligoi, ``Pseudo-interactive monitoring in distributed computing'', CHEP 09, Prague, Czech Republic.
 \end{thebibliography}
