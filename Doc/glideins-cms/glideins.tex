@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-With the evolution of various grid federations, the Condor glide-ins represent a key feature in providing a homogeneous pool of resources using late-binding technology. The CMS collaboration uses the glide-in based Workload Management System, glideinWMS, for production (ProdAgent) and distributed analysis (CRAB) of the data. The Condor glide-in daemons traverse to the worker nodes, submitted via Condor-G. Once activated, they preserve the Master-Worker relationships, with the worker first validating the execution environment on the worker node before pulling the jobs sequentially until the expiry of their lifetimes. The combination of late-binding and validation significantly reduces the overall failure rate visible to CMS physicists. We discuss the extensive use of the glideinWMS since the computing challenge, CCRC-08, in order to prepare for the forthcoming LHC data-taking period. The key features essential to the success of large-scale production and analysis at CMS resources across major grid federations, including EGEE, OSG and NorduGrid are outlined. Use of glide-ins via the CRAB server mechanism and ProdAgent, as well as first hand experience of using the next generation CREAM computing element within the CMS framework is discussed.
+With the evolution of various grid federations, the Condor glide-ins represent a key feature in providing a homogeneous pool of resources using late-binding technology. The CMS collaboration uses the glide-in based Workload Management System, glideinWMS, for production (ProdAgent) and distributed analysis (CRAB) of the data. The Condor glide-in daemons traverse to the worker nodes, submitted via Condor-G. Once activated, they preserve the Master-Worker relationships, with the worker first validating the execution environment on the worker node before pulling the jobs sequentially until the expiry of their lifetimes. The combination of late-binding and validation significantly reduces the overall failure rate visible to CMS physicists. We discuss the extensive use of the glideinWMS since the computing challenge, CCRC-08, in order to prepare for the forthcoming LHC data-taking period. The key features essential to the success of large-scale production and analysis on CMS resources across major grid federations, including EGEE, OSG and NorduGrid are outlined. Use of glide-ins via the CRAB server mechanism and ProdAgent, as well as first hand experience of using the next generation CREAM computing element within the CMS framework is discussed.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -77,7 +77,7 @@ Detailed information about the status and policies of the virtual private pool c
 since users can use the tools provided by the specific implementation of the late binding WMS instance used.
 \item 
 Detailed information about the progress of a job can be made available,
-since users can use the tools provided by the specific implementation of the used late binding WMS instance.
+since users can use the tools provided by the specific implementation of the late binding WMS instance used.
 \item
 The late binding WMS can reduce the heterogeneity of the compute resources, 
 by either only gathering properly configured worker nodes,
@@ -125,11 +125,11 @@ resolved via appropriate configuration of the glide-ins. In practice, CMS deals 
 between EGEE and OSG inside the CRAB or ProdAgent layers of the software stack, thus requiring little special 
 configuration in the glide-ins. As part of our work for the Common Computing Readiness Challenge 08 (CCRC-08), we worked 
 with the Condor team on the details of submitting glide-ins via Condor-G to grids such as the NorduGrid. The method 
-consists of using protocol-specific modules called GAHPs (Grid Ascii Helper Programs) along with logics in the Condor gridmanager for the 
+consists of using protocol-specific modules called GAHPs (Grid Ascii Helper Programs) along with logic in the Condor gridmanager for the 
 specific use of it, when submitting to a given grid flavor. This resulted 
 in the first ever use of NorduGrid resources for data analysis within CRAB using glideinWMS. The other grid flavors like 
-EGEE and OSG CEs are accessible using gt2 protocols via the Condor-G client. This developments led to
-a fully interoperable system across various grid flavors for the first time.
+EGEE and OSG CEs are accessible using gt2 protocols via the Condor-G client. This development led to
+a fully interoperable system across all three grid flavors for the first time.
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.5]{DataReprocess}
@@ -146,10 +146,11 @@ latencies in communications between the glide-in \emph{startds} and the central 
 made both in reducing the cost of authentication, as well as enhancing the speed in matchmaking and 
 the security sessions. The details of the study can be found in \cite{bib:scalability}. The overall improvement 
 from this study lead to the simultaneous running of jobs between 23k to 25k as shown in Fig.~\ref{fig:glideinT1stat}a).
-More than 500k jobs were submitted with an average running period of 3 hours. The successful usage
+More than 500k jobs were submitted with an average running period of 3 hours. In excess of  200,000 jobs were queued in addition to the
+20,000 running jobs. The successful use
 of the Two-Tier Collector model using a single 1.5GHz Pentium 4 machine, capable of harnessing more than 25k 
-resources gives us the confidence of using the system for collaboration-wide data analysis and monte carlo 
-productions.
+resources gives us confidence that using the system for collaboration-wide data analysis and monte carlo 
+productions is feasible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Use of glideinWMS for Production and Data Reprocessing }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +158,7 @@ The CMS computing architecture \cite{bib:cms_computing_arch} is based on a tier-
 resources, based on a Tier-0 center at CERN and 7 Tier-1 centers for organized mass data processing. 
 The Tier-0 is in charge of storing the data coming from the detector onto mass storage, performing a prompt 
 reconstruction of the data and distributing the data among the Tier-1 centers. The Tier-1 sites archive on
-mass storage their share of data, run data reprocessing, organized group physics analysis for data
+mass storage their share of data, run data reprocessing, centrally organized group physics analysis for data
 selection and distribute the selected data to Tier-2s for user analysis. Tier-1 centers also
 have the responsibility of storing Monte Carlo (MC) data produced at the Tier-2 sites. 
 
@@ -179,17 +180,20 @@ in Fig.~\ref{fig:reprocessT1s}.
 events merged as a function of time, written at various CMS Tier-1 centers.}
 \label{fig:merged_events}
 \end{figure}
-Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of Mar. 09. 
+Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of March 2009. 
 More than 1400 million events as shown in Fig.~\ref{fig:merged_events}b) are reprocessed and merged in last 80 days, which are then 
 used for physics analyses at the Tier-2 centers. 
 
 One of the essential features of the glideinWMS is the capability to utilize a large number of
 resources, within very short fraction of time. As discussed earlier, most of the reprocessing task 
 workflows involve numerous amounts of short jobs. Previous studies have shown that a given CE can 
-afford a rate of 0.1Hz number of jobs. In order to fill 6k resources at this rate, it would normally take 
-about 16.67 hours.  The glide-in approach, however allows the workers (\emph{startds}) with ``long'' lived proxies. 
-Each of these \emph{startds} can pull the client jobs in parallel and can sequentially process them until 
-the expiry of their lifetimes. This provides a scalable solution for Tier-1 centers such as Fermilab, 
+schedule jobs at a rate of 0.1Hz. In order to fill 6k resources at this rate, it would normally take 
+about 16.7 hours.  The glide-in approach, however allows workers (\emph{startds}) 
+%with ``long'' lived proxies. 
+%Each of these \emph{startds} can 
+%fkw: I changed this because I do not think glideinWMS supports the parallelism you are mentioning here.
+to process multiple client jobs sequentially, until 
+the expiration of the glide-in's lifetime. This provides a scalable solution for Tier-1 centers such as Fermilab, 
 where a large number of resources are required to be used efficiently, which otherwise would not 
 be possible to harness effectively using traditional early-binding approach.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -215,6 +219,9 @@ initially submitted glide-ins perform various checks at the Worker Nodes (WN), s
 CMS software. Periodic updates are performed about the status of the job via glideinWMS to CRAB. Once the 
 job is completed, the WMS provides the log files (stdout/stderr). The overall process also includes updates 
 to the CMS Dashboard via Monalisa as the transport agent, for user jobs.
+In addition. glideinWMS provides a mechanism for on-demand "read" access to the job environment. This allows
+pseudo-realtime debugging of a running job via commands like ps, top, ls, and tail of various files, including stdout and stderr. 
+At present, CRAB does not yet make use of these features of glideinWMS.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{CMS User Analysis and CCRC-08}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -227,7 +234,7 @@ to the CMS Dashboard via Monalisa as the transport agent, for user jobs.
 \end{figure}
 The glideinWMS was intensively used during the CCRC-08. The goal was to gain an overall understanding 
 of the performance and readiness of the CMS Tier-2 sites for data analysis. The input datasets needed for CCRC-08 were transferred
-via the PhEDEx. Centrally organized workflows were used for this activity. The site performance
+via PhEDEx. Centrally organized workflows were used for this activity. The site performance
 was evaluated using different types of jobs based on increasing complexity. The long-running 
 CPU intensive jobs with moderate I/O, were aimed at understanding the site performance without
 heavy loads on the storage systems. The short-running jobs with local stage out were targeted
@@ -246,7 +253,7 @@ submitted jobs using glideinWMS. The gliteWMS was also used during this exercise
 Crabserver is a novel approach towards decoupling the user activities with the stack of software
 layers responsible for performing the actual workload. The user submission is a simple layer 
 of job submission and retrieval using CRAB client. On the other hand, the Crabserver is expected 
-to have a nucleus of expertize, aggregated at a given site hosting the aforesaid server. User jobs
+to have a nucleus of expertise, aggregated at a given site hosting the aforesaid server. User jobs
 are submitted using the information from the DBS, as well as their credentials.
 These are sent to the server using grid-ftp. Crabserver consists of several daemons that are responsible 
 for Jobtracking, Tasktracking, Task lifetime managers, Command managers, etc. These processes
@@ -257,7 +264,7 @@ and priorities are maintained by the WMS using Condor.
 
 The University of California, San Diego (UCSD) is one of the centers responsible for hosting 
 the Crabserver using glideinWMS for CMS user analyses. UCSD maintains a developmental as well 
-as a production server both of which uses glide-in based WMS. The crabserver was tested to a very large 
+as a production server both of which uses glide-in based WMS. The crabserver was tested to a large 
 scale using so-called ``JobRobots''. The JobRobots consist of a collection of agents, each 
 managing a specific aspect of the job management (creation, submission, status
 update, output collection). At regular time intervals, it creates for
@@ -285,21 +292,26 @@ release version of the server.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User level MC production using glideinWMS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In CMS the MC production is performed using centrally a organized mechanism. However,
+In CMS the MC production is centrally organized. However,
 for small scale understanding of a given origin of physics model, it becomes too cumbersome
 to involve the management resources. Thus, it is essential to have a simple interface
 in order for the users to be involved in small scale MC productions. 
 
-A http frontend is used to send production configuration to the system. 
+An http frontend is used to send production configuration to the system. 
 The system uses X.509 authentication and authorization and also maintains the user priorities. 
 It then creates the production workflow. The task is split into jobs via ProdAgent and then 
 submitted to the glideinWMS as illustrated in Fig.~\ref{fig:user_analysis}. It inherits the monitoring of the 
 jobs via ProdAgent and glideinWMS tools. 
 Once the jobs are completed it publishes the output into the local DBS instance. The registered 
 dataset in the local DBS can be used by any member from the collaboration, like any other dataset produced 
-by the central production. Very recently this system was used to produce Supersymmetric signal
-events involving GMSB models. The ease of its usage makes this system quite attractive
-for the users.
+by the central production. 
+%Very recently this system was used to produce Supersymmetric signal
+%events involving GMSB models. 
+%The ease of its usage makes this system quite attractive
+%for the users.
+%fkw: we did not use the system for gmsb.
+%fkw: I'd keep the tone down a little here.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Coherent monitoring interface for the system}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -374,7 +386,7 @@ the state of the jobs based on the provided info. The log retrieval is managed b
 More than 10k jobs are submitted to the resources available via the CREAM CE using the ``modified'' Condor-G as 
 shown in Fig.~\ref{fig:cms_cream}. We observed a 25\% failure rate, mostly due to proxy renewal/delegation. 
 This problem is under investigation with the CREAM developers. Overall based on the successful jobs
-the approach towards using CREAM as a future computing element is found to be extremely promising.
+the approach towards using CREAM as a future computing element is found to be quite promising.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
