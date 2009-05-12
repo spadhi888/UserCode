@@ -109,13 +109,6 @@ and then advertises how fast the factory should submit new glide-ins.
 \end{enumerate}
 
 Together these make the system work as illustrated in Fig.~\ref{fig:glideinWMS}.
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.55]{glideinT1stat}
-\end{center}
-\caption{Number of simultaneous running glide-ins for: a) scalability studies and b) CMS data re-processing at Tier-1 centers.}
-\label{fig:glideinT1stat}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,13 +123,6 @@ specific use of it, when submitting to a given grid flavor. This resulted
 in the first ever use of NorduGrid resources for data analysis within CRAB using glideinWMS. The other grid flavors like 
 EGEE and OSG CEs are accessible using GRAM2 protocols via the Condor-G client. This development led to
 a fully interoperable system across all three grid flavors for the first time.
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.5]{DataReprocess}
-\end{center}
-\caption{Overview of CMS data re-processing and resource usage statistics using glideinWMS.}
-\label{fig:reprocessT1s}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {Scalability of the system}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,9 +135,23 @@ from this study lead to the simultaneous running of jobs between 23,000 to 25,00
 More than 500,000 jobs were submitted with an average running period of 3 hours. In excess of  200,000 jobs were queued in addition to the
 20,000 running jobs. Successfully harnessing more than 25,000 computing slots gives us confidence that using the system for collaboration-wide 
 data analysis and Monte Carlo productions is feasible.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.55]{glideinT1stat}
+\end{center}
+\caption{Number of simultaneous running glide-ins for: a) scalability studies and b) CMS data re-processing at Tier-1 centers.}
+\label{fig:glideinT1stat}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Use of glideinWMS for Production and Data Reprocessing }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{DataReprocess}
+\end{center}
+\caption{Overview of CMS data re-processing and resource usage statistics using glideinWMS.}
+\label{fig:reprocessT1s}
+\end{figure}
 The CMS computing architecture \cite{bib:cms_computing_arch} is based on a tier-organized structure of computing
 resources, based on a Tier-0 center at CERN and 7 Tier-1 centers for organized mass data processing. 
 The Tier-0 is in charge of storing the data coming from the detector onto mass storage, performing a prompt 
@@ -169,14 +169,7 @@ It automatically prepares the skim jobs for the sample to be filtered, submits t
 launches the corresponding merge jobs. More than 1.9 million jobs were successfully processed at various 
 Tier-1s, with a remarkable efficiency of approximately 96\% within last 3 months, using glideinWMS as shown 
 in Fig.~\ref{fig:reprocessT1s}.
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.55]{merged_events}
-\end{center}
-\caption{a) Number of simultaneous running glide-ins at Fermilab during Oct.08 - Feb.09. b) Distribution of 
-events merged as a function of time, written at various CMS Tier-1 centers.}
-\label{fig:merged_events}
-\end{figure}
+
 Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of March 2009. 
 More than 1400 million events as shown in Fig.~\ref{fig:merged_events}b) are reprocessed and merged in last 80 days, which are then 
 used for physics analyses at the Tier-2 centers. 
@@ -185,21 +178,22 @@ One of the essential features of the glideinWMS is the capability to utilize a l
 resources, with low startup latency. As discussed earlier, most of the reprocessing task 
 workflows involve numerous short jobs. Previous studies have shown that a given CE can 
 schedule jobs at a rate of 0.5Hz. In order to fill 6,000 resources at this rate, it would normally take 
-about 3.33 hours \cite{bib:ce_rate}.  The glide-in approach, however allows workers (\emph{startds}) 
+about 3.33 hours.  The glide-in approach, however allows workers (\emph{startds}) 
 to process multiple client jobs sequentially with more than an order in magnitude rate, until 
-the expiration of the glide-in's lifetime. This provides a scalable solution for Tier-1 centers such as Fermilab, 
+the expiration of the glide-in's lifetime \cite{bib:ce_rate}. This provides a scalable solution for Tier-1 centers such as Fermilab, 
 where a large number of resources are required to be used efficiently, which otherwise would not 
 be possible to harness effectively using traditional early-binding approach.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.55]{merged_events}
+\end{center}
+\caption{a) Number of simultaneous running glide-ins at Fermilab during Oct.08 - Feb.09. b) Distribution of 
+events merged as a function of time, written at various CMS Tier-1 centers.}
+\label{fig:merged_events}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Use of glideinWMS for data analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{user_analysis}
-\end{center}
-\caption{Schematic diagram of glideinWMS associated with user analyses activities.}
-\label{fig:user_analysis}
-\end{figure}
 Data analysis in a distributed environment is a complex computing task. The CMS Collaboration
 uses CRAB \cite{bib:cms_crab}, in order to perform user analyses at the Tier-2 centers.
 CRAB is a CMS-specific software layer layer integrated with a number of WMSes, including glideinWMS.
@@ -287,6 +281,13 @@ release version of the server.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{User level Monte Carlo production using glideinWMS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{user_analysis}
+\end{center}
+\caption{Schematic diagram of glideinWMS associated with user analyses activities.}
+\label{fig:user_analysis}
+\end{figure}
 In CMS, the MC production is performed using a centrally organized mechanism. However,
 for small-scale understanding of a given origin of physics model, it becomes too cumbersome
 to involve the management resources. Thus, it is essential to have a simple interface
@@ -304,13 +305,6 @@ by the central production.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Coherent monitoring interface for the system}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{jobMon.png}
-\end{center}
-\caption{Web-based user job monitoring in quasi-real time}
-\label{fig:jobMon}
-\end{figure}
 The glideinWMS consists of two sets of jobs: glide-ins and the user jobs. The
 glide-in jobs, as well as the submission rates, are monitored using the information from the \emph{collector},
 \emph{submitter} and the retrieved output after the termination of the glide-ins via Condor-G.
@@ -352,16 +346,16 @@ job state and selection in quasi-real time. The database also stores summary inf
 jobs for archival purposes. The monitoring system is currently under active development and promises to provide access to 
 the logs in real time of the currently running jobs at remote sites, using 
 pseudo-interactive monitoring \cite{bib:pseudo_mon}.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{jobMon.png}
+\end{center}
+\caption{Web-based user job monitoring in quasi-real time}
+\label{fig:jobMon}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experience using CREAM Compute Element (CE)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.45]{cms_cream}
-\end{center}
-\caption{Number of resources used during the CMS tests of the CREAM CE.}
-\label{fig:cms_cream}
-\end{figure}
 The Computing Resource Execution And Management (CREAM) is a next generation web service interface 
 for job management operation at the CE level. Recent developments to Condor-G have focused on adding 
 support for CREAM. This is accomplished for the first time by using GAHP daemons tailored to CREAM.
@@ -373,6 +367,13 @@ More than 10,000 jobs have been submitted to CREAM CEs as shown in Fig.~\ref{fig
 rate, mostly due to proxy renewal/delegation. This problem is under investigation with the CREAM developers. 
 Overall, this approach to interface Condor with CREAM seems to be quite promising. User jobs, submitted via
 glideinWMS are not affected due to above mentioned issues. 
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.45]{cms_cream}
+\end{center}
+\caption{Number of resources used during the CMS tests of the CREAM CE.}
+\label{fig:cms_cream}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
