@@ -36,10 +36,10 @@ The Grid paradigm calls for the compute resources to be partitioned into multipl
 with only a thin common layer to provide interoperability.
 Without some additional tools, this approach makes the life of a Grid user quite difficult. 
 
-The four major problems the users experience are:
+The four major problems users experience are:
 \begin {itemize}
 \item 
-A user must partition his/her jobs between the resource pools.
+A user must partition that jobs between the resource pools.
 Finding the optimal partition is far from an easy task, as explained below.
 \item
 At any Grid site, the common layer provides only very limited information about the status and policies of the
@@ -47,11 +47,11 @@ batch system that handles the local resource pool.
 This is a necessary evil that allows the common layer to present the information from all the different batch system 
 implementations in a uniform way. 
 \item 
-The common layer provides only very limited information about the progress of a job, once it is accepted at a Grid site.
+The common layer provides very limited information about the progress of a job, once it is accepted at a Grid site.
 Again, this is a necessary evil that allows the common layer to monitor jobs submitted to different batch systems.  
 \item
-Each Grid site is allowed to configure the worker nodes the way it likes, within very permissive limits.
-Users are expected to write their compute jobs in such a way to automatically adapt to any condition they encounter.
+Each Grid site is allowed to configure the worker nodes arbitrarily, within very permissive limits.
+Users are expected to develop their jobs in such a way to automatically adapt to any condition they encounter.
 \end{itemize}
 \begin{figure}
 \begin{center}
@@ -108,7 +108,7 @@ and then advertises how fast the factory should submit new glide-ins.
 \item Finally, the factory reads the VO frontend ClassAds and starts submitting the glide-ins at the specified rate.
 \end{enumerate}
 
-All together make the system work as illustrated in Fig.~\ref{fig:glideinWMS}.
+Together these make the system work as illustrated in Fig.~\ref{fig:glideinWMS}.
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.55]{glideinT1stat}
@@ -144,9 +144,9 @@ The scalability of the system has been intensively tested over the WAN, especial
 as between US and Europe. Various components were identified which could have an effect on
 latencies in communications between the glide-in \emph{startds} and the central managers. Many improvements were
 made both in reducing the cost of authentication, as well as enhancing the speed in matchmaking and 
-the security sessions. The details of the study can be found in \cite{bib:scalability}. The overall improvement 
-from this study lead to the simultaneous running of jobs between 23k to 25k as shown in Fig.~\ref{fig:glideinT1stat}a).
-More than 500k jobs were submitted with an average running period of 3 hours. In excess of  200,000 jobs were queued in addition to the
+the security sessions \cite{bib:scalability}. The overall improvement 
+from this study lead to the simultaneous running of jobs between 23,000 to 25,000 as shown in Fig.~\ref{fig:glideinT1stat}a).
+More than 500,000 jobs were submitted with an average running period of 3 hours. In excess of  200,000 jobs were queued in addition to the
 20,000 running jobs. Successfully harnessing more than 25,000 computing slots gives us confidence that using the system for collaboration-wide 
 data analysis and Monte Carlo productions is feasible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,9 +184,9 @@ used for physics analyses at the Tier-2 centers.
 
 One of the essential features of the glideinWMS is the capability to utilize a large number of
 resources, with low startup latency. As discussed earlier, most of the reprocessing task 
-workflows involve numerous amounts of short jobs. Previous studies have shown that a given CE can 
-schedule jobs at a rate of 0.1Hz. In order to fill 6k resources at this rate, it would normally take 
-about 16.7 hours.  The glide-in approach, however allows workers (\emph{startds}) 
+workflows involve numerous short jobs. Previous studies have shown that a given CE can 
+schedule jobs at a rate of 0.5Hz. In order to fill 6,000 resources at this rate, it would normally take 
+about 3.33 hours.  The glide-in approach, however allows workers (\emph{startds}) 
 to process multiple client jobs sequentially, until 
 the expiration of the glide-in's lifetime. This provides a scalable solution for Tier-1 centers such as Fermilab, 
 where a large number of resources are required to be used efficiently, which otherwise would not 
@@ -201,12 +201,12 @@ be possible to harness effectively using traditional early-binding approach.
 \caption{Schematic diagram of glideinWMS associated with user analyses activities.}
 \label{fig:user_analysis}
 \end{figure}
-The data analysis on a distributed environment is a complex computing task. The CMS Collaboration
+Data analysis in a distributed environment is a complex computing task. The CMS Collaboration
 uses CRAB \cite{bib:cms_crab}, in order to perform user analyses at the Tier-2 centers.
 CRAB is a CMS-specific software layer layer integrated with a number of WMSes, including glideinWMS.
 It simplifies the process of data analysis, job submission and retrieval by hiding much of the possible grid complexity from the
 end user. The tool splits the analysis task into several jobs based on the requested number of events and
-the location of input dataset via via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
+the location of the input dataset via via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
 packaging of the executables/libraries before submitting the jobs to the glideinWMS. 
 The glideinWMS submits glide-ins to the requested site.  Once the glide-ins are activated, it pulls the 'real' user job from the queue.
 During the process of activation, the initially submitted glide-ins perform various checks at the Worker Nodes (WN), such as the presence of the desired 
@@ -228,7 +228,7 @@ At present, CRAB does not yet make use of these features of glideinWMS.
 The glideinWMS was intensively used during the CCRC-08 computing challenge. The goal was to gain an overall understanding 
 of the performance and readiness of the CMS Tier-2 sites for data analysis. The input datasets needed for CCRC-08 were transferred
 via PhEDEx. Centrally organized workflows were used for this activity. The site performance
-was evaluated using different types of jobs based on increasing complexity. The long-running 
+was evaluated using different types of jobs with increasing complexity. The long-running 
 CPU intensive jobs with moderate I/O were aimed at understanding the site performance without
 heavy loads on the storage systems. The short-running jobs with local stage-out were targeted
 to evaluate the performance of the site storage elements (SE). Intensive I/O with remote stage-out
@@ -238,7 +238,7 @@ to understand the site access to the back-end storage.
 Over 40 sites across EGEE, OSG and Nordugrid were involved during this exercise. NorduGrid sites 
 were harnessed for the first time in CMS. Fig.~\ref{fig:glideins_ccrc} shows overall results recorded in the CMS dashboard 
 during the month-long exercise. There were a mix of errors at a few sites due to catastrophic storage 
-failures. The overall success rate without SE issues ranged from 92-99\%, based on more than 200k 
+failures. The overall success rate without SE issues ranged from 92-99\%, based on more than 200,000 
 submitted jobs using glideinWMS. The gliteWMS was also used during this exercise \cite{bib:cms_glite}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Studies using CRABserver and JobRobots}
@@ -247,7 +247,7 @@ CRABserver is a novel approach towards decoupling the user activities with the s
 layers responsible for performing the actual workload. The user submission is a simple layer 
 of job submission and retrieval using the CRAB client. On the other hand, the CRABserver handles 
 much of the complex work in a central location. User jobs
-are submitted using the information from the DBS, as well as their credentials.
+are submitted using information from the DBS, as well as their credentials.
 These are sent to the server using gridftp. CRABserver consists of several daemons that are responsible 
 for job tracking, task tracking, managing  task lifetimes, etc. These processes
 essentially ensure all the (re)submission/retrieval activities of a given task are correctly communicated
@@ -260,8 +260,8 @@ the CRABserver using glideinWMS for CMS user analyses. UCSD maintains a producti
 that are integrated with glideinWMS. The CRABserver was tested to a large 
 scale using so-called ``JobRobots''. The JobRobots consist of a collection of agents, each 
 managing a specific aspect of the job management (creation, submission, status
-update, output collection). At regular time intervals, it creates for
-each site a new analysis task to be run on a specific dataset. The
+update, output collection). At regular time intervals, it creates a new analysis task
+for each site to be run on a specific dataset. The
 task is split into several jobs that are submitted as a collection to
 the CRABserver, which eventually submits to glideinWMS. Each job
 performs a trivial data analysis on a fraction of the dataset, and when
@@ -276,7 +276,7 @@ level.
 \label{fig:crabserver}
 \end{figure}
 The JobRobot daily statistics are not only used to measure the success rate for each site, 
-but also to evaluate the CRABserver performance. More than 25k jobs were submitted within a span of a 
+but also to evaluate the CRABserver performance. More than 25,000 jobs were submitted within a span of a 
 few days using this technique. Several issues related to monitoring, 
 submission/retrieval, delays, etc. were identified and fixed during this study. Various scalability
 related issues are currently under study and are expected to be fixed in the forthcoming
