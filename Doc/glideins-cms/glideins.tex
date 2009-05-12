@@ -39,7 +39,7 @@ Without some additional tools, this approach makes the life of a Grid user quite
 The four major problems users experience are:
 \begin {itemize}
 \item 
-A user must partition the jobs between the resource pools.
+A user must partition their jobs between the resource pools.
 Finding the optimal partition is far from an easy task, as explained below.
 \item
 At any Grid site, the common layer provides only very limited information about the status and policies of the
@@ -92,7 +92,7 @@ where worker node Condor daemons, i.e. \emph{condor\_startd} and \emph{condor\_s
 have been downloaded, configured and started by a glideinWMS pilot job; such pilot jobs are known as \emph{glide-ins}. 
 Since the different Condor daemons are dispersed around the world and use wide area networking to communicate to each other,
 the daemons are configured to use strong, X.509 based authentication for authorization and message integrity purposes.
-The worker node Condor daemons are also configured to have a limited lifetime, in order to fit within the wall-clock limits 
+The worker node Condor daemons are also configured to have a limited lifetime in order to fit within the wall-clock limits 
 of the batch system of the Grid site they are running on.
 For all other practical purposes, the resulting Condor pool is indistinguishable from a dedicated Condor pool without a shared file system.
 
@@ -163,8 +163,7 @@ have the responsibility of storing Monte Carlo (MC) data produced at the Tier-2 
 Fig.~\ref{fig:reprocessT1s} depicts the dataflows, workflows and computing resources involving the Tier-1 sites.
 The workflows and dataflows are conducted using glideinWMS  as well as CMS-specific services 
 built on top of them. Data transfers are managed by the CMS data transfer and placement 
-system PhEDEx \cite{bib:cms_phedex}. Tier-1s receive from CERN a continuous data stream of reconstructed data. Data skimming 
-is then conducted at the Tier-1 sites. Skim jobs apply a number of filters which produce the 
+system PhEDEx \cite{bib:cms_phedex}. Data skimming is conducted at the Tier-1 sites. Skim jobs apply a number of filters which produce the 
 corresponding output files with the selected events. ProdAgent is used to carry out the skimming workflow. 
 It automatically prepares the skim jobs for the sample to be filtered, submits to the glideinWMS and finally
 launches the corresponding merge jobs. More than 1.9 million jobs were successfully processed at various 
@@ -206,13 +205,13 @@ uses CRAB \cite{bib:cms_crab}, in order to perform user analyses at the Tier-2 c
 CRAB is a CMS-specific software layer layer integrated with a number of WMSes, including glideinWMS.
 It simplifies the process of data analysis, job submission and retrieval by hiding much of the possible grid complexity from the
 end user. The tool splits the analysis task into several jobs based on the requested number of events and
-the location of the input dataset via via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
+the location of the input dataset via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
 packaging of the executables/libraries before submitting the jobs to the glideinWMS. 
-The glideinWMS submits glide-ins to the requested site.  Once the glide-ins are activated, it pulls the 'real' user job from the queue.
+The glideinWMS submits glide-ins to the requested site.  Once the glide-ins are activated, it pulls the ``real'' user job from the queue.
 During the process of activation, the initially submitted glide-ins perform various checks at the Worker Nodes (WN), such as the presence of the desired 
 CMS software. Periodic updates are performed regarding job status via glideinWMS to CRAB. Once the job is completed, the WMS provides the 
 log files (stdout/stderr). The overall process also updates the CMS Dashboard using MonALISA as the transport agent for user job monitoring.
-In addition. glideinWMS provides a mechanism for on-demand 'read' access to the job environment. This allows
+In addition. glideinWMS provides a mechanism for on-demand ``read'' access to the job environment. This allows
 pseudo-realtime debugging of a running job via commands like ps, top, ls, and tail of various files, including stdout and stderr. 
 At present, CRAB does not yet make use of these features of glideinWMS.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -226,8 +225,8 @@ At present, CRAB does not yet make use of these features of glideinWMS.
 \label{fig:glideins_ccrc}
 \end{figure}
 The glideinWMS was intensively used during the CCRC-08 computing challenge. The goal was to gain an overall understanding 
-of the performance and readiness of the CMS Tier-2 sites for data analysis. The input datasets needed for CCRC-08 were transferred
-via PhEDEx. Centrally organized workflows were used for this activity. The site performance
+of the performance and readiness of the CMS Tier-2 sites for data analysis. The input datasets needed for CCRC-08 were transferred. 
+Centrally organized workflows were used for this activity. The site performance
 was evaluated using different types of jobs with increasing complexity. The long-running 
 CPU intensive jobs with moderate I/O were aimed at understanding the site performance without
 heavy loads on the storage systems. The short-running jobs with local stage-out were targeted
@@ -256,7 +255,7 @@ by preserving the user identity and privileges. The user credentials
 and priorities are maintained by the WMS using Condor.
 
 The University of California, San Diego (UCSD) is one of the centers responsible for hosting 
-the CRABserver using glideinWMS for CMS user analyses. UCSD maintains a production and development CRABservers 
+the CRABserver using glideinWMS for CMS user analyses. UCSD maintains production and development CRABservers 
 that are integrated with glideinWMS. The CRABserver was tested to a large 
 scale using so-called ``JobRobots''. The JobRobots consist of a collection of agents, each 
 managing a specific aspect of the job management (creation, submission, status
@@ -350,7 +349,7 @@ jobs for archival purposes. The monitoring system is currently under active deve
 the logs in real time of the currently running jobs at remote sites, using 
 pseudo-interactive monitoring \cite{bib:pseudo_mon}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Experience using next generation CREAM Compute Element (CE)}
+\section{Experience using CREAM Compute Element (CE)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
 \begin{center}
