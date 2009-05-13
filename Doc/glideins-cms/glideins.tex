@@ -28,7 +28,7 @@ ranging from higher complexity to decreased reliability.
 One solution that has proven to significantly reduce user problems is the late-binding, or pilot technology.  
 A late-binding Workload Management System (WMS) hides the complexity of the Grid environment by dynamically creating 
 a virtual private pool of compute resources, thus giving users an environment similar to a dedicated batch cluster.
-This paper describes the experience of the CMS collaboration with one late-binding WMS implementation called glideinWMS. 
+This paper describes the experience of the CMS collaboration with one late-binding WMS implementation, called glideinWMS. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Late-binding based Workload Management System - GlideinWMS }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -131,7 +131,7 @@ as between US and Europe. Various components were identified which could have an
 latencies in communications between the glide-in \emph{startds} and the central managers. Many improvements were
 made both in reducing the cost of authentication, as well as enhancing the speed in matchmaking and 
 the security sessions \cite{bib:scalability}. The overall improvement 
-from this study lead to the simultaneous running of jobs between 23,000 to 25,000 as shown in Fig.~\ref{fig:glideinT1stat}a).
+from this study led to simultaneous running between 23,000 to 25,000 jobs, as shown in Fig.~\ref{fig:glideinT1stat}a).
 More than 500,000 jobs were submitted with an average running period of 3 hours. In excess of  200,000 jobs were queued in addition to the
 20,000 running jobs. Successfully harnessing more than 25,000 computing slots gives us confidence that using the system for collaboration-wide 
 data analysis and Monte Carlo productions is feasible.
@@ -171,7 +171,7 @@ Tier-1s, with a remarkable efficiency of approximately 96\% within last 3 months
 in Fig.~\ref{fig:reprocessT1s}.
 
 Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of March 2009. 
-More than 1400 million events as shown in Fig.~\ref{fig:merged_events}b) are reprocessed and merged in last 80 days, which are then 
+More than 1400 million events as shown in Fig.~\ref{fig:merged_events}b) were reprocessed and merged in last 80 days, which are then 
 used for physics analyses at the Tier-2 centers. 
 
 One of the essential features of the glideinWMS is the capability to utilize a large number of
@@ -179,7 +179,7 @@ resources, with low startup latency. As discussed earlier, most of the reprocess
 workflows involve numerous short jobs. Previous studies have shown that a given CE can 
 schedule jobs at a rate of 0.5Hz. In order to fill 6,000 resources at this rate, it would normally take 
 about 3.33 hours.  The glide-in approach, however allows workers (\emph{startds}) 
-to process multiple client jobs sequentially with more than an order in magnitude rate, until 
+to process multiple client jobs sequentially with more than an order of magnitude increase in rate, until 
 the expiration of the glide-in's lifetime \cite{bib:ce_rate}. This provides a scalable solution for Tier-1 centers such as Fermilab, 
 where a large number of resources are required to be used efficiently, which otherwise would not 
 be possible to harness effectively using traditional early-binding approach.
@@ -197,7 +197,7 @@ events merged as a function of time, written at various CMS Tier-1 centers.}
 Data analysis in a distributed environment is a complex computing task. The CMS Collaboration
 uses CRAB \cite{bib:cms_crab}, in order to perform user analyses at the Tier-2 centers.
 CRAB is a CMS-specific software layer layer integrated with a number of WMSes, including glideinWMS.
-It simplifies the process of data analysis, job submission and retrieval by hiding much of the possible grid complexity from the
+It simplifies the process of data analysis, job submission and retrieval by hiding much of the grid complexity from the
 end user. The tool splits the analysis task into several jobs based on the requested number of events and
 the location of the input dataset via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
 packaging of the executables/libraries before submitting the jobs to the glideinWMS. 
@@ -289,9 +289,9 @@ release version of the server.
 \label{fig:user_analysis}
 \end{figure}
 In CMS, the MC production is performed using a centrally organized mechanism. However,
-for small-scale understanding of a given origin of physics model, it becomes too cumbersome
+for small samples needed by an individual physicist, it becomes too cumbersome
 to involve the management resources. Thus, it is essential to have a simple interface
-in order for the users to be involved in small-scale MC productions. 
+for the users to be involved in small-scale MC productions. 
 
 A web frontend is used to send a specific configuration for production to the system. 
 The system uses X.509 authentication and authorization and also maintains the user priorities. 
@@ -339,12 +339,12 @@ For the administrators in real time to
 \subitem
 - spot problems quickly with misbehaving jobs (signified by zero load, expiring proxies, etc.)
 \end{itemize}
-The framework sensors uses the information from the glide-in \emph{collector} and \emph{scheduler} to
-update the data at a regular interval to a MySQL Database. The database serves the monitoring
+The framework sensors use the information from the glide-in \emph{collector} and \emph{scheduler} to
+update the data at a regular interval to a MySQL Database. The database serves the monitoring 
 information to the clients. The interface provides information regarding the CPU load, memory usage, 
 job state and selection in quasi-real time. The database also stores summary information for the already completed 
-jobs for archival purposes. The monitoring system is currently under active development and promises to provide access to 
-the logs in real time of the currently running jobs at remote sites, using 
+jobs for archival purposes. The monitoring system is currently under active development and promises to provide access 
+in real time to the logs of the currently running jobs at remote sites, using 
 pseudo-interactive monitoring \cite{bib:pseudo_mon}.
 \begin{figure}
 \begin{center}
@@ -377,7 +377,7 @@ glideinWMS are not affected due to above mentioned issues.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-GlideinWMS has been widely used in CMS for central data reprocessing, skimming at the Tier-1 centers, as well
+GlideinWMS has been extensively used in CMS for central data reprocessing, skimming at the Tier-1 centers, as well
 as user analysis. It provides a homogeneous pool of resources overlaid on a heterogeneous grid environment. 
 CRAB-based user analysis efficiency benefits significantly from the late-binding approach. Detailed job monitoring 
 associated with the WMS, provides tools for the users to access worldwide running  
