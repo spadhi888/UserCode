@@ -87,8 +87,7 @@ The late-binding WMS can reduce the heterogeneity of the compute resources,
 by either only gathering properly configured worker nodes,
 or by providing wrapper scripts that provide common tools and libraries.
 \end{itemize}
-
-The late-binding WMS used by CMS is called \textbf{glideinWMS}. GlideinWMS is based on the Condor batch system, 
+The late-binding WMS used by CMS is called \textbf{glideinWMS}. GlideinWMS is based on the Condor \cite{bib:condor} batch system, 
 with the addition of a thin layer responsible for the submission of the pilot jobs.
 
 A glideinWMS virtual private pool consists of a regular Condor pool, 
@@ -117,15 +116,15 @@ Together these make the system work as illustrated in Fig.~\ref{fig:glideinWMS}.
 \subsection {Interoperability between EGEE, OSG, and NorduGrid}
 \vspace{2mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In principle, the problem of interoperability between different grids is reduced to having a Condor-G client
+In principle, the problem of interoperability between different grids is reduced to having a Condor-G \cite{bib:condorg} client
 for submission of the glide-ins for the particular grid flavor. All other incompatibilities can be 
 resolved via appropriate configuration of the glide-ins. In practice, CMS deals with many of the differences 
-between EGEE and OSG inside the CRAB or ProdAgent layers of the software stack, thus requiring little special 
+between EGEE \cite{bib:egee} and OSG \cite{bib:osg} inside the CRAB \cite{bib:cms_crab} or ProdAgent layers of the software stack, thus requiring little special 
 configuration in the glide-ins. As part of our work for the Common Computing Readiness Challenge 08 (CCRC-08), we worked 
 with the Condor team on the details of submitting glide-ins via Condor-G to grids such as the NorduGrid. The method 
 consists of using protocol-specific modules called GAHPs (Grid Ascii Helper Programs) along with logic in the Condor gridmanager for the 
 specific use of it, when submitting to a given grid flavor. This resulted 
-in the first ever use of NorduGrid resources for data analysis within CRAB using glideinWMS. The other grid flavors like 
+in the first ever use of NorduGrid \cite{bib:ng} resources for data analysis within CRAB using glideinWMS. The other grid flavors like 
 EGEE and OSG CEs are accessible using GRAM2 protocols via the Condor-G client. This development led to
 a fully interoperable system across all three grid flavors for the first time.
 \begin{figure}
@@ -157,7 +156,7 @@ data analysis and Monte Carlo productions is feasible.
 \begin{center}
 \includegraphics[scale=0.54]{DataReprocess}
 \end{center}
-\caption{Overview of CMS data re-processing and resource usage statistics using glideinWMS.}
+\caption{Overview of CMS data re-processing and resource usage statistics from the dashboard monitoring tool using glideinWMS.}
 \label{fig:reprocessT1s}
 \end{figure}
 
@@ -179,7 +178,7 @@ launches the corresponding merge jobs. More than 1.9 million jobs were successfu
 Tier-1s, with a remarkable efficiency of approximately 96\% within last 3 months, using glideinWMS as shown 
 in Fig.~\ref{fig:reprocessT1s}.
 
-Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of March 2009. 
+Fig.~\ref{fig:glideinT1stat}b) shows the number of simultaneous glide-ins running at various Tier-1 centers during the last week of March 2009 (See also Fig.~\ref{fig:merged_events}a) on simultaneously running glide-ins at one of the CMS Tier-1 sites).
 More than 1400 million events as shown in Fig.~\ref{fig:merged_events}b) were reprocessed and merged in last 80 days, which are then 
 used for physics analyses at the Tier-2 centers. 
 
@@ -206,17 +205,17 @@ events merged as a function of time, written at various CMS Tier-1 centers.}
 \end{figure}
 
 Data analysis in a distributed environment is a complex computing task. The CMS Collaboration
-uses CRAB \cite{bib:cms_crab}, in order to perform user analyses at the Tier-2 centers.
+uses CRAB, in order to perform user analyses at the Tier-2 centers.
 CRAB is a CMS-specific software layer layer integrated with a number of WMSes, including glideinWMS.
 It simplifies the process of data analysis, job submission and retrieval by hiding much of the grid complexity from the
 end user. The tool splits the analysis task into several jobs based on the requested number of events and
-the location of the input dataset via the CMS-specific Dataset Bookkeeping System (DBS). Furthermore, it performs various checks along with 
+the location of the input dataset via the CMS-specific Dataset Bookkeeping System (DBS) \cite{bib:cms_computing_arch}. Furthermore, it performs various checks along with 
 packaging of the executables/libraries before submitting the jobs to the glideinWMS. 
 %The glideinWMS submits glide-ins to the requested site.  Once the glide-ins are activated, it pulls the ``real'' user job from the queue.
 %During the process of activation, the initially submitted glide-ins perform various checks at the Worker Nodes (WN), such as the presence of the desired 
 %CMS software. 
 Periodic updates are performed regarding job status via glideinWMS to CRAB. Once the job is completed, the WMS provides the 
-log files (stdout/stderr). The overall process also updates the CMS Dashboard using MonALISA as the transport agent for user job monitoring.
+log files (stdout/stderr). The overall process also updates the CMS Dashboard \cite {bib:dashboard} using MonALISA as the transport agent for user job monitoring.
 In addition. glideinWMS provides a mechanism for on-demand ``read'' access to the job environment. This allows
 pseudo-realtime debugging of a running job via commands like ps, top, ls, and tail of various files, including stdout and stderr. 
 At present, CRAB does not yet make use of these features of glideinWMS.
@@ -324,7 +323,8 @@ release version of the server.
 The glideinWMS consists of two sets of jobs: glide-ins and the user jobs. The
 glide-in jobs, as well as the submission rates, are monitored using the information from the \emph{collector},
 \emph{submitter} and the retrieved output after the termination of the glide-ins via Condor-G.
-Fig.~\ref{fig:glideinT1stat} shows the pilot statistics and its client usage.
+The pilot statistics and its client usage have been discussed in earlier sections.
+%Fig.~\ref{fig:glideinT1stat} shows the pilot statistics and its client usage.
 
 However, it is essential both for the end-users and the glideinWMS administrator to have 
 a secure and transparent access to the real-time job monitoring. This is achieved using
@@ -377,7 +377,7 @@ pseudo-interactive monitoring \cite{bib:pseudo_mon}.
 \vspace{2mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Computing Resource Execution And Management (CREAM) is a next generation web service interface 
+The Computing Resource Execution And Management (CREAM) \cite{bib:cream} is a next generation web service interface 
 for job management operation at the CE level. Recent developments to Condor-G have focused on adding 
 support for CREAM. This is accomplished for the first time by using GAHP daemons tailored to CREAM.
 It consists of various algorithms responsible for communication with the CE at different stages of job submission
@@ -421,6 +421,18 @@ DE-AC02-06CH11357, U.S NSF grants PHY-0427113 (RACE) and PHY-0533280 (DISUN).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{15}
 
+\bibitem{bib:condor}
+Condor, High Throughput Computing, http://www.cs.wisc.edu/condor/
+\bibitem{bib:condorg}
+Condor-g homepage, http://www.cs.wisc.edu/condor/condorg/
+\bibitem{bib:egee}
+Enabling Grid for E-sciencE (EGEE), http://www.eu-egee.org/
+\bibitem{bib:osg}
+Open Science Grid (OSG) Web Page, http://www.opensciencegrid.org/
+\bibitem{bib:cms_crab}
+D. Spiga, ``Automatization of User Analysis Workflow in CMS'', CHEP 09, Prague, Czech Republic.
+\bibitem{bib:ng}
+Nordic Data Grid Facility (NDGF) Web Page, http://www.nordugrid.org/
 \bibitem{bib:scalability} 
 D. Bradley, I. Sfiligoi, S. Padhi, J. Frey and T. Tannenbaum, ``Interoperability and Scalability within glideinWMS'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:cms_computing_arch} 
@@ -428,14 +440,17 @@ CMS Collaboration 2005, CMS Computing Technical Design Report, CERN-LHCC-2005-02
 \bibitem{bib:cms_phedex}
 J. Rehn et al., ``PhEDEx high-throughput data transfer management system'', CHEP 06, Mumbai, India.
 \bibitem{bib:ce_rate}
-B. Holzman and I. Sfiligoi, ``A Quantitative Comparison Test of Workload Management Systems'', CHEP 07, Victoria, Canada. 
-\bibitem{bib:cms_crab}
-D. Spiga, ``Automatization of User Analysis Workflow in CMS'', CHEP 09, Prague, Czech Republic.
+B. Holzman and I. Sfiligoi, ``A Quantitative Comparison Test of Workload Management Systems'', CHEP 07, Victoria, Canada.
+\bibitem{bib:dashboard}
+J. Andreeva et al., ``Experiment Dashboard: the monitoring system for the LHC experiments'', In Proceedings of the 2007 Workshop on Grid Monitoring, Monterey, California, USA, June 2007. 
 \bibitem{bib:cms_glite}
 A. Fanfani, ``Commissioning Distributed Analysis at the CMS Tier-2 Centers'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:cms_jobmon}
 C. Dumitrescu, A. Nowack, S. Padhi and S. Sarkar, ``A Grid Job Monitoring System'', CHEP 09, Prague, Czech Republic.
 \bibitem{bib:pseudo_mon}
 D. Bradley, M. Livny and I. Sfiligoi, ``Pseudo-interactive monitoring in distributed computing'', CHEP 09, Prague, Czech Republic.
+\bibitem{bib:cream}
+P. Andreetto et al., ``CREAM: A simple, Grid-accessible, Job Management System for local Computational Resources'', Proc. XV International Conference on Computing in High Energy and Nuclear Physics (CHEP'06), Feb 13-17, 2006, Mumbay, India.
+
 \end{thebibliography}
 \end{document}
