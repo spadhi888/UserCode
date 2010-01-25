@@ -21,6 +21,7 @@
 #include "CMS2.h"
 #include "utilities.h"
 
+typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > LorentzVector;
 using std::vector;
 TH2D* rfhist = 0;
 
@@ -58,12 +59,8 @@ TVector3 correctMETforTracks()
 
   for( unsigned int trkCount = 0; trkCount < cms2.trks_trk_p4().size(); ++trkCount ) {
     // skip track if matched to a global muon
-    if( cms2.trk_musidx()[trkCount] != -999 &&  
-	ROOT::Math::VectorUtil::DeltaR(cms2.trks_trk_p4()[trkCount],
-				       cms2.mus_trk_p4()[cms2.trk_musidx()[trkCount]]) < 0.1) {
-      if( cms2.mus_trkidx()[cms2.trk_musidx()[trkCount]]  == int(trkCount) 
-	  // useless && cms2.mus_trkdr()[cms2.trk_musidx()[trkCount]] < 0.1 
-	  ) continue;
+    if( cms2.trk_musidx()[trkCount] != -999 && cms2.trk_musdr()[trkCount] < 0.1) {
+      if( cms2.mus_trkidx()[cms2.trk_musidx()[trkCount]]  == int(trkCount) && cms2.mus_trkdr()[cms2.trk_musidx()[trkCount]] < 0.1 ) continue;
     }
 
     // skip track if matched to an "electron"
@@ -87,15 +84,15 @@ TVector3 correctMETforTracks()
     }
 
     // skip any remaining tracks that don't have outerEta, outerPhi information
-    if( cms2.trks_outer_p4()[trkCount].x() == -999 || cms2.trks_outer_p4()[trkCount].y() == -999 ) continue;
+    if( cms2.trks_outerEta()[trkCount] == -999 || cms2.trks_outerPhi()[trkCount] == -999 ) continue;
 
     // if we've made it this far, get the response from the histogram
     int bin   = rfhist->FindBin( cms2.trks_trk_p4()[trkCount].eta(), cms2.trks_trk_p4()[trkCount].pt() );
     double rf = rfhist->GetBinContent( bin );
 
     // now, correct MET for track using RF
-    met_x +=  ( rf * cms2.trks_trk_p4()[trkCount].P() * ( 1 / cosh( cms2.trks_outer_p4()[trkCount].Eta() ) ) * cos( cms2.trks_outer_p4()[trkCount].Phi() ) - cms2.trks_trk_p4()[trkCount].pt() * cos( cms2.trks_trk_p4()[trkCount].phi() ) );
-    met_y +=  ( rf * cms2.trks_trk_p4()[trkCount].P() * ( 1 / cosh( cms2.trks_outer_p4()[trkCount].Eta() ) ) * sin( cms2.trks_outer_p4()[trkCount].phi() ) - cms2.trks_trk_p4()[trkCount].pt() * sin( cms2.trks_trk_p4()[trkCount].phi() ) );
+    met_x +=  ( rf * cms2.trks_trk_p4()[trkCount].P() * ( 1 / cosh( cms2.trks_outerEta()[trkCount] ) ) * cos( cms2.trks_outerPhi()[trkCount] ) - cms2.trks_trk_p4()[trkCount].pt() * cos( cms2.trks_trk_p4()[trkCount].phi() ) );
+    met_y +=  ( rf * cms2.trks_trk_p4()[trkCount].P() * ( 1 / cosh( cms2.trks_outerEta()[trkCount] ) ) * sin( cms2.trks_outerPhi()[trkCount] ) - cms2.trks_trk_p4()[trkCount].pt() * sin( cms2.trks_trk_p4()[trkCount].phi() ) );
   }
 
   // fill MET vector
@@ -105,16 +102,16 @@ TVector3 correctMETforTracks()
   return metvec;
 }
 
-double dRbetweenVectors(const LorentzVector &vec1, 
-			const LorentzVector &vec2 ){ 
+double dRbetweenVectors(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > vec1, 
+			ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > vec2 ){ 
 
-  double dphi = std::min(::fabs(vec1.Phi() - vec2.Phi()), 2 * M_PI - fabs(vec1.Phi() - vec2.Phi()));
+  double dphi = TMath::Min(TMath::Abs(vec1.Phi() - vec2.Phi()), 2*TMath::Pi() - TMath::Abs(vec1.Phi() - vec2.Phi()));
   double deta = vec1.Eta() - vec2.Eta();
   return sqrt(dphi*dphi + deta*deta);
 }
 
-int match4vector(const LorentzVector &lvec, 
-		 const vector<LorentzVector> &vec, 
+int match4vector(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > lvec, 
+		 vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > vec, 
 		 double cut=10.0 ){
 
   if( vec.size() == 0 ) return -1;
@@ -144,11 +141,12 @@ int match4vector(const LorentzVector &lvec,
 }
 */
 
-std::vector<LorentzVector> p4sInCone(const LorentzVector &refvec, 
-				     const std::vector<LorentzVector> &invec, 
-				     double coneSize=0.5 ) 
-{
-  vector<LorentzVector> result;
+vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > 
+p4sInCone( ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > refvec, 
+	       vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > invec, 
+	       double coneSize=0.5 ) {
+
+  vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > result;
   if ( invec.size() == 0 ) return result;
 
   double dR = coneSize; 
@@ -160,10 +158,10 @@ std::vector<LorentzVector> p4sInCone(const LorentzVector &refvec,
   return result;
 }
 
-std::vector<unsigned int> idxInCone(const LorentzVector &refvec, 
-				    const std::vector<LorentzVector> &invec, 
-				    double coneSize=0.5 ) 
-{
+vector<unsigned int> idxInCone( ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > refvec, 
+	       vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > invec, 
+	       double coneSize=0.5 ) {
+
   vector<unsigned int > result;
   if ( invec.size() == 0 ) return result;
 
