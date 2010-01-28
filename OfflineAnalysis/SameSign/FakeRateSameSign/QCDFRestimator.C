@@ -41,12 +41,6 @@
 
 typedef vector<ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > >  VofP4;
 
-// this is Jake's magic to sort jets by Pt
-Bool_t comparePt(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > lv1,
-                 ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > lv2) {
-  return lv1.pt() > lv2.pt();
-}
-
 
 //------------------------------------------------------------
 Float_t QCDFRestimator::GetValueTH2F(Float_t x, Float_t y, TH2F* h) {
@@ -103,15 +97,19 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
   //also book the nJet histo
   char *suffix[2] =  {"el", "mu"};
 
+  Float_t nbins[6] = {0,1,2,3,4,5};
+  Float_t pt[4] = {10, 20, 60, 150};
+  Float_t eta[3] = {0, 1.5, 2.4};
+
   h_predictednJets[0]  = new TH1F(Form("WJets_predictednJets_%s", suffix[0]),
 				  "predicted NJet distribution, FO object", 5, 0, 5);
   h_actualnJets[0]     = new TH1F(Form("WJets_actualnJets_%s", suffix[0]), 
 				  "actual NJet distribution", 5, 0, 5);
   h_nJets3D[0]          = new TH3F(Form("WJets_nJets3D_%s", suffix[0]),
 				   "3D histo to store error info", 
-				   5, 0, 5, 
-				   4, 0, 2.4,
-				   5, 10, 110);
+				   5, nbins, 
+				   2, eta,
+				   3, pt);
 
   h_FOnJets[0] = new TH1F(Form("WJets_FOnJets_%s", suffix[0]),
 			  Form("NJet distribution, FO. %s", suffix[0]),
@@ -119,9 +117,7 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 
   
   
-  Float_t nbins[6] = {0,1,2,3,4,5};
-  Float_t pt[3] = {0, 60,110};
-  Float_t eta[3] = {0, 1.5, 2.4};
+
   h_predictednJets[1]  = new TH1F(Form("WJets_predictednJets_%s", suffix[1]),
 				  "predicted NJet distribution, FO object", 5, 0, 5);
   h_actualnJets[1]     = new TH1F(Form("WJets_actualnJets_%s", suffix[1]), 
@@ -130,7 +126,7 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 				   "3D histo to store error info", 
 				   5, nbins, 
 				   2, eta,
-				   2, pt);
+				   3, pt);
 
 
   h_FOnJets[1] = new TH1F(Form("WJets_FOnJets_%s", suffix[1]),
@@ -192,7 +188,7 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
       for(unsigned int iHyp = 0; iHyp < cms2.hyp_p4().size(); iHyp++) {
 	
 	//opposite sign - Oli + Ingo
-	if( cms2.hyp_lt_id()[iHyp]*cms2.hyp_ll_id()[iHyp] > 0)
+	if( cms2.hyp_lt_id()[iHyp]*cms2.hyp_ll_id()[iHyp] < 0)
 	  continue;
         
 	int nJets = cms2.hyp_jets_p4()[iHyp].size();
@@ -244,8 +240,8 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 	  if(!isFakeableElSUSY09(iEl))
 	     continue;
 
-	  h_FOptvseta[0]->Fill(fabs(eta), min(pt,109.0), weight);
-	  h_FOpt[0]     ->Fill(min(pt,109.0), weight);
+	  h_FOptvseta[0]->Fill(fabs(eta), min(pt,149.0), weight);
+	  h_FOpt[0]     ->Fill(min(pt,149.0), weight);
 	  h_FOeta[0]    ->Fill(fabs(eta), weight);
 	  h_FOnJets[0]  ->Fill(nJets, weight);
 	  
@@ -261,8 +257,8 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 	  if(!isNumElSUSY09(iEl))
 	    continue;
 	
-	  h_numptvseta[0]->Fill(fabs(eta), min(pt,109.0), weight);
-	  h_numpt[0]     ->Fill(min(pt,109.0), weight);
+	  h_numptvseta[0]->Fill(fabs(eta), min(pt,149.0), weight);
+	  h_numpt[0]     ->Fill(min(pt,149.0), weight);
 	  h_numeta[0]    ->Fill(fabs(eta), weight);
 	  
 	  h_actualnJets[0]->Fill(nJets, weight);
@@ -273,7 +269,9 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 	if(isTrueElFromW(iEl) && cms2.els_p4()[iEl].Pt() > 10.) {
 	  
 	  Double_t pt = cms2.mus_p4()[iMu].Pt();
-	    Double_t eta = cms2.mus_p4()[iMu].Eta();
+          Double_t eta = cms2.mus_p4()[iMu].Eta();
+
+	  if(!isNumElSUSY09(iEl))  continue; // Require the electron to be isolated and good
 	  
 	//    if(!isFakeableMuTTDil08(iMu))
 	    if(!isFakeableMuSUSY09(iMu))
@@ -284,8 +282,8 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 
 	    
 	    //if we get here, fill the FO histos
-	    h_FOptvseta[1]->Fill(fabs(eta), min(pt,109.0), weight);
-	    h_FOpt[1]     ->Fill(min(pt,109.0), weight);
+	    h_FOptvseta[1]->Fill(fabs(eta), min(pt,149.0), weight);
+	    h_FOpt[1]     ->Fill(min(pt,149.0), weight);
 	    h_FOeta[1]    ->Fill(fabs(eta), weight);
 	    h_FOnJets[1]  ->Fill(nJets);
 
@@ -297,8 +295,8 @@ int QCDFRestimator::ScanChainWJets ( TChain* chain, TString prefix,
 	    if( !isNumMuSUSY09(iMu) )
 	      continue;
 	  		
-	    h_numptvseta[1]->Fill(fabs(eta), min(pt,109.0), weight);
-	    h_numpt[1]     ->Fill(min(pt,109.0), weight);
+	    h_numptvseta[1]->Fill(fabs(eta), min(pt,149.0), weight);
+	    h_numpt[1]     ->Fill(min(pt,149.0), weight);
 	    h_numeta[1]    ->Fill(fabs(eta), weight);
 
 	    h_actualnJets[1]->Fill(nJets, weight);
@@ -468,8 +466,8 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	//if(!looseElectronSelectionTTDil08(iEl))
 	//continue;
 
-	h_FOptvseta[0]->Fill(fabs(eta), min(pt,109.0), weight);
-	h_FOpt[0]     ->Fill(min(pt,109.0), weight);
+	h_FOptvseta[0]->Fill(fabs(eta), min(pt,149.0), weight);
+	h_FOpt[0]     ->Fill(min(pt,149.0), weight);
 	h_FOeta[0]    ->Fill(fabs(eta), weight);
 
 	//figure out the mcid of the closest status==3 particle
@@ -491,17 +489,17 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	  }
 	}
 	if(matchedId == 5 || matchedId == 4 ) {
-	  h_FOhfpt[0] ->Fill(min(pt,109.0), weight);
+	  h_FOhfpt[0] ->Fill(min(pt,149.0), weight);
 	  h_FOhfeta[0]->Fill(fabs(eta), weight);
 	}
 	
 	if(matchedId < 4) {
-	  h_FOlqpt[0]->Fill(min(pt,109.0), weight);
+	  h_FOlqpt[0]->Fill(min(pt,149.0), weight);
 	  h_FOlqeta[0]->Fill(fabs(eta), weight);
 	}
 
 	if(matchedId == 21) {
-	  h_FOgpt[0]->Fill(min(pt,109.0), weight);
+	  h_FOgpt[0]->Fill(min(pt,149.0), weight);
 	  h_FOgeta[0]->Fill(fabs(eta), weight);
 	}
 	
@@ -513,22 +511,22 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	if(!isNumElSUSY09(iEl))
 	  continue;
 	  
-	h_numptvseta[0]->Fill(fabs(eta), min(pt,109.0), weight);
-	h_numpt[0]     ->Fill(min(pt,109.0), weight);
+	h_numptvseta[0]->Fill(fabs(eta), min(pt,149.0), weight);
+	h_numpt[0]     ->Fill(min(pt,149.0), weight);
 	h_numeta[0]    ->Fill(fabs(eta), weight);
 	
 	if(matchedId == 5 || matchedId == 4 ) {
-	  h_numhfpt[0] ->Fill(min(pt,109.0), weight);
+	  h_numhfpt[0] ->Fill(min(pt,149.0), weight);
 	  h_numhfeta[0]->Fill(fabs(eta), weight);
 	}
 	
 	if(matchedId < 4) {
-	  h_numlqpt[0]->Fill(min(pt,109.0), weight);
+	  h_numlqpt[0]->Fill(min(pt,149.0), weight);
 	  h_numlqeta[0]->Fill(fabs(eta), weight);
 	}
 	
 	if(matchedId == 21) {
-	  h_numgpt[0]->Fill(min(pt,109.0), weight);
+	  h_numgpt[0]->Fill(min(pt,149.0), weight);
 	  h_numgeta[0]->Fill(fabs(eta), weight);
 	}
 	
@@ -553,8 +551,8 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	//continue;
 	  
 	//if we get here, fill the FO histos
-	h_FOptvseta[1]->Fill(fabs(eta), min(pt,109.0), weight);
-	h_FOpt[1]     ->Fill(min(pt,109.0), weight);
+	h_FOptvseta[1]->Fill(fabs(eta), min(pt,149.0), weight);
+	h_FOpt[1]     ->Fill(min(pt,149.0), weight);
 	h_FOeta[1]    ->Fill(fabs(eta), weight);
 	
 	//figure out the mcid of the closest status==3 particle
@@ -576,17 +574,17 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	  }
 	}
 	if(matchedId == 5 || matchedId == 4 ) {
-	  h_FOhfpt[1] ->Fill(min(pt,109.0), weight);
+	  h_FOhfpt[1] ->Fill(min(pt,149.0), weight);
 	  h_FOhfeta[1]->Fill(fabs(eta), weight);
 	}
 	
 	if(matchedId < 4) {
-	  h_FOlqpt[1]->Fill(min(pt,109.0), weight);
+	  h_FOlqpt[1]->Fill(min(pt,149.0), weight);
 	  h_FOlqeta[1]->Fill(fabs(eta), weight);
 	}
 
 	if(matchedId == 21) {
-	  h_FOgpt[1]->Fill(min(pt,109.0), weight);
+	  h_FOgpt[1]->Fill(min(pt,149.0), weight);
 	  h_FOgeta[1]->Fill(fabs(eta), weight);
 	}
 	
@@ -599,22 +597,22 @@ int QCDFRestimator::ScanChainQCD ( TChain* chain, TString prefix, float kFactor,
 	if( !isNumMuSUSY09(iMu) )
 	  continue;
 	  		
-	h_numptvseta[1]->Fill(fabs(eta), min(pt,109.0), weight);
-	h_numpt[1]     ->Fill(min(pt,109.0), weight);
+	h_numptvseta[1]->Fill(fabs(eta), min(pt,149.0), weight);
+	h_numpt[1]     ->Fill(min(pt,149.0), weight);
 	h_numeta[1]    ->Fill(fabs(eta), weight);
 
 	if(matchedId == 5 || matchedId == 4 ) {
-	  h_numhfpt[1] ->Fill(min(pt,109.0), weight);
+	  h_numhfpt[1] ->Fill(min(pt,149.0), weight);
 	  h_numhfeta[1]->Fill(fabs(eta), weight);
 	}
 	
 	if(matchedId < 4) {
-	  h_numlqpt[1]->Fill(min(pt,109.0), weight);
+	  h_numlqpt[1]->Fill(min(pt,149.0), weight);
 	  h_numlqeta[1]->Fill(fabs(eta), weight);
 	}
 
 	if(matchedId == 21) {
-	  h_numgpt[1]->Fill(min(pt,109.0), weight);
+	  h_numgpt[1]->Fill(min(pt,149.0), weight);
 	  h_numgeta[1]->Fill(fabs(eta), weight);
 	}
 	
@@ -698,34 +696,38 @@ void QCDFRestimator::bookHistos(const char *sample) {
 
   
   char *flavor[2] = {"el", "mu"};
+
+  Float_t pt[4] = {10, 20, 60, 150};
+  Float_t eta[3] = {0, 1.479, 2.4};
+
   //FO --> electron
   h_FOptvseta[0] = new TH2F(Form("%s_FOptvseta_%s", sample, flavor[0]),
 			    Form("%s pt vs eta of FO, %s", flavor[0], sample),
-			    4, 0, 2.4, 5, 10, 110);
+			    2, eta, 3, pt);
   h_FOpt[0] = new TH1F(Form("%s_FOpt_%s", sample, flavor[0]), 
 		       Form("%s pt of FO, %s", flavor[0], sample), 
-		       5, 10, 110);
+		       3, pt);
   h_FOeta[0] = new TH1F(Form("%s_FOeta_%s", sample, flavor[0]), 
 			Form("%s eta of FO, %s", flavor[0], sample), 
-			4, 0, 2.4);
+			2, eta);
   h_FOhfpt[0] = new TH1F(Form("%s_FOhfpt_%s", sample, flavor[0]), 
 		       Form("%s pt of FO matched to HF, %s", flavor[0], sample), 
-		       5, 10, 110);
+		       3, pt);
   h_FOhfeta[0] = new TH1F(Form("%s_FOhfeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FO matched to HF, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_FOlqpt[0] = new TH1F(Form("%s_FOlqpt_%s", sample, flavor[0]), 
 			 Form("%s pt of FO matched to Light quarks, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_FOlqeta[0] = new TH1F(Form("%s_FOlqeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FO matched to Light quarks, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_FOgpt[0] = new TH1F(Form("%s_FOgpt_%s", sample, flavor[0]), 
 			 Form("%s pt of FO matched to gluons, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_FOgeta[0] = new TH1F(Form("%s_FOgeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FO matched to gluons, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
 
 
   
@@ -739,31 +741,31 @@ void QCDFRestimator::bookHistos(const char *sample) {
   //tight selection info
   h_numptvseta[0] = new TH2F(Form("%s_numptvseta_%s", sample, flavor[0]), 
 			     Form("%s pt vs eta of num, %s",flavor[0], sample),
-			     4, 0, 2.4, 5, 10, 110);
+			     2, eta, 3, pt);
   h_numpt[0] = new TH1F(Form("%s_numpt_%s", sample, flavor[0]), 
 			Form("%s pt of num, %s",flavor[0], sample),
-			5, 10, 110);
+			3, pt);
   h_numeta[0] = new TH1F(Form("%s_numeta_%s", sample, flavor[0]), 
 			 Form("%s eta of num, %s", flavor[0], sample),
-			 4, 0, 2.4);
+			 2, eta);
   h_numhfpt[0] = new TH1F(Form("%s_numhfpt_%s", sample, flavor[0]), 
 		       Form("%s pt of num matched to HF, %s", flavor[0], sample), 
-		       5, 10, 110);
+		       3, pt);
   h_numhfeta[0] = new TH1F(Form("%s_numhfeta_%s", sample, flavor[0]), 
 			  Form("%s eta of num matched to HF, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_numlqpt[0] = new TH1F(Form("%s_numlqpt_%s", sample, flavor[0]), 
 			 Form("%s pt of num matched to Light quarks, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_numlqeta[0] = new TH1F(Form("%s_numlqeta_%s", sample, flavor[0]), 
 			  Form("%s eta of num matched to Light quarks, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_numgpt[0] = new TH1F(Form("%s_numgpt_%s", sample, flavor[0]), 
 			 Form("%s pt of num matched to gluons, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_numgeta[0] = new TH1F(Form("%s_numgeta_%s", sample, flavor[0]), 
 			  Form("%s eta of num matched to gluons, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_nummc3Id[0] = new TH1F(Form("%s_nummc3Id_%s", sample, flavor[0]),
 			  Form("Id of closest mc3 particle and %s in %s", flavor[0], sample),
 			  30, 0,30);
@@ -776,34 +778,34 @@ void QCDFRestimator::bookHistos(const char *sample) {
   //FR --> electron
   h_FRptvseta[0] = new TH2F(Form("%s_FRptvseta_%s", sample, flavor[0]), 
 			    Form("%s pt vs eta of num, %s", flavor[0], sample),
-			    4, 0, 2.4, 5, 10, 110);
+			    2, eta, 3, pt);
   h_FRErrptvseta[0] = new TH2F(Form("%s_FRErrptvseta_%s", sample, flavor[0]), 
 			       Form("%s, FRErr(pt, eta) of num, %s", flavor[0], sample),
-			       4, 0, 2.4, 5, 10, 110);
+			       2, eta, 3, pt);
   h_FRpt[0] = new TH1F(Form("%s_FRpt_%s", sample, flavor[0]), 
 		       Form("%s pt of FR, %s", flavor[0], sample),
-		       5, 10, 110);
+		       3, pt);
   h_FReta[0] = new TH1F(Form("%s_FReta_%s", sample, flavor[0]), 
 			Form("%s eta of FR, %s", flavor[0], sample),
-			4, 0, 2.4);
+			2, eta);
   h_FRhfpt[0] = new TH1F(Form("%s_FRhfpt_%s", sample, flavor[0]), 
 		       Form("%s pt of FR matched to HF, %s", flavor[0], sample), 
-		       5, 10, 110);
+		       3, pt);
   h_FRhfeta[0] = new TH1F(Form("%s_FRhfeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FR matched to HF, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_FRlqpt[0] = new TH1F(Form("%s_FRlqpt_%s", sample, flavor[0]), 
 			 Form("%s pt of FR matched to Light quarks, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_FRlqeta[0] = new TH1F(Form("%s_FRlqeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FR matched to Light quarks, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_FRgpt[0] = new TH1F(Form("%s_FRgpt_%s", sample, flavor[0]), 
 			 Form("%s pt of FR matched to gluons, %s", flavor[0], sample), 
-			 5, 10, 110);
+			 3, pt);
   h_FRgeta[0] = new TH1F(Form("%s_FRgeta_%s", sample, flavor[0]), 
 			  Form("%s eta of FR matched to gluons, %s", flavor[0], sample), 
-			  4, 0, 2.4);
+			  2, eta);
   h_FRmc3Id[0] = new TH1F(Form("%s_FRmc3Id_%s", sample, flavor[0]),
 			  Form("%s FR as a function of mcId (status==3), %s", flavor[0], sample),
 			  30, 0, 30);
@@ -812,38 +814,37 @@ void QCDFRestimator::bookHistos(const char *sample) {
   
 
   //FO --> muons
-  Float_t pt[3] = {0,60,110};
-  Float_t eta[3] = {0, 1.5, 2.4};
+
   h_FOptvseta[1] = new TH2F(Form("%s_FOptvseta_%s", sample, flavor[1]),
 			    Form("%s pt vs eta of FO, %s", flavor[1], sample),
-			    2, eta, 2, pt);
+			    2, eta, 3, pt);
   h_FOpt[1] = new TH1F(Form("%s_FOpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FO, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FOeta[1] = new TH1F(Form("%s_FOeta_%s", sample, flavor[1]), 
 			Form("%s eta of FO, %s", flavor[1], sample), 
 			2, eta);
   h_FOhfpt[1] = new TH1F(Form("%s_FOhfpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FO matched to HF, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FOhfeta[1] = new TH1F(Form("%s_FOhfeta_%s", sample, flavor[1]), 
 			Form("%s eta of FO matched to HF, %s", flavor[1], sample), 
 			2, eta);
   h_FOlqpt[1] = new TH1F(Form("%s_FOlqpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FO matched to Light quarks, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FOlqeta[1] = new TH1F(Form("%s_FOlqeta_%s", sample, flavor[1]), 
 			Form("%s eta of FO matched to Light quarks, %s", flavor[1], sample), 
 			2, eta);
   h_FOgpt[1] = new TH1F(Form("%s_FOgpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FO matched to gluons, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FOgeta[1] = new TH1F(Form("%s_FOgeta_%s", sample, flavor[1]), 
 			Form("%s eta of FO matched to gluons, %s", flavor[1], sample), 
 			2, eta);
   h_FOmc3Id[1] = new TH1F(Form("%s_FOmc3Id_%s", sample, flavor[1]),
 			  Form("Id of closest mc3 particle and %s in %s", flavor[1], sample),
-			  30, 0,30);
+			  30, 0, 30);
   h_FOmc3dR[1] = new TH1F(Form("%s_FOmc3dR_%s", sample, flavor[1]),
 			  Form("dR between closest mc3 particle and %s in %s", flavor[1], sample),
 			  100, 0, 2.5);
@@ -852,28 +853,28 @@ void QCDFRestimator::bookHistos(const char *sample) {
   //tight selection info
   h_numptvseta[1] = new TH2F(Form("%s_numptvseta_%s", sample, flavor[1]), 
 			     Form("%s pt vs eta of num, %s",flavor[1], sample),
-			     2, eta, 2, pt);
+			     2, eta, 3, pt);
   h_numpt[1] = new TH1F(Form("%s_numpt_%s", sample, flavor[1]), 
 			Form("%s pt of num, %s",flavor[1], sample),
-			2, pt);
+			3, pt);
   h_numeta[1] = new TH1F(Form("%s_numeta_%s", sample, flavor[1]), 
 			 Form("%s eta of num, %s", flavor[1], sample),
 			 2, eta);
   h_numhfpt[1] = new TH1F(Form("%s_numhfpt_%s", sample, flavor[1]), 
 		       Form("%s pt of num matched to HF, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_numhfeta[1] = new TH1F(Form("%s_numhfeta_%s", sample, flavor[1]), 
 			Form("%s eta of num matched to HF, %s", flavor[1], sample), 
 			2, eta);
   h_numlqpt[1] = new TH1F(Form("%s_numlqpt_%s", sample, flavor[1]), 
 		       Form("%s pt of num matched to Light quarks, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_numlqeta[1] = new TH1F(Form("%s_numlqeta_%s", sample, flavor[1]), 
 			Form("%s eta of num matched to Light quarks, %s", flavor[1], sample), 
 			2, eta);
   h_numgpt[1] = new TH1F(Form("%s_numgpt_%s", sample, flavor[1]), 
 		       Form("%s pt of num matched to gluons, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_numgeta[1] = new TH1F(Form("%s_numgeta_%s", sample, flavor[1]), 
 			Form("%s eta of num matched to gluons, %s", flavor[1], sample), 
 			2, eta);
@@ -889,31 +890,31 @@ void QCDFRestimator::bookHistos(const char *sample) {
    //FR --> muon
   h_FRptvseta[1] = new TH2F(Form("%s_FRptvseta_%s", sample, flavor[1]), 
 			    Form("%s pt vs eta of num, %s", flavor[1], sample),
-			    2, eta, 2, pt);
+			    2, eta, 3, pt);
   h_FRErrptvseta[1] = new TH2F(Form("%s_FRErrptvseta_%s", sample, flavor[1]), 
 			       Form("%s, FRErr(pt, eta) of num, %s", flavor[1], sample),
-			       2, eta, 2, pt);
+			       2, eta, 3, pt);
   h_FRpt[1] = new TH1F(Form("%s_FRpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FR, %s", flavor[1], sample),
-		       2, pt);
+		       3, pt);
   h_FReta[1] = new TH1F(Form("%s_FReta_%s", sample, flavor[1]), 
 			Form("%s eta of FR, %s", flavor[1], sample),
 			2, eta);
   h_FRhfpt[1] = new TH1F(Form("%s_FRhfpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FR matched to HF, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FRhfeta[1] = new TH1F(Form("%s_FRhfeta_%s", sample, flavor[1]), 
 			Form("%s eta of FR matched to HF, %s", flavor[1], sample), 
 			2, eta);
   h_FRlqpt[1] = new TH1F(Form("%s_FRlqpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FR matched to Light quarks, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FRlqeta[1] = new TH1F(Form("%s_FRlqeta_%s", sample, flavor[1]), 
 			Form("%s eta of FR matched to Light quarks, %s", flavor[1], sample), 
 			2, eta);
   h_FRgpt[1] = new TH1F(Form("%s_FRgpt_%s", sample, flavor[1]), 
 		       Form("%s pt of FR matched to gluons, %s", flavor[1], sample), 
-		       2, pt);
+		       3, pt);
   h_FRgeta[1] = new TH1F(Form("%s_FRgeta_%s", sample, flavor[1]), 
 			Form("%s eta of FR matched to gluons, %s", flavor[1], sample), 
 			2, eta);
