@@ -1,0 +1,7 @@
+In order to get a Flip rate using Z. The code 
+can be used as:
+
+root [0] .L doDYFlipRate.C    
+root [1] doAll()          
+
+
