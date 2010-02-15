@@ -58,11 +58,11 @@ void TestPrediction(const char* barrelBarrelFile, const char* barrelEndcapFile, 
   TH1F *be_denomPt = (TH1F*)be_ssPt->Clone();
   be_denomPt->SetName("be_denomPt");
   be_denomPt->Add(be_osPt);
-  be_denomPt->Sumw2();
+//  be_denomPt->Sumw2();
 
   TH1F *be_numPt = (TH1F*)be_denomPt->Clone();
   be_numPt->SetName("be_numPt");
-  be_numPt->Sumw2();
+//  be_numPt->Sumw2();
 
   for(int i = 0; i < be_denomPt->GetNbinsX()+1; i++) {
     //scale the total by the probability to get a fake
