@@ -158,7 +158,7 @@ void doAll(){
   gSystem->CompileMacro("DYFlipRate.C","++k", "libDYFlipRate");
   
   TChain *ch_dy = new TChain("Events");
-  ch_dy->Add("/data/tmp/cms2-V01-03-01/ZJets-madgraph_Summer08_IDEAL_V11_redigi_v1/merged_ntuple*.root");
+  ch_dy->Add("/data/tmp/cms2/Zee_Summer09-MC_31X_V3_7TeV_TrackingParticles-v1/V03-00-35/merged_ntuple*.root");
 
 // CMS TAS01
 //   ch_dy->Add("/store/disk01/cms2-V01-03-01/ZJets-madgraph_Summer08_IDEAL_V11_redigi_v1/merged_ntuple*.root");

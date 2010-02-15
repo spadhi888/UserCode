@@ -3,8 +3,56 @@
 #include "TLorentzVector.h"
 #include "Math/LorentzVector.h"
 #include <vector>
+#include <iostream>
+#include <utility>
 
-typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > LorentzVector;
+typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<float> > LorentzVector;
+
+enum TrackAlgorithm { undefAlgorithm=0, ctf=1, rs=2, cosmics=3, iter0=4, 
+                      iter1=5, iter2=6, iter3=7, iter4=8, iter5=9, iter6=10, iter7=11, iter8=12, iter9=13,iter10=14,
+                      outInEcalSeededConv=15, inOutEcalSeededConv=16, 
+                      nuclInter=17,
+                      standAloneMuon=18,globalMuon=19,cosmicStandAloneMuon=20,cosmicGlobalMuon=21,
+                      iter1LargeD0=22,iter2LargeD0=23,iter3LargeD0=24,iter4LargeD0=25,iter5LargeD0=26,
+                      bTagGhostTracks=27,
+                      beamhalo=28, 
+                      gsf=29,
+                      algoSize=30 };
+
+enum TrackQuality { undefQuality=-1, loose=0, tight=1, highPurity=2, confirmed=3, goodIterative=4, qualitySize=5};
+
+enum SubDetector
+{
+  EBp         =     0,
+  EBm         =     1,
+  EEp         =     2,
+  EEm         =     3,
+  HBHEa       =     5,
+  HBHEb       =     6,
+  HBHEc       =     7,
+  HF          =     8,
+  HO          =     9,
+  RPC         =    12,
+  DT0         =    13,
+  DTp         =    14,
+  DTm         =    15,
+  CSCp        =    16,
+  CSCm        =    17,
+  CASTOR      =    20,
+  TIBTID      =    24,
+  TOB         =    25,
+  TECp        =    26,
+  TECm        =    27,
+  BPIX        =    28,
+  FPIX        =    29,
+  ESp         =    30,
+  ESm         =    31,
+  nPartitions =    24
+};
+
+bool isSubDetectorGood( int cuts );
+
+bool isTrackQuality( int index, int cuts);
 
 bool inZmassWindow (float mass);
 bool supertightElectron (int index);
@@ -31,7 +79,17 @@ bool sumEt10(double sumEt);
 bool sumEt1(double sumEt);
 
 bool isChargeFlip(int elIndex);
+//old cuts on conversions
 bool conversionElectron(int electron);
+//new conversion stuff...cut on shared fraction of hits implemented
+//when looking for electron's ctf track
+bool isconversionElectron09(int elIdx);
+std::pair<float, float> getConversionInfo(LorentzVector trk1_p4, 
+					  int trk1_q, float trk1_d0, 
+					  LorentzVector trk2_p4,
+					  int trk2_q, float trk2_d0,
+					  float bField);
+
 
 int numberOfExtraMuons(int i_hyp, bool nonisolated);
 bool passMuonBVeto_1_6 (int i_dilep, bool soft_nonisolated);
@@ -45,6 +103,9 @@ bool additionalZveto();
 bool isDYee();
 bool isDYmm();
 bool isDYtt();
+bool isWe();
+bool isWm();
+bool isWt();
 int nTrkJets(int i_hyp);
 bool passTrkJetVeto(int i_hyp);
 std::vector<LorentzVector> JPTs(int i_hyp, double etThreshold);
@@ -64,6 +125,7 @@ bool passTrackIsolation(int index);
 int passTrackZVeto(int hyp_index);
 
 int getDrellYanType();
+int getZZType ();
 void dumpDocLines();
 int NjetVeto(std::vector<TLorentzVector>& Jet, double min_et);
 bool trueElectron(int index);
@@ -116,8 +178,10 @@ bool haveExtraMuon5(int hypIdx);
 bool passTriggersMu9orLisoE15(int dilType) ;
 bool passTriggersTTDil08JanTrial(int dilType) ;
 int genpCountPDGId(int id0, int id1=-1, int id2=-1); 
+int genpCountPDGId_Pt20h24(int id0, int id1=-1, int id2=-1);  
 int genpDileptonType();
-int eventDilIndexByWeightTTDil08(const std::vector<unsigned int>& goodHyps, int& strasbourgDilType, bool printDebug = false);
+int eventDilIndexByWeightTTDil08(const std::vector<unsigned int>& goodHyps, int& strasbourgDilType, bool printDebug = false,
+				 bool usePtOnlyForWeighting = false);
 
 // SUSY Dilepton group cuts (VJets09)
 
@@ -135,38 +199,39 @@ int numberOfExtraElectronsVJets09(int i_hyp);
 
 //SUSY dilepton selection TAS group
 
-bool comparePt(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > lv1,  
-                 ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > lv2);
+bool comparePt(const LorentzVector &lv1,  
+	       const LorentzVector &lv2);
 bool GoodSusyElectronWithoutIsolation(int index);
+bool GoodSusyElectronWithoutIsolationNoD0(int index);
 bool GoodSusyElectronWithIsolationLoose(int index, bool use_calo_iso); 
 bool PassSusyElectronIsolationLoose(int index, bool use_calo_iso);
-
 bool GoodSusyMuonWithIsolation(int index); 
 bool GoodSusyMuonWithoutIsolation(int index);
-
 double inv_mu_relsusy_iso(int index);
 double inv_el_relsusy_iso(int index, bool use_calo_iso);
-
 bool GoodSusyElectronWithIsolation(int index, bool use_calo_iso); 
 bool GoodSusyLeptonWithIsolation(int id, int index);
+bool GoodSusy2010Leptons(int id, int index);
+bool additionalZvetoSUSY2010(int i_hyp);
 bool GoodSusyLeptonID(int id, int index);
-
 bool PassSusyMuonIsolation(int index);
 bool PassSusyElectronIsolation(int index, bool use_calo_iso);
 bool PassSusyLeptonIsolation(int id, int index);
-
 bool GoodSusyLeptonID(int id, int index);
 bool GoodSusyTrigger(int dilType);
 int numberOfExtraElectronsSUSY(int i_hyp);
 int numberOfExtraMuonsSUSY(int i_hyp);
-std::vector <ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > getCaloJets(int i_hyp); 
-std::vector <ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > > getJPTJets(int i_hyp); 
+std::vector<LorentzVector> getCaloJets(int i_hyp); 
+std::vector<LorentzVector> getJPTJets(int i_hyp); 
 int ttbarconstituents(int i_hyp);
 bool additionalZvetoSUSY09(int i_hyp);
-
+bool idIsBeauty(int id);
+bool idIsCharm(int id);
+int leptonIsFromW(int idx, int id, LorentzVector v);
 bool isFakeableElSUSY09(int iEl);
 bool isFakeableMuSUSY09(int iMu);
-
+bool isNumElSUSY09(int iEl);
+bool isNumMuSUSY09(int iMu);
 
 //TTDil08 fake rate functions
 bool isNumElTTDil08(int iEl);
@@ -176,6 +241,11 @@ bool isFakeableMuTTDil08(int iMu);
 
 bool trueGammaFromMuon(int electron);
 
-bool conversionElectron(int electron);
-
+int findPrimTrilepZ(int i_hyp, double &mass);
+bool vetoAddZ(int i_hyp, int unusedLepton, double &mass);
+std::vector<LorentzVector> JPTsTrilep(int i_hyp, double etThreshold);
+unsigned int nJPTsTrilep(int i_hyp, double etThreshold);
+double nearestDeltaPhiTrilep(double Phi, int i_hyp);
+double nearestDeltaPhiJet(double Phi, int i_hyp);
+double MetSpecialTrilep(double MET, double MetPhi, int index);
 #endif

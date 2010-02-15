@@ -11,6 +11,8 @@
 
 #include "selections.cc"
 #include "utilities.cc"
+#include "muonSelections.cc"
+#include "electronSelections.cc"
 
 #include "TH1F.h"
 #include "TH2F.h"
@@ -20,6 +22,7 @@
 #include "TRandom2.h"
 #include <fstream>
 #include "TChain.h"
+#include "TLorentzVector.h"
 
 #include "DYFlipRate.h"
 #include "fliprate_egun.cc"
@@ -27,6 +30,8 @@
 CMS2 cms2;
 using namespace tas;
 
+
+typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<float> > LorentzVector;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -317,11 +322,11 @@ int DYFlipRate::ScanChainDY_BB( TChain* chain, int nEventsMax, std::string regio
         if(cms2.hyp_p4()[i].M() < 76. || cms2.hyp_p4()[i].M() > 106.)
           continue;
 	
-        float ltPt  = TMath::Min(cms2.hyp_lt_p4()[i].Pt(), 199.9);
-        float ltEta = TMath::Min(fabs(cms2.hyp_lt_p4()[i].Eta()), 2.399);
+        double ltPt  = TMath::Min(double(cms2.hyp_lt_p4()[i].Pt()), 199.9);
+        double ltEta = TMath::Min(double(fabs(cms2.hyp_lt_p4()[i].Eta())), 2.399);
 	
-        float llPt  = TMath::Min(cms2.hyp_ll_p4()[i].Pt(), 199.9);
-        float llEta = TMath::Min(fabs(cms2.hyp_ll_p4()[i].Eta()), 2.399);
+        double llPt  = TMath::Min(double(cms2.hyp_ll_p4()[i].Pt()), 199.9);
+        double llEta = TMath::Min(double(fabs(cms2.hyp_ll_p4()[i].Eta())), 2.399);
 	
         unsigned int ltidx = cms2.hyp_lt_index()[i];
         unsigned int llidx = cms2.hyp_ll_index()[i];
@@ -346,16 +351,15 @@ int DYFlipRate::ScanChainDY_BB( TChain* chain, int nEventsMax, std::string regio
         }
 	
 	
-        if(!GoodSusyLeptonID(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i]))
-          continue;
-        if(!GoodSusyLeptonID(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i]))
-          continue;
-        if(!GoodSusyLeptonWithIsolation(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i]))
-          continue;
-        if(!GoodSusyLeptonWithIsolation(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i]))
-          continue;
+//        if(!GoodSusyLeptonID(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+//        if(!GoodSusyLeptonID(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
+//        if(!GoodSusyLeptonWithIsolation(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+//        if(!GoodSusyLeptonWithIsolation(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
 	
 	
+        if(!GoodSusy2010Leptons(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+        if(!GoodSusy2010Leptons(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
+
         if(conversionElectron(ltidx))
           continue;
         if(conversionElectron(llidx))
@@ -849,11 +853,11 @@ int DYFlipRate::ScanChainDY_BE( TChain* chain, int nEvents, const char* BBfname)
         if(cms2.hyp_p4()[i].M() < 76. || cms2.hyp_p4()[i].M() > 106.)
           continue;
 
-        float ltPt  = TMath::Min(cms2.hyp_lt_p4()[i].Pt(), 199.9);
-        float ltEta = TMath::Min(fabs(cms2.hyp_lt_p4()[i].Eta()), 2.399);
+        double ltPt  = TMath::Min(double(cms2.hyp_lt_p4()[i].Pt()), 199.9);
+        double ltEta = TMath::Min(double(fabs(cms2.hyp_lt_p4()[i].Eta())), 2.399);
 
-        float llPt  = TMath::Min(cms2.hyp_ll_p4()[i].Pt(), 199.9);
-        float llEta = TMath::Min(fabs(cms2.hyp_ll_p4()[i].Eta()), 2.399);
+        double llPt  = TMath::Min(double(cms2.hyp_ll_p4()[i].Pt()), 199.9);
+        double llEta = TMath::Min(double(fabs(cms2.hyp_ll_p4()[i].Eta())), 2.399);
 
         unsigned int ltidx = cms2.hyp_lt_index()[i];
         unsigned int llidx = cms2.hyp_ll_index()[i];
@@ -866,24 +870,18 @@ int DYFlipRate::ScanChainDY_BE( TChain* chain, int nEvents, const char* BBfname)
           continue;
 
 
-        if(!GoodSusyLeptonID(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i]))
-          continue;
-        if(!GoodSusyLeptonID(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i]))
-          continue;
-        if(!GoodSusyLeptonWithIsolation(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i]))
-          continue;
-        if(!GoodSusyLeptonWithIsolation(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i]))
-          continue;
+//        if(!GoodSusyLeptonID(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+//        if(!GoodSusyLeptonID(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
+//        if(!GoodSusyLeptonWithIsolation(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+//        if(!GoodSusyLeptonWithIsolation(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
+   
+         if(!GoodSusy2010Leptons(cms2.hyp_lt_id()[i], cms2.hyp_lt_index()[i])) continue;
+         if(!GoodSusy2010Leptons(cms2.hyp_ll_id()[i], cms2.hyp_ll_index()[i])) continue;
 
-        if(conversionElectron(ltidx))
-            continue;
-          if(conversionElectron(llidx))
-            continue;
-          if(isChargeFlip(ltidx))
-            continue;
-
-          if(isChargeFlip(llidx))
-            continue;
+          if(conversionElectron(ltidx)) continue;
+          if(conversionElectron(llidx)) continue;
+          if(isChargeFlip(ltidx)) continue;
+          if(isChargeFlip(llidx)) continue;
 
 
         //eta and pt of barrel electron

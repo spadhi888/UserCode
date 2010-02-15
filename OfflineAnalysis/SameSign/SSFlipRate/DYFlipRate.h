@@ -15,7 +15,7 @@ public:
   
   int ScanChainDY_BE( TChain* chain, int nEvents = -1, const char* BBfname="");
 
-  int getClosestStatus3ParticleIdx(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > p4);
+  int getClosestStatus3ParticleIdx(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<float> > p4);
   int bookHistos(std::string prefix);
   void SubtractHistsCorrectly(TH1F* ss, TH1F *os);
   void SubtractHistsCorrectly(TH2F* ss, TH2F *os);

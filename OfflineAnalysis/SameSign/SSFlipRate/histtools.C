@@ -1,70 +1,19 @@
 #include "TCanvas.h"
-#include "TDirectory.h"
 #include "TFile.h"
-#include "TH1F.h"
+#include "TH1.h"
 #include "TH2.h"
 #include "THStack.h"
-#include "TIterator.h"
 #include "TKey.h"
 #include "TLegend.h"
-#include "TList.h"
 #include "TRegexp.h"
-#include "TROOT.h"
-#include "TString.h"
-#include "TMath.h"
 
 #include <iostream>
+
 using namespace std;
 
 namespace hist {
-   //Add all histograms whose names match the given regular expression pattern
-   //or begin with the given prefix.  If the final histogram named outHistName
-   //does not exist it is created.
 
-   void add(const char* outHistName, const char* patORpfx) {
-      TRegexp reg(patORpfx, kFALSE);
-
-      TList* list = gDirectory->GetList() ;
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-      TObject* hist = 0;
-      Bool_t makeOutHist = false;
-
-      hist = gDirectory->Get(outHistName);
-      //If out hist does not exist, remember to create it
-      if (! hist) makeOutHist = true;
-
-	  cout << "Adding to " << outHistName << endl;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-         TString name = obj->GetName();
-
-         //Don't add out hist
-         if (name == TString(outHistName)) continue;
-
-         if (TString(patORpfx).MaybeRegexp()) {
-            if (TString(obj->GetName()).Index(reg) < 0 ) continue;
-         } else if (! name.BeginsWith(patORpfx)) continue;
-
-         if (makeOutHist) {
-            hist = obj->Clone(outHistName);
-
-            if (hist->InheritsFrom(TH2::Class()))
-               ((TH2*)hist)->Reset();
-            else
-               ((TH1*)hist)->Reset();
-
-            ((TH1*)hist)->SetTitle(outHistName);
-            ((TH1*)hist)->Sumw2();
-            makeOutHist = false;
-         }
-
-		 cout << "Adding " << name << endl;
-         ((TH1*)hist)->Add((TH1*)obj);
-      }
-   }
+     void add(const char* outHistName, const char* patORpfx);
 
    //Add all histograms whose names match one of ten possible regular expression
    //patterns or begin with one of ten possible given prefixes.  Feel free to
@@ -85,151 +34,67 @@ namespace hist {
       if (patORpfx9) add(outHistName, patORpfx9);
    }
 
-   //For all histograms whose names match the given regular expression pattern
-   //or begin with the given prefix, set the fill, line and marker colors to the
-   //given value.
-   
-   void color(const char* patORpfx, Color_t color) {
-     //TRegexp reg(patORpfx, kFALSE);
-     TRegexp reg(patORpfx, kTRUE);
+   //Add all histograms whose names match the given regular expression pattern
+   //or begin with the given prefix.  If the final histogram named outHistName
+   //does not exist it is created.
 
-      TList* list = gDirectory->GetList() ;
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         TString name = obj->GetName();
-
-         if (TString(patORpfx).MaybeRegexp()) {
-            if (TString(obj->GetName()).Index(reg) < 0 ) continue;
-         } else if (! name.BeginsWith(patORpfx)) continue;
-
-         //((TH1*)obj)->SetFillColor(color);
-         ((TH1*)obj)->SetLineColor(color);
-         ((TH1*)obj)->SetMarkerColor(color);
-      }
-   }
-
-   //For all histograms drawn on a given TCanvas, set the fill, line and marker
-   //colors in ascending order starting from the given color.
-
-   void colors(TCanvas* canvas, Color_t color = 1) {
-      if(! canvas) return;
-
-      TList* list = canvas->GetListOfPrimitives();
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      //Hist color iterator
-      Int_t colorIt = color;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         //yellow
-         if (colorIt == 5)
-            ++colorIt;
-
-         hist::color(obj->GetName(), colorIt);
-         if (colorIt == 7)
-            colorIt = 1;
-         else 
-            ++colorIt;
-      }
-   }
-
-   //For all histograms added to a given THStack, set the fill, line and marker
-   //colors in ascending order starting from the given color.
-
-   void colors(THStack* stack, Color_t color = 1) {
-      if(! stack) return;
-
-      TList* list = stack->GetHists();
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      //Hist color iterator
-      Int_t colorIt = color;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         hist::color(obj->GetName(), colorIt);
-         if (colorIt == 7)
-            colorIt = 1;
-         else 
-            ++colorIt;
-      }
-   }
-
-   //For all histograms drawn on a given TCanvas, set the marker styles in
-   //ascending order starting from the given style.
-
-   void styles(TCanvas* canvas, Style_t style = 20) {
-      if(! canvas) return;
-
-      TList* list = canvas->GetListOfPrimitives();
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      //Hist style iterator
-      Int_t styleIt = style;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         ((TH1*)obj)->SetMarkerStyle(styleIt);
-         ++styleIt;
-      }
-   }
-
-   //For all histograms drawn on a given THStack, set the marker styles in
-   //ascending order starting from the given style.
-
-   void styles(THStack* stack, Style_t style = 20) {
-      if(! stack) return;
-
-      TList* list = stack->GetHists();
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      //Hist style iterator
-      Int_t styleIt = style;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         ((TH1*)obj)->SetMarkerStyle(styleIt);
-         ++styleIt;
-      }
-   }
-
-
-   //Create a canvas and Draw("same") all histograms whose names match the given
-   //regular expression pattern or begin with the given prefix.  If the TCanvas
-   //named canvasName does not exist it is created.  Optionally apply colors and
-   //styles to all histograms.
-
-   void drawsame(const char* canvasName, const char* patORpfx, Bool_t addColor = kFALSE, Bool_t addStyle = kFALSE, Option_t* drawOption = "") {
+   void add(const char* outHistName, const char* patORpfx) {
       TRegexp reg(patORpfx, kFALSE);
 
       TList* list = gDirectory->GetList() ;
       TIterator* iter = list->MakeIterator();
 
       TObject* obj = 0;
-      TObject* canvas = 0;
-      Bool_t makeCanvas = false;
+      TObject* hist = 0;
+      Bool_t makeOutHist = false;
 
-      canvas = gROOT->GetListOfCanvases()->FindObject(canvasName);
-      //If canvas does not exist, remember to create it
-      if (! canvas) makeCanvas = true;
+      hist = gDirectory->Get(outHistName);
+      //If out hist does not exist, remember to create it
+      if (! hist) makeOutHist = true;
+
+      while (obj = iter->Next()) {
+         if (! obj->InheritsFrom(TH1::Class())) continue;
+
+         TString name = obj->GetName();
+         //Don't add out hist
+         if (name == TString(outHistName)) continue;
+
+         if (TString(patORpfx).MaybeRegexp()) {
+            if (TString(obj->GetName()).Index(reg) < 0 ) continue;
+         } else if (! name.BeginsWith(patORpfx)) continue;
+
+         if (makeOutHist) {
+            hist = obj->Clone(outHistName);
+
+            if (hist->InheritsFrom(TH2::Class()))
+               ((TH2*)hist)->Reset();
+            else
+               ((TH1*)hist)->Reset();
+
+            ((TH1*)hist)->SetTitle(outHistName);
+            ((TH1*)hist)->Sumw2();
+            makeOutHist = false;
+         }
+
+         ((TH1*)hist)->Add((TH1*)obj);
+      }
+   }
+
+   //For all histograms whose names match the given regular expression pattern
+   //or begin with the given prefix, set the fill, line and marker colors to the
+   //given value.
+
+   void color(const char* patORpfx, Color_t color) {
+      TRegexp reg(patORpfx, kFALSE);
+
+      TList* list = gDirectory->GetList() ;
+      if (!list) {
+	cout << "Failed to set color for " << patORpfx << endl;
+	return;
+      }
+      TIterator* iter = list->MakeIterator();
+
+      TObject* obj = 0;
 
       while (obj = iter->Next()) {
          if (! obj->InheritsFrom(TH1::Class())) continue;
@@ -240,22 +105,10 @@ namespace hist {
             if (TString(obj->GetName()).Index(reg) < 0 ) continue;
          } else if (! name.BeginsWith(patORpfx)) continue;
 
-         if (makeCanvas) {
-            canvas = new TCanvas(canvasName, canvasName);
-            makeCanvas = false;
-         }
-
-         ((TCanvas*)canvas)->cd();
-         if (!((TCanvas*)canvas)->GetListOfPrimitives()->GetEntries())
-            ((TH1*)obj)->Draw(Form("%s", drawOption));
-         else
-            ((TH1*)obj)->Draw(Form("SAME%s", drawOption));
+         ((TH1*)obj)->SetFillColor(color);
+         ((TH1*)obj)->SetLineColor(color);
+         ((TH1*)obj)->SetMarkerColor(color);
       }
-
-      if (addColor)
-         hist::colors((TCanvas*)canvas);
-      if (addStyle)
-         hist::styles((TCanvas*)canvas);
    }
 
    //Return a pointer to a TLegend with an entry for each histogram drawn on a
@@ -264,8 +117,8 @@ namespace hist {
    //their respective histograms.  Optionally, if histogram names are of the
    //form XX_YY_ZZ_WW, entry labels can be XX (token=0), YY (token=1), etc.
 
-   TLegend* legend(TCanvas* canvas, Option_t* option = "lpf", Bool_t addColor = kFALSE, Int_t token = -1,
-                   Float_t xmin = 0.75, Float_t ymin = 0.75, Float_t xmax = 0.99, Float_t ymax = 0.99) {
+     TLegend* legend(TCanvas* canvas, Option_t* option = "lpf", Bool_t addColor = kFALSE, Int_t token = -1,
+		     Float_t xmin = 0.75, Float_t ymin = 0.75, Float_t xmax = 0.99, Float_t ymax = 0.99) {
       if(! canvas) return 0;
 
       TLegend* leg = new TLegend(xmin, ymin, xmax, ymax);
@@ -401,48 +254,13 @@ namespace hist {
       }
    }
 
-   //Scale bins to given value of x-axis units for all histograms whose names
-   //match the given regular expression pattern or begin with the given prefix.
-
-   void scalebins(const char* patORpfx, Double_t scale) {
-      TRegexp reg(patORpfx, kFALSE);
-
-      TList* list = gDirectory->GetList() ;
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         TString name = obj->GetName();
-
-         if (TString(patORpfx).MaybeRegexp()) {
-            if (TString(obj->GetName()).Index(reg) < 0 ) continue;
-         } else if (! name.BeginsWith(patORpfx)) continue;
-
-         Double_t binWidth, binContent, binError, newBinContent, newBinError;
-         for (Int_t i = 1; i <= ((TH1*)obj)->GetNbinsX(); ++i) {
-            binWidth = ((TH1*)obj)->GetBinWidth(i);
-            binContent = ((TH1*)obj)->GetBinContent(i);
-            binError = ((TH1*)obj)->GetBinError(i);
-            newBinContent = (binContent*scale)/binWidth;
-            newBinError = (binError*scale)/binWidth;
-
-            ((TH1*)obj)->SetBinContent(i, newBinContent);
-            ((TH1*)obj)->SetBinError(i, newBinContent);
-            // Rename y axis with scale
-         }
-      }
-   }
-
    //Don't you hate it when you draw multiple histograms on the same canvas only
    //to find that the bottom histogram's range does not encompass those of the
    //histograms drawn on top?  This method determines the maximum and minimum y
    //range of all the histograms drawn on a given TCanvas and appropriately re-
    //sizes the bottom histogram.
 
-   void setrangey(TCanvas* canvas, Double_t maxy = -999999, Double_t miny = 999999) {
+   void setrangey(TCanvas* canvas) {
       if(! canvas) return;
 
       TList* list = canvas->GetListOfPrimitives();
@@ -451,29 +269,25 @@ namespace hist {
       TObject* obj = 0;
       TObject* top = 0;
 
+      //Extremes
+      Double_t maxy = -999999;
+      Double_t miny = 999999;
+
       while (obj = iter->Next()) {
          if (! obj->InheritsFrom(TH1::Class())) continue;
 
          if (! top) top = obj;
 
          if (((TH1*)obj)->GetMaximum() > maxy) maxy = ((TH1*)obj)->GetMaximum();
-
-         // JAKE Set to log scale if max/min > 10
-
-         if (canvas->GetLogy()) {
-            //protect against user supplied argument
-            if (miny == 0) miny = 999999;
-
-            for(Int_t bin = 1; bin <= ((TH1*)obj)->GetNbinsX(); ++bin) {
-               Double_t binContent = ((TH1*)obj)->GetBinContent(bin);
-               if (binContent != 0 && binContent < miny)
-                  miny = binContent;
-            }
-         } else if (((TH1*)obj)->GetMinimum() < miny) miny = ((TH1*)obj)->GetMinimum();
+         if (((TH1*)obj)->GetMinimum() < miny) miny = ((TH1*)obj)->GetMinimum();
       }
 
-      ((TH1*)top)->SetMaximum(maxy*1.1);
-      ((TH1*)top)->SetMinimum(miny*0.9);
+      ((TH1*)top)->SetMaximum(maxy*1.3);
+      //Protect against log scale
+      if (canvas->GetLogy() && ! miny)
+         ((TH1*)top)->SetMinimum(1E-4);
+      else
+         ((TH1*)top)->SetMinimum(miny*0.7);
    }
 
    //Create a stacked histogram consisting of all histograms whose names match
@@ -524,30 +338,6 @@ namespace hist {
 
       // Currently breaks .ls
       //gDirectory->Append(stack);
-   }
-
-   //For all histograms whose names match the given regular expression pattern
-   //or begin with the given prefix, set the marker style.
-   
-   void style(const char* patORpfx, Style_t style = 20) {
-      TRegexp reg(patORpfx, kFALSE);
-
-      TList* list = gDirectory->GetList() ;
-      TIterator* iter = list->MakeIterator();
-
-      TObject* obj = 0;
-
-      while (obj = iter->Next()) {
-         if (! obj->InheritsFrom(TH1::Class())) continue;
-
-         TString name = obj->GetName();
-
-         if (TString(patORpfx).MaybeRegexp()) {
-            if (TString(obj->GetName()).Index(reg) < 0 ) continue;
-         } else if (! name.BeginsWith(patORpfx)) continue;
-
-         ((TH1*)obj)->SetMarkerStyle(style);
-      }
    }
 
    //Set the x-axis title of all histograms whose names match the given regular
@@ -607,8 +397,8 @@ namespace hist {
          }
       }
    }
-}
 
+}
 // Input:  2 histogram
 // Output: one histogram which is the efficiency:
 // h1 :  TOTAL NUMBER OF EVENTS
@@ -682,6 +472,9 @@ TH1F* eff(const char* name1, const char* name2, const char* name="eff"){
 // h3 :  TOTAL NUMBER OF EVENTS, SIDE BAND
 // h4 :  NUMBER OF EVENTS THAT PASS, SIDE BAND
 
+#include "TH1.h"
+
+
 TH1F* eff_bg(TH1F* h1, TH1F* h2, TH1F* h3, TH1F* h4, const char* name="eff"){
 
   // first, verify that all histograms have same binning
@@ -729,7 +522,7 @@ TH1F* eff_bg(TH1F* h1, TH1F* h2, TH1F* h3, TH1F* h4, const char* name="eff"){
     if (denom == 0) {
       err = 0.;
     } else {
-      err = TMath::Sqrt(blah)/denom;
+      err = sqrt(blah)/denom;
     }
     temp->SetBinContent(i,eff);
     temp->SetBinError(i,err);
@@ -738,6 +531,9 @@ TH1F* eff_bg(TH1F* h1, TH1F* h2, TH1F* h3, TH1F* h4, const char* name="eff"){
   // Done
   return temp;
 }
+
+#include <TList.h>
+#include <TIterator.h>
 
 void deleteHistos() {
    // Delete all existing histograms in memory
@@ -750,17 +546,20 @@ void deleteHistos() {
    }
 }
 
+void histio()
+{
+}
+
 void saveHist(const char* filename, const char* pat="*")
 {
    TList* list = gDirectory->GetList() ;
    TIterator* iter = list->MakeIterator();
-   TObject* obj = 0;
 
    TRegexp re(pat,kTRUE) ;
 
    TFile outf(filename,"RECREATE") ;
-   while(obj=iter->Next()) {
-     if (TString(obj->GetName()).Index(re)>=0) {
+   while(TObject *obj=iter->Next()) {
+      if (TString(obj->GetName()).Index(re)>=0) {
          obj->Write() ;
          cout << "." ;
          cout.flush() ;
@@ -773,21 +572,14 @@ void saveHist(const char* filename, const char* pat="*")
 }
 
 
-void loadHist(const char* filename, const char* directory = 0, const char* pfx=0, const char* pat="*", Bool_t doAdd=kFALSE)
+void loadHist(const char* filename, const char* pfx=0, const char* pat="*", Bool_t doAdd=kFALSE)
 {
    TFile inf(filename) ;
    //inf.ReadAll() ;
-   TDirectory* dir;
-   if (directory)
-       dir = (TDirectory*)inf.Get(directory);
-   else
-       dir = (TDirectory*)&inf;
-   TList* list = dir->GetListOfKeys() ;
+   TList* list = inf.GetListOfKeys() ;
    TIterator* iter = list->MakeIterator();
 
    TRegexp re(pat,kTRUE) ;
-   //TRegexp re(pat,kFALSE) ;
-   //TRegexp re(pat,0) ;
    cout << "pat = " << pat << endl ;
 
    gDirectory->cd("Rint:") ;
@@ -803,7 +595,7 @@ void loadHist(const char* filename, const char* directory = 0, const char* pfx=0
          continue ;
       }
 
-      obj = dir->Get(key->GetName()) ;
+      obj = inf.Get(key->GetName()) ;
       TObject* clone ;
       if (pfx) {
 
