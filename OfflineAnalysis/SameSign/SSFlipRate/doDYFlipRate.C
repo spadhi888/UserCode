@@ -10,9 +10,9 @@
 using namespace std;
 
 
-TString  bbFile("Zee_BBhistos.root");
-TString beFile("Zee_BEhistos.root");
-TString allFile("Zee_mcallhistos.root");
+const TString  bbFile("Zee_BBhistos.root");
+const TString beFile("Zee_BEhistos.root");
+const TString allFile("Zee_mcallhistos.root");
 
 
 void TestPrediction(const char* barrelBarrelFile, const char* barrelEndcapFile, const char* allRegionsFile) {
@@ -158,7 +158,10 @@ void doAll(){
   gSystem->CompileMacro("DYFlipRate.C","++k", "libDYFlipRate");
   
   TChain *ch_dy = new TChain("Events");
-  ch_dy->Add("/store/disk01/cms2-V01-03-01/ZJets-madgraph_Summer08_IDEAL_V11_redigi_v1/merged_ntuple*.root");
+  ch_dy->Add("/data/tmp/cms2-V01-03-01/ZJets-madgraph_Summer08_IDEAL_V11_redigi_v1/merged_ntuple*.root");
+
+// CMS TAS01
+//   ch_dy->Add("/store/disk01/cms2-V01-03-01/ZJets-madgraph_Summer08_IDEAL_V11_redigi_v1/merged_ntuple*.root");
 
   DYFlipRate *loop = new DYFlipRate();
 
@@ -172,7 +175,7 @@ void doAll(){
   deleteHistos();
   cout << "Done with MC" << endl;
   
-  loop->ScanChainDY_BE(ch_dy, -1, beFile);
+  loop->ScanChainDY_BE(ch_dy, -1, bbFile);
   saveHist(beFile);
   deleteHistos();
 

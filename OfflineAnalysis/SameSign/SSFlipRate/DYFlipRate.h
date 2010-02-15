@@ -13,7 +13,7 @@ public:
   int ScanChainDY_BB( TChain* chain, int nEventsMax = -1, std::string region="bb", 
 		      bool useSingleElectronWeights = false);
   
-  int ScanChainDY_BE( TChain* chain, int nEvents = -1, std::string BBfname="");
+  int ScanChainDY_BE( TChain* chain, int nEvents = -1, const char* BBfname="");
 
   int getClosestStatus3ParticleIdx(ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<double> > p4);
   int bookHistos(std::string prefix);

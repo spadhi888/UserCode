@@ -787,7 +787,7 @@ int DYFlipRate::ScanChainDY_BB( TChain* chain, int nEventsMax, std::string regio
 }
 //////////////////////////////////////////////////////////////////////////////
 
-int DYFlipRate::ScanChainDY_BE( TChain* chain, int nEvents, std::string BBfname) {
+int DYFlipRate::ScanChainDY_BE( TChain* chain, int nEvents, const char* BBfname) {
 
 
   TObjArray *listOfFiles = chain->GetListOfFiles();
@@ -804,7 +804,8 @@ int DYFlipRate::ScanChainDY_BE( TChain* chain, int nEvents, std::string BBfname)
   bookHistos("be");
 
   TDirectory *rootdir = gDirectory->GetDirectory("Rint:");
-  TFile *fbb = TFile::Open(BBfname.c_str(), "READ");
+//  TFile *fbb = TFile::Open(BBfname.c_str(), "READ");
+  TFile *fbb = TFile::Open(BBfname, "READ");
   TH1F *h_FLRPtbb = (TH1F*)fbb->Get("bb_FLRPt");
   h_FLRPtbb->SetName("bb_FLRPt");
   h_FLRPtbb->SetDirectory(rootdir);
