@@ -54,6 +54,7 @@ bool runWjetBackground2 = false;
 
 
  gROOT->ProcessLine(Form(".x setup.C(%d)", 1));
+ gROOT->ProcessLine(".! rm -rf *.so *.d"); 
  gSystem->CompileMacro("doAnalysis.C", "++k", "libsusyosdiltp");
 // gSystem->CompileMacro("doAnalysisOS.C", "++k", "libsusyosdiltp");
 
