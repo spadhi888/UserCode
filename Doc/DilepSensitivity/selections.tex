@@ -1,3 +1,61 @@
 \section{Event Selection}
 \label{sec:eventselection}
 
+The event selection used is not optimized for any specific SUSY scenario.
+It is based on small modifications to the dilepton event selections 
+that we used in recently approved 
+$WW$\cite{ww} and \ttbar\cite{ttbar} cross-section
+analyses.  A quick summary of the event selection is:
+\begin{itemize}
+\item The event is required to pass the single $e$ or $\mu$  triggers.
+\item Two isolated, same or opposite sign leptons ($ee$, $e\mu$, and $\mu\mu$). 
+\item Leptons must have $P_T > 10$ GeV, $|\eta|< 2.4$ and at least one of them must have $P_T > 20$ GeV.
+\item For SS analyses, we veto the candidate lepton, if an extra lepton in the event, pairs with the candidate lepton
+to form a $Z$ within the mass range between $76 < m_{\ell\ell} $ (GeV) $< 106$. This requirement is 
+designed to reject $WZ$ events.
+\item At least three L2L3 corrected caloJets with $P_T > 30$ GeV and $|\eta|< 2.4$.
+\item The scalar sum of the $P_T$ of all jets passing the requirements above should be $>$ 200 GeV.
+\item We require \met~$>$ 80 GeV. 
+\item -------- NEED TO OUTLINE THE OS SELECTION AS WELL HERE IN SOME DETAILS ----------
+\end{itemize}
+\noindent The details of the lepton and trigger selections are given below.
+
+\subsection{Electron Selection}
+\label{sec:electron}
+
+\begin{itemize}
+\item The electron ID is the ``e-gamma category based looseID''.
+\item No muon candidate within $\Delta R < 0.1$.
+\item $|d_0| < 200~\mu m$ (corrected for beamspot).
+\item Iso $<$ 0.1, where Iso=Sum/Max(20 GeV, $P_T$), and Sum = tkIso + hcalIso +  Max(0 GeV, ecalIso - 2GeV).
+All isolation sums are the standard sums used in release 3\_1\_X from the egamma group (cone of
+0.4 for ecal, jurassic, rec-hit based; cone of 0.3 for tracker, and cone of 0.4 for hcal).
+\item Conversion rejection~\cite{conversion} using tracks within cone of 0.3 of the candidate electron for SS studies: 
+\begin{itemize}
+\item $|\Delta \cot\theta| < 0.02$; the difference between cotangent polar angles of tracks parallel to 
+each other.
+\item $|d_{2d}| < 0.02$ cm; the two dimensional distance between points within nearest tracks.
+\item The charge of the associated GSF and CTF tracks must be consistent.
+If the CTF track is not reconstructed, the electron is kept.
+\end{itemize} 
+\end{itemize}
+
+\subsection{Muon Selection}
+\label{sec:muon}
+\begin{itemize}
+\item Must be a global muon {\bf and} a tracker muon~\cite{glbtrk}.
+\item GlobalMuonPromptTight (global $\chi^2$/ndof$<$10)~\cite{muonid}.
+\item At least 11 valid hits for the silicon track~\cite{muonid}.
+\item $|d_0| < 200~\mu m$ (from silicon track, corrected for beamspot).
+\item Global fits must have hits in the muon chambers.
+\item Minimum ionizing: EcalVetoEnergy $<$ 4 GeV and HcalVetoEnergy $<6$ GeV~\cite{vplusj}. 
+\item Iso $<$ 0.1, where Iso=Sum/Max(20 GeV, $P_T$), and Sum = tkIso + hcalIso +  ecalIso.
+All isolation sums are the standard sums stored in the muon object in release 3\_1\_X, and
+are calculated in a cone of 0.3.
+\end{itemize}
+
+\subsection{Trigger Selection}
+\label{sec:trigger}
+We use inclusive lepton triggers with no isolation, $i.e.$, the logical OR of {\tt HLT\_Ele15\_SW\_L1R} and {\tt HLT\_Mu9}.  
+The combined trigger efficiency is $\sim 99$\% for dilepton events that pass the event selection.
+These triggers are expected to be present in the data taking trigger table.
