@@ -1,3 +1,108 @@
 \section{Same Sign Dileptons}
 \label{sec:samesign}
 
+This section summarizes the results of the SUSY parameter space scan
+in the same sign dilepton channel. The measurement technique is
+described in detail in a CMS note~\cite{ssnote}. The technique
+utilizes a data-driven method to estimate background characterized
+by the presence of two high $P_T$, isolated, same sign leptons,
+$\met$, and significant jet activity. This generic signature is
+sensitive to many new physics scenarios such as SUSY.  For the purposes
+of this note we restrict ourselves to the $ee$, $e\mu$, and $\mu\mu$
+final states, {\em i.e.}, we do not consider $\tau$'s, except in the
+case that the $\tau$ decays leptonically. 
+
+As we will show in Section~\ref{sec:yields}, for a reasonable event
+selection the main background is \ttbar decays. The data-driven
+background prediction is based on a 
+combination of estimating ``fake leptons''\cite{fakenote} and 
+electrons reconstructed with the wrong sign\cite{ssnote}. The probability
+for muons to be reconstructed with the wrong sign is so small at the relevant momenta
+that it is negligible.
+
+\subsection{Event Yields}
+\label{sec:yields}
+
+The expected event yields in 100~pb$^{-1}$ after applying the event selections
+described in Section~\ref{sec:eventselection} to the data sets described in
+Section~\ref{sec:datasamples} are detailed below: the SM yields are listed in
+Table~\ref{tab:yields}, and the mSUGRA scan point yields are illustrated in
+Fig.~\ref{fig:hss_100pb}.
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}\hline
+Sample           & expected bkg yields   \\ \hline
+$t\overline{t}$  &   $0.36\pm 0.10 $         \\ 
+$WW$             &   0.0          \\ 
+$WZ$             &   $0.02\pm 0.01$          \\ 
+$ZZ$             &   0.0          \\ 
+$W$+jets         &   0.0             \\
+$Z$+jets         &   0.0             \\ 
+Single top       &   0.0          \\ \hline
+\end{tabular}
+\caption{Expected SM event yields in 100~pb$^{-1}$. Errors are MC statistics only.\label{tab:yields}}
+\end{center}
+\end{table}
+
+\subsection{Procedure for Determining $5\sigma$ Discovery Reach}
+\label{sec:significance}
+
+We  determine the  $5\sigma$  discovery reach  in the  $m_{0}-m_{1/2}$
+plane by  performing our analysis at  each of the  mSUGRA scan points.
+For each  point, we  determine expected yield based on the number of events passing all cuts
+scaled by the LO cross section for that point assuming 100/pb or 1/fb of data respectively.
+We then in addition, perform our data driven background estimation procedure at each point
+to determine the ``signal contamination'' at that point. We find the latter to be small,
+less than 10\% of the expected signal yield. 
+
+We quantify the
+significance  of  the  discrepancy  between  the  observed  yield  and
+predicted   background  yield   using  two   significance  estimators:
+$Z_{Bi}$~\cite{cite:cousins}    and    $Z_N$~\cite{cite:conway}.   The
+quantities required to calculate these estimators are:
+
+\begin{itemize}
+\item The predicted background yield
+\item The relative systematic  uncertainty on the predicted background
+yield (set to 50\%)
+\item The  statistical uncertainty  on the predicted  background yield
+($Z_N$ only, set to 0)
+\item The observed yield
+\end{itemize}
+
+\subsection{Procedure for Excluding a Region of the mSUGRA Parameter Space}
+\label{sec:exclusion}
+
+Next we  determine the region of  the mSUGRA parameter  space which we
+expect  to exclude  at 95\%  confidence level  (CL) if  we see
+the standard model (SM) expected yields in data. 
+We  assume  that  we find  the  same
+predicted background yield  and observed yield in data  that we expect
+to  find based on  our SM  MC. 
+However, as the latter is 0.4,
+we work the math for both an observation of 0 or 1 events in 100/pb.
+We  use this  information to  exclude a
+subset of the mSUGRA points using the following procedure.
+
+The first  step is to  determine the 95\%  CL upper limit (UL)  on the
+signal yield using a Bayesian  method from John Conway, implemented in
+the program bayes.f. The required  inputs are: the observed yield, the
+relative  uncertainty in  the  signal acceptance  (set  to 15\%),  the
+predicted  background yield,  and  the total  error  on the  predicted
+background yield. We assume $0.4 \pm 0.6$ for background yield and its uncertainty.
+
+These values lead to 
+to  95\% CL  ULs  of 3.2 and 4.7  signal  events respectively for an assumed observation of 0 or 1 events.
+%It should  be noted that
+%bayes.f assumes a Gaussian  error distribution, while for our analysis
+%(especially  at 100~pb$^{-1}$ where  the background  yield is  4), our
+%errors are Poisson-distributed.
+
+Next, we  wish to exclude mSUGRA  points based on the  signal yield UL
+derived above.   The most obvious  way to do  so is to  exclude points
+which  lead  to a  difference  between  observed  yield and  predicted
+background yield  which exceeds the  UL on the signal  yield. 
+As the effect of signal contamination is small, we stick to this simplest 
+of possible ways.
+
