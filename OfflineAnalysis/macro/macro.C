@@ -12,7 +12,6 @@
 #include <fstream>
 #include "TLegendEntry.h"
 #include "TMath.h"
-#include "zn.cc"
 
 
 using namespace std;
