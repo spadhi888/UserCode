@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  8 APR 2010 16:53
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  8 APR 2010 16:59
 entering extended mode
 **dilepSensitivity
 (./dilepSensitivity.tex
@@ -60,7 +60,20 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 )
 (/usr/share/texmf/tex/latex/relsize/relsize.sty
 Package: relsize 2003/07/04 ver 3.1
-) (./dilepSensitivity.aux)
+) (./dilepSensitivity.aux
+
+LaTeX Warning: Label `sec:yields' multiply defined.
+
+
+LaTeX Warning: Label `tab:yields' multiply defined.
+
+
+LaTeX Warning: Label `sec:significance' multiply defined.
+
+
+LaTeX Warning: Label `sec:exclusion' multiply defined.
+
+)
 \openout1 = `dilepSensitivity.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -76,8 +89,7 @@ LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 10.
-
-(/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 16.
@@ -129,7 +141,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 LaTeX Warning: Citation `conversion' on page 3 undefined on input line 56.
 
-) (./mSugra.tex) (./samesign.tex
+) (./samesign.tex
 
 LaTeX Warning: Reference `fig:hss_100pb' on page 3 undefined on input line 30.
 
@@ -168,16 +180,16 @@ File: figs/hexc175_1fb.eps Graphic file (type eps)
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 904 strings out of 94501
- 10860 string characters out of 1176790
+ 901 strings out of 94501
+ 10832 string characters out of 1176790
  60420 words of memory out of 1000000
  4068 multiletter control sequences out of 10000+50000
  14213 words of font info for 41 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  29i,9n,20p,449b,302s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on dilepSensitivity.dvi (11 pages, 35580 bytes).
+Output written on dilepSensitivity.dvi (11 pages, 35532 bytes).
