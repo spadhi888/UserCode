@@ -1,5 +1,5 @@
 To make a pdf file
 
-> pdflatex dilepSensitivity
+> make
 
 That's all.  Do it twice the 1st time).
