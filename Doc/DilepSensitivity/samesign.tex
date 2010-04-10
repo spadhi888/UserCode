@@ -2,66 +2,74 @@
 \label{sec:samesign}
 
 This section summarizes the results of the SUSY parameter space scan
-in the same sign dilepton channel. The measurement technique is
-described in detail in a CMS note~\cite{ssnote}. The technique
-utilizes a data-driven method to estimate background characterized
+in the same sign di-lepton channel. The measurement stratzgy is  
+described in details in a CMS note~\cite{ssnote}. The technique
+utilizes two data-driven methods to estimate background characterized
 by the presence of two high $P_T$, isolated, same sign leptons,
-$\met$, and significant jet activity. This generic signature is
-sensitive to many new physics scenarios such as SUSY.  For the purposes
+$\met$, and significant hadronic activity.  For the purposes
 of this note we restrict ourselves to the $ee$, $e\mu$, and $\mu\mu$
 final states, {\em i.e.}, we do not consider $\tau$'s, except in the
 case that the $\tau$ decays leptonically. 
 
 As we will show in Section~\ref{sec:ssyields}, for a reasonable event
-selection the main background is \ttbar decays. The data-driven
-background prediction is based on a 
-combination of estimating ``fake leptons''\cite{fakenote} and 
-electrons reconstructed with the wrong sign\cite{ssnote}. The probability
-for muons to be reconstructed with the wrong sign is so small at the relevant momenta
-that it is negligible.
+selection the main background is from \ttbar decays. The data-driven background 
+prediction is based on a combination of estimating ``fake leptons''\cite{fakenote} (FakeRate) 
+and electrons reconstructed with the wrong sign\cite{ssnote} (Charge FlipRate). The probability
+for muons to be reconstructed with the wrong sign at the relevant momenta is negligible.
 
 \subsection{Event Yields}
 \label{sec:ssyields}
 
-The expected event yields in 100~pb$^{-1}$ after applying the event selections
+The expected SM event yields in 100~pb$^{-1}$ after applying the event selections
 described in Section~\ref{sec:eventselection} to the data sets described in
-Section~\ref{sec:datasamples} are detailed below: the SM yields are listed in
-Table~\ref{tab:ssyields}, and the mSUGRA scan point yields are illustrated in
-Fig.~\ref{fig:hss_100pb}.
+Section~\ref{sec:datasamples} are detailed below
 
 \begin{table}[hbt]
 \begin{center}
-\begin{tabular}{|l|c|c|c|c|}\hline
-Sample           & expected bkg yields   \\ \hline
-$t\overline{t}$  &   $0.36\pm 0.10 $         \\ 
-$WW$             &   0.0          \\ 
-$WZ$             &   $0.02\pm 0.01$          \\ 
-$ZZ$             &   0.0          \\ 
-$W$+jets         &   0.0             \\
-$Z$+jets         &   0.0             \\ 
-Single top       &   0.0          \\ \hline
+%\small\addtolength{\tabcolsep}{-5pt}
+\renewcommand{\arraystretch}{1.2}
+ {\footnotesize
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}\hline
+Same Sign leptons & Total SM & \ttbar & Single top & WZ & ZZ & WW & DY & Wjets \\ \hline
+
+$ee$ & 0.07$\pm$0.04 & 0.06$\pm$0.04 & 0.00$\pm$0.00 & 0.01$\pm$0.01 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\
+$\mu\mu$ & 0.09$\pm$0.05 & 0.09$\pm$0.05 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\
+$e\mu$ & 0.22$\pm$0.08 & 0.21$\pm$0.08 & 0.00$\pm$0.00 & 0.01$\pm$0.01 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+total & 0.38$\pm$0.10 & 0.36$\pm$0.10 & 0.00$\pm$0.00 & 0.02$\pm$0.01 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ \hline
+\end{tabular} }
+\caption{Expected number of SM events passing the event selection in 100 pb$^{-1}$ of integrated 
+luminosity. Uncertainties are from MC statistics.\label{tab:ssyields}}
+\end{center}
+\end{table}
+
+The dominant SM contribution is from \ttbar decays. The total estimated background 
+is obtained after the application of Fake and Charge Flip rate to the entire ensamble
+of SM samples. The results of the application of the procedure is summarized in Table~\ref{tab:sm_preditcion}.
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{|l|c|}\hline
+Sample & Event yield \\ \hline
+Total SM (Observed) & 0.38 $\pm$ 0.10 \\
+Total SM (Predicted) & 0.36 \\
+\hline
 \end{tabular}
-\caption{Expected SM event yields in 100~pb$^{-1}$. Errors are MC statistics only.\label{tab:ssyields}}
+\caption{ Observed and predicted number of SM events passomg the event selection in 100 pb$^{-1}$ of integrated luminosity. The uncertainty is from Monte Carlo statistics.\label{tab:sm_preditcion}}
 \end{center}
 \end{table}
 
 \subsection{Procedure for Determining $5\sigma$ Discovery Reach}
 \label{sec:significance}
 
-We  determine the  $5\sigma$  discovery reach  in the  $m_{0}-m_{1/2}$
-plane by  performing our analysis at  each of the  mSUGRA scan points.
-For each  point, we  determine expected yield based on the number of events passing all cuts
-scaled by the LO cross section for that point assuming 100/pb or 1/fb of data respectively.
-We then in addition, perform our data driven background estimation procedure at each point
-to determine the ``signal contamination'' at that point. We find the latter to be small,
-less than 10\% of the expected signal yield. 
-
-We quantify the
-significance  of  the  discrepancy  between  the  observed  yield  and
-predicted   background  yield   using  two   significance  estimators:
-$Z_{Bi}$~\cite{cite:cousins}    and    $Z_N$~\cite{cite:conway}.   The
-quantities required to calculate these estimators are:
-
+The $5\sigma$  discovery reach is estimated in the $m_{0}-m_{1/2}$
+plane by  performing our analysis at each of the  mSUGRA scan points.
+Expected event yield is determined based on the number of events passing
+all cuts and scaled by the LO cross section for that point with 100/pb or 1/fb
+of simulated events respectively . We apply both of the above mentioned data-driven 
+estimation procedures to determine the ``signal contamination'' at each of the benchmark points. 
+The significance if quantified by the observed yield and the predicted background
+using estimators: $Z_{Bi}$~\cite{cite:cousins}  and $Z_{N}$\cite{cite:conway}. Following
+are used in order to compute the significance.
 \begin{itemize}
 \item The predicted background yield
 \item The relative systematic  uncertainty on the predicted background
@@ -70,6 +78,31 @@ yield (set to 50\%)
 ($Z_N$ only, set to 0)
 \item The observed yield
 \end{itemize}
+Figure~\ref{fig:ss_zn} and Figure~\ref{fig:ss_zbi} shows the discovery reach for various 
+luminosity scenarios in one of the mSUGRA planes using $Z_{N}$ and $Z_{Bi}$ respectively.
+Clearly, a large region of phase space can be accessed using higher luminosity. 
+\vspace{3 mm}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\linewidth]{figs/massreachss_zn.eps}
+\caption{Discovery reach using significance estimated by $Z_N$~\cite{cite:conway} 
+in the mSUGRA $m_{0}-m_{1/2}$ plane with tan$\beta = 3$, A$_0 = 0$, $\mu > 0$. 
+Curves are shown for different luminosity scenario. The blue region was excluded by 
+the CDF experiment [xx] and the black hashed region was excluded by the LEP 
+experiments [xx].\label{fig:ss_zn}}
+\end{center}
+\end{figure}
+\vspace{3 mm}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\linewidth]{figs/massreachss_bi.eps}
+\caption{Discovery reach using significance estimated by $Z_{Bi}$~\cite{cite:cousins} 
+in the mSUGRA $m_{0}-m_{1/2}$ plane with tan$\beta = 3$, A$_0 = 0$, $\mu > 0$. 
+Curves are shown for different luminosity scenario. The blue region was excluded by 
+the CDF experiment [xx] and the black hashed region was excluded by the LEP 
+experiments [xx].\label{fig:ss_zbi}}
+\end{center}
+\end{figure}
 
 \subsection{Procedure for Excluding a Region of the mSUGRA Parameter Space}
 \label{sec:exclusion}
@@ -79,25 +112,36 @@ expect  to exclude  at 95\%  confidence level  (CL) if  we see
 the standard model (SM) expected yields in data. 
 We  assume  that  we find  the  same
 predicted background yield  and observed yield in data  that we expect
-to  find based on  our SM  MC. 
-However, as the latter is 0.4,
+to  find based on  our SM  MC. However, as the latter is 0.4,
 we work the math for both an observation of 0 or 1 events in 100/pb.
-We  use this  information to  exclude a
-subset of the mSUGRA points using the following procedure.
+We  use this  information to  exclude a subset of the mSUGRA points using 
+the following procedure.
 
 The first  step is to  determine the 95\%  CL upper limit (UL)  on the
 signal yield using a Bayesian  method from John Conway, implemented in
 the program bayes.f. The required  inputs are: the observed yield, the
 relative  uncertainty in  the  signal acceptance  (set  to 15\%),  the
 predicted  background yield,  and  the total  error  on the  predicted
-background yield. We assume $0.4 \pm 0.6$ for background yield and its uncertainty.
+background yield. We assume $0.4 \pm 0.6$ for background yield and 
+its uncertainty.
+\vspace{3 mm}
+\begin{figure}[htb]
+\begin{center}
+
+\includegraphics[width=0.485\linewidth]{figs/exclusion100ss.eps}
+\includegraphics[width=0.485\linewidth]{figs/exclusion1fbss.eps}
+\caption{ $m_{0}-m_{1/2}$ exclusion plot at the 95 \% C.L in the framework of 
+mSUGRA assuming R-parity conservation using an  integrated  luminosity of  
+$100~\mathrm{pb}^{-1}$ (left) and $1~\mathrm{fb}^{-1}$ (right). The blue region
+was excluded by the CDF experiment [xx]. The black hashed region was excluded
+by the LEP experiments [xx].\label{fig:ss_exclusion}}
+
+\end{center}
+\end{figure}
 
 These values lead to 
-to  95\% CL  ULs  of 3.2 and 4.7  signal  events respectively for an assumed observation of 0 or 1 events.
-%It should  be noted that
-%bayes.f assumes a Gaussian  error distribution, while for our analysis
-%(especially  at 100~pb$^{-1}$ where  the background  yield is  4), our
-%errors are Poisson-distributed.
+to  95\% CL  ULs  of 3.2 and 4.7  signal  events respectively for an assumed 
+observation of 0 or 1 events.
 
 Next, we  wish to exclude mSUGRA  points based on the  signal yield UL
 derived above.   The most obvious  way to do  so is to  exclude points
