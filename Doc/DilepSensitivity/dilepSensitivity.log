@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  10 APR 2010 00:29
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  11 APR 2010 16:34
 entering extended mode
 **dilepSensitivity
 (./dilepSensitivity.tex
@@ -116,38 +116,41 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
-) (./samples.tex
+File: figs/tanb3.ps Graphic file (type eps)
+ <figs/tanb3.ps>) (./samples.tex
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 13.
 
 (/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)) (./selections.tex [1]
+) [1]) (./selections.tex [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
- [2])
+)
 (./samesign.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 32.
+(Font)              <8> on input line 33.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 32.
+(Font)              <6> on input line 33.
  [3]
+File: figs/eventyieldss.eps Graphic file (type eps)
+ <figs/eventyieldss.eps> [4]
 File: figs/massreachss_zn.eps Graphic file (type eps)
  <figs/massreachss_zn.eps>
 File: figs/massreachss_bi.eps Graphic file (type eps)
- <figs/massreachss_bi.eps>
-[4]
+
+<figs/massreachss_bi.eps> [5]
 File: figs/exclusion100ss.eps Graphic file (type eps)
  <figs/exclusion100ss.eps>
 File: figs/exclusion1fbss.eps Graphic file (type eps)
- <figs/exclusion1fbss.eps>) (./oppositesign.tex
-[5]
+
+<figs/exclusion1fbss.eps>) (./oppositesign.tex [6]
 File: figs/hobs175_100pb.eps Graphic file (type eps)
  <figs/hobs175_100pb.eps>
 File: figs/smvictory.eps Graphic file (type eps)
- <figs/smvictory.eps> [6] [7]
-File: figs/hzbi175_100pb.eps Graphic file (type eps)
 
-<figs/hzbi175_100pb.eps>
+<figs/smvictory.eps> [7] [8]
+File: figs/hzbi175_100pb.eps Graphic file (type eps)
+ <figs/hzbi175_100pb.eps>
 File: figs/hzbi175_1fb.eps Graphic file (type eps)
  <figs/hzbi175_1fb.eps>
 Overfull \hbox (4.77109pt too wide) in paragraph at lines 106--110
@@ -162,7 +165,7 @@ Overfull \hbox (4.77109pt too wide) in paragraph at lines 119--123
  [] 
  []
 
-[8]
+[9]
 File: figs/hexc175_100pb.eps Graphic file (type eps)
  <figs/hexc175_100pb.eps>
 File: figs/hexc175_1fb.eps Graphic file (type eps)
@@ -171,26 +174,23 @@ Overfull \hbox (4.77109pt too wide) in paragraph at lines 191--195
  [] 
  []
 
-) (./conclusion.tex) [9] (./bib.tex
-Overfull \hbox (17.78072pt too wide) in paragraph at lines 3--4
-[]\OT1/ptm/m/n/10 CDF Trilep-ton Search. http://www-cdf.fnal.gov/physics/exotic
-/r2a/20090521.trilepton[]3fb/Plots[]and[]Tables.html
- []
+) (./conclusion.tex) [10] (./bib.tex) [11
 
-) [10
+] (./tables.tex) [12
 
-] (./dilepSensitivity.aux)
+] [13]
+(./dilepSensitivity.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 910 strings out of 94501
- 11049 string characters out of 1176790
- 61420 words of memory out of 1000000
- 4073 multiletter control sequences out of 10000+50000
- 14720 words of font info for 42 fonts, out of 500000 for 2000
+ 926 strings out of 94501
+ 11260 string characters out of 1176790
+ 65420 words of memory out of 1000000
+ 4083 multiletter control sequences out of 10000+50000
+ 14936 words of font info for 43 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
- 29i,9n,19p,552b,367s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 29i,9n,21p,553b,367s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on dilepSensitivity.dvi (11 pages, 40472 bytes).
+Output written on dilepSensitivity.dvi (14 pages, 51716 bytes).
