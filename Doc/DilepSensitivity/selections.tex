@@ -25,7 +25,7 @@ A quick summary of the event selection is:
              to form a $Z$ within the mass range between $76 < m_{\ell\ell} $ (GeV) $< 106$. This requirement is 
              designed to reject $WZ$ events.
       \item At least three jets.
-      \item We require \met~$>$ 80 GeV.
+      \item We require \met~$>$ 80 GeV. We find that both tcMET and pfMET lead to similar results.
 \end{itemize}
 \item For the OS analysis: 
 \begin{itemize}
@@ -50,7 +50,8 @@ selections are given below.
       We find differences in efficiency and background at the 10\% level, and consider them negligible for the purpose of this study.
 \item No muon candidate within $\Delta R < 0.1$.
 \item $|d_0| < 200~\mu m$ (corrected for beamspot).
-\item Iso $<$ 0.1, where Iso=Sum/Max(20 GeV, $P_T$), and Sum = tkIso + hcalIso +  Max(0 GeV, ecalIso - 2GeV).
+\item Iso $<$ 0.1, where Iso=Sum/Max(20 GeV, $P_T$), and Sum = tkIso + hcalIso +  Max(0 GeV, ecalIso - 1GeV), with the -1GeV subtraction
+only applied in the barrel.
 All isolation sums are the standard sums used in release 3\_1\_6 from the egamma group (cone of
 0.4 for ecal, jurassic, rec-hit based; cone of 0.3 for tracker, and cone of 0.4 for hcal).
 \item Conversion rejection~\cite{conversionnote} using tracks within a cone of 0.3 of the candidate electron for SS studies: 

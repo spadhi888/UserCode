@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  11 APR 2010 16:34
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2010.4.8)  11 APR 2010 21:35
 entering extended mode
 **dilepSensitivity
 (./dilepSensitivity.tex
@@ -148,12 +148,12 @@ File: figs/hobs175_100pb.eps Graphic file (type eps)
  <figs/hobs175_100pb.eps>
 File: figs/smvictory.eps Graphic file (type eps)
 
-<figs/smvictory.eps> [7] [8]
+<figs/smvictory.eps> [7]
 File: figs/hzbi175_100pb.eps Graphic file (type eps)
  <figs/hzbi175_100pb.eps>
 File: figs/hzbi175_1fb.eps Graphic file (type eps)
  <figs/hzbi175_1fb.eps>
-Overfull \hbox (4.77109pt too wide) in paragraph at lines 106--110
+Overfull \hbox (4.77109pt too wide) in paragraph at lines 108--112
  [] 
  []
 
@@ -161,24 +161,24 @@ File: figs/hzn175_100pb.eps Graphic file (type eps)
 <figs/hzn175_100pb.eps>
 File: figs/hzn175_1fb.eps Graphic file (type eps)
  <figs/hzn175_1fb.eps>
-Overfull \hbox (4.77109pt too wide) in paragraph at lines 119--123
+Overfull \hbox (4.77109pt too wide) in paragraph at lines 121--125
  [] 
  []
 
-[9]
+[8]
 File: figs/hexc175_100pb.eps Graphic file (type eps)
  <figs/hexc175_100pb.eps>
 File: figs/hexc175_1fb.eps Graphic file (type eps)
  <figs/hexc175_1fb.eps>
-Overfull \hbox (4.77109pt too wide) in paragraph at lines 191--195
+Overfull \hbox (4.77109pt too wide) in paragraph at lines 193--197
  [] 
  []
 
-) (./conclusion.tex) [10] (./bib.tex) [11
+[9]) (./conclusion.tex) [10] [11] (./bib.tex) [12
 
-] (./tables.tex) [12
+] (./tables.tex) [13
 
-] [13]
+] [14]
 (./dilepSensitivity.aux)
 
 LaTeX Warning: There were multiply-defined labels.
@@ -193,4 +193,4 @@ Here is how much of TeX's memory you used:
  580 hyphenation exceptions out of 1000
  29i,9n,21p,553b,367s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on dilepSensitivity.dvi (14 pages, 51716 bytes).
+Output written on dilepSensitivity.dvi (15 pages, 52060 bytes).
