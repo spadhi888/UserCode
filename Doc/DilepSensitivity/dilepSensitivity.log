@@ -1,4 +1,4 @@
-This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2008.8.14)  20 APR 2010 17:05
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2008.8.14)  21 APR 2010 12:19
 **dilepSensitivity
 (./dilepSensitivity.tex
 LaTeX2e <2001/06/01>
@@ -81,30 +81,13 @@ LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 10.
  (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 16.
-
-(/usr/share/texmf/tex/latex/psnfss/ot1phv.fd
-File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 16.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 16.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 16.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 28.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 28.
- [1
-
-
-] (./intro.tex
+) (./intro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 5.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 11.
 
 (/usr/share/texmf/tex/latex/psnfss/omsptm.fd
@@ -118,7 +101,12 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 13.
 
 (/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [1]) (./selections.tex [2]
+) [1
+
+]) (./selections.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+ [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
 )
@@ -129,7 +117,10 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 33.
  [3]
 File: figs/eventyieldss.eps Graphic file (type eps)
- <figs/eventyieldss.eps> [4]
+ <figs/eventyieldss.eps>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 77.
+ [4]
 File: figs/massreachss_zn.eps Graphic file (type eps)
  <figs/massreachss_zn.eps>
 File: figs/massreachss_bi.eps Graphic file (type eps)
@@ -183,12 +174,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 904 strings out of 95847
- 10951 string characters out of 1195948
- 64438 words of memory out of 1000001
- 3822 multiletter control sequences out of 10000+50000
- 14936 words of font info for 43 fonts, out of 500000 for 1000
+ 839 strings out of 95847
+ 10074 string characters out of 1195948
+ 63438 words of memory out of 1000001
+ 3762 multiletter control sequences out of 10000+50000
+ 11448 words of font info for 34 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
  29i,9n,21p,553b,439s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on dilepSensitivity.dvi (16 pages, 51924 bytes).
+Output written on dilepSensitivity.dvi (15 pages, 50064 bytes).
