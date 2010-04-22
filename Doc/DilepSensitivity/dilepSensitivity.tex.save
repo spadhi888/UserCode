@@ -1,0 +1,26 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{rotate}
+\usepackage{relsize}
+\newcommand{\met} {\ensuremath{E\!\!\!\!/_T}}
+\newcommand{\ttbar} {\ensuremath{t\bar{t}~}}
+\newcommand{\ptll} {\ensuremath{P_T(\ell\ell)}}
+\newcommand{\ptllres} {\ensuremath{P^{\rm res}_T(\ell\ell)}}
+
+\begin{document}
+
+%==============================================================================
+% title page for many authors
+%
+\input{intro.tex}
+\input{samples.tex}
+\input{selections.tex}
+%\input{mSugra.tex}
+\input{samesign.tex}
+\input{oppositesign.tex}
+\input{conclusion.tex}
+\clearpage
+\input{bib.tex}
+\clearpage
+\input{tables.tex}
+\end{document}
