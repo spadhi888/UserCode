@@ -31,13 +31,17 @@
     \Instfoot{cern}{CERN}
     Silvano Tosi
     \Instfoot{ipn}{Institut de Physique Nucleaire de Lyon}
+
+--------- Anyone I Missed from the list ----------
+
   \end{Authlist}
-  
+
+  \author{\bf(On behalf of the CMS Collaboration)}
 
   \begin{abstract}
     This study summarizes the higher order SM cross sections using the latest available calculations for 
 proton-proton centre-of-mass energy of 7 TeV. The cross sections are based on a given choice of scale 
-and parton distribution functions (PDF) widely used in the CMS Collaboration for Monte Carlo Simulations. 
+and parton distribution functions (PDFs) widely used in the CMS Collaboration for Monte Carlo simulations. 
 The scale uncertainties and PDF uncertainties are provided for these choices. Cross sections using 
 other higher order PDFs are also outlined along with their uncertanities.
   \end{abstract}
@@ -48,253 +52,23 @@ other higher order PDFs are also outlined along with their uncertanities.
 
 %==============================================================================
 %
-\section{Introduction}
-\label{sec:intro}
-The LHC has recently started delivering proton-proton collisions at a centre-of-mass energy of 7 TeV. 
-Physics analyses at the LHC frequently depend on various inputs from theory that are only known with
-limited accuracy. The cross section calculations also depends at various orders of perturbation theory
-as well as determination of PDFs. 
+\input{intro.tex}
+\input{kfactors.tex}
+\input{assumptions.tex}
+\input{highorder.tex}
+\input{summary.tex}
 
-Most often there is no unique choice of what calculation along with the prescription should be used in 
-a given analysis when comparing to the data. This study aims at establishing a convention as well 
-as a certain set of choices based on inputs from Monte Carlo simulations, currently being used in the 
-CMS collaboration. The higher order cross sections is then computed using these choices as well as 
-uncertanities arises due to the assumptions.
-
-In the next Section~\ref{sec:normalization}, guideliness for calculation of K-factors based on higher order cross sections
-along with Scale and PDF uncertainties are provided. In Section~\ref{sec:assumptions}
-the assumptions made for these calculations are given, followed by the results in Section~\ref{sec:results}
-finally, in Section~\ref{sec:conclusion} we summarize the results.  
-
-\section{Normalization factors, Scale and PDFs}
-\label{sec:normalization}
-
-Normally as a general rule, the highest-order available calculation should be used when calculating cross-sections 
-along with dependencies on kinematics. The generator level cuts for a given production should be taken into
-account in the calculation of the K-factors. This requires that the leading order (LO) parton shower based MC and the 
-next-to-leading order (NLO) calculation use the same or similar order PDF. If possible, the normalization $\mu_R$ and 
-factorization scale $\mu_F$ should be taken into account for the given choice. Other ingradients such as strong 
-coupling constants, PDFs $\mu_R$ and $\mu_F$ needs to be similar between the leading and higer order calculations. 
-Additionally, the order of the PDFs used should match to the order of the matrix-element calculations in the 
-ratio for the K-factors, with the exception for NNLO where one has to take into account a NLO PDF. 
-
-\subsection{Scale Uncertainties}
-
-The calculation of cross-sections in a given order in perturbation theory implies a dependence on both 
-renormalisation, $\mu_R$, and factorisation, $\mu_F$ scales, which are typically considered to be same 
-as the central value, $\mu_0$.  For estimating the scale uncertainty the scale choices are varied 
-in the units of $\mu_0$. Although $\mu_R$ and $\mu_F$ can be varied independently, in this study
-we vary by the same units at the same time. The uncertainity in the scale choice is then determined
-by varying $1/2 \mu_0 < \mu_R, \mu_F < 2\mu_0$. 
-
-\subsection{PDFs}
-
-Generally, most recent PDF set should be used for cross section and acceptance calculations. If in an analysis 
-the acceptance is studied using PYTHIA [xx] or HERWIG [xx], the LO PDF (CTEQ6M for CMS simulations) 
-should be used as a central value. However, the errors on cross sections and hence the errors on 
-acceptance are always computed with respect to the nominal choice, CTEQ6M. We compute the PDF
-uncertanities using the prescription provided by the CTEQ Collaboration [xx]. Here for a given central choice
-of scale and PDF, we estimate the errors based on $N$ PDF sets of eigenvectors for an observable $X$. We use $2$ PDF 
-sets for each of the $N$ eigen vectors, along the $\pm$ directions respectively. The uncertanity due
-to the PDFs is then defined as:
-
-\begin{equation}
-	\Delta X = \frac{1}{2} \sqrt{\Sigma (X_i^+ - X_i^-)^2 }
-\end{equation}
-
-where $X_i^+$ and $X_i^-$ are the values of $X$ computed from the two PDF sets along $\pm$ direction of the 
-$i-$th eigenvector. The additional statistical errors due to limited MC statistics, can be evaluated by reweighting
-the MC events as a function of the parton flavours $q_1$ and $q_2$, parton momenta $x_1, x_2$ as well as $\mu_F$.
-Finally, it should be noted that if the MC simulations are produced using a given LO PDF with a pre-determined choice
-of $\alpha_s$, it is difficult to factorize the dependence, thus the residual dependence on $\alpha_s$ can be
-estimated by reweighting.
-
-
-\section{Central values and choices for generator parameters}
-\label{sec:assumptions}
-
-The cross sections are studied using the most appropriate and latest available calculations. We use FEWZ [xx] for
-computation of Next-to-Next-leading order in perturabation for $W$ and $Z$ cross sections, while we use
-MCFM 5.8 [xx] for rest of the SM processes at LO and NLO in perturbation.The study is performed using proton-proton 
-collisions at a centre-of-mass energy of 7 TeV, the input parameters are considered to be similar to what we use
-for the nominal MC simulation in CMS.
-
-Some of the parameter settings for performing the calculations are given below:
-
-
-
-
- 
 \begin{thebibliography}{9}
 
-\bibitem{ptdr} CMS Collaboration, {\it CMS Technical Design Report, Vol. II: Physics Performance},
-J. Phys. G {\bf 34}, 995 (2007) .
-
-\bibitem{severalPAS}http://cdsweb.cern.ch/collection/CMS Physics Analysis Summaries?ln=en
-
-% *** EXOTICA REFERENCES ***
-
-\bibitem{bprime}
-CMS Collaboration, CMS PAS EXO-09-012 (2009).
-
-\bibitem{EDgg}
-CMS Collaboration, CMS PAS EXO-09-004 (2009).
-
-\bibitem{RSgg}
-CMS Collaboration, CMS PAS EXO-09-009 (2009).
-
-\bibitem{monojet}
-CMS Collaboration, CMS PAS EXO-09-013 (2009).
-
-\bibitem{LQ1}
-CMS Collaboration, CMS PAS EXO-09-004 (2009).
-
-\bibitem{LQ2}
-CMS Collaboration, CMS PAS EXO-08-010 (2008).
-
-\bibitem{Zpee}
-CMS Collaboration, CMS PAS EXO-09-010 (2009).
-
-\bibitem{Zpmm}
-CMS Collaboration, CMS PAS SBM-07-002 (2007).
-
-\bibitem{HSCP}
-CMS Collaboration, CMS PAS EXO-08-003 (2008).
-
-\bibitem{sg}
-CMS Collaboration, CMS PAS EXO-09-001 (2009).
-
-\bibitem{Stirling}
-J. Stirling, private communication.
-
-\bibitem{MSTW}
-A.D. Martin, W.J. Stirling, R.S. Thorne, and G. Watt, Eur. Phys. J. {\bf C63}, 189 (2009); {\it ibid.} {\bf C64}, 653 (2009).
-
-\bibitem{Pythia} \textbf{Pythia}: T. Sjöstrand, S. Ask, R. Corke, S. Mrenna, P. Skands, http://home.thep.lu.se/~torbjorn/Pythia.html
-
-\bibitem{CDFbprime}
-T. Aaltonen {\it et al.\/} (CDF Collaboration), e-print arXiv:0912.1057, submitted to PRL.
-
-\bibitem{EDD0}
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Rev. Lett. {\bf 102}, 051601 (2009); {\it ibid.\/}, {\bf 103}, 191803 (2009).
-
-\bibitem{RSTevatron}
-T. Aaltonen {\it et al.\/} (CDF Collaboration), Phys. Rev. Lett. {\bf 99}, 171801 (2007); 
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Rev. Lett. {\bf 100}, 091802 (2008).
-
-\bibitem{RSZpCDF}
-T. Aaltonen {\it et al.\/} (CDF Collaboration), Phys. Rev. Lett.  {\bf 102}, 091805 (2009); 
-{\it ibid.\/} {\bf 102}, 031801 (2009)
-
-\bibitem{Tevatronmono}
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Rev. Lett. {\bf 101}, 011601 (2008);
-T. Aaltonen {\it et al.\/} (CDF Collaboration), Phys. Rev. Lett. {\bf 101}, 181602 (2008).
-
-\bibitem{TevatronLQ}
-D. Acosta {\it et al.\/} (CDF Collaboration), Phys. Rev. D Brief Reports {\bf 72}, 051107 (2005);
-A. Abulencia {\it et al.\/} (CDF Collaboration), Phys. Rev. D Brief Reports {\bf 73}, 051102 (2006);
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Lett. B {\bf 671}, 224 (2009);
-{\it ibid.\/} {\bf 681}, 224 (2009).
-
-\bibitem{ZpD0}
- V.M. Abazov {\it et al.\/} (D\O\ Collaboration), D\O\ Note 4577-CONF,
- {\tt http://www-d0.fnal.gov/ Run2Physics/WWW/results/prelim/NP/N20/N20.pdf} (2004);
- D\O\ Note 5923-CONF, 
- {\tt http:// www-d0.fnal.gov/\-Run2Physics/WWW/results/prelim/NP/N66/N66.pdf} (2009).
+\bibitem{mcfm}http://mcfm.fnal.gov/
+\bibitem{pdg}http://pdg.lbl.gov/
+\bibitem{fewz}http://www.hep.wisc.edu/~frankjp/FEWZ.html
+\bibitem{cteq6m} J. Pumplin, D.R. Stump, J. Huston, H.L. Lai, Pavel M. Nadolsky and W.K. Tung, JHEP 0207:012,2002. 
+\bibitem{Pythia} \textbf{PYTHIA}: T. Sjöstrand, S. Ask, R. Corke, S. Mrenna, P. Skands, http://home.thep.lu.se/~torbjorn/Pythia.html
+\bibitem{Herwig} \textbf{HERWIG}: G. Corcella, I.G. Knowles, G. Marchesini, S. Moretti, K. Odagiri, P. Richardson, M.H. Seymour and B.R. Webber, JHEP 0101 (2001) 010
+\bibitem{nnllttbar} Nikolaos Kidonakis, arXiv:0909.0037
+\bibitem{nnllschannel} Nikolaos Kidonakis, arXiv:1001.5034
  
-\bibitem{TevatronHSCP}
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Rev. Lett. {\bf 102}, 161802 (2009);
-T. Aaltonen {\it et al.\/} (CDF Collaboration), Phys. Rev. Lett. {\bf 103}, 021802 (2009).
-
-\bibitem{D0sg}
-V.M. Abazov {\it et al.\/} (D\O\ Collaboration), Phys. Rev. Lett. {\bf 99}, 131801 (2007).
-
-
-% *** end exotica references ***
-
-% *** start susy biblio ***
-
-\bibitem {SUSY_MartinReview}{S.~Martin, arXiv:hep-ph/9709356v5; H.~Baer and X.~Tata, {\it Weak Scale Supersymmetry},
-Cambridge University Press, Cambridge (2006); M.~Drees, R.~Godbole, and P.~Roy, {\it Theory and Phenomenology of 
-Sparticles}, World Scientific, Singapore (2005).}
-
-\bibitem {SUSY_Bergeretal}{C.~Berger, J.~Gainer, J.~Hewett, and T.~Rizzo, JHEP 0902:023 (2009); arXiv:0812.0980v3.}
-
-\bibitem {SUSY_ArkaniHamed}{N.~Arkani-Hamed {\it et al.}, arXiv:hep-ph/0703088.}
-
-\bibitem {SUSY_Alwall}{J.Alwall, P.~Schuster, and N.~Toro, Phys.~Rev.~D {\bf 79}, 075020 (2009); arXiv:0810.3921.}
-
-\bibitem{SUSY08002} CMS Collaboration, CMS PAS SUSY-08-002 (2008). 
-
-\bibitem{SUSY_mSUGRA}{A.~Chamseddine. R.~Arnowitt, and P.~Nath, Phys.~Rev.~Lett. {\bf 49}, 970 (1982); E.~Cremmer,
-P.~Fayet, and L.~Girardello, Phys.~Lett.~B {\bf 122}, 41 (1983); see also S.~Martin, arXiv:hep-ph/9709356v5, p.~78.}
-
-\bibitem{SUSY_Conway}{J.~Conway, {\it Calculation of Cross Section Upper Limits Combining Channels Incorporating
-Correlated and Uncorrelated Systematic Uncertainties}, CDF/Pub/Statistics/Public/6428 (2005).}
-
-\bibitem{SUSY_CDF_hadronic}{CDF Collaboration (T.~Altonen {\it et al.}, Phys.~Rev.~Lett. {\bf 102}, 121801 (2009);
-arXiv.org:0811.2512; the CDF exclusion region in the $m_{1/2}$ vs.~$m_0$ plane appears in CDF Public Note 9229, March 2008.}
-
-\bibitem{SUSY_D0_hadronic}{D0 Collaboration (V.M.~Abazov {\it et al.}), Phys.~Lett.~B {\bf 660}, 449 (2008); arXiv.org:0712.3805.}
-
-\bibitem{SUSY_LEP}{LEPSUSYWG; ALEPH, DELPHI, L3, and OPAL Collaborations, note LEPSUSYWG/02-06.2,  
-http://lepsusy.web.cern.ch/lepsusy.}
-
-\bibitem{SUSY_CDF_trileptons}{CDF Collaboration, {\it Update of the Unified Trilepton Search with 3.2 fb$^{-1}$ of Data}, 
-CDF/PUB/EXOTIC/PUBLIC/9817 (2009).}
-
-\bibitem{SUSY_D0_trileptons}{D0 Collaboration, V.~Abazov {\it et al.}, Phys.~Lett.~B {\bf 680}, 34 (2009).} 
-
-
-% *** end susy biblio ***
-
-
-% *** Higgs bilio ****
-
- 
-\bibitem{HggTotal} \textbf{HggTotal}: C. Anastasiou, R. Bougezhal, F. Petriello, JHEP 0904:003 (2009). 
-
-\bibitem{VV2H} \textbf{VV2H}: M. Spira, http://people.web.psi.ch/spira/vv2h/
-
-\bibitem{VH} \textbf{V2HV}: M. Spira, http://people.web.psi.ch/spira/v2hv/
-
-\bibitem{QQH} \textbf{HQQ}: M. Spira, http://people.web.psi.ch/spira/hqq/
-
-\bibitem{FeynHiggs} G. Degrassi, M. Frank, T. Hahn, S. Heinemeyer, W. Hollik, H. Rzehak, P. Slavich, G. Weiglein \textit{FeynHiggs program for calculating MSSM Higgs properties}, http://www.feynhiggs.de/; also, hep-ph/0611326, hep-ph/0212020, hep-ph/9812472, hep-ph/9812320.
-
-\bibitem{MCFM} \textbf{MCFM}: J. M. Campbell and R. K. Ellis, http://mcfm.fnal.gov/
-
-\bibitem{CLs} A. L. Read, \textit{Modified frequentist analysis of search results (the $CL_{s}$ method)}, CERN-OPEN-2000-205; also, J. Phys. G {\bf 28}, 2693 (2002). 
-
-\bibitem{Bayesian} e.g., A. O’Hagan, \textit{Kendall’s Advanced Theory of Statistics, Volume 2B: Bayesian Inference} (Edward
-Arnold, London, 1994); H. Jeffreys, \textit{Theory of Probability} (Oxford University Press, Oxford, 1961), 3rd ed. 
-
-\bibitem{LikelihoodProfileSignificance} e.g., Thomas Alan Severini, \textit{Likelihood methods in statistics} (Oxford University Press, 2000).
-
-\bibitem{HWW}  CMS Collaboration, \textit{Search Strategy for a Standard Model Higgs Boson Decaying to Two W Bosons in the Fully Leptonic Final State}, CMS PAS HIG-2008/006.
-
-\bibitem{HZZ1} CMS Collaboration, \textit{Search strategy for the Higgs boson in the $ZZ^{(*)}$ decay channel with the CMS experiment}, CMS PAS HIG-2008/003.
-
-\bibitem{HZZ2} S. Baffioni et al., \textit{Discovery potential for the SM Higgs boson in the $H \rightarrow ZZ^{(*)} \rightarrow e^+e^-e^+e^-$ decay channel}, CMS NOTE 2006/115.
-
-\bibitem{HZZ3} S. Abdullin et al., \textit{Search Strategy for the Standard Model Higgs Boson in the $H \rightarrow ZZ^{(*)} \rightarrow \mu^+\mu^-\mu^+\mu^-$ Decay Channel using $m_{4\mu}$-Dependent Cuts}, CMS NOTE 2006/122.
-
-\bibitem{HZZ4} D. Futyan et al., \textit{Search for the Standard Model Higgs Boson in the Two-Electron and Two-Muon Final State with CMS}, CMS NOTE 2006/136.
-
-\bibitem{Hgg}  M. Pieri et al., \textit{Inclusive Search for the Higgs Boson in the $H \rightarrow \gamma\gamma$ Channel}, CMS NOTE 2006/112.
-
-\bibitem{TauTau1} A. Kalinowski et al, \textit{Search for MSSM heavy neutral Higgs boson in $\tau + \tau \rightarrow \mu + jet$ decay mode}, CMS NOTE-2006/105.
-
-\bibitem{TauTau2} R. Kinnunen and S. Lehti, \textit{Search for the heavy neutral MSSM Higgs bosons with the H/A $\rightarrow \tau\tau \rightarrow$ electron + jet decay mode}, CMS NOTE 2006/075. 
-
-\bibitem{TauTau3} S. Lehti, \textit{Study of MSSM $H/A \rightarrow \tau\tau \rightarrow e\mu + X$ in CMS}, CMS NOTE 2006/101. 
-
-\bibitem{mhmax} M. Carena, S. Heinemeyer, C.E.M. Wagner and G. Weiglein, \textit{Suggestions for Benchmark Scenarios for MSSM Higgs Boson Searches at Hadron Colliders}, hep-ph/0202167. 
-
-
-% *** end Higgs Biblio ***
-
-
 \end{thebibliography}
 
 \end{document}
