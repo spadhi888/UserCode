@@ -1,24 +1,17 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.24)  23 JUN 2010 12:16
-entering extended mode
- %&-line parsing enabled.
+This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2010.5.12)  23 JUN 2010 16:37
 **cmsnoteSMXsec.tex
-(./cmsnoteSMXsec.tex
-LaTeX2e <2005/12/01>
-Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
-erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
- french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
-us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
-tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
-turkish, ukenglish, ukrainian, loaded.
+(./cmsnoteSMXsec.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
 (./cmspaper_pdf.cls
 CMS paper style Version <0.4>, <25 Nov. 1996>
 based on Document Style 'CERNART' Version <2.1>, <1 May 1995>
 Document Class: cmspaper_pdf 2005/06/16
 (/usr/share/texmf/tex/latex/base/article.cls
-Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
 (/usr/share/texmf/tex/latex/base/size10.clo
-File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -35,18 +28,18 @@ File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
 \c@instfoot=\count87
 
 (/usr/share/texmf/tex/latex/graphics/graphics.sty
-Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
 (/usr/share/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: pdftex.def on input line 90.
+Package graphics Info: Driver file: pdftex.def on input line 80.
 
-(/usr/share/texmf/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+(/usr/share/texmf/tex/latex/graphics/pdftex.def
+File: pdftex.def 2002/06/19 v0.03k graphics/color for pdftex
 \Gread@gobject=\count88
 )))
 (/usr/share/texmf/tex/latex/graphics/graphicx.sty
@@ -78,10 +71,37 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 4.
 (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
+(/usr/share/texmf/tex/context/base/supp-pdf.tex
+(/usr/share/texmf/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Missing
+\protectiondepth=\count89
+\scratchcounter=\count90
+\scratchtoks=\toks15
+\scratchdimen=\dimen105
+\scratchskip=\skip43
+\scratchmuskip=\muskip10
+\scratchbox=\box26
+\scratchread=\read1
+\scratchwrite=\write3
+\zeropoint=\dimen106
+\minusone=\count91
+\thousandpoint=\dimen107
+\emptytoks=\toks16
+\nextbox=\box27
+\nextdepth=\dimen108
+\everyline=\toks17
+\!!counta=\count92
+\!!countb=\count93
+\recursecounter=\count94
+)
+loading : Context Support Macros / PDF
+\nofMPsegments=\count95
+\nofMParguments=\count96
+\everyMPtoPDFconversion=\toks18
+)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 12.
-
-<cms_note.pdf, id=1, 448.67625pt x 92.345pt>
+ <cms_note.pdf, id=1, 448.67625pt x 92.345pt>
 File: cms_note.pdf Graphic file (type pdf)
  <use cms_note.pdf>
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
@@ -100,36 +120,32 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
  [1
 
 
-{/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map} <./cms_note.pdf>] (./intr
-o.tex) (./kfactors.tex)
-(./assumptions.tex [2]) (./highorder.tex
+{/usr/share/texmf/dvips/config/pdftex.map} <./cms_note.pdf>] (./intro.tex) (./k
+factors.tex) (./assumptions.tex [2]) (./highorder.tex
 Overfull \hbox (13.50996pt too wide) in paragraph at lines 11--22
  [] 
  []
 
 ) (./summary.tex [3])
-Missing character: There is no ö in font ptmr7t!
+Missing character: There is no ^^f6 in font ptmr7t!
  [4] (./cmsnoteSMXsec.aux) ) 
 Here is how much of TeX's memory you used:
- 756 strings out of 256216
- 8896 string characters out of 1917071
- 71815 words of memory out of 1500000
- 4068 multiletter control sequences out of 10000+200000
- 15575 words of font info for 30 fonts, out of 1200000 for 2000
- 645 hyphenation exceptions out of 8191
- 29i,9n,19p,354b,237s stack positions out of 5000i,500n,6000p,200000b,15000s
-{/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr
-/share/texmf/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bl
-uesky/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/sh
-are/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesk
-y/cm/cmr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/t
-exmf/fonts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/urw/helveti
-c/uhvr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex
-mf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utm
-ri8a.pfb>
-Output written on cmsnoteSMXsec.pdf (4 pages, 110750 bytes).
-PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 131072)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 1063 strings out of 95437
+ 12644 string characters out of 1190233
+ 73779 words of memory out of 1000001
+ 4085 multiletter control sequences out of 10000+50000
+ 15575 words of font info for 30 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 29i,9n,19p,355b,308s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 59 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 5 words of extra memory for PDF output out of 65536
+{/usr/share/texmf/dvips/tetex/bbad153f.enc}</usr/sh
+are/texmf/fonts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesk
+y/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb>{/usr/share
+/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmr10.
+pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr7.pfb>{/usr/share/texmf/dvips/t
+etex/aae443f0.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/shar
+e/texmf/fonts/type1/bluesky/cm/cmmi10.pfb>{/usr/share/texmf/dvips/psnfss/8r.enc
+}
+Output written on cmsnoteSMXsec.pdf (4 pages, 63449 bytes).
