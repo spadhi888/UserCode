@@ -2,8 +2,8 @@
 \label{sec:results}
 The NNLO cross sections computed with FEWZ for $W$ and $Z$ boson production 
 are summarized in 
-Table~\ref{tab:nnlo}. The PDF uncertainties are based on general-purpose 
-CTEQ6M along with 40 eigenvector sets~\cite{cteq6m}.
+Table~\ref{tab:nnlo},~\ref{tab:nnlo66}. The PDF uncertainties are based on general-purpose 
+CTEQ6M~\cite{cteq6m} and CTEQ6.6~\cite{cteq66} along with 40 eigenvector and 44 eigenvector sets, respectively.
 
 \vspace{3mm}
 \begin{table}[hbt]
@@ -15,14 +15,35 @@ Processes & Generator & Phase Space& Order & Final state & Cross-section (pb)& E
 $W^+$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 16670 & $\pm 114$, $\pm$ 843 \\ \hline
 $W^-$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 11379 & $\pm 146$, $\pm$ 759 \\ \hline
 Total $W$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 28049 & $\pm 186$, $\pm$ 1134 \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 20$ GeV & NNLO & Exclusive $Z \rightarrow e^+e^-$ & 1495 & $\pm 37$, $\pm 74$ \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 50$ GeV & NNLO & Exclusive $Z \rightarrow e^+e^-$ & 969 & $\pm 19$, $\pm 37$ \\ \hline
+$Z/\gamma^*$ & FEWZ & $m_{ll} > 20$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 4486 & $\pm 111$, $\pm 220$ \\ \hline
+$Z/\gamma^*$ & FEWZ & $m_{ll} > 50$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 2906 & $\pm 55$, $\pm 111$ \\ \hline
 \end{tabular} 
-\caption{NNLO cross sections for $W$ and $Z$ bosons. The cross sections are computed for
+\caption{NNLO cross sections for $W$ and $Z$ bosons using CTEQ6M. The cross sections are computed for
 exclusive decays to leptons. The final inclusive values for $W$ are obtained using appropriate 
 branching fractions from the PDG~\cite{pdg}. \label{tab:nnlo}}
 \end{center}
 \end{table}
+
+
+\vspace{3mm}
+\begin{table}[hbt]
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|c|c|c|c|c|c|}\hline
+Processes & Generator & Phase Space& Order & Final state & Cross-section (pb)& Error (pb) \\ 
+ &  &  cuts & & & PDF = CTEQ6.6 & Scale, PDF \\ \hline
+$W^+$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 17137 & $\pm 115$, $\pm$ 942 \\ \hline
+$W^-$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 11534 & $\pm 149$, $\pm$ 754 \\ \hline
+Total $W$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 28671 & $\pm 188$, $\pm$ 1307 \\ \hline
+$Z/\gamma^*$ & FEWZ & $m_{ll} > 20$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 4644 & $\pm 164$, $\pm 352$ \\ \hline
+$Z/\gamma^*$ & FEWZ & $m_{ll} > 50$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 3087 & $\pm 99$, $\pm 230$ \\ \hline
+\end{tabular} 
+\caption{NNLO cross sections for $W$ and $Z$ bosons using CTEQ6.6. The cross sections are computed for
+exclusive decays to leptons. The final inclusive values for $W$ are obtained using appropriate 
+branching fractions from the PDG~\cite{pdg}. \label{tab:nnlo66}}
+\end{center}
+\end{table}
+
 
 The uncertainties due to scale variations contribute to $\approx 1, 2$\% for 
 $W$ and $Z\gamma^*$ decays. The PDF variations are $\approx 4, 5$\%, 
@@ -38,15 +59,15 @@ massive-quark scheme.
 Processes & Generator & Phase Space& Order & Final state & Cross-section (pb)& Error (pb) \\ 
  &  &  cuts & & & PDF = CTEQ6M & Scale, PDF \\ \hline
 $t\bar{t}$ & MCFM & - & NLO & Inclusive & 154.5 & $\pm 20.1$, $\pm$ xx \\ \hline
-$t^+$ s-channel & MCFM & - & NLO & Inclusive & 2.6 & $\pm 0.1$, $\pm$ xx \\ \hline
-$t^-$ s-channel & MCFM & - & NLO & Inclusive & 1.4 & $\pm 0.1$, $\pm$ xx \\ \hline
-Total $t$ s-channel & MCFM & - & NLO & Inclusive & 4.0 & $\pm 0.1$, $\pm$ xx \\ \hline
-$t^+$ t-channel & MCFM & - & NLO & Inclusive & 41.7 & $\pm 1.2$, $\pm$ xx \\ \hline
-$t^-$ t-channel & MCFM & - & NLO & Inclusive & 21.5 & $\pm 0.6$, $\pm$ xx \\ \hline
-Total $t$ t-channel & MCFM & - & NLO & Inclusive & 63.2 & $\pm 1.3$, $\pm$ xx \\ \hline
-$W^+ \bar{t}$ & MCFM & - & NLO & Inclusive & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
-$W^- t$ & MCFM & - & NLO & Inclusive & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
-Total $tW$ & MCFM & - & NLO & Inclusive & 10.6 & $\pm 0.8$, $\pm$ xx \\ \hline
+$t^+$ (s-channel) & MCFM & - & NLO & Inclusive & 2.6 & $\pm 0.1$, $\pm$ xx \\ \hline
+$t^-$ (s-channel) & MCFM & - & NLO & Inclusive & 1.4 & $\pm 0.1$, $\pm$ xx \\ \hline
+Total $t$ (s-channel) & MCFM & - & NLO & Inclusive & 4.0 & $\pm 0.1$, $\pm$ xx \\ \hline
+$t^+$ (t-channel) & MCFM & - & NLO & Inclusive & 41.7 & $\pm 1.2$, $\pm$ xx \\ \hline
+$t^-$ (t-channel) & MCFM & - & NLO & Inclusive & 21.5 & $\pm 0.6$, $\pm$ xx \\ \hline
+Total $t$ (t-channel) & MCFM & - & NLO & Inclusive & 63.2 & $\pm 1.3$, $\pm$ xx \\ \hline
+$W^+ \bar{t}$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
+$W^- t$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
+Total $tW$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 10.6 & $\pm 0.8$, $\pm$ xx \\ \hline
 $W^+ \bar{c}$ & MCFM & - & NLO & Inclusive & 1718 & $\pm 157$, $\pm$ xx \\ \hline
 $W^- c$ & MCFM & - & NLO & Inclusive & 1910 & $\pm 164$, $\pm$ xx \\ \hline
 Total $Wc$ & MCFM & - & NLO & Inclusive & 3628 & $\pm 227$, $\pm$ xx \\ \hline
