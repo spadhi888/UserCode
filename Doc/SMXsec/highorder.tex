@@ -1,9 +1,16 @@
 \section{Higher order cross sections}
 \label{sec:results}
 The NNLO cross sections computed with FEWZ for $W$ and $Z$ boson production 
-are summarized in 
-Table~\ref{tab:nnlo},~\ref{tab:nnlo66}. The PDF uncertainties are based on general-purpose 
-CTEQ6M~\cite{cteq6m} and CTEQ6.6~\cite{cteq66} along with 40 eigenvector and 44 eigenvector sets, respectively.
+are summarized in Table~\ref{tab:nnlo}-~\ref{tab:nnlo66}. The total PDF uncertainties are based on 
+the respective general-purpose PDF sets from CTEQ, MSTW08 and NNPDF2.0. 
+The combined uncertainties are then computed using:
+
+\begin{equation}
+   \Delta X_{total} =  \frac{1}{2} [Max(X_1 + \Delta X_1, X_2 + \Delta X_2, X_3 + \Delta X_3 ) - Min(X_1 - \Delta X_1, X_2 - \Delta X_2, X_3 - \Delta X_3) ]
+\end{equation}
+
+where $X_1, X_2, X_3$ are central values from  CTEQ6.6, MSTW08 and NNPDF2.0. The $\Delta X_i$'s are the
+associated uncertainties with variation in their eigenvectors along $\pm$ directions.
 
 \vspace{3mm}
 \begin{table}[hbt]
@@ -46,7 +53,7 @@ branching fractions from the PDG~\cite{pdg}. \label{tab:nnlo66}}
 
 
 The uncertainties due to scale variations contribute to $\approx 1, 2$\% for 
-$W$ and $Z\gamma^*$ decays. The PDF variations are $\approx 4, 5$\%, 
+$W$ and $Z/\gamma^*$ decays. The PDF variations are $\approx X_1, X_2$\%, 
 respectively. Table~\ref{tab:nlo} shows the LO and NLO cross sections for 
 various SM processes. Processes with $c$ and $b$ quarks are treated using the 
 massive-quark scheme.
@@ -65,9 +72,9 @@ Total $t$ (s-channel) & MCFM & - & NLO & Inclusive & 4.0 & $\pm 0.1$, $\pm$ xx \
 $t^+$ (t-channel) & MCFM & - & NLO & Inclusive & 41.7 & $\pm 1.2$, $\pm$ xx \\ \hline
 $t^-$ (t-channel) & MCFM & - & NLO & Inclusive & 21.5 & $\pm 0.6$, $\pm$ xx \\ \hline
 Total $t$ (t-channel) & MCFM & - & NLO & Inclusive & 63.2 & $\pm 1.3$, $\pm$ xx \\ \hline
-$W^+ \bar{t}$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
-$W^- t$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
-Total $tW$ & MCFM & - & NLO & Inclusive, $W\rightarrow l \nu_l$ & 10.6 & $\pm 0.8$, $\pm$ xx \\ \hline
+$W^+ \bar{t}$ & MCFM & - & NLO & $\bar{t}$ as inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
+$W^- t$ & MCFM & - & NLO & $t$ as inclusive, $W\rightarrow l \nu_l$ & 5.3 & $\pm 0.6$, $\pm$ xx \\ \hline
+Total $tW$ & MCFM & - & NLO & $t$ as inclusive, $W\rightarrow l \nu_l$ & 10.6 & $\pm 0.8$, $\pm$ xx \\ \hline
 $W^+ \bar{c}$ & MCFM & - & NLO & Inclusive & 1718 & $\pm 157$, $\pm$ xx \\ \hline
 $W^- c$ & MCFM & - & NLO & Inclusive & 1910 & $\pm 164$, $\pm$ xx \\ \hline
 Total $Wc$ & MCFM & - & NLO & Inclusive & 3628 & $\pm 227$, $\pm$ xx \\ \hline
@@ -76,9 +83,9 @@ $W^- b\bar{b}$ & MCFM & - & LO & Inclusive & 13.2 & $\pm 2.5$, $\pm$ xx \\ \hlin
 Total $Wb\bar{b}$ & MCFM & - & LO & Inclusive & 35.3 & $\pm 5.1$, $\pm$ xx \\ \hline
 $Z/\gamma^* b\bar{b}$ & MCFM & $m_{ll} > 20$ GeV & LO & Inclusive & 67.3 & $\pm 18.8$, $\pm$ xx \\ \hline
 $W^+W^-$ & MCFM & - & NLO & Inclusive & 43 & $\pm 1.5$, $\pm$ xx \\ \hline
-$W^+Z\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 11.8 & $\pm 0.6$, $\pm$ xx \\ \hline
-$W^-Z\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 6.4 & $\pm 0.4$, $\pm$ xx \\ \hline
-Total $WZ\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 18.2 & $\pm 0.7$, $\pm$ xx \\ \hline
+$W^+Z/\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 11.8 & $\pm 0.6$, $\pm$ xx \\ \hline
+$W^-Z/\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 6.4 & $\pm 0.4$, $\pm$ xx \\ \hline
+Total $WZ/\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 18.2 & $\pm 0.7$, $\pm$ xx \\ \hline
 $Z/\gamma^*Z/\gamma^*$ & MCFM & $m_{ll} > 40$ GeV & NLO & Inclusive & 5.9 & $\pm 0.15$, $\pm$ xx \\ \hline
 \end{tabular} 
 \caption{LO and NLO cross sections for various SM processes. The cross sections are generally

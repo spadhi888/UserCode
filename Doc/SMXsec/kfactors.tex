@@ -45,7 +45,11 @@ used in CMS simulations) should be used as a central value. However, the
 uncertainties on cross sections, and hence the uncertainties on acceptance, are 
 computed with respect to the nominal choice at higher orders. %ROB confused: is that what you meant ???
 We compute the PDF uncertainties using the prescription provided by the CTEQ 
-Collaboration~\cite{cteq6m}. 
+Collaboration~\cite{cteq6m}. Additionally, the final systematics are computed using
+the envelopes provided by the central values and PDF errors from the MSTW08~\cite{mstw08}, 
+CTEQ6.6~\cite{cteq66} and NNPDF2.0~\cite{nnpdf20} PDFs, using each group’s prescriptions for 
+combining the two types of errors. This is also recommended by the PDF4LHC studies.
+ 
 
 For a given central choice of scale and PDF, we estimate the uncertainties 
 based on $N$ PDF sets of eigenvectors for an observable $X$. We use $2$ PDF 
