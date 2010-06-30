@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2010.5.12)  30 JUN 2010 12:35
+This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2010.5.12)  30 JUN 2010 15:24
 **cmsnoteSMXsec.tex
 (./cmsnoteSMXsec.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
 LaTeX2e <2001/06/01>
@@ -136,42 +136,37 @@ Overfull \hbox (15.0512pt too wide) in paragraph at lines 39--50
  [] 
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 66.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 66.
 
-Overfull \hbox (44.74956pt too wide) in paragraph at lines 65--93
+Overfull \hbox (62.01813pt too wide) in paragraph at lines 66--94
  [] 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 112.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 112.
-
-Overfull \hbox (58.18484pt too wide) in paragraph at lines 112--140
- [] 
- []
-
-) (./summary.tex) [4] [5] [6] (./cmsnoteSMXsec.aux) ) 
+) (./summary.tex) [4] [5] (./cmsnoteSMXsec.aux) ) 
 Here is how much of TeX's memory you used:
- 1090 strings out of 95437
- 12917 string characters out of 1190233
- 87828 words of memory out of 1000001
- 4106 multiletter control sequences out of 10000+50000
+ 1089 strings out of 95437
+ 12907 string characters out of 1190233
+ 78820 words of memory out of 1000001
+ 4105 multiletter control sequences out of 10000+50000
  20667 words of font info for 40 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
  29i,9n,19p,369b,331s stack positions out of 1500i,500n,5000p,200000b,5000s
- 83 PDF objects out of 300000
+ 80 PDF objects out of 300000
  0 named destinations out of 131072
  5 words of extra memory for PDF output out of 65536
-{/usr/share/texmf/dvips/te
-tex/bbad153f.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb>{/usr/share
-/texmf/dvips/tetex/aae443f0.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmmi6.
-pfb>{/usr/share/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bl
-uesky/cm/cmr6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share
-/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/c
-m/cmmi8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/tex
-mf/fonts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cm
-sy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/f
-onts/type1/bluesky/cm/cmr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.p
-fb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb>{/usr/share/texmf/dvips/
-psnfss/8r.enc}
-Output written on cmsnoteSMXsec.pdf (6 pages, 96010 bytes).
+{/usr/share/texmf/dvips/tetex/
+bbad153f.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb>{/usr/share/tex
+mf/dvips/tetex/aae443f0.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmmi6.pfb>
+{/usr/share/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesk
+y/cm/cmr6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/tex
+mf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cm
+mi8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf/f
+onts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10
+.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts
+/type1/bluesky/cm/cmr7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb><
+/usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb>{/usr/share/texmf/dvips/psnf
+ss/8r.enc}
+Output written on cmsnoteSMXsec.pdf (5 pages, 92610 bytes).
