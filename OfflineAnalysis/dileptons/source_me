@@ -1,0 +1,8 @@
+cd /home/users/spadhi/CMS/CMSSW/CMSSW_3_6_1_patch4/src/
+cmsenv
+cd -
+kinit spadhi@CERN.CH
+cvs co -d NtupleMacros UserCode/JRibnik/CMS2/NtupleMacros
+ln -s NtupleMacros/CORE .
+
+
