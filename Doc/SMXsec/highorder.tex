@@ -1,107 +1,174 @@
 \section{Higher order cross sections}
 \label{sec:results}
-The NNLO cross sections computed with FEWZ for $W$ and $Z$ boson production 
-are summarized in Table~\ref{tab:nnlo}-~\ref{tab:nnlo66}. The total PDF uncertainties are based on 
-the respective general-purpose PDF sets from CTEQ, MSTW08 and NNPDF2.0. 
-The combined uncertainties are then computed using:
 
-\begin{equation}
-   \Delta X_{total} =  \frac{1}{2} [Max(X_1 + \Delta X_1, X_2 + \Delta X_2, X_3 + \Delta X_3 ) - Min(X_1 - \Delta X_1, X_2 - \Delta X_2, X_3 - \Delta X_3) ]
-\end{equation}
+This section tabulates the cross-sections of key SM processes using the setup
+and input settings described in the previous section.
+The error on all the cross-section presented includes the 
+scale uncertainties, determined by varying the factorization and renormalization 
+scales by a factor 2 and 0.5, and the uncertainties from the PDFs and the value 
+of $\alpha_S$, determined at NLO. For the NNLO calculations, this error is taken
+conservatively as giving the same relative uncertainty than the one at NLO.
+For the NLO computations MCFM~\cite{mcfm:w} is used, and the PDF+$\alpha_S$ 
+errors are determined by using the procedures from the MSTW2008~\cite{mstw08}, 
+CTEQ6.6~\cite{cteq66} and NNPDF2.0~\cite{nnpdf} sets. The errors are then 
+combined according to the PDF4LHC prescriptions~\cite{pdf4lhc}. \\
+Table~\ref{tab:Wnnlo} and~\ref{tab:Znnlo} present a summary of the NNLO results 
+obtained with FEWZ for W and Z/$\gamma^{*}$ production, respectively.
+For W production, the individual charge-defined final states are reported 
+separately and combined. For Z/$\gamma^{*}$ production, three di-lepton mass 
+intervals are calculated independently.  \\
 
-where $X_1, X_2, X_3$ are central values from  CTEQ6.6, MSTW08 and NNPDF2.0. The $\Delta X_i$'s are the
-associated uncertainties with variation in their eigenvectors along $\pm$ directions.
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      
+      process & $\sigma_{\mathrm{NNLO}}$ (pb) & $\Delta\sigma_{\mathrm{PDF}+\alpha_s}$ (pb) & $\Delta\sigma_{\mu}$ (pb) & $\Delta\sigma_{\mathrm{NNLO}}$ (pb) \\
+      \hline
+      $\mathrm{pp}\to\mathrm{W}^-\to{\ell^-\bar{\nu}}$ & 12858 & $\pm$ 654 & $\pm$ 174 & $\pm$ 677 \\
+      $\mathrm{pp}\to\mathrm{W}^+\to{\ell^+\bar{\nu}}$ & 18456 & $\pm$ 850 & $\pm$ 233 & $\pm$ 881 \\
+      \hline
+      $\mathrm{pp}\to\mathrm{W}\to{\ell\bar{\nu}}$ & 31314 & $\pm$ 1504 & $\pm$ 407 & $\pm$ 1558 \\
+      \hline
+ 
+    \end{tabular}
+    \caption{NNLO cross sections for W production into leptons. The corresponding branching 
+      ratio is already included. For the calculation the reference scale $\mu=\mu_R=\mu_F$ 
+      is taken as $m_\mathrm{W}=80.398$. 
+      The error coming from the scale variation is dominated by the numerical precision 
+      of the integration, so the latter is quoted as error.  
+      In adding up the charged-conjugate channels the errors are summed linearly to 
+      conservatively take into account their large correlation.\label{tab:Wnnlo}}
+  \end{center}
+\end{table} 
 
-\vspace{3mm}
-\begin{table}[hbt]
-\begin{center}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{|l|c|c|c|c|c|c|}\hline
-Processes & Generator & Phase Space& Order & Final state & Cross-section (pb)& Error (pb) \\ 
- &  &  cuts & & & PDF = CTEQ6M & Scale, PDF \\ \hline
-$W^+$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 16670 & $\pm 114$, $\pm$ 843 \\ \hline
-$W^-$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 11379 & $\pm 146$, $\pm$ 759 \\ \hline
-Total $W$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 28049 & $\pm 186$, $\pm$ 1134 \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 20$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 4486 & $\pm 111$, $\pm 220$ \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 50$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 2906 & $\pm 55$, $\pm 111$ \\ \hline
-\end{tabular} 
-\caption{NNLO cross sections for $W$ and $Z$ bosons using CTEQ6M. The cross sections are computed for
-exclusive decays to leptons. The final inclusive values for $W$ are obtained using appropriate 
-branching fractions from the PDG~\cite{pdg}. \label{tab:nnlo}}
-\end{center}
-\end{table}
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      
+      process & $\sigma_{\mathrm{NNLO}}$ (pb) & $\Delta\sigma_{\mathrm{PDF}+\alpha_s}$ (pb) & $\Delta\sigma_{\mu}$ (pb) & $\Delta\sigma_{\mathrm{NNLO}}$ (pb) \\
+      \hline
+      $\mathrm{pp}\to\mathrm{Z/\gamma}\to{\ell^-\ell^+},\,m_{\ell\ell}>20\,\mathrm{GeV}$ & 4998 & $\pm$ 270 & $\pm$ 34 & $\pm$ 272 \\
+      $\mathrm{pp}\to\mathrm{Z/\gamma}\to{\ell^-\ell^+},\,m_{\ell\ell}>50\,\mathrm{GeV}$ & 3048 & $\pm$ 128 & $\pm$ 34 & $\pm$ 132 \\
+      $\mathrm{pp}\to\mathrm{Z/\gamma}\to{\ell^-\ell^+},\,60\,\mathrm{GeV}<m_{\ell\ell}<120\,\mathrm{GeV}$ & 2916 & $\pm$ 122 & $\pm$ 34 & $\pm$ 127 \\
+      \hline
+ 
+    \end{tabular}
+    \caption{NNLO cross sections for Z/$\gamma$ production into charged leptons. The 
+      corresponding branching ratio is already included. 
+      The table presents three different cross-sections, determined in different
+      lepton pair mass ranges.
+      For the various calculations the reference scales $\mu=\mu_R=\mu_F$ are taken 
+      as $m_\mathrm{Z}=91.1876$. The error coming from the scale variation is dominated 
+      by the numerical precision of the integration, so the latter is quoted as error.\label{tab:Znnlo}}
+  \end{center}
+\end{table} 
 
+Table~\ref{tab:topnlo} presents the summary of the NLO results obtained
+for top-pair and single top production with MCFM~\cite{mcfm:tt,mcfm:t}. 
+For single top, where relevant,
+charged-defined states are reported separately and then combined. \\
 
-\vspace{3mm}
-\begin{table}[hbt]
-\begin{center}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{|l|c|c|c|c|c|c|}\hline
-Processes & Generator & Phase Space& Order & Final state & Cross-section (pb)& Error (pb) \\ 
- &  &  cuts & & & PDF = CTEQ6.6 & Scale, PDF \\ \hline
-$W^+$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 17137 & $\pm 115$, $\pm$ 942 \\ \hline
-$W^-$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 11534 & $\pm 149$, $\pm$ 754 \\ \hline
-Total $W$ & FEWZ & - & NNLO & $W \rightarrow l \nu_l, l=e,\mu,\tau$ & 28671 & $\pm 188$, $\pm$ 1307 \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 20$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 4644 & $\pm 164$, $\pm 352$ \\ \hline
-$Z/\gamma^*$ & FEWZ & $m_{ll} > 50$ GeV & NNLO & $Z \rightarrow l^+l^-, l=e,\mu,\tau$ & 3087 & $\pm 99$, $\pm 230$ \\ \hline
-\end{tabular} 
-\caption{NNLO cross sections for $W$ and $Z$ bosons using CTEQ6.6. The cross sections are computed for
-exclusive decays to leptons. The final inclusive values for $W$ are obtained using appropriate 
-branching fractions from the PDG~\cite{pdg}. \label{tab:nnlo66}}
-\end{center}
-\end{table}
-
-
-The uncertainties due to scale variations contribute to $\approx 1, 2$\% for 
-$W$ and $Z/\gamma^*$ decays. The PDF variations are $\approx X_1, X_2$\%, 
-respectively. Table~\ref{tab:nlo} shows the LO and NLO cross sections for 
-various SM processes. Processes with $c$ and $b$ quarks are treated using the 
-massive-quark scheme.
-
-\vspace{3mm}
-\begin{table}[hbt]
-\begin{center}
-\renewcommand{\arraystretch}{1.2}
- {\footnotesize
-\begin{tabular}{|l|c|c|c|c|c|c|}\hline
-Processes & Phase Space & Final state & CTEQ6M  & CTEQ6.6 & MSTW08NLO 68\% C.L & NNPDF2.0  \\ 
- & cuts & & $\sigma \pm$ PDF $\pm$ Scale & $\sigma \pm$ PDF $\pm$ Scale & $ \sigma \pm$ PDF $\pm$ Scale &  $\sigma \pm$ PDF $\pm$ Scale \\ \hline
-$t\bar{t}$ & - & Inclusive & $154.5 \pm xx ^{+18.5}_{-20.1}$ & $150.5 \pm xx ^{+17.9}_{-19.5}$ & $162 \pm xx ^{+19.9}_{-21.7}$ & $163 \pm xx ^{+20.2}_{-20.7}$  \\ \hline
-$\bar{t}$ (s-channel) & - & Inclusive & $1.4 \pm xx ^{+0.03}_{-0.03}$ & $1.4 \pm xx ^{+0.03}_{-0.03}$ & $1.5 \pm xx ^{+0.04}_{-0.03}$ & $1.4 \pm xx ^{+0.03}_{-0.02}$ \\ \hline
-$t$ (s-channel) & - & Inclusive & $2.6 \pm xx ^{+0.06}_{-0.05}$ & $2.6 \pm xx ^{+0.08}_{-0.05}$ & $2.7 \pm xx ^{+0.07}_{-0.05}$ & $2.7 \pm xx ^{+0.07}_{-0.05}$ \\ \hline
-Total $t$ (s-channel) & - & Inclusive & $4.0 \pm xx ^{+0.09}_{-0.08}$ & $4.0 \pm xx ^{+0.11}_{-0.08}$ & $4.2 \pm xx ^{+0.11}_{-0.08}$ & $4.1 \pm xx ^{+0.10}_{-0.07}$ \\ \hline
-$\bar{t}$ (t-channel) & - & Inclusive & $21.6 \pm xx ^{+0.51}_{-0.45}$ & $21.3 \pm xx ^{+0.58}_{-0.42}$ & $22.1 \pm xx ^{+0.67}_{-0.41}$ & $23.0 \pm xx ^{+0.79}_{-0.30}$  \\ \hline
-$t$ (t-channel) & - & Inclusive & $41.5 \pm xx ^{+1.23}_{-0.70}$ & $40.8 \pm xx ^{+1.29}_{-0.52}$ & $41.4 \pm xx ^{+1.30}_{-0.51}$ & $43.4 \pm xx ^{+1.56}_{-0.50}$  \\ \hline
-Total $t$ (t-channel) & - & Inclusive & $63.1 \pm xx ^{+1.74}_{-1.15}$ & $62.1 \pm xx ^{+1.87}_{-0.94}$ & $63.5 \pm xx ^{+1.97}_{-0.92}$ & $66.4 \pm xx ^{+2.35}_{-0.80}$ \\ \hline
-$W^+ \bar{t}$ & - & $\bar{t}$ as Incl., $W\rightarrow l \nu_l$ & $5.3 \pm xx ^{+0.34}_{-0.56}$ & $5.1 \pm xx ^{+0.33}_{-0.54}$ & $5.5 \pm xx ^{+0.35}_{-0.59}$ & $5.9 \pm xx ^{+0.37}_{-0.60}$ \\ \hline
-$W^- t$ & - & $t$ as Incl., $W\rightarrow l \nu_l$ & $5.3 \pm xx ^{+0.34}_{-0.56}$ & $5.1 \pm xx ^{+0.33}_{-0.55}$ & $5.5 \pm xx ^{+0.36}_{-0.59}$ & $5.9 \pm xx ^{+0.38}_{-0.58}$ \\ \hline
-Total $tW$ & - & $t$ as Incl., $W\rightarrow l \nu_l$ & $10.6 \pm xx ^{+0.68}_{-1.12}$ & $10.2 \pm xx ^{+0.66}_{-1.09}$ & $11.0 \pm xx ^{+0.71}_{-1.18}$ & $11.8 \pm xx ^{+0.75}_{-1.18}$  \\ \hline
-$W^+ \bar{c}$ & - & Inclusive & $1736 \pm xx ^{+62.0}_{-65.3}$ & $1969 \pm xx ^{+79.1}_{-86.1}$ & $1823 \pm xx ^{+87.8}_{-77.8}$ & $1661 \pm xx ^{+59.8}_{-44.1}$ \\ \hline
-$W^- c$ & - & Inclusive & $1889 \pm xx ^{+108.6}_{-58.9}$ & $2132 \pm xx ^{+126.1}_{-103.9}$ & $2066 \pm xx ^{+113.3}_{-96.2}$ & $1914 \pm xx ^{+88.1}_{-73.4}$ \\ \hline
-Total $Wc$ & - & Inclusive & $3625 \pm xx ^{+170.6}_{-124.2}$ & $4101 \pm xx ^{+205.2}_{-190.0}$ & $3889 \pm xx ^{+201.1}_{-174.0}$ & $3575 \pm xx ^{+148.0}_{-117.5}$  \\ \hline
-$W^+ b\bar{b}$ & - & Inclusive, LO & $21.8 \pm xx ^{+4.2}_{-3.6}$ & $22.2 \pm xx ^{+4.6}_{-3.4}$ & $23.2 \pm xx ^{+4.9}_{-3.8}$ & $22.4 \pm xx ^{+4.5}_{-3.3}$ \\ \hline
-$W^- b\bar{b}$ & - & Inclusive, LO & $13.0 \pm xx ^{+2.6}_{-1.9}$ & $13.3 \pm xx ^{+2.6}_{-2.1}$ & $14.4 \pm xx ^{+2.9}_{-2.3}$ & $13.5 \pm xx ^{+2.6}_{-2.0}$ \\ \hline
-Total $Wb\bar{b}$ & - & Inclusive, LO & $34.8 \pm xx ^{+6.8}_{-5.5}$ & $35.5 \pm xx ^{+7.2}_{-5.5}$ & $37.6 \pm xx ^{+7.8}_{-6.1}$ & $35.9 \pm xx ^{+7.1}_{-5.3}$  \\ \hline
-$Z/\gamma^* b\bar{b}$ & $m_{ll} > 20$ GeV & Inclusive, LO & $68.0 \pm xx ^{+18.2}_{-13.9}$ & $66.7 \pm xx ^{+18.4}_{-13.7}$ & $71.6 \pm xx ^{+20.0}_{-14.9}$ & $71.1 \pm xx ^{+20.3}_{-14.9}$ \\ \hline
-$W^+W^-$ & - & Inclusive & $43.0 \pm xx ^{+1.5}_{-1.2}$ & $43.5 \pm xx ^{+1.6}_{-1.0}$ & $45.1 \pm xx ^{+1.5}_{-1.2}$ & $43.8 \pm xx ^{+1.5}_{-1.1}$ \\ \hline
-$W^+Z/\gamma^*$ & $m_{ll} > 40$ GeV & Inclusive & $11.8 \pm xx ^{+0.6}_{-0.5}$ & $11.9 \pm xx ^{+0.6}_{-0.5}$ & $12.1 \pm xx ^{+0.6}_{-0.5}$ & $12.0 \pm xx ^{+0.7}_{-0.4}$ \\ \hline
-$W^-Z/\gamma^*$ & $m_{ll} > 40$ GeV & Inclusive & $6.4 \pm xx ^{+0.3}_{-0.3}$ & $6.4 \pm xx ^{+0.3}_{-0.3}$ & $6.9 \pm xx ^{+0.3}_{-0.3}$ & $6.6 \pm xx ^{+0.4}_{-0.3}$ \\ \hline
-Total $WZ/\gamma^*$ & $m_{ll} > 40$ GeV & Inclusive & $18.2 \pm xx ^{+0.9}_{-0.8}$ & $18.3 \pm xx ^{+0.9}_{-0.8}$ & $19.0 \pm xx ^{+0.9}_{-0.8}$ & $18.6 \pm xx ^{+1.1}_{-0.7}$  \\ \hline
-$Z/\gamma^*Z/\gamma^*$ & $m_{ll} > 40$ GeV & Inclusive & $5.9 \pm xx ^{+0.2}_{-0.1}$ & $6.0 \pm xx ^{+0.2}_{-0.1}$ & $6.2 \pm xx ^{+0.2}_{-0.1}$ & $6.0 \pm xx ^{+0.1}_{-0.1}$ \\ \hline
-\end{tabular} }
-\caption{LO and NLO cross sections for various SM processes using MCFM. The cross sections are generally
-computed for inclusive decays. For the single top $Wt$ contribution, the subtraction scheme
-used in~\cite{Wtsubscheme} is used. \label{tab:nlo}}
-\end{center}
-\end{table}
-
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      
+      process & $\sigma_{\mathrm{NLO}}$ (pb) & $\Delta\sigma_{\mathrm{PDF}+\alpha_s}$ (pb) & $\Delta\sigma_{\mu}$ (pb) & $\Delta\sigma_{\mathrm{NLO}}$ (pb) \\
+      \hline
+      $\mathrm{pp}\to\mathrm{t}\bar{\mathrm{t}}$ & 157.5 & $\pm$ 14.7 & $^{+18.0}_{-19.5}$ & $^{+23.2}_{-24.4}$ \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{t}$, s-channel & 2.72 & $\pm$ 0.08 & $^{+0.07}_{-0.06}$ & $^{+0.11}_{-0.10}$ \\
+       $\mathrm{pp}\to\bar{\mathrm{t}}$, s-channel & 1.49 & $\pm$ 0.08 & $^{+0.04}_{-0.03}$ & $^{+0.09}_{-0.08}$ \\
+      \hline
+       $\mathrm{pp}\to\mathrm{t}$+c.c., s-channel & 4.21 & $\pm$ 0.16 & $^{+0.11}_{-0.09}$ & $^{+0.19}_{-0.18}$ \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{t}$, t-channel & 42.6 & $\pm$ 2.2 & $^{+0.9}_{-0.8}$ & $^{+2.4}_{-2.3}$ \\
+       $\mathrm{pp}\to\bar{\mathrm{t}}$, t-channel & 22.0 & $\pm$ 0.8 & $^{+0.6}_{-0.3}$ & $^{+0.10}_{-0.8}$ \\
+      \hline
+       $\mathrm{pp}\to\mathrm{t}$+c.c., t-channel & 64.6 & $\pm$ 3.0 & $^{+1.5}_{-1.1}$ & $^{+3.4}_{-3.2}$ \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{t}^\pm\mathrm{W}^\mp\,(\mathrm{W}^\mp\to\ell^\mp\nu)$ & 4.66 & $\pm$ 0.58 & $^{+0.20}_{-0.55}$ & $^{+0.61}_{-0.80}$ \\
+      \hline
+ 
+    \end{tabular}
+    \caption{NLO cross sections for inclusive top-pair and single top production. 
+      For all the calculations the reference scale $\mu=\mu_R=\mu_F$ is taken as $m_\mathrm{t}=172.5$. 
+      The top quark decays inclusively. For Wt, the W only decays to lepton and the subtraction 
+      scheme of the top-pair component which is described in~\cite{wt} is used. In adding up 
+      charged-conjugate channels the errors are summed linearly to conservatively take into 
+      account their large correlation.\label{tab:topnlo}}
+  \end{center}
+\end{table} 
 
 The cross sections for $t\bar{t}$ are in very good agreement with 
 $\sigma^{NNLL}_{t\bar{t}} = 165 \pm 10$~pb using NNLL 
 resummations~\cite{nnllttbar}, with a top mass of $173$~GeV. Similarly, the 
 single top production in s-channel agrees well with the NNLL approximations 
 studies~\cite{nnllschannel} within uncertainties 
-$\sigma^{NNLL}_{Single top} = 4.6 \pm 0.06 \pm 0.13$~pb. The results presented 
+$\sigma^{NNLL}_{Single top} = 4.6 \pm 0.06 \pm 0.13$~pb. 
+
+In table~\ref{tab:othernlo} we report the summary of NLO cross sections for other key 
+SM process: vector boson production in association with heavy flavours and di-bosons.
+Where relevant, charged-defined states are reported separately and then combined. \\
+
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      
+      process & $\sigma_{\mathrm{NLO}}$ (pb) & $\Delta\sigma_{\mathrm{PDF}+\alpha_s}$ (pb) & $\Delta\sigma_{\mu}$ (pb) & $\Delta\sigma_{\mathrm{NLO}}$ (pb) \\
+      \hline
+       $\mathrm{pp}\to\mathrm{W}^+\bar{\mathrm{c}}\to\ell^+\bar{\nu}\bar{\mathrm{c}}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+       $\mathrm{pp}\to\mathrm{W}^-\mathrm{c}\to\ell^-\nu\mathrm{c}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+      \hline
+       $\mathrm{pp}\to\mathrm{W}\mathrm{c}\to\ell\nu\mathrm{c}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{W}^+\mathrm{b}\bar{\mathrm{b}}\to\ell^+\bar{\nu}\mathrm{b}\bar{\mathrm{b}}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+       $\mathrm{pp}\to\mathrm{W}^-\mathrm{b}\bar{\mathrm{b}}\to\ell^-\nu\mathrm{b}\bar{\mathrm{b}}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+      \hline
+       $\mathrm{pp}\to\mathrm{W}\mathrm{b}\bar{\mathrm{b}}\to\ell\nu\mathrm{b}\bar{\mathrm{b}}$ & - & $\pm$ 0 & $^{+0.}_{-0.}$ & $^{+0.}_{-0.}$ \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{Z/\gamma}\mathrm{b}\bar{\mathrm{b}}\to\ell^-\ell^+\mathrm{b}\bar{\mathrm{b}},\,m_{\ell\ell}>20\,\mathrm{GeV}$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+      \hline
+      \hline
+       $\mathrm{pp}\to\mathrm{W}^+\mathrm{W}^-\to\ell^+\bar{\nu}\ell^-\nu$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+      \hline
+       $\mathrm{pp}\to\mathrm{W}^+\mathrm{Z/\gamma}\to\ell^+\bar{\nu}\ell^-\ell^+,\,m_{\ell\ell}>40\,\mathrm{GeV}$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+       $\mathrm{pp}\to\mathrm{W}^-\mathrm{Z/\gamma}\to\ell^-\nu\ell^-\ell^+,\,m_{\ell\ell}>40\,\mathrm{GeV}$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+      \hline
+       $\mathrm{pp}\to\mathrm{W}\mathrm{Z/\gamma}\to\ell\nu\ell^-\ell^+,\,m_{\ell\ell}>40\,\mathrm{GeV}$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+      \hline
+       $\mathrm{pp}\to\mathrm{Z/\gamma}\mathrm{Z/\gamma}\to\ell^-\ell^+\ell^-\ell^+,m_{\ell\ell}>40\,\mathrm{GeV}$ & - & $\pm$ 0 & $\pm$ 0 & $\pm$ 0 \\
+      \hline
+ 
+    \end{tabular}
+    \caption{LO and NLO cross sections for other key SM processes. The cross sections are 
+      computed for decays into charged leptons. \label{tab:othernlo}}
+
+  \end{center}
+\end{table} 
+
+A more detailed breakdown of the cross-section presented in this section and their 
+associated errors is presented in appendix A.
+Appendix B describes the details of the combination and the propagation of the
+error due to PDFs according to the [rescriptions given by the PDF authors and
+in~\cite{pdf4lhc}.
+The results presented 
 here can serve to compute K-factors, which can be defined as the ratio 
 N$^k$LO/LO for the analysis, keeping into accounts the comments in section~\ref{kf}.
+
+
+
+
+
+
+
+
 

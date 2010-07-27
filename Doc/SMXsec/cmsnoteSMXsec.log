@@ -1,9 +1,22 @@
+<<<<<<< cmsnoteSMXsec.log
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2010.7.11)  23 JUL 2010 11:47
+entering extended mode
+**cmsnoteSMXsec.tex
+(./cmsnoteSMXsec.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+=======
 This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2010.5.12)  30 JUN 2010 15:24
 **cmsnoteSMXsec.tex
 (./cmsnoteSMXsec.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
 LaTeX2e <2001/06/01>
 Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
 ohyphenation, loaded.
+>>>>>>> 1.11
 (./cmspaper_pdf.cls
 CMS paper style Version <0.4>, <25 Nov. 1996>
 based on Document Style 'CERNART' Version <2.1>, <1 May 1995>
@@ -112,6 +125,12 @@ LaTeX Font Info:    Try loading font information for OT1+phv on input line 19.
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 40.
@@ -120,6 +139,17 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
  [1
 
 
+<<<<<<< cmsnoteSMXsec.log
+{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./cms_note.pdf>] (./
+intro.tex) (./kfactors.tex
+[2]) (./assumptions.tex) (./highorder.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--20
+
+ []
+
+[3]
+Overfull \hbox (11.3714pt too wide) in paragraph at lines 47--64
+=======
 {/usr/share/texmf/dvips/config/pdftex.map} <./cms_note.pdf>] (./intro.tex) (./k
 factors.tex
 Missing character: There is no ^^e2 in font ptmr7t!
@@ -128,12 +158,18 @@ Missing character: There is no ^^99 in font ptmr7t!
  [2])
 (./assumptions.tex) (./highorder.tex [3]
 Overfull \hbox (15.0512pt too wide) in paragraph at lines 19--30
+>>>>>>> 1.11
  [] 
  []
 
 
+<<<<<<< cmsnoteSMXsec.log
+Underfull \hbox (badness 10000) in paragraph at lines 68--72
+
+=======
 Overfull \hbox (15.0512pt too wide) in paragraph at lines 39--50
  [] 
+>>>>>>> 1.11
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -141,12 +177,44 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 66.
 
+<<<<<<< cmsnoteSMXsec.log
+Underfull \hbox (badness 10000) in paragraph at lines 115--118
+
+=======
 Overfull \hbox (62.01813pt too wide) in paragraph at lines 66--94
  [] 
+>>>>>>> 1.11
  []
 
+<<<<<<< cmsnoteSMXsec.log
+[4]) (./summary.tex) (./appendix.tex [5]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 125.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 125.
+ [6]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 330.
+
+
+(/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [7] [8] [9]) [10] [11]
+(./cmsnoteSMXsec.aux) ) 
+=======
 ) (./summary.tex) [4] [5] (./cmsnoteSMXsec.aux) ) 
+>>>>>>> 1.11
 Here is how much of TeX's memory you used:
+<<<<<<< cmsnoteSMXsec.log
+ 1177 strings out of 94500
+ 14030 string characters out of 1176766
+ 101689 words of memory out of 1000000
+ 4342 multiletter control sequences out of 10000+50000
+ 25106 words of font info for 58 fonts, out of 500000 for 2000
+ 580 hyphenation exceptions out of 1000
+ 29i,10n,19p,601b,261s stack positions out of 1500i,500n,5000p,200000b,5000s
+PDF statistics:
+ 106 PDF objects out of 300000
+=======
  1089 strings out of 95437
  12907 string characters out of 1190233
  78820 words of memory out of 1000001
@@ -155,7 +223,25 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 1000
  29i,9n,19p,369b,331s stack positions out of 1500i,500n,5000p,200000b,5000s
  80 PDF objects out of 300000
+>>>>>>> 1.11
  0 named destinations out of 131072
+<<<<<<< cmsnoteSMXsec.log
+ 6 words of extra memory for PDF output out of 65536
+</usr/share/texmf/fonts/type1/bluesky/cm/cmsy5.pfb></usr
+/share/texmf/fonts/type1/bluesky/cm/cmr5.pfb></usr/share/texmf/fonts/type1/blue
+sky/cm/cmex10.pfb>{/usr/share/texmf/fonts/enc/dvips/psnfss/8r.enc}</usr/share/t
+exmf/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf/fonts/type1/bluesky/c
+m/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi5.pfb></usr/share/tex
+mf/fonts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cm
+r7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/share/texmf/fon
+ts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.p
+fb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb></usr/share/texmf/fonts/
+type1/bluesky/cm/cmr17.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi12.pfb>
+</usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/typ
+e1/urw/helvetic/uhvr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb><
+/usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb>
+Output written on cmsnoteSMXsec.pdf (11 pages, 196692 bytes).
+=======
  5 words of extra memory for PDF output out of 65536
 {/usr/share/texmf/dvips/tetex/
 bbad153f.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmsy6.pfb>{/usr/share/tex
@@ -170,3 +256,4 @@ onts/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10
 /usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb>{/usr/share/texmf/dvips/psnf
 ss/8r.enc}
 Output written on cmsnoteSMXsec.pdf (5 pages, 92610 bytes).
+>>>>>>> 1.11

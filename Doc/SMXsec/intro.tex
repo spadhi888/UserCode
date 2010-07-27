@@ -1,11 +1,12 @@
 \section{Introduction}
 \label{sec:intro}
 The LHC has recently started delivering proton-proton collisions at a 
-centre-of-mass energy of 7 TeV. Physics analyses at the LHC often depend 
+centre-of-mass energy $\sqrt{S}=7$ TeV. 
+Physics analyses at the LHC often depend 
 on various inputs from theory that are only known with limited accuracy. The 
 predictions on process cross sections are a well known example; their 
-accuracy depend on the order of perturbation theory of the calculation and
-the PDFs used. 
+accuracy depends on the order of perturbation theory of the calculation, the
+parton distribution functions (PDFs) used, the factorization and regularization scales assumed, and the choice of Standard Model parameters.
 
 Most often there is no unique prescription of what calculation and what input 
 settings should be used in a given analysis when comparing to the data. 
@@ -14,8 +15,11 @@ Monte Carlo simulations used in CMS, in performing the computations of
 higher order cross sections, along with the determination of the associated
 errors, and aims at establishing common reference values for most relevant
 SM cross sections which analyses can refer to.
+For reference, the term Monte Carlo in this note refers to those tools which generate complete events by adding parton showering, fragmentation, hadronization, {\it etc.} to simple, leading order (LO) partonic processes.
 
-This note is organised as follows:
+In this note, we provide a tabulation of inclusive cross section estimates for
+many critical Standard Model processes and a prescription for how to apply them.
+The note is organised as follows:
 in Section~\ref{sec:normalization}, guidelines for the calculation of K-factors 
 based on higher order cross sections, along with given scales and PDF 
 uncertainties, are provided. In Section~\ref{sec:assumptions} the assumptions 
