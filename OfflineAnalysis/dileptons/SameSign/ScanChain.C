@@ -459,43 +459,105 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 
 	//common for muons, so do all here
 	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts) {
+
+	  if (estimateDoubleFakes) {
+ 
+	    if(abs(id_lt) == 13) 	
+	      if(!isFakeableMuon(idx_lt)) continue;
+	    if(abs(id_ll) == 13) 
+	      if(!isFakeableMuon(idx_ll)) continue;
 	  
-	  if(abs(id_lt) == 13) 
-	    if(!isFakeableMuon(idx_lt))
-	      continue;
-	  if(abs(id_ll) == 13) 
-	    if(!isFakeableMuon(idx_ll))
-	      continue;
-	  
-	  if(abs(id_lt) == 11) {
-//	    if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssV1Cand_v1) ) continue;
-//	    if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssV1Cand_v2) ) continue;
-//	    if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssV1Cand_v3) ) continue;
-
-//            if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF90_v1) ) continue;
-//            if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF90_v2) ) continue;
-//            if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF90_v3) ) continue;
-
-            if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v1) ) continue;
-            if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v2) ) continue;
-            if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v3) ) continue;
-
-//            if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF70_v1) ) continue;
-//            if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF70_v2) ) continue;
-//            if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF70_v3) ) continue;
-
+	    if(abs(id_lt) == 11) {
+	      if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v1) ) continue;
+	      if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v2) ) continue;
+	      if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v3) ) continue;
+	    }
+	    if(abs(id_ll) == 11) {
+	      if(applyFOv1Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v1) ) continue;
+	      if(applyFOv2Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v2) ) continue;
+	      if(applyFOv3Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v3) ) continue;
+	    }
 	  }
-	  if(abs(id_ll) == 11) {
-//	    if(applyFOv1Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssV1Cand_v1) ) continue;
-//	    if(applyFOv2Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssV1Cand_v2) ) continue;
-//	    if(applyFOv3Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssV1Cand_v3) ) continue;
 
-            if(applyFOv1Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v1) ) continue;
-            if(applyFOv2Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v2) ) continue;
-            if(applyFOv3Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v3) ) continue;
+	  if (estimateSingleFakes){
+	    // mumu only
+	    if(hyp_type()[hypIdx] == 0) {
+
+	      bool isGoodMlt = false;
+	      bool isGoodMll = false;
+	      bool isFOMlt   = false;
+	      bool isFOMll   = false;
+	      bool evtFRmm   = false;
+	      
+	      if (isGoodLeptonwIso(13, idx_lt) ) isGoodMlt = true;
+	      if (isGoodLeptonwIso(13, idx_ll) ) isGoodMll = true;
+	      if (isFakeableMuon(idx_lt)) isFOMlt = true;
+	      if (isFakeableMuon(idx_ll)) isFOMll = true;
+	      if (isGoodMlt && isGoodMll) continue;
+	      if (isGoodMlt && !isGoodMll && isFOMll) evtFRmm = true;
+	      if (isGoodMll && !isGoodMlt && isFOMlt) evtFRmm = true;
+	      if ( isGoodMlt && isGoodMll) continue;
+	      if (!evtFRmm) continue;
+	    }
+	    // ee case
+	    if(hyp_type()[hypIdx] == 3) {
+
+	      bool isGoodElt = false;
+	      bool isGoodEll = false;
+	      bool isFOElt   = false;
+	      bool isFOEll   = false;
+	      bool evtFRee   = false;
+
+	      if (isGoodLeptonwIso(11, idx_lt) ) isGoodElt = true;
+              if (isGoodLeptonwIso(11, idx_ll) ) isGoodEll = true;
+
+	      if(applyFOv1Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v1) ) isFOElt = true;
+              if(applyFOv2Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v2) ) isFOElt = true;
+              if(applyFOv3Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v3) ) isFOElt = true;
+
+	      if(applyFOv1Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v1) ) isFOEll = true;
+              if(applyFOv2Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v2) ) isFOEll = true;
+              if(applyFOv3Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v3) ) isFOEll = true;
+
+	      if( isGoodElt && !isGoodEll && isFOEll) evtFRee = true;
+	      if( isGoodEll && !isGoodElt && isFOElt) evtFRee = true;
+	      if ( isGoodElt && isGoodEll) continue;
+	      if (!evtFRee) continue;
+	    }
+
+	    // emu case
+
+	    if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+	      int iEl = 0;
+	      int iMu = 0;
+	      if(hyp_type()[hypIdx] == 2) {
+		iEl = hyp_lt_index()[hypIdx];
+		iMu = hyp_ll_index()[hypIdx];
+	      }
+	      if (hyp_type()[hypIdx] == 1) {
+		iEl = hyp_ll_index()[hypIdx];
+		iMu = hyp_lt_index()[hypIdx];
+	      }
+	      bool isGoodEl = false;
+	      bool isFOEl   = false;
+	      bool isGoodMu = false;
+	      bool isFOMu   = false;
+	      bool evtFRemu = false;
+
+              if (isGoodLeptonwIso(13, iMu) ) isGoodMu = true;
+              if (isGoodLeptonwIso(11, iEl) ) isGoodEl = true;
+	      if (isFakeableMuon(iMu)) isFOMu = true;
+              if(applyFOv1Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v1) ) isFOEl = true;
+              if(applyFOv2Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v2) ) isFOEl = true;
+              if(applyFOv3Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v3) ) isFOEl = true;
+	      if (isGoodMu && !isGoodEl && isFOEl) evtFRemu = true;
+	      if (isGoodEl && !isGoodMu && isFOMu) evtFRemu = true;
+	      if (isGoodEl && isGoodMu) continue;
+	      if (!evtFRemu) continue;
+
+	    }
 	  }
 	}//	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts) 
-
 	
 	// require lepton isolation cuts?
 	if(applylepIsoCuts) {
@@ -1055,7 +1117,8 @@ double getFRWeight(const int hypIdx, string elFRversion) {
       return -9999.;
     
   //  SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates31May.root", "muFR15u");
-    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", "muFR15u");
+ //   SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", "muFR15u");
+    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", "muFR15u");
     
     if (estimateDoubleFakes) {
 
@@ -1117,7 +1180,8 @@ double getFRWeight(const int hypIdx, string elFRversion) {
     url = new char[elFRversion.length() + 1];
     strcpy(url, elFRversion.c_str()); 
   //  SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates31May.root", url);
-    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", url);
+  //  SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", url);
+    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", url);
     delete [] url;
     if(estimateDoubleFakes) {
 
@@ -1183,8 +1247,8 @@ double getFRWeight(const int hypIdx, string elFRversion) {
     url = new char[elFRversion.length() + 1];
     strcpy(url, elFRversion.c_str());
 
-    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", "muFR15u");
-    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", url);
+    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", "muFR15u");
+    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", url);
     delete [] url;
 
     if (estimateDoubleFakes) {
