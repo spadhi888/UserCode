@@ -30,6 +30,7 @@ TH1F* hnJetWOOther[4];
 TH1F* hnJetOO[4];
 TH1F* hnJetinZwindow[4];          //usefull for DY estimate
 TH1F* hnJetoutZwindow[4];         //usefull for DY estimate
+TH1F* hnMeff[4];                   // Njet distributions
 TH1F* helePt[4][7];               // electron Pt
 TH1F* hmuPt[4][7];                // muon Pt
 TH1F* hmuPtFromSilicon[4][7];     // muon Pt (from tracker)
@@ -139,6 +140,8 @@ void bookHistos(const char *prefix) {
 			    5,0.,5.);	
         hnJetWW[i] = new TH1F((string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),
                             5,0.,5.); 
+        hnMeff[i] = new TH1F((string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),
+                            200,0.,2000.);
         hnJetWO[i] = new TH1F((string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),
                             5,0.,5.);
         hnJetWOSemilep[i] = new TH1F((string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),
@@ -495,6 +498,7 @@ void bookHistos(const char *prefix) {
 	hnJetWOSemilep[i]->Sumw2();
 	hnJetWOOther[i]->Sumw2();
 	hnJetOO[i]->Sumw2();
+        hnMeff[i]->Sumw2();
 	hnJetinZwindow[i]->Sumw2();
 	hnJetoutZwindow[i]->Sumw2();
       }

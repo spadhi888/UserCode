@@ -38,26 +38,27 @@
   bool    rundata        = false;
   bool    runttbar       = true;
   bool    runttotr       = false;
-  bool    runWjets       = false;
-  bool    runDYee        = false;
-  bool    runDYmm        = false;
-  bool    runDYtautau    = false;
+  bool    runWjets       = true;
+  bool    runDYee        = true;
+  bool    runDYmm        = true;
+  bool    runDYtautau    = true;
   bool    runQCDPt15     = false;
   bool    runQCDPt30     = false;
   bool    runGamma15     = false;
-  bool    runWW          = false;
-  bool    runtW          = false;
+  bool    runWW          = true;
+  bool    runtW          = true;
   bool    runLM0         = false;
   bool    runVqq         = false;
   bool    runWc          = false;
-  bool    runWZ          = false;
-  bool    runZZ          = false;
+  bool    runWZ          = true;
+  bool    runZZ          = true;
+  bool    runVV          = false;
 
   float   jetTriggerPt   = 15;    
   
   //NLO cross-sections
-  float   kttdil    = 165.;
-  float   kWjets    = 1.;
+  float   kttdil    = 157.5;
+  float   kWjets    = 31314.;
   float   kDYee     = 1.;
   float   kDYmm     = 1.;
   float   kDYtautau = 1.;
@@ -77,31 +78,29 @@ v_Cuts.push_back("usePtGt2010");         // one lepton > 20, other > 10
 // v_Cuts.push_back("used0corrPV");           // use the d0 corrected for the hihest PV 
 v_Cuts.push_back("applylepIDCuts");      // apply tight ID cuts
 v_Cuts.push_back("applylepIsoCuts");     // tight iso cuts 
-// v_Cuts.push_back("applyFOv1Cuts");
+v_Cuts.push_back("applyAlignmentCorrection"); // apply alignment corrections
+v_Cuts.push_back("removedEtaCutInEndcap"); // apply alignment corrections
+//v_Cuts.push_back("applyFOv1Cuts");
 // v_Cuts.push_back("applyFOv2Cuts");
 // v_Cuts.push_back("applyFOv3Cuts");
-// v_Cuts.push_back("applyLooseIDCuts");      // apply loose ID cuts
-// v_Cuts.push_back("applylepLooseIsoCuts");     // loose iso cuts
 v_Cuts.push_back("applyTriggers");       // apply triggers
 // v_Cuts.push_back("vetoZmass");           // no leptons in zmass
-//v_Cuts.push_back("requireZmass");        // leptons only in zmass
+// v_Cuts.push_back("requireZmass");        // leptons only in zmass
 //v_Cuts.push_back("hypDisamb");           // do hyp. disambiguation
 //v_Cuts.push_back("useCorMET");           // use corrected calo MET ---> NOT SUPPORTED RIGHT NOW
-//v_Cuts.push_back("usetcMET");            // use tcMET
-v_Cuts.push_back("usepfMET");   //use PFMET 
-//v_Cuts.push_back("chargeFlip");   //use chargeFlip
+v_Cuts.push_back("usetcMET");            // use tcMET
+// v_Cuts.push_back("usepfMET");   //use PFMET 
+v_Cuts.push_back("chargeFlip");   //use chargeFlip
 v_Cuts.push_back("vetoMET");             // cut on MET  
 //v_Cuts.push_back("vetoProjectedMET");    // cut on projected MET
-v_Cuts.push_back("usecaloJets");         // use caloJETs for jet counting
+// v_Cuts.push_back("usecaloJets");         // use caloJETs for jet counting
 //v_Cuts.push_back("usejptJets");          // use jpt jets for jet counting
-// v_Cuts.push_back("usepfJets");  // use pf jets for jet counting
+v_Cuts.push_back("usepfJets");  // use pf jets for jet counting
 v_Cuts.push_back("vetoJets");
 v_Cuts.push_back("requireEcalEls");
-
- if (doFRestimation) {
-//  v_Cuts.push_back("estimateDoubleFakes");
-  v_Cuts.push_back("estimateSingleFakes");
-}
+// v_Cuts.push_back("useFlipRateEstimation");
+// v_Cuts.push_back("estimateSingleFakes");
+// v_Cuts.push_back("estimateDoubleFakes");
 
   TChain  *ch_data    = new TChain("Events");  
   TChain  *ch_ttbar   = new TChain("Events");
@@ -119,12 +118,18 @@ v_Cuts.push_back("requireEcalEls");
   TChain  *ch_wc       = new TChain("Events");
   TChain  *ch_wz      = new TChain("Events");
   TChain  *ch_zz      = new TChain("Events");
+  TChain  *ch_vv      = new TChain("Events");
 
 
 // Luminosity
 //  const float LUMINORM = 0.00006511; // 78 nb-1
-//   const float LUMINORM = 0.0002544; // 78 nb-1
-  const float LUMINORM = 0.01; // 100 pb-1
+//   const float LUMINORM = 0.00030355; // 303.55 nb-1
+//   const float LUMINORM = 0.00083828; // 838.28 nb-1
+//   const float LUMINORM = 0.0011; // 1.1 pb-1
+     const float LUMINORM = 0.01; // 10 pb-1
+//   const float LUMINORM = 0.00288; // 2.88 pb-1
+
+//     const float LUMINORM = 1; // 1 fb-1
 
   if(rundata) {
     cout << "Doing data" << endl;
@@ -134,38 +139,48 @@ v_Cuts.push_back("requireEcalEls");
     ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-Jun14thReReco_v1_RECO/V03-04-26-01/singleLepPt5Skim/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-PromptReco-v4_RECO/V03-04-25/singleLepPt5Skim/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-PromptReco-v4_RECO/V03-04-26-01/singleLepPt5Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-Jul16thReReco-v2_RECO/V03-04-26-07/singleLepPt5Skim//*.root");
     ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-PromptReco-v4_RECO/V03-04-26-02/singleLepPt10Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-PromptReco-v4_RECO/V03-04-26-07/singleLepPt10Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/EG_Run2010A-PromptReco-v4_RECO/V03-04-26-12/diLepPt1020Skim/*.root");
 
 //    ch_data->Add("/hadoop/cms/store/user/spadhi/CMS2_V03-04-26-02/Commissioning10-SD_Mu-Jun14thSkim_v1/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/MinimumBias_Commissioning10-SD_Mu-Jun14thSkim_v1_RECO/V03-04-26-02/singleLepPt10Skim/skimmed_ntuple*.root");
     ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-Jun14thReReco_v1_RECO/V03-04-26-01/singleLepPt5Skim/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-PromptReco-v4_RECO/V03-04-25/singleLepPt5Skim/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-PromptReco-v4_RECO/V03-04-26-01/singleLepPt5Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-Jul16thReReco-v1_RECO/V03-04-26-07/singleLepPt5Skim/*.root");
     ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-PromptReco-v4_RECO/V03-04-26-02/singleLepPt10Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-PromptReco-v4_RECO/V03-04-26-07/singleLepPt10Skim/*.root");
+    ch_data->Add("/nfs-3/userdata/cms2/Mu_Run2010A-PromptReco-v4_RECO/V03-04-26-12/diLepPt1020Skim/*.root");
+
     ScanChain(ch_data, v_Cuts, "data", doFRestimation, jetTriggerPt);
     hist::color("data", kRed);
   }
 
   if(runttbar) {
     cout << "Doing the ttbar sample" << endl;
-    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root"); 
+    // ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root"); 
+    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbarJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-07/*.root"); 
     ScanChain(ch_ttbar, v_Cuts, "ttbar",doFRestimation, jetTriggerPt, LUMINORM, kttdil);
     hist::color("ttbar", kYellow);
   }
   
   if(runttotr) {
     cout << "Processing ttbar no-dileptons.. "<<endl;
-    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root");
+  //  ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root");
+    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbarJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-07/*.root");
     ScanChain(ch_ttbar, v_Cuts,"ttotr", doFRestimation, jetTriggerPt, LUMINORM, kttotr);
     hist::color("ttotr", 30);
   }
 
   if (runWjets) {
     cout << "Processing Wjets.."<<endl;
-    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wenu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
-    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wmunu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
-    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wtaunu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
-    ScanChain(ch_wjets,v_Cuts, "wj", doFRestimation, jetTriggerPt, LUMINORM);
+//    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wenu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
+//    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wmunu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
+//    ch_wjets->Add("/nfs-3/userdata/cms2/EarlyDataSamples/Wtaunu_Spring10-START3X_V26_S09-v1/V03-04-08-01/*.root");
+    ch_wjets->Add("/nfs-3/userdata/cms2/WJets-madgraph_Spring10-START3X_V26_S09-v1_SingleLep/V03-04-08/*.root");
+    ScanChain(ch_wjets,v_Cuts, "wj", doFRestimation, jetTriggerPt, LUMINORM, kWjets);
     hist::color("wjets", 40);
   }
 
@@ -263,6 +278,14 @@ v_Cuts.push_back("requireEcalEls");
     hist::color("zz", kRed-5);
   }
 
+  if(runVV) {
+    cout << "Processing VV" << endl;
+    ch_zz->Add("/nfs-3/userdata/cms2/VVJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-13-01/*.root");
+    ScanChain(ch_vv, v_Cuts, "vv", doFRestimation, jetTriggerPt, LUMINORM);
+    hist::color("vv", kRed-5);
+  }
+
+
   TString cutstring = "";
   for(unsigned int i = 0; i < v_Cuts.size(); i++) 
     cutstring       = cutstring + "_" + v_Cuts.at(i);
@@ -278,7 +301,8 @@ v_Cuts.push_back("requireEcalEls");
   //print table
   //browseStacks( true, false , "qcd15", cutstring); //need to supply a reference channel. Should not be "data" because "data" should not be in the stacks
   if (doFRestimation) {
-    printNJets(false, "%6.2f","ttdil", true,true,true,false, true);
+ //   printNJets(false, "%6.2f","ttdil", true,true,true,false, true);
+    printNJets(false, "%6.2f","ttdil", false,true,true,false, true);
   } else {
    printNJets(false, "%6.2f","ttdil",false,true,true);
   }

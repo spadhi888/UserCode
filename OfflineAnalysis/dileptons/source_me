@@ -1,8 +1,13 @@
+WORKDIR=`pwd`
+
 cd /home/users/spadhi/CMS/CMSSW/CMSSW_3_6_1_patch4/src/
 cmsenv
-cd -
-kinit spadhi@CERN.CH
-cvs co -d NtupleMacros UserCode/JRibnik/CMS2/NtupleMacros
-ln -s NtupleMacros/CORE .
+cd $WORKDIR
+
+echo "Note- If FR turned ON, the default code uses old FR from MC- Aug12"
+
+if [ ! -d CORE ]; then
+ ln -s NtupleMacros/CORE .
+fi
 
 

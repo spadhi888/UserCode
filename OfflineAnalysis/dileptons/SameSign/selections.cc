@@ -6,6 +6,7 @@
 #include "TPRegexp.h"
 #include "TLorentzVector.h"
 #include "TDatabasePDG.h"
+#include "TSystem.h"
 #include "../CORE/electronSelections.cc"
 #include "../CORE/electronSelectionsParameters.cc"
 #include "../CORE/muonSelections.cc"
@@ -13,33 +14,37 @@
 #include "CMS2.cc"
 
 using namespace tas;
+
 typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<float> > LorentzVector;
-bool isGoodLeptonNoIso(int id, int lepIdx);//, bool used0wrtPV = false);
-bool isGoodLeptonwIso(int id, int lepIdx);//, bool used0wrtPV  = false);
-bool isGoodHypNoIso(int hypIdx);//, bool used0wrtPV = false);
-bool isGoodHypwIso(int hypIdx);//, bool used0wrtPV = false);
+bool isGoodLeptonNoIso(int id, int lepIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);//, bool used0wrtPV = false);
+bool isGoodLeptonwIso(int id, int lepIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);//, bool used0wrtPV  = false);
+bool isGoodHypNoIso(int hypIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);//, bool used0wrtPV = false);
+bool isGoodHypwIso(int hypIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);//, bool used0wrtPV = false);
 bool isGoodDilHypJet(LorentzVector jetp4, unsigned int& hypIdx, double ptCut, double absEtaCut, double dRCut, bool muJetClean);
-std::pair<float,float> getMet(string& algo, unsigned int hypIdx, std::string prefix);
+// std::pair<float,float> getMet(string& algo, unsigned int hypIdx, std::string prefix);
+std::pair<float,float> getMet(const string algo, unsigned int hypIdx);
 bool inZmassWindow (float mass);
 bool passTriggersMu9orLisoE15(int dilType);
 int eventDilIndexByWeightTTDil08(const std::vector<unsigned int>& goodHyps, int& strasbourgDilType, bool printDebug, bool usePtOnlyForWeighting);
-bool isFakeDenominatorElectron_v1(unsigned int lepIdx);
-bool isFakeDenominatorElectron_v2(unsigned int lepIdx);
 bool isFakeableMuon(int index);
 double getd0wrtPV(LorentzVector p4, float d0);
 void correctTcMETForHypMus(unsigned int hypIdx, double& met, double& metPhi);
-bool isFakeableElectron(int index, string prefix);
-bool additionalZvetoSUSY2010 (int i_hyp);
+bool isFakeableElectron(int index, string prefix, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);
+bool additionalZvetoSUSY2010 (int i_hyp, bool applyAlignmentCorrection, bool removedEtaCutInEndcap);
+bool passEGTrigger(bool mc, int type);
+bool passMuTrigger(bool mc, int type);
+int nHLTObjects(string arg);
+LorentzVector p4HLTObject(string arg, int) ;
 
 
-bool isFakeableElectron (int index, string prefix) {
+bool isFakeableElectron (int index, string prefix, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) {
   TPMERegexp re1("v1", "g");
   TPMERegexp re2("v2", "g");
   TPMERegexp re3("v3", "g");
 
-  if (re1.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_el_ttbarV1_v1);
-  if (re2.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_el_ttbarV1_v2);
-  if (re3.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_el_ttbarV1_v3);
+  if (re1.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap);
+  if (re2.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap);
+  if (re3.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap);
 
   return false;
 }
@@ -49,85 +54,13 @@ bool isFakeableMuon (int index) {
 }
 
 
-bool isGoodLeptonLooseID(int id, int lepIdx) {
-
-}
-
 /******************************************************************************************/     
 // good lepton (either mu or electron, no isolation cuts)
 /******************************************************************************************/
-bool isGoodLeptonNoIso(int id, int lepIdx) {//, bool used0wrtPV) {
+bool isGoodLeptonNoIso(int id, int lepIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) {//, bool used0wrtPV) {
 
   if(abs(id) == 11) {
-
-/*
-    const cuts_t elIDcutsttbarV2 =   
-	  (1ll<<ELEID_VBTF_35X_90) |
-	  (1ll<<ELEIP_400) |
-	  (1ll<<ELENOMUON_010) |
-	  (1ll<<ELENOTCONV_HITPATTERN) |
-	  (1ll<<ELENOTCONV_DISTDCOT002) |
-	  (1ll<<ELESCET_010) |
-	  (1ll<<ELEPT_010) |
-	  (1ll<<ELEETA_250) |
-	  (1ll<<ELESEED_ECAL) |
-	  (1ll<<ELENOSPIKE_SWISS005);
-
- const cuts_t electronSelection_ssV1CandN =
-  (1ll<<ELEID_CAND02) |
-  (1ll<<ELEID_EXTRA) |
-  (1ll<<ELEIP_200) |
-  (1ll<<ELENOMUON_010) |
-  (1ll<<ELENOTCONV_HITPATTERN) |
-  (1ll<<ELENOTCONV_DISTDCOT002) |
-  (1ll<<ELESCET_010) |
-  (1ll<<ELEPT_010) |
-  (1ll<<ELEETA_250) |
-  (1ll<<ELESEED_ECAL) |
-  (1ll<<ELENOSPIKE_SWISS005); 
-
-const cuts_t electronSelection_ssVBTF90N =
-  (1ll<<ELEID_VBTF_35X_90) |
-  (1ll<<ELEIP_200) |
-  (1ll<<ELENOMUON_010) |
-  (1ll<<ELENOTCONV_HITPATTERN) |
-  (1ll<<ELENOTCONV_DISTDCOT002) |
-  (1ll<<ELESCET_010) |
-  (1ll<<ELEPT_010) |
-  (1ll<<ELEETA_250) |
-  (1ll<<ELESEED_ECAL);
-
-const cuts_t electronSelection_ssVBTF80N =
-  (1ll<<ELEID_VBTF_35X_80) |
-  (1ll<<ELEIP_200) |
-  (1ll<<ELENOMUON_010) |
-  (1ll<<ELENOTCONV_HITPATTERN) |
-  (1ll<<ELENOTCONV_DISTDCOT002) |
-  (1ll<<ELESCET_010) |
-  (1ll<<ELEPT_010) |
-  (1ll<<ELEETA_250) |
-  (1ll<<ELESEED_ECAL);
-
-const cuts_t electronSelection_ssVBTF70N =
-  (1ll<<ELEID_VBTF_35X_70) |
-  (1ll<<ELEIP_200) |
-  (1ll<<ELENOMUON_010) |
-  (1ll<<ELENOTCONV_HITPATTERN) |
-  (1ll<<ELENOTCONV_DISTDCOT002) |
-  (1ll<<ELESCET_010) |
-  (1ll<<ELEPT_010) |
-  (1ll<<ELEETA_250) |
-  (1ll<<ELESEED_ECAL);
-
-*/
-
-
-	//    bool isSpike = isSpikeElectron(lepIdx);
-	//    unsigned int answer_vbtf = electronId_VBTF(lepIdx, VBTF_35X_90);
-	//    bool elsvbtf90_ = ( ( answer_vbtf & (1ll<<ELEID_ID) ) == (1ll<<ELEID_ID) );
- //   return (pass_electronSelection(lepIdx, electronSelection_ssV1CandN));
-  //  return (pass_electronSelection(lepIdx, electronSelection_ssVBTF80N));
-    return (pass_electronSelection(lepIdx, electronSelection_ss_NoIso));
+    return (pass_electronSelection(lepIdx, electronSelection_ss_NoIso, applyAlignmentCorrection, removedEtaCutInEndcap));
   }
 
 
@@ -137,29 +70,34 @@ const cuts_t electronSelection_ssVBTF70N =
       return false;
     } 
     return muonId(lepIdx, Nominal);
-/*
-    if (TMath::Abs(mus_p4()[lepIdx].eta()) > 2.5)  return false; // eta cut
-    if (mus_gfit_chi2().at(lepIdx)/mus_gfit_ndof().at(lepIdx) >= 10) return false; //glb fit chisq
-    if (((mus_type().at(lepIdx)) & (1<<1)) == 0)    return false; // global muon
-    if (((mus_type().at(lepIdx)) & (1<<2)) == 0)    return false; // tracker muon
-    if (mus_validHits().at(lepIdx) < 11)            return false; // # of tracker hits
-    //if(used0wrtPV) {
-    //if(fabs(getd0wrtPV(mus_p4()[lepIdx], mus_d0()[lepIdx])) > 0.04)   return false;
-    //return false;
-    //} else 
-    if (TMath::Abs(mus_d0corr().at(lepIdx)) > 0.02) return false; // d0 from beamspot
-    if (cms2.mus_gfit_validSTAHits().at(lepIdx) == 0) return false; // Glb fit must have hits in mu chambers
-    if (mus_iso_ecalvetoDep().at(lepIdx) > 4) return false; 
-    if (mus_iso_hcalvetoDep().at(lepIdx) > 6)  return false;
-
-*/
-
   }
 
   return true;
 }
 
-bool additionalZvetoSUSY2010(int i_hyp) {
+/******************************************************************************************/
+// isolated lepton (either mu or electron)
+/******************************************************************************************/
+bool isGoodLeptonwIso(int id, int lepIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) { //, bool used0wrtPV) {
+
+// Covers both the noiso part
+
+  if(!isGoodLeptonNoIso(id, lepIdx, applyAlignmentCorrection, removedEtaCutInEndcap)) return false;
+
+  if(abs(id)== 11) {
+       if (!pass_electronSelection(lepIdx, electronSelection_ss_Iso, applyAlignmentCorrection, removedEtaCutInEndcap)) return false;
+  }
+
+  // 13 is a muon
+  if(abs(id) == 13)
+//    if(muonIsoValue(lepIdx) > 0.15)   return false;
+    if(muonIsoValue(lepIdx) > 0.10)   return false;
+
+  return true;
+}
+
+
+bool additionalZvetoSUSY2010(int i_hyp, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) {
   bool veto=false;
 
   // first, look for Z->mumu
@@ -167,7 +105,7 @@ bool additionalZvetoSUSY2010(int i_hyp) {
     bool hypLep1 = false;
     if (mus_p4().at(i).pt() < 10.)     continue;
 
-    if (!isGoodLeptonNoIso(13, i)) continue;
+    if (!isGoodLeptonNoIso(13, i, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
 
     if ( TMath::Abs(hyp_lt_id()[i_hyp]) == 13 && hyp_lt_index()[i_hyp] == i ) hypLep1 = true;
     if ( TMath::Abs(hyp_ll_id()[i_hyp]) == 13 && hyp_ll_index()[i_hyp] == i ) hypLep1 = true;
@@ -176,7 +114,7 @@ bool additionalZvetoSUSY2010(int i_hyp) {
       bool hypLep2 = false;
       if (mus_p4().at(j).pt() < 10.) continue;
 
-      if (!isGoodLeptonNoIso(13, j)) continue;
+      if (!isGoodLeptonNoIso(13, j, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
 
       if (mus_charge().at(i) == mus_charge().at(j)) continue;
       if ( TMath::Abs(hyp_lt_id()[i_hyp]) == 13 && hyp_lt_index()[i_hyp] == j ) hypLep2 = true;
@@ -198,7 +136,7 @@ bool additionalZvetoSUSY2010(int i_hyp) {
     bool hypLep1 = false;
     if (els_p4().at(i).pt() < 10.)     continue;
 
-    if (!isGoodLeptonNoIso(11, i)) continue;
+    if (!isGoodLeptonNoIso(11, i, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
 
     if ( TMath::Abs(hyp_lt_id()[i_hyp]) == 11 && hyp_lt_index()[i_hyp] == i ) hypLep1 = true;
     if ( TMath::Abs(hyp_ll_id()[i_hyp]) == 11 && hyp_ll_index()[i_hyp] == i ) hypLep1 = true;
@@ -207,11 +145,10 @@ bool additionalZvetoSUSY2010(int i_hyp) {
       bool hypLep2 = false;
       if (els_p4().at(j).pt() < 10.) continue;
 
-      if (!isGoodLeptonNoIso(11, j)) continue;
+      if (!isGoodLeptonNoIso(11, j, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
       if (els_charge().at(i) == els_charge().at(j)) continue;
 
-//    if ((!pass_electronSelection(i, elISOcuts)) && (!pass_electronSelection(j, elISOcuts))) continue;
-      if ((!pass_electronSelection(i, electronSelection_ss_Iso)) && (!pass_electronSelection(j, electronSelection_ss_Iso))) continue;
+      if ((!pass_electronSelection(i, electronSelection_ss_Iso, applyAlignmentCorrection, removedEtaCutInEndcap)) && (!pass_electronSelection(j, electronSelection_ss_Iso, applyAlignmentCorrection, removedEtaCutInEndcap))) continue;
 
       if ( TMath::Abs(hyp_lt_id()[i_hyp]) == 11 && hyp_lt_index()[i_hyp] == j ) hypLep2 = true;
       if ( TMath::Abs(hyp_ll_id()[i_hyp]) == 11 && hyp_ll_index()[i_hyp] == j ) hypLep2 = true;
@@ -231,38 +168,13 @@ bool additionalZvetoSUSY2010(int i_hyp) {
 
 
 /******************************************************************************************/     
-// isolated lepton (either mu or electron)
-/******************************************************************************************/
-bool isGoodLeptonwIso(int id, int lepIdx) { //, bool used0wrtPV) {
-
-// Covers both the noiso part
- 
-  if(!isGoodLeptonNoIso(id, lepIdx))
-    return false;
-
-  // 11 is a electron
-  if(abs(id)== 11) {
-//       const cuts_t elISOcuts =   (1ll<<ELEISO_REL010);
-       if (!pass_electronSelection(lepIdx, electronSelection_ss_Iso))
-            return false;
-  }
-
-  // 13 is a muon
-  if(abs(id) == 13)
-//    if(muonIsoValue(lepIdx) > 0.15)   return false;
-    if(muonIsoValue(lepIdx) > 0.10)   return false;
-
-  return true;
-}
-
-/******************************************************************************************/     
 // are the leptons in the hypothesis good (all cuts but isolation?)
 /******************************************************************************************/
-bool isGoodHypNoIso(int hypIdx) {//, bool used0wrtPV) {
+bool isGoodHypNoIso(int hypIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) {//, bool used0wrtPV) {
   
-  if(!isGoodLeptonNoIso(hyp_lt_id()[hypIdx], hyp_lt_index()[hypIdx]))//, used0wrtPV)
+  if(!isGoodLeptonNoIso(hyp_lt_id()[hypIdx], hyp_lt_index()[hypIdx], applyAlignmentCorrection, removedEtaCutInEndcap))//, used0wrtPV)
      return false;
-  if(!isGoodLeptonNoIso(hyp_ll_id()[hypIdx], hyp_ll_index()[hypIdx]))//, used0wrtPV)
+  if(!isGoodLeptonNoIso(hyp_ll_id()[hypIdx], hyp_ll_index()[hypIdx], applyAlignmentCorrection, removedEtaCutInEndcap))//, used0wrtPV)
     return false;
 
   return true;
@@ -271,23 +183,12 @@ bool isGoodHypNoIso(int hypIdx) {//, bool used0wrtPV) {
 /******************************************************************************************/     
 // are the leptons in the hypothesis isolated?
 /******************************************************************************************/     
-bool isGoodHypwIso(int hypIdx) {//, bool used0wrtPV) {
+bool isGoodHypwIso(int hypIdx, bool applyAlignmentCorrection, bool removedEtaCutInEndcap) {//, bool used0wrtPV) {
 
 
-  if(cms2.hyp_type()[hypIdx] == 3) {
-    /*
-    cout << "evt_event: " << evt_event() << endl;
-    cout << "lt, ll pt: " << hyp_lt_p4()[hypIdx].Pt() << "," << hyp_ll_p4()[hypIdx].Pt() << endl;
-    cout << "lt, ll eta: " << hyp_lt_p4()[hypIdx].Eta() << "," << hyp_ll_p4()[hypIdx].Eta() << endl;
-    cout << "lt iso: " << electronIsolation_relsusy_cand1(hyp_lt_index()[hypIdx], true) << endl;
-    cout << "ll iso: " << electronIsolation_relsusy_cand1(hyp_ll_index()[hypIdx], true) << endl;
-    */
-  }
-  
-  
-  if(!isGoodLeptonwIso(hyp_lt_id()[hypIdx], hyp_lt_index()[hypIdx]))//, used0wrtPV)
+  if(!isGoodLeptonwIso(hyp_lt_id()[hypIdx], hyp_lt_index()[hypIdx], applyAlignmentCorrection, removedEtaCutInEndcap))//, used0wrtPV)
     return false;
-  if(!isGoodLeptonwIso(hyp_ll_id()[hypIdx], hyp_ll_index()[hypIdx]))//, used0wrtPV)
+  if(!isGoodLeptonwIso(hyp_ll_id()[hypIdx], hyp_ll_index()[hypIdx], applyAlignmentCorrection, removedEtaCutInEndcap))//, used0wrtPV)
     return false;
 
 
@@ -325,11 +226,11 @@ bool isGoodDilHypJet(LorentzVector jetp4, unsigned int& hypIdx, double ptCut, do
 
   return true;
 
-
 }
 /******************************************************************************************/     
 //return the MET and the MET phi instead of a bool because the MT2 needs it
 /******************************************************************************************/     
+/* Old one
 std::pair<float,float> getMet(string& algo, unsigned int hypIdx, std::string prefix) {
  
  if(algo != "tcMET" && algo != "muCorMET" && algo != "pfMET") {
@@ -350,21 +251,67 @@ std::pair<float,float> getMet(string& algo, unsigned int hypIdx, std::string pre
 
   return make_pair(-99999., -99999);
 
+}
+*/
+
+std::pair<float,float> getMet(const string algo, unsigned int hypIdx) {
   
-  //the cut is 30 for ee/mm hyps to reject DY
-  //20 for emu
-  //if(hyp_type()[hypIdx] == 0 || hyp_type()[hypIdx] == 3) {
-  //if(met < 30.) 
-  //return false;
-  //  }
-  //if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
-  //    if(met < 20.)
-  //    return false;
-  //}
- 
-  //return true;
+  if(algo != "tcMET" && algo != "muCorMET" && algo != "pfMET" && algo != "tcMET35X") {
+    cout << algo << "IS NOT A RECOGNIZED MET ALGORITHM!!!!! PLEASE CHECK YOUR CODE!!!";
+    return make_pair(-99999., -99999.);
+  }
+
+  
+  if(algo == "tcMET") {
+
+    float tcmetX = evt_tcmet()*cos(evt_tcmetPhi());
+    float tcmetY = evt_tcmet()*sin(evt_tcmetPhi());
+    
+    if(abs(hyp_lt_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_lt_index().at(hypIdx), tcmetX, tcmetY, usingTcMet);
+    if(abs(hyp_ll_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_ll_index().at(hypIdx), tcmetX, tcmetY, usingTcMet);
+    
+    return make_pair(sqrt(tcmetX*tcmetX + tcmetY*tcmetY), atan2(tcmetY, tcmetX));
+  }
+
+
+  if(algo == "tcMET35X") {
+
+    float tcmetX = evt35X_tcmet()*cos(evt35X_tcmetPhi());
+    float tcmetY = evt35X_tcmet()*sin(evt35X_tcmetPhi());
+    
+    if(abs(hyp_lt_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_lt_index().at(hypIdx), tcmetX, tcmetY, usingTcMet35X);
+    if(abs(hyp_ll_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_ll_index().at(hypIdx), tcmetX, tcmetY, usingTcMet35X);
+    
+    return make_pair(sqrt(tcmetX*tcmetX + tcmetY*tcmetY), atan2(tcmetY, tcmetX));
+  }
+
+  
+  if(algo == "muCorMET") {
+
+    float metX = evt_metMuonCorr()*cos(evt_metMuonCorrPhi());
+    float metY = evt_metMuonCorr()*sin(evt_metMuonCorrPhi());
+    
+    if(abs(hyp_lt_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_lt_index().at(hypIdx), metX, metY, usingCaloMet);
+    if(abs(hyp_ll_id()[hypIdx]) == 13)
+      fixMetForThisMuon(hyp_ll_index().at(hypIdx), metX, metY, usingCaloMet);
+
+    return make_pair(sqrt(metX*metX + metY*metY), atan2(metY, metX));
+  }
+  
+  //nothing to do here because they're perfect
+  if(algo == "pfMET") 
+    return make_pair(evt_pfmet(), evt_pfmetPhi());
+  
+  
+  return make_pair(-99999., -99999);
   
 }
+
 
 
 /******************************************************************************************/     
@@ -575,37 +522,6 @@ int eventDilIndexByWeightTTDil08(const std::vector<unsigned int>& goodHyps, int&
 }
   
 
-
-/******************************************************************************************/     
-//electron FO v1
-/******************************************************************************************/     
-bool isFakeDenominatorElectron_v1(unsigned int lepIdx) {
-//  if (fabs(els_p4()[lepIdx].Eta()) > 2.5)    return false;
-//  if (els_p4()[lepIdx].Pt() < 20.)           return false;
-//  if (!electronId_noMuon(lepIdx))            return false;
-//  if (isFromConversionPartnerTrack(lepIdx))  return false;
-// //  if (electronIsolation_relsusy_cand1(lepIdx, true) > 0.40) return false;
-
-  return true;
-  
-}
-
-/******************************************************************************************/     
-//electron FO v1
-/******************************************************************************************/     
-bool isFakeDenominatorElectron_v2(unsigned int lepIdx) {
-
-//  if (fabs(els_p4()[lepIdx].Eta()) > 2.5)    return false;
-//  if (els_p4()[lepIdx].Pt() < 20.)           return false;
-//  if (!electronId_noMuon(lepIdx))            return false;
-//  if (isFromConversionPartnerTrack(lepIdx))  return false;
-//  if (electronIsolation_relsusy_cand1(lepIdx, true) > 0.10) return false;
-
-  return true;
-
-}
-
-
 /******************************************************************************************/     
 //electron impact parameter with respect to the highest sumpt pv
 /******************************************************************************************/     
@@ -675,3 +591,155 @@ void correctTcMETForHypMus(unsigned int hypIdx, double& met, double& metPhi){
 
   return;
 }
+
+// Returns the number of objects passing a given trigger
+// Returns zero if the trigger failed
+// Returns -1 if the trigger passed but no onjects were found
+//--------------------------------------------------------
+int nHLTObjects( string arg ){
+
+  // put the trigger name into a string
+  TString HLTTrigger( arg );
+
+  // Did the trigger pass?
+  if ( !(cms2.passHLTTrigger(HLTTrigger)) ) return 0;
+
+  // The trigger passed, see how many associated objects there are
+  int trigIndx = -1;
+  vector<TString>::const_iterator begin_it = cms2.hlt_trigNames().begin();
+  vector<TString>::const_iterator end_it = cms2.hlt_trigNames().end();
+  vector<TString>::const_iterator found_it = find(begin_it, end_it, HLTTrigger );
+  if( (found_it != end_it) ){
+    trigIndx = found_it - begin_it;
+    //cout << "nHLTObjects: Found Trigger: " << arg << endl;
+  }
+  else {
+    cout << "nHLTObjects: Cannot find Trigger " << arg << endl;
+    return 0;
+  }
+
+  int nobj = 0;
+  for( unsigned int i=0; i < cms2.hlt_trigObjs_p4().at(trigIndx).size(); i++ ){
+    nobj++;
+    //cout << "\t" << i << ", (pt, eta, phi): " << hlt_trigObjs_p4().at(trigIndx).at(i).pt() << " "
+    //              << hlt_trigObjs_p4().at(trigIndx).at(i).eta() << " " << hlt_trigObjs_p4().at(trigIndx).at(i).phi() << endl;
+  }
+
+  // cout << " Number of jets = " << njets << endl;
+
+  if (nobj == 0) return -1;
+  return nobj;
+}
+
+LorentzVector p4HLTObject( string arg, int objNumber){
+
+  TString HLTTrigger( arg );
+  int trigIndx = -1;
+  vector<TString>::const_iterator begin_it = cms2.hlt_trigNames().begin();
+  vector<TString>::const_iterator end_it = cms2.hlt_trigNames().end();
+  vector<TString>::const_iterator found_it = find(begin_it, end_it, HLTTrigger );
+  if( (found_it != end_it) ){
+    trigIndx = found_it - begin_it;
+    //cout << "p4HLTObject: Found Trigger: " << arg << endl;
+  }
+  else {
+    cout << "p4HLTObject: Cannot find Trigger: " << arg << endl;
+    gSystem->Exit(1);
+  }
+
+  int nobj = cms2.hlt_trigObjs_p4().at(trigIndx).size();
+  if (nobj == 0 ) {
+    cout << "ERROR: nobj == 0" << endl;
+    gSystem->Exit(1);
+  }
+
+  if (objNumber > (nobj-1)) {
+    cout << "ERROR: requested object number " << objNumber << " but we only have " << nobj <<endl;
+    gSystem->Exit(1);
+  }
+
+  return cms2.hlt_trigObjs_p4().at(trigIndx).at(objNumber);
+
+}
+
+bool passMuTrigger(bool mc, int type) {
+
+ if (mc) {
+   bool passMu = passHLTTrigger("HLT_Mu9");
+   if (passMu) return true;
+
+  } else {
+
+   bool passMu = passHLTTrigger("HLT_Mu9");
+   if (passMu) return true;
+   if(type == 0) { 
+     bool passMu2 =  passHLTTrigger("HLT_DoubleMu3"); 
+     if (passMu2) return true; 
+    }
+  }
+
+ return false;
+}
+
+bool passEGTrigger(bool mc, int type) {
+
+  if (mc) {
+ 
+    int e10 = nHLTObjects("HLT_Ele10_LW_L1R");
+//    for (int i=0; i<e10; i++) {
+//      LorentzVector p4 = p4HLTObject("HLT_Ele10_LW_L1R", i);
+//      if(p4.Pt() > 15.) return true;
+    if (e10 != 0) return true;
+
+  } else {  // data now
+    
+    if(evt_run() < 138000) {
+      int e10 = nHLTObjects("HLT_Ele10_LW_L1R");
+
+//      for (int i=0; i<e10; i++) {
+//        LorentzVector p4 = p4HLTObject("HLT_Ele10_LW_L1R", i);
+//        if(p4.Pt() > 15.) return true;
+//      }
+      if (e10 != 0) return true;
+      int e15 = nHLTObjects("HLT_Ele15_LW_L1R");
+      if (e15 != 0) return true;
+
+// double lepton triggers are not for emus
+
+      if(type == 3) { 
+        int d5 = nHLTObjects("HLT_DoubleEle5_SW_L1R");
+        if (d5 != 0) return true;
+      }
+    }
+
+    if(evt_run() >= 138000 && evt_run() < 141900) {
+      int e15 = nHLTObjects("HLT_Ele15_LW_L1R");
+      if(e15 != 0) return true;
+      int e10 = nHLTObjects("HLT_Ele10_LW_EleId_L1R");
+      if (e10 != 0) return true;
+
+      if(type == 3) {
+        int d5 = nHLTObjects("HLT_DoubleEle5_SW_L1R");
+        if (d5 != 0) return true;
+       }
+
+    }
+
+    if(evt_run() >= 141900) {
+      int e10 = nHLTObjects("HLT_Ele10_SW_EleId_L1R");
+      if(e10 != 0) return true;
+      int e15 = nHLTObjects("HLT_Ele15_SW_CaloEleId_L1R");
+      if(e15 != 0) return true;
+      int eid15 = nHLTObjects("HLT_Ele15_SW_EleId_L1R");
+      if(eid15 != 0) return true;
+
+      if(type == 3) {
+        int d10 = nHLTObjects("HLT_DoubleEle10_SW_L1R");
+        if(d10 != 0) return true;
+      }
+
+    }
+  }
+  return false;
+}
+
