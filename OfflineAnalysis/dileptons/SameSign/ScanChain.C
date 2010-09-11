@@ -560,11 +560,11 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	  //unsigned int elFRversion = 9999; FR versions and string
 	  string elFRversion;
 	  if(applyFOv1Cuts)
-	    elFRversion = Form("NOdEta_eFRv1%du", (int)jetTriggerPt);
+	    elFRversion = Form("eFRv1%du", (int)jetTriggerPt);
 	  else if(applyFOv2Cuts)
-	    elFRversion = Form("NOdEta_eFRv2%du", (int)jetTriggerPt);
+	    elFRversion = Form("eFRv2%du", (int)jetTriggerPt);
 	  else if(applyFOv3Cuts)
-	    elFRversion = Form("NOdEta_eFRv3%du", (int)jetTriggerPt);
+	    elFRversion = Form("eFRv3%du", (int)jetTriggerPt);
           else
             elFRversion = "undefined"; 
 
@@ -1303,9 +1303,9 @@ double getFRWeight(const int hypIdx, string elFRversion) {
   //  SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates31May.root", "muFR15u");
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", "muFR15u");
  //   SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", "muFR15u");
-    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", "iso10_muFR15u");
+//    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", "iso10_muFR15u");
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", "iso10_muFR15u");
-//    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", "iso10_muFR15u");
+    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", "iso10_muFR15u");
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
     
     if (estimateDoubleFakes) {
@@ -1371,9 +1371,9 @@ double getFRWeight(const int hypIdx, string elFRversion) {
   //  SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FakeRates7July.root", url);
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", url);
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", url);
-    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", url);
+//    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", url);
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", url);
- //   SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", url);
+    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", url);
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30_SSFakeRates31August.root", url);
     delete [] url;
     if(estimateDoubleFakes) {
@@ -1442,14 +1442,14 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 
 //    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", "muFR15u");
  //   SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", "muFR15u");
-    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", "iso10_muFR15u");
+//    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", "iso10_muFR15u");
 //    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", "iso10_muFR15u");
-//    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", "iso10_muFR15u");
+    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", "iso10_muFR15u");
 //    SimpleFakeRate mufr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
 //    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/FR_qcd30_SSJul26.root", url);
-    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", url);
+//    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", url);
 //    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", url);
-//    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", url);
+    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", url);
 //    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30_SSFakeRates31August.root", url);
     delete [] url;
 
