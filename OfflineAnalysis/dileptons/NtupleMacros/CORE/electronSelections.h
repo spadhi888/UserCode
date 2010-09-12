@@ -315,7 +315,7 @@ static const cuts_t electronSelection_ttbarV2 =
   (1ll<<ELENOTCONV_HITPATTERN) |
   (1ll<<ELENOTCONV_DISTDCOT002) |
   (1ll<<ELESCET_010) |
-  (1ll<<ELEPT_010) |
+  (1ll<<ELEPT_020) |
   (1ll<<ELEETA_250) |
   (1ll<<ELESEED_ECAL) |
   (1ll<<ELENOSPIKE_SWISS005); 

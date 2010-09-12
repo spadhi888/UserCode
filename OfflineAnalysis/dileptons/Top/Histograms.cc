@@ -23,8 +23,14 @@
 
 
 TH1F* hnJet[4];                   // Njet distributions
+TH1F* hnJetWW[4];
+TH1F* hnJetWO[4];
+TH1F* hnJetWOSemilep[4];
+TH1F* hnJetWOOther[4];
+TH1F* hnJetOO[4];
 TH1F* hnJetinZwindow[4];          //usefull for DY estimate
 TH1F* hnJetoutZwindow[4];         //usefull for DY estimate
+TH1F* hnMeff[4];                   // Njet distributions
 TH1F* helePt[4][7];               // electron Pt
 TH1F* hmuPt[4][7];                // muon Pt
 TH1F* hmuPtFromSilicon[4][7];     // muon Pt (from tracker)
@@ -125,12 +131,26 @@ void bookHistos(const char *prefix) {
   suffixall[2] = "em";
   suffixall[3] = "all";
   TDirectory *rootdir = gDirectory->GetDirectory("Rint:");
+
   for (int i=0; i<4; i++) {
     for (int j=0; j<7; j++) {
       
       if (j == 0){
 	hnJet[i] = new TH1F((string(prefix)+"_hnJet_" + string(suffixall[i])).c_str(),(string(prefix)+"_nJet_" + string(suffixall[i])).c_str(),
 			    5,0.,5.);	
+        hnJetWW[i] = new TH1F((string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),
+                            5,0.,5.); 
+        hnMeff[i] = new TH1F((string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),
+                            200,0.,2000.);
+        hnJetWO[i] = new TH1F((string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),
+                            5,0.,5.);
+        hnJetWOSemilep[i] = new TH1F((string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),
+                            5,0.,5.);
+        hnJetWOOther[i] = new TH1F((string(prefix)+"_hnJetWOOther_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWOOther_" + string(suffixall[i])).c_str(),
+                            5,0.,5.);
+        hnJetOO[i] = new TH1F((string(prefix)+"_hnJetOO_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetOO_" + string(suffixall[i])).c_str(),
+                            5,0.,5.);
+
 	hnJetinZwindow[i] = new TH1F((string(prefix)+"_hnJetinZwindow_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetinZwindow_" + string(suffixall[i])).c_str(),
 				     5,0.,5.);	
 	hnJetoutZwindow[i] = new TH1F((string(prefix)+"_hnJetoutZwindow_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetoutZwindow_" + string(suffixall[i])).c_str(),
@@ -471,9 +491,14 @@ void bookHistos(const char *prefix) {
       hmt2J[i][j]->SetDirectory(rootdir);
        
 
-
       if (j==0){
 	hnJet[i]->Sumw2();
+	hnJetWW[i]->Sumw2();
+	hnJetWO[i]->Sumw2();
+	hnJetWOSemilep[i]->Sumw2();
+	hnJetWOOther[i]->Sumw2();
+	hnJetOO[i]->Sumw2();
+        hnMeff[i]->Sumw2();
 	hnJetinZwindow[i]->Sumw2();
 	hnJetoutZwindow[i]->Sumw2();
       }
