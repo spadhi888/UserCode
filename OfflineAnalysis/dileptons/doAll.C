@@ -35,25 +35,25 @@
 
   // Analysis Flags
   // Flags for files to run over
-  bool    rundata        = true;
-  bool    runttbar       = false;
+  bool    rundata        = false;
+  bool    runttbar       = true;
   bool    runttotr       = false;
-  bool    runWjets       = false;
-  bool    runDYee        = false;
-  bool    runDYmm        = false;
-  bool    runDYtautau    = false;
+  bool    runWjets       = true;
+  bool    runDYee        = true;
+  bool    runDYmm        = true;
+  bool    runDYtautau    = true;
   bool    runQCDPt15     = false;
   bool    runQCDPt30     = false;
   bool    runGamma15     = false;
-  bool    runWW          = false;
-  bool    runtW          = false;
+  bool    runWW          = true;
+  bool    runtW          = true;
   bool    runLM0         = false;
   bool    runVqq         = false;
   bool    runWc          = false;
-  bool    runWZ          = false;
-  bool    runZZ          = false;
+  bool    runWZ          = true;
+  bool    runZZ          = true;
   bool    runVV          = false;
-  bool    runVgamma      = false;
+  bool    runVgamma      = true;
   bool    runWgamma      = false;
 
 

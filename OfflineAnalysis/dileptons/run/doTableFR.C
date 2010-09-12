@@ -33,15 +33,21 @@ void doTableFR() {
   pair<Float_t, Float_t> tw_em = doErrors(ftt, "tw_hnJet_em");
   pair<Float_t, Float_t> tw_all = doErrors(ftt, "tw_hnJet_all");
 
-  pair<Float_t, Float_t> qcd_mm = doErrors(ftt, "qcd30_hnJet_mm");
-  pair<Float_t, Float_t> qcd_ee = doErrors(ftt, "qcd30_hnJet_ee");
-  pair<Float_t, Float_t> qcd_em = doErrors(ftt, "qcd30_hnJet_em");
-  pair<Float_t, Float_t> qcd_all = doErrors(ftt, "qcd30_hnJet_all");
+  pair<Float_t, Float_t> qcd_mm = doErrors(ftt, "vgamma_hnJet_mm");
+  pair<Float_t, Float_t> qcd_ee = doErrors(ftt, "vgamma_hnJet_ee");
+  pair<Float_t, Float_t> qcd_em = doErrors(ftt, "vgamma_hnJet_em");
+  pair<Float_t, Float_t> qcd_all = doErrors(ftt, "vgamma_hnJet_all");
 
-  pair<Float_t, Float_t> qcd1_mm = doErrors(ftt, "qcd15_hnJet_mm");
-  pair<Float_t, Float_t> qcd1_ee = doErrors(ftt, "qcd15_hnJet_ee");
-  pair<Float_t, Float_t> qcd1_em = doErrors(ftt, "qcd15_hnJet_em");
-  pair<Float_t, Float_t> qcd1_all = doErrors(ftt, "qcd15_hnJet_all");
+
+//  pair<Float_t, Float_t> qcd_mm = doErrors(ftt, "qcd30_hnJet_mm");
+//  pair<Float_t, Float_t> qcd_ee = doErrors(ftt, "qcd30_hnJet_ee");
+//  pair<Float_t, Float_t> qcd_em = doErrors(ftt, "qcd30_hnJet_em");
+//  pair<Float_t, Float_t> qcd_all = doErrors(ftt, "qcd30_hnJet_all");
+
+//  pair<Float_t, Float_t> qcd1_mm = doErrors(ftt, "qcd15_hnJet_mm");
+//  pair<Float_t, Float_t> qcd1_ee = doErrors(ftt, "qcd15_hnJet_ee");
+//  pair<Float_t, Float_t> qcd1_em = doErrors(ftt, "qcd15_hnJet_em");
+//  pair<Float_t, Float_t> qcd1_all = doErrors(ftt, "qcd15_hnJet_all");
 
   pair<Float_t, Float_t> DYeemm = doErrors(ftt, "DYee_hnJet_mm");
   pair<Float_t, Float_t> DYeeee = doErrors(ftt, "DYee_hnJet_ee");
@@ -84,15 +90,15 @@ void doTableFR() {
   pair<Float_t, Float_t> zz_all = doErrors(ftt, "zz_hnJet_all");
 
 
-  float QCD_ee = qcd_ee.first + qcd1_ee.first;
-  float QCD_mm = qcd_mm.first + qcd1_mm.first;
-  float QCD_em = qcd_em.first + qcd1_em.first;
-  float QCD_all = QCD_ee + QCD_mm + QCD_em;
+//  float QCD_ee = qcd_ee.first + qcd1_ee.first;
+//  float QCD_mm = qcd_mm.first + qcd1_mm.first;
+//  float QCD_em = qcd_em.first + qcd1_em.first;
+//  float QCD_all = QCD_ee + QCD_mm + QCD_em;
 
-  float QCDE_ee = sqrt(pow(qcd_ee.second,2)+pow(qcd1_ee.second,2)); 
-  float QCDE_mm = sqrt(pow(qcd_mm.second,2)+pow(qcd1_mm.second,2)); 
-  float QCDE_em = sqrt(pow(qcd_em.second,2)+pow(qcd1_em.second,2)); 
-  float QCDE_all = sqrt(pow(qcd_all.second,2)+pow(qcd1_all.second,2)); 
+//  float QCDE_ee = sqrt(pow(qcd_ee.second,2)+pow(qcd1_ee.second,2)); 
+//  float QCDE_mm = sqrt(pow(qcd_mm.second,2)+pow(qcd1_mm.second,2)); 
+//  float QCDE_em = sqrt(pow(qcd_em.second,2)+pow(qcd1_em.second,2)); 
+//  float QCDE_all = sqrt(pow(qcd_all.second,2)+pow(qcd1_all.second,2)); 
 
   float DY_ee = DYeeee.first + DYmmee.first + DYtautauee.first;
   float DY_mm = DYeemm.first + DYmmmm.first + DYtautaumm.first;
@@ -122,6 +128,7 @@ void doTableFR() {
 //       << wc_ee.first << pm << wc_ee.second << " | " 
        << wz_ee.first << pm << wz_ee.second << " | " 
        << zz_ee.first << pm << zz_ee.second << " | " 
+       << vgamma_ee.first << pm << vgamma_ee.second << " | " 
        << endl;
   cout << "| &mu;&mu; | " << tt_mm.first << pm << tt_mm.second << " | "
        << tw_mm.first << pm << tw_mm.second << " | "
@@ -133,6 +140,7 @@ void doTableFR() {
 //       << wc_mm.first << pm << wc_mm.second << " | "
        << wz_mm.first << pm << wz_mm.second << " | "
        << zz_mm.first << pm << zz_mm.second << " | "
+       << vgamma_mm.first << pm << vgamma_mm.second << " | "
        << endl;
   cout << "| e&mu; | " << tt_em.first << pm << tt_em.second << " | "
        << tw_em.first << pm << tw_em.second << " | "
@@ -144,6 +152,7 @@ void doTableFR() {
 //       << wc_em.first << pm << wc_em.second << " | "
        << wz_em.first << pm << wz_em.second << " | "
        << zz_em.first << pm << zz_em.second << " | "
+       << vgamma_em.first << pm << vgamma_em.second << " | "
        << endl;
   cout << "| total | " << tt_ee.first+tt_mm.first+tt_em.first << pm << tt_all.second << " | "
        << tw_ee.first+tw_mm.first+tw_em.first << pm << tw_all.second << " | "
@@ -155,6 +164,7 @@ void doTableFR() {
 //       << wc_ee.first+wc_mm.first+wc_em.first << pm << wc_all.second << " | "
        << wz_ee.first+wz_mm.first+wz_em.first << pm << wz_all.second << " | "
        << zz_ee.first+zz_mm.first+zz_em.first << pm << zz_all.second << " | "
+       << vgamma_ee.first+vgamma_mm.first+vgamma_em.first << pm << vgamma_all.second << " | "
        << endl;
 }
 

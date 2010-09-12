@@ -664,19 +664,14 @@ LorentzVector p4HLTObject( string arg, int objNumber){
 
 bool passMuTrigger(bool mc, int type) {
 
- if (mc) {
-   bool passMu = passHLTTrigger("HLT_Mu9");
-   if (passMu) return true;
 
-  } else {
+ if (passHLTTrigger("HLT_Mu9")) return true;
 
-   bool passMu = passHLTTrigger("HLT_Mu9");
-   if (passMu) return true;
-   if(type == 0) { 
-     bool passMu2 =  passHLTTrigger("HLT_DoubleMu3"); 
-     if (passMu2) return true; 
-    }
-  }
+ if(type == 0) {
+    if (passHLTTrigger("HLT_DoubleMu3")) return true;
+ }
+
+ // keep bool mc for future data partitions 
 
  return false;
 }
@@ -686,24 +681,34 @@ bool passEGTrigger(bool mc, int type) {
   if (mc) {
  
     int e10 = nHLTObjects("HLT_Ele10_LW_L1R");
+    if (e10 != 0) return true;
+    int eid10 = nHLTObjects("HLT_Ele10_LW_EleId_L1R");
+    if (eid10 != 0) return true;
+    int e15 = nHLTObjects("HLT_Ele15_LW_L1R");
+    if (e15 != 0) return true;
+
+    if(type == 3) {
+      int d5 = nHLTObjects("HLT_DoubleEle5_SW_L1R");
+      if (d5 != 0) return true;
+    }
+
 //    for (int i=0; i<e10; i++) {
 //      LorentzVector p4 = p4HLTObject("HLT_Ele10_LW_L1R", i);
 //      if(p4.Pt() > 15.) return true;
-    if (e10 != 0) return true;
 
   } else {  // data now
     
     if(evt_run() < 138000) {
       int e10 = nHLTObjects("HLT_Ele10_LW_L1R");
+      if (e10 != 0) return true;
+      int e15 = nHLTObjects("HLT_Ele15_LW_L1R");
+      if (e15 != 0) return true;
+
 
 //      for (int i=0; i<e10; i++) {
 //        LorentzVector p4 = p4HLTObject("HLT_Ele10_LW_L1R", i);
 //        if(p4.Pt() > 15.) return true;
 //      }
-      if (e10 != 0) return true;
-      int e15 = nHLTObjects("HLT_Ele15_LW_L1R");
-      if (e15 != 0) return true;
-
 // double lepton triggers are not for emus
 
       if(type == 3) { 
@@ -722,7 +727,6 @@ bool passEGTrigger(bool mc, int type) {
         int d5 = nHLTObjects("HLT_DoubleEle5_SW_L1R");
         if (d5 != 0) return true;
        }
-
     }
 
     if(evt_run() >= 141900) {
@@ -737,7 +741,6 @@ bool passEGTrigger(bool mc, int type) {
         int d10 = nHLTObjects("HLT_DoubleEle10_SW_L1R");
         if(d10 != 0) return true;
       }
-
     }
   }
   return false;
