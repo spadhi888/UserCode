@@ -1306,11 +1306,10 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", "iso10_muFR15u");
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", "iso10_muFR15u");
 
-    if(prefix == "data")  
-       SimpleFakeRate fake("../data/SSFakeRates31August.root", "iso10_muFR15u");
-    else  
-       SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
-    
+// Aug31st
+//       SimpleFakeRate fake("../data/SSFakeRates31August.root", "iso10_muFR15u");
+     SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
+
     if (estimateDoubleFakes) {
 
       if( isGoodMut || isGoodMul)
@@ -1377,9 +1376,9 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30FR_SSAug12.root", url);
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", url);
 
-    if(prefix == "data") 
-      SimpleFakeRate fake("../data/SSFakeRates31August.root", url);
-    else 
+// Aug31 
+
+//      SimpleFakeRate fake("../data/SSFakeRates31August.root", url);
       SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", url);
 
     delete [] url;
@@ -1459,13 +1458,13 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 //    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/SSFakeRates31August.root", url);
 //    SimpleFakeRate elfr("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/qcd30_SSFakeRates31August.root", url);
 
-   if(prefix == "data") {
-     SimpleFakeRate mufr("../data/SSFakeRates31August.root", "iso10_muFR15u");  
-     SimpleFakeRate elfr("../data/SSFakeRates31August.root", url); 
-   } else {
+// Aug31st
+
+//     SimpleFakeRate mufr("../data/SSFakeRates31August.root", "iso10_muFR15u");  
+//     SimpleFakeRate elfr("../data/SSFakeRates31August.root", url); 
+
      SimpleFakeRate mufr("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
      SimpleFakeRate elfr("../data/qcd30_SSFakeRates31August.root", url);
-   }
 
 
     delete [] url;
