@@ -33,10 +33,10 @@ void doTableFR() {
   pair<Float_t, Float_t> tw_em = doErrors(ftt, "tw_hnJet_em");
   pair<Float_t, Float_t> tw_all = doErrors(ftt, "tw_hnJet_all");
 
-  pair<Float_t, Float_t> qcd_mm = doErrors(ftt, "vgamma_hnJet_mm");
-  pair<Float_t, Float_t> qcd_ee = doErrors(ftt, "vgamma_hnJet_ee");
-  pair<Float_t, Float_t> qcd_em = doErrors(ftt, "vgamma_hnJet_em");
-  pair<Float_t, Float_t> qcd_all = doErrors(ftt, "vgamma_hnJet_all");
+  pair<Float_t, Float_t> vgamma_mm = doErrors(ftt, "vgamma_hnJet_mm");
+  pair<Float_t, Float_t> vgamma_ee = doErrors(ftt, "vgamma_hnJet_ee");
+  pair<Float_t, Float_t> vgamma_em = doErrors(ftt, "vgamma_hnJet_em");
+  pair<Float_t, Float_t> vgamma_all = doErrors(ftt, "vgamma_hnJet_all");
 
 
 //  pair<Float_t, Float_t> qcd_mm = doErrors(ftt, "qcd30_hnJet_mm");
@@ -115,7 +115,7 @@ void doTableFR() {
   //  string pm = " \\pm ";
 
 
-  cout << "| SS Leptons | ttbar | SingleTop | Wjets | DY | WW | WZ | ZZ |" <<  endl;
+  cout << "| SS Leptons | ttbar | SingleTop | Wjets | DY | WW | WZ | ZZ | Vgamma |" <<  endl;
   cout.setf(ios::fixed, ios::floatfield);
   cout.precision(2);
   cout << "| ee | " << tt_ee.first << pm << tt_ee.second << " | " 

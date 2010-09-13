@@ -559,6 +559,24 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
         // Lower mass range is not simulated well
         if(hyp_p4()[hypIdx].mass() < 10.) continue;
 
+        // Match the electron to the photon
+       // Make sure that the photon is from the hard scattering
+       // pt_gamma > 0.3*ptelectron  and parent ID < 50
+
+        if(prefix != "data") {
+          bool photon = false;
+          if (abs(id_lt) == 11 && abs(els_mc_id()[idx_lt]) == 22 && abs(els_mc_motherid()[idx_lt]) < 50 && els_mc_p4()[idx_lt].pt() > 0.3*lt_p4.Pt()) photon = true; 
+          if (abs(id_ll) == 11 && abs(els_mc_id()[idx_ll]) == 22 && abs(els_mc_motherid()[idx_ll]) < 50 && els_mc_p4()[idx_ll].pt() > 0.3*ll_p4.Pt()) photon = true; 
+
+
+          if (photon) {
+            cout << abs(els_mc_id()[idx_lt]) << " 11 " << abs(els_mc_id()[idx_ll]) << endl;
+            cout << abs(els_mc3_id()[idx_lt]) << " 12  " << abs(els_mc3_id()[idx_ll]) << endl;
+            cout << abs(els_mc_motherid()[idx_lt]) << " 13 " << abs(els_mc_motherid()[idx_ll]) << endl;
+          } 
+          if (!photon) continue;
+        }
+
 	if(doFRestimation) {
 	  //unsigned int elFRversion = 9999; FR versions and string
 	  string elFRversion;

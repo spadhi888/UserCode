@@ -556,6 +556,14 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
               continue;
 	}//requireZmass
 
+
+        // Lepton from W
+        bool fromw = false;
+        if (abs(id_ll) == 13 && leptonIsFromW(hyp_ll_index()[hypIdx], hyp_ll_id()[hypIdx]) == 1) fromw = true;
+        if (abs(id_lt) == 13 && leptonIsFromW(hyp_lt_index()[hypIdx], hyp_lt_id()[hypIdx]) == 1) fromw = true;
+        if (!fromw) continue;
+
+
 	if(doFRestimation) {
 	  //unsigned int elFRversion = 9999; FR versions and string
 	  string elFRversion;
