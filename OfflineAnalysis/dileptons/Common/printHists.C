@@ -363,19 +363,19 @@ void printNJets( bool latex=false, const char* formatS = "%6.1f", const char* si
 	//0 jet bin
 	std::cout << mathSep << formatFloat(n0,formatS);
 	if(printErrorsForData)
-	  cout <<pmSign << formatFloat(n0E, formatS);
+	  cout <<pmSign<< formatFloat(n0E, formatS);
 	cout << mathSep<<colSep;
 
 	//1jet bin
 	cout << mathSep << formatFloat(n1,formatS);
 	if(printErrorsForData)
-	  cout << pmSign << formatFloat(n1E,formatS);
+	  cout <<pmSign<< formatFloat(n1E,formatS);
 	cout <<mathSep<<colSep;
 
 	//2nd jet bin
 	cout << mathSep << formatFloat(n2,formatS);
 	if(printErrorsForData)
-	  cout << pmSign << formatFloat(n2E,formatS);
+	  cout <<pmSign<< formatFloat(n2E,formatS);
 	cout << mathSep << colSep;
 	cout << endL<< std::endl;
       } else {
@@ -383,7 +383,7 @@ void printNJets( bool latex=false, const char* formatS = "%6.1f", const char* si
 	double nE = sqrt(n0E*n0E + n1E*n1E + n2E*n2E);
 	std::cout << mathSep << formatFloat(n,formatS);
 	if(printErrorsForData)
-	  cout << pmSign << formatFloat(nE,formatS);
+	  cout <<pmSign<< formatFloat(nE,formatS);
 	cout << mathSep;
 	cout << endL << std::endl;
       }

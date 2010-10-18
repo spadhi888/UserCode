@@ -56,6 +56,7 @@ bool applylepIDCuts      = false;
 bool applyFOv1Cuts       = false;
 bool applyFOv2Cuts       = false;
 bool applyFOv3Cuts       = false;
+bool applyFOv4Cuts       = false;
 bool applylepIsoCuts     = false;
 bool applyTriggers       = false;
 bool vetoZmass           = false;
@@ -145,6 +146,7 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
   applyFOv1Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv1Cuts"        ) != v_Cuts.end(); 
   applyFOv2Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv2Cuts"        ) != v_Cuts.end(); 
   applyFOv3Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv3Cuts"        ) != v_Cuts.end(); 
+  applyFOv4Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv4Cuts"        ) != v_Cuts.end(); 
   applylepIsoCuts      = find(v_Cuts.begin(), v_Cuts.end(), "applylepIsoCuts"      ) != v_Cuts.end(); 
   applyTriggers        = find(v_Cuts.begin(), v_Cuts.end(), "applyTriggers"        ) != v_Cuts.end();
   vetoZmass            = find(v_Cuts.begin(), v_Cuts.end(), "vetoZmass"            ) != v_Cuts.end();
@@ -533,7 +535,7 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 
 	// Additional Z Veto to supress WZ and ZZ
 
-//        if ( additionalZvetoSUSY2010(hypIdx, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
+        if ( additionalZvetoSUSY2010(hypIdx, applyAlignmentCorrection, removedEtaCutInEndcap)) continue;
 
 //       z mass window
 	if(vetoZmass) {
@@ -558,10 +560,10 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 
 
         // Lepton from W
-        bool fromw = false;
-        if (abs(id_ll) == 13 && leptonIsFromW(hyp_ll_index()[hypIdx], hyp_ll_id()[hypIdx]) == 1) fromw = true;
-        if (abs(id_lt) == 13 && leptonIsFromW(hyp_lt_index()[hypIdx], hyp_lt_id()[hypIdx]) == 1) fromw = true;
-        if (!fromw) continue;
+//        bool fromw = false;
+//        if (abs(id_ll) == 13 && leptonIsFromW(hyp_ll_index()[hypIdx], hyp_ll_id()[hypIdx]) == 1) fromw = true;
+//        if (abs(id_lt) == 13 && leptonIsFromW(hyp_lt_index()[hypIdx], hyp_lt_id()[hypIdx]) == 1) fromw = true;
+//        if (!fromw) continue;
 
 
 	if(doFRestimation) {
@@ -573,6 +575,8 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	    elFRversion = Form("eFRv2%du", (int)jetTriggerPt);
 	  else if(applyFOv3Cuts)
 	    elFRversion = Form("eFRv3%du", (int)jetTriggerPt);
+          else if(applyFOv4Cuts)
+            elFRversion = Form("eFRv4%du", (int)jetTriggerPt);
           else
             elFRversion = "undefined"; 
 
@@ -595,7 +599,7 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	}
 	
 	//common for muons, so do all here
-	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts) {
+	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts || applyFOv4Cuts) {
 
 	  if (estimateDoubleFakes) {
  
@@ -608,11 +612,13 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	      if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	      if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	      if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
+	      if(applyFOv4Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	    }
 	    if(abs(id_ll) == 11) {
 	      if(applyFOv1Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	      if(applyFOv2Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	      if(applyFOv3Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
+	      if(applyFOv4Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap) ) continue;
 	    }
 	  }
 
@@ -651,10 +657,12 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	      if(applyFOv1Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOElt = true;
               if(applyFOv2Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOElt = true;
               if(applyFOv3Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOElt = true;
+              if(applyFOv4Cuts && pass_electronSelection(idx_lt, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOElt = true;
 
 	      if(applyFOv1Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEll = true;
               if(applyFOv2Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEll = true;
               if(applyFOv3Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEll = true;
+              if(applyFOv4Cuts && pass_electronSelection(idx_ll, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEll = true;
 
 	      if( isGoodElt && !isGoodEll && isFOEll) evtFRee = true;
 	      if( isGoodEll && !isGoodElt && isFOElt) evtFRee = true;
@@ -687,6 +695,7 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
               if(applyFOv1Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEl = true;
               if(applyFOv2Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEl = true;
               if(applyFOv3Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEl = true;
+              if(applyFOv4Cuts && pass_electronSelection(iEl, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap) ) isFOEl = true;
 	      if (isGoodMu && !isGoodEl && isFOEl) evtFRemu = true;
 	      if (isGoodEl && !isGoodMu && isFOMu) evtFRemu = true;
 	      if (isGoodEl && isGoodMu) continue;
@@ -827,12 +836,15 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
           }
 	}
 
+
 	//if we want to veto on nJets, do it here
 	if(vetoJets) {
-	  if(v_goodJets.size() < 2) continue;
+	  if(v_goodJets.size() < 2 ) continue;
           if (sumet_calo < 60) continue;
+   //       if (sumet_calo < 100) continue;
 	}
-	
+
+
 	//if we want to lower the pt cut, do the selection here
 	//this is njet dependent. Only want to lower the pt cut to 20,10 
 	//in the nJet > 1 bin
@@ -861,6 +873,24 @@ void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="",
 	    return;
 	  }
 
+// Sanjay for Z area and Jet veto
+        if(p_met.first > 20.)   continue;
+        if(v_goodJets.size() != 0 ) continue;
+
+
+          float mtevent = 9999.;
+
+          if ( hyp_lt_p4()[hypIdx].Pt() > hyp_ll_p4()[hypIdx].Pt()) {
+            double dphilx = fabs(p_met.second -  hyp_lt_p4()[hypIdx].Phi());
+            if( dphilx > 3.14159265 ) dphilx = 2*3.14159265 - dphilx;
+            mtevent = sqrt(2*p_met.first*hyp_lt_p4()[hypIdx].Pt()*(1-cos(dphilx)));
+          } else {
+            double dphilx = fabs(p_met.second -  hyp_ll_p4()[hypIdx].Phi());
+            if( dphilx > 3.14159265 ) dphilx = 2*3.14159265 - dphilx;
+            mtevent = sqrt(2*p_met.first*hyp_ll_p4()[hypIdx].Pt()*(1-cos(dphilx)));
+          }
+
+//         if (mtevent < 100) continue;
 
 	  if(vetoMET) {
 //            if(p_met.first < 50.)   continue;
@@ -1083,6 +1113,31 @@ void FillHistograms(const unsigned int hypIdx, const vector<unsigned int> v_jets
     } else {
       hnJetOO[ch]->Fill(jetBin, weight);
     }
+  
+    if (tttype == 2) {
+     if (leptonIsFromW(hyp_ll_index()[hypIdx], hyp_ll_id()[hypIdx]) == 1) {
+         hnd0TrueCorr[ch]->Fill(hyp_ll_d0corr()[ll_idx], weight);
+         hnd0Corr[ch]->Fill(hyp_lt_d0corr()[lt_idx], weight);
+         hnTrueFVFit[ch]->Fill(hyp_FVFit_prob()[ll_idx], weight);
+         hnFVFit[ch]->Fill(hyp_FVFit_prob()[lt_idx], weight);
+
+         if (abs(lt_id) == 13) hnMuIsolation[ch]->Fill(muonIsoValue(lt_idx), weight);
+         if (abs(lt_id) == 11) hnEleIsolation[ch]->Fill(electronIsolation_rel(lt_idx, true), weight);
+         if (abs(ll_id) == 13) hnMuTrueIsolation[ch]->Fill(muonIsoValue(ll_idx), weight);
+         if (abs(ll_id) == 11) hnEleTrueIsolation[ch]->Fill(electronIsolation_rel(ll_idx, true), weight);
+
+     }
+     if (leptonIsFromW(hyp_lt_index()[hypIdx], hyp_lt_id()[hypIdx]) == 1) {
+       hnd0TrueCorr[ch]->Fill(hyp_lt_d0corr()[lt_idx], weight);
+       hnd0Corr[ch]->Fill(hyp_ll_d0corr()[ll_idx], weight);
+       hnTrueFVFit[ch]->Fill(hyp_FVFit_prob()[lt_idx], weight);
+       hnFVFit[ch]->Fill(hyp_FVFit_prob()[ll_idx], weight);
+         if (abs(ll_id) == 13) hnMuIsolation[ch]->Fill(muonIsoValue(ll_idx), weight);
+         if (abs(ll_id) == 11) hnEleIsolation[ch]->Fill(electronIsolation_rel(ll_idx, true), weight);
+         if (abs(lt_id) == 13) hnMuTrueIsolation[ch]->Fill(muonIsoValue(lt_idx), weight);
+         if (abs(lt_id) == 11) hnEleTrueIsolation[ch]->Fill(electronIsolation_rel(lt_idx, true), weight);
+     }
+    }
 
     if(inZmassWindow(hypp4.mass())) {
       hnJetinZwindow[ch]             ->Fill(jetBin,        weight);
@@ -1231,15 +1286,19 @@ void FillHistograms(const unsigned int hypIdx, const vector<unsigned int> v_jets
 
 // Meff
     float meff = 0.;
+    float sumptj = 0.;
     if(v_jets_p4.size() > 0) {
       for(unsigned int i = 0; i < v_jets_p4.size(); i++) {
         meff += v_jets_p4[i].Pt();
+        sumptj += v_jets_p4[i].Pt();
       }
     }
     meff += ll_p4.Pt();
     meff += lt_p4.Pt();
 
     hnMeff[ch]->Fill(meff, weight);
+    hnSumptj[ch]->Fill(sumptj, weight);
+    hnMET[ch]->Fill(p_met.first, weight);
     
     if(v_jets_p4.size() > 0) {
       hptJet1[ch][jetBin]             ->Fill(v_jets_p4[0].Pt(),   weight);
@@ -1315,8 +1374,8 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 //    SimpleFakeRate fake("/home/users/spadhi/CMS/TAS/Jul2010/dileptons/data/jmtFR_SSAug12.root", "iso10_muFR15u");
 
 // Aug31st
-//       SimpleFakeRate fake("../data/SSFakeRates31August.root", "iso10_muFR15u");
-     SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
+//      SimpleFakeRate fake("../data/SSFakeRateQCDpt30Sept2010.root", "muFR15u");
+      SimpleFakeRate fake("../data/SSFakeRates31August.root", "iso10_muFR15u");
 
     if (estimateDoubleFakes) {
 
@@ -1325,21 +1384,21 @@ double getFRWeight(const int hypIdx, string elFRversion) {
       
       double FRMut = fake.getFR(mus_p4()[iMut].pt(), mus_p4()[iMut].eta());
       double FRMul = fake.getFR(mus_p4()[iMul].pt(), mus_p4()[iMul].eta());
-      cout << "mm, FRlt, FRll and FR/(1-FR)FR/(1-FR) " << FRMut << "  " << FRMul << "  " << (FRMut/(1-FRMut))*(FRMul/(1-FRMul)) <<  endl;
+//      cout << "mm, FRlt, FRll and FR/(1-FR)FR/(1-FR) " << FRMut << "  " << FRMul << "  " << (FRMut/(1-FRMut))*(FRMul/(1-FRMul)) <<  endl;
       return (FRMut/(1-FRMut))*(FRMul/(1-FRMul));
     } else if (estimateSingleFakes) {
       
       //need one to be a Numerator lepton, and the other to be FO but not num
       if( isGoodMut && !isGoodMul && isFOMul) {
         double FR = fake.getFR(mus_p4()[iMul].pt(), mus_p4()[iMul].eta());
-        cout << "mm, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "mm, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
 
       //check the other muon
       if( isGoodMul && !isGoodMut && isFOMut) {
         double FR = fake.getFR(mus_p4()[iMut].pt(), mus_p4()[iMut].eta());
-        cout << "mm, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "mm, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
     }
@@ -1386,8 +1445,10 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 
 // Aug31 
 
-//      SimpleFakeRate fake("../data/SSFakeRates31August.root", url);
-      SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", url);
+      SimpleFakeRate fake("../data/SSFakeRates31August.root", url);
+//      SimpleFakeRate fake("../data/qcd30_SSFakeRates31August.root", url);
+//      SimpleFakeRate fake("../data/histos.root", url);
+//      SimpleFakeRate fake("../data/SSFakeRateQCDpt30Sept2010.root", url);
 
     delete [] url;
     if(estimateDoubleFakes) {
@@ -1399,20 +1460,20 @@ double getFRWeight(const int hypIdx, string elFRversion) {
       double FREll = fake.getFR(els_p4()[iEll].pt(), els_p4()[iEll].eta());
       sumfr = sumfr +  (FRElt/(1-FRElt))*(FREll/(1-FREll));
 
-      cout << "ee, FRlt, FRll, and FR/(1-FR)xFR/(1-FR) " << FRElt << "  " << FREll << "  " << (FRElt/(1-FRElt))*(FREll/(1-FREll)) << endl;
+//      cout << "ee, FRlt, FRll, and FR/(1-FR)xFR/(1-FR) " << FRElt << "  " << FREll << "  " << (FRElt/(1-FRElt))*(FREll/(1-FREll)) << endl;
       return (FRElt/(1-FRElt))*(FREll/(1-FREll));
 
     } else if (estimateSingleFakes) {
       
       if(isGoodElt && !isGoodEll && isFOEll) {
         double FR = fake.getFR(els_p4()[iEll].pt(), els_p4()[iEll].eta());
-        cout << "ee, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "ee, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
       //check the other electron
       if(isGoodEll && !isGoodElt && isFOElt) {
         double FR = fake.getFR(els_p4()[iElt].pt(), els_p4()[iElt].eta());
-        cout << "ee, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "ee, FR and FR/(1-FR) " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
     }
@@ -1468,11 +1529,13 @@ double getFRWeight(const int hypIdx, string elFRversion) {
 
 // Aug31st
 
-//     SimpleFakeRate mufr("../data/SSFakeRates31August.root", "iso10_muFR15u");  
+//     SimpleFakeRate mufr("../data/SSFakeRateQCDpt30Sept2010.root", "muFR15u");  
+     SimpleFakeRate mufr("../data/SSFakeRates31August.root", "iso10_muFR15u");  
 //     SimpleFakeRate elfr("../data/SSFakeRates31August.root", url); 
-
-     SimpleFakeRate mufr("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
-     SimpleFakeRate elfr("../data/qcd30_SSFakeRates31August.root", url);
+//     SimpleFakeRate mufr("../data/qcd30_SSFakeRates31August.root", "iso10_muFR15u");
+//     SimpleFakeRate elfr("../data/qcd30_SSFakeRates31August.root", url);
+//     SimpleFakeRate elfr("../data/histos.root", url);
+     SimpleFakeRate elfr("../data/SSFakeRates31August.root", url);
 
 
     delete [] url;
@@ -1483,7 +1546,7 @@ double getFRWeight(const int hypIdx, string elFRversion) {
       double FRMu = mufr.getFR(mus_p4()[iMu].pt(), mus_p4()[iMu].eta());
       double FREl = elfr.getFR(els_p4()[iEl].pt(), els_p4()[iEl].eta());
 
-      cout << "emu, FRMu, FREl, FR/(1-FR)xFR/(1-FR) " << FRMu << "  " << FREl << "  " << (FRMu/(1-FRMu))*(FREl/(1-FREl)) << endl;  
+//      cout << "emu, FRMu, FREl, FR/(1-FR)xFR/(1-FR) " << FRMu << "  " << FREl << "  " << (FRMu/(1-FRMu))*(FREl/(1-FREl)) << endl;  
       return (FRMu/(1-FRMu))*(FREl/(1-FREl));
       
     } else if (estimateSingleFakes) {
@@ -1491,12 +1554,12 @@ double getFRWeight(const int hypIdx, string elFRversion) {
       //need one to be a numerator lepton and the other to be a FO
       if(isGoodMu && !isGoodEl && isFOEl) {
         double FR = elfr.getFR(els_p4()[iEl].pt(), els_p4()[iEl].eta());
-        cout << "emu, el FR, FR/(1-FR): " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "emu, el FR, FR/(1-FR): " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
       if(isGoodEl && !isGoodMu && isFOMu) {
         double FR = mufr.getFR(mus_p4()[iMu].pt(), mus_p4()[iMu].eta());
-        cout << "emu, mu FR, FR/(1-FR): " << FR << ", " << FR/(1-FR) << endl;
+//        cout << "emu, mu FR, FR/(1-FR): " << FR << ", " << FR/(1-FR) << endl;
         return FR/(1-FR);
       }
     }

@@ -6,7 +6,7 @@
 #include "TMath.h"
 #include "TDirectory.h"
 
-#define MAXPT 50
+#define MAXPT 1000
 #define MINPT 0
 #define NBINSPT 50
 #define NBINSETA 60
@@ -30,7 +30,17 @@ TH1F* hnJetWOOther[4];
 TH1F* hnJetOO[4];
 TH1F* hnJetinZwindow[4];          //usefull for DY estimate
 TH1F* hnJetoutZwindow[4];         //usefull for DY estimate
+TH1F* hnTrueFVFit[4];                // True FVFit prob
+TH1F* hnFVFit[4];                // Other FVFit prob
+TH1F* hnd0Corr[4];                // d0Corr of the other lepton
+TH1F* hnd0TrueCorr[4];                // d0Corr of the other lepton
+TH1F* hnEleIsolation[4];          //Isolation of bad electron
+TH1F* hnEleTrueIsolation[4];          //Isolation of bad electron
+TH1F* hnMuIsolation[4];          //Isolation of bad muon
+TH1F* hnMuTrueIsolation[4];          //Isolation of bad muon
 TH1F* hnMeff[4];                   // Njet distributions
+TH1F* hnSumptj[4];
+TH1F* hnMET[4];
 TH1F* helePt[4][7];               // electron Pt
 TH1F* hmuPt[4][7];                // muon Pt
 TH1F* hmuPtFromSilicon[4][7];     // muon Pt (from tracker)
@@ -141,7 +151,11 @@ void bookHistos(const char *prefix) {
         hnJetWW[i] = new TH1F((string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWW_" + string(suffixall[i])).c_str(),
                             5,0.,5.); 
         hnMeff[i] = new TH1F((string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMeff_" + string(suffixall[i])).c_str(),
-                            200,0.,2000.);
+                            100,0.,2000.);
+        hnSumptj[i] = new TH1F((string(prefix)+"_hnSumptj_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnSumptj_" + string(suffixall[i])).c_str(),
+                            100,0.,2000.);
+        hnMET[i] = new TH1F((string(prefix)+"_hnMET_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMET_" + string(suffixall[i])).c_str(),
+                            NBINSPT, MINPT, MAXPT);
         hnJetWO[i] = new TH1F((string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWO_" + string(suffixall[i])).c_str(),
                             5,0.,5.);
         hnJetWOSemilep[i] = new TH1F((string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetWOSemilep_" + string(suffixall[i])).c_str(),
@@ -150,6 +164,14 @@ void bookHistos(const char *prefix) {
                             5,0.,5.);
         hnJetOO[i] = new TH1F((string(prefix)+"_hnJetOO_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetOO_" + string(suffixall[i])).c_str(),
                             5,0.,5.);
+        hnd0Corr[i] = new TH1F((string(prefix)+"_hnd0Corr_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnd0Corr_" + string(suffixall[i])).c_str(), 100,-0.05,0.05);
+        hnd0TrueCorr[i] = new TH1F((string(prefix)+"_hnd0TrueCorr_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnd0TrueCorr_" + string(suffixall[i])).c_str(), 100,-0.05,0.05);
+        hnTrueFVFit[i] = new TH1F((string(prefix)+"_hnTrueFVFit_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnTrueFVFit_" + string(suffixall[i])).c_str(), 100,0.,1);
+        hnFVFit[i] = new TH1F((string(prefix)+"_hnFVFit_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnFVFit_" + string(suffixall[i])).c_str(), 100,0.,1);
+        hnEleIsolation[i] = new TH1F((string(prefix)+"_hnEleIsolation_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnEleIsolation_" + string(suffixall[i])).c_str(), 100,0.,1.);
+        hnEleTrueIsolation[i] = new TH1F((string(prefix)+"_hnEleTrueIsolation_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnEleTrueIsolation_" + string(suffixall[i])).c_str(), 100,0.,1.);
+        hnMuIsolation[i] = new TH1F((string(prefix)+"_hnMuIsolation_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMuIsolation_" + string(suffixall[i])).c_str(), 100,0.,1.);
+        hnMuTrueIsolation[i] = new TH1F((string(prefix)+"_hnMuTrueIsolation_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnMuTrueIsolation_" + string(suffixall[i])).c_str(), 100,0.,1.);
 
 	hnJetinZwindow[i] = new TH1F((string(prefix)+"_hnJetinZwindow_" + string(suffixall[i])).c_str(),(string(prefix)+"_hnJetinZwindow_" + string(suffixall[i])).c_str(),
 				     5,0.,5.);	
@@ -498,9 +520,19 @@ void bookHistos(const char *prefix) {
 	hnJetWOSemilep[i]->Sumw2();
 	hnJetWOOther[i]->Sumw2();
 	hnJetOO[i]->Sumw2();
+	hnd0Corr[i]->Sumw2();
+	hnTrueFVFit[i]->Sumw2();
+	hnFVFit[i]->Sumw2();
+	hnd0TrueCorr[i]->Sumw2();
+	hnEleIsolation[i]->Sumw2();
+	hnEleTrueIsolation[i]->Sumw2();
+	hnMuIsolation[i]->Sumw2();
+	hnMuTrueIsolation[i]->Sumw2();
         hnMeff[i]->Sumw2();
 	hnJetinZwindow[i]->Sumw2();
 	hnJetoutZwindow[i]->Sumw2();
+        hnSumptj[i]->Sumw2();
+        hnMET[i]->Sumw2();
       }
       helePt[i][j]->Sumw2();
       hmuPt[i][j]->Sumw2();

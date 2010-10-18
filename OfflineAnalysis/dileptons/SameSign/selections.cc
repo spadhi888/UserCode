@@ -41,16 +41,18 @@ bool isFakeableElectron (int index, string prefix, bool applyAlignmentCorrection
   TPMERegexp re1("v1", "g");
   TPMERegexp re2("v2", "g");
   TPMERegexp re3("v3", "g");
+  TPMERegexp re4("v4", "g");
 
   if (re1.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v1, applyAlignmentCorrection, removedEtaCutInEndcap);
   if (re2.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v2, applyAlignmentCorrection, removedEtaCutInEndcap);
   if (re3.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v3, applyAlignmentCorrection, removedEtaCutInEndcap);
+  if (re4.Match(prefix)) return pass_electronSelection(index, electronSelectionFO_ssVBTF80_v4, applyAlignmentCorrection, removedEtaCutInEndcap);
 
   return false;
 }
 
 bool isFakeableMuon (int index) {
-     return muonId(index, muonSelectionFO_mu_ttbar);
+     return muonId(index, muonSelectionFO_mu_ttbar_iso10);
 }
 
 
@@ -90,7 +92,6 @@ bool isGoodLeptonwIso(int id, int lepIdx, bool applyAlignmentCorrection, bool re
 
   // 13 is a muon
   if(abs(id) == 13)
-//    if(muonIsoValue(lepIdx) > 0.15)   return false;
     if(muonIsoValue(lepIdx) > 0.10)   return false;
 
   return true;

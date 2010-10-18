@@ -83,6 +83,12 @@ void doTable() {
   pair<Float_t, Double_t> zz_em = doErrors(ftt, "zz_hnJet_em");
   pair<Float_t, Double_t> zz_all = doErrors(ftt, "zz_hnJet_all");
 
+  pair<Float_t, Double_t> vgamma_mm = doErrors(ftt, "vgamma_hnJet_mm");
+  pair<Float_t, Double_t> vgamma_ee = doErrors(ftt, "vgamma_hnJet_ee");
+  pair<Float_t, Double_t> vgamma_em = doErrors(ftt, "vgamma_hnJet_em");
+  pair<Float_t, Double_t> vgamma_all = doErrors(ftt, "vgamma_hnJet_all");
+
+
 
   float DY_ee = DYeeee.first + DYmmee.first + DYtautauee.first;
   float DY_mm = DYeemm.first + DYmmmm.first + DYtautaumm.first;
@@ -122,7 +128,7 @@ void doTable() {
   //  string pm = " \\pm ";
 
 
-  cout << "| SS Leptons | Total MC | ttbar | SingleTop | Wjets | DY | WW | WZ | ZZ |" <<  endl;
+  cout << "| SS Leptons | Total MC | ttbar | SingleTop | Wjets | DY | WW | WZ | ZZ | Vgamma (not in total) |" <<  endl;
   cout.setf(ios::fixed, ios::floatfield);
   cout.precision(2);
   cout << "| ee | " << total_ee << pm << totalE_ee << " | "
@@ -136,6 +142,7 @@ void doTable() {
 //       << wc_ee.first << pm << wc_ee.second << " | " 
        << wz_ee.first << pm << wz_ee.second << " | " 
        << zz_ee.first << pm << zz_ee.second << " | " 
+       << vgamma_ee.first << pm << vgamma_ee.second << " | " 
        << endl;
   cout << "| &mu;&mu; | "  << total_mm << pm << totalE_mm << " | "
        << tt_mm.first << pm << tt_mm.second << " | "
@@ -148,6 +155,7 @@ void doTable() {
 //       << wc_mm.first << pm << wc_mm.second << " | "
        << wz_mm.first << pm << wz_mm.second << " | "
        << zz_mm.first << pm << zz_mm.second << " | "
+       << vgamma_mm.first << pm << vgamma_mm.second << " | "
        << endl;
   cout << "| e&mu; | "  << total_em << pm << totalE_em << " | "
        << tt_em.first << pm << tt_em.second << " | "
@@ -160,6 +168,7 @@ void doTable() {
 //       << wc_em.first << pm << wc_em.second << " | "
        << wz_em.first << pm << wz_em.second << " | "
        << zz_em.first << pm << zz_em.second << " | "
+       << vgamma_em.first << pm << vgamma_em.second << " | "
        << endl;
   cout << "| total | "  << total_all << pm << totalE_all << " | "
        << tt_all.first << pm << tt_all.second << " | "
@@ -172,6 +181,7 @@ void doTable() {
 //       << wc_all.first << pm << wc_all.second << " | "
        << wz_all.first << pm << wz_all.second << " | "
        << zz_all.first << pm << zz_all.second << " | "
+       << vgamma_all.first << pm << vgamma_all.second << " | "
        << endl;
 
 }

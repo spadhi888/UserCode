@@ -439,15 +439,19 @@ static const cuts_t electronSelectionFO_ssVBTF80_v3 =
   (1ll<<ELEISO_REL040);
 
 
-
+static const cuts_t electronSelectionFO_ssVBTF80_v4 =
+                    (1ll<<ELENOMUON_010) |
+                    (1ll<<ELEID_VBTF_35X_80) |
+                    (1ll<<ELESCET_010) |
+                    (1ll<<ELEPT_010) |
+                    (1ll<<ELEETA_250) |
+                    (1ll<<ELEISO_REL040) |
+                    (1ll<<ELESEED_ECAL);
 
 //---------------------------------------------------------
 // FIXME: for fake rates
 static const cuts_t electronSelection_cand02flip = electronSelection_ss;
 //---------------------------------------------------------
-
-
-
 
 //
 // other enums for internal use

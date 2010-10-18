@@ -35,10 +35,10 @@
 
   // Analysis Flags
   // Flags for files to run over
-  bool    rundata        = false;
+  bool    rundata        = true;
   bool    runttbar       = false;
   bool    runttotr       = false;
-  bool    runWjets       = true;
+  bool    runWjets       = false;
   bool    runDYee        = false;
   bool    runDYmm        = false;
   bool    runDYtautau    = false;
@@ -53,8 +53,9 @@
   bool    runWZ          = false;
   bool    runZZ          = false;
   bool    runVV          = false;
-  bool    runVgamma      = true;
+  bool    runVgamma      = false;
   bool    runWgamma      = false;
+  bool    runppMux       = false;
 
 
   float   jetTriggerPt   = 15;    
@@ -68,24 +69,24 @@
   float   kqcd15    = 1.;
   float   minbias   = 1.;
 
-  bool    doFRestimation = true;    
-
+  bool    doFRestimation = false;    
 
 vector<TString> v_Cuts;
-// v_Cuts.push_back("useOSleptons");         // OS leptons
-v_Cuts.push_back("useSSleptons");         // SS leptons
+v_Cuts.push_back("useOSleptons");         // OS leptons
+// v_Cuts.push_back("useSSleptons");         // SS leptons
 // v_Cuts.push_back("usePtGt2020");         // use leptons with pt > 20
 v_Cuts.push_back("usePtGt2010");         // one lepton > 20, other > 10
 // v_Cuts.push_back("usePtGt1010");           // both leptons > 10
 // v_Cuts.push_back("excludePtGt2020");     // one lepton > 10, < 20 other >20
 // v_Cuts.push_back("used0corrPV");           // use the d0 corrected for the hihest PV 
-// v_Cuts.push_back("applylepIDCuts");      // apply tight ID cuts
-// v_Cuts.push_back("applylepIsoCuts");     // tight iso cuts 
+v_Cuts.push_back("applylepIDCuts");      // apply tight ID cuts
+v_Cuts.push_back("applylepIsoCuts");     // tight iso cuts 
 v_Cuts.push_back("applyAlignmentCorrection"); // apply alignment corrections
 v_Cuts.push_back("removedEtaCutInEndcap"); // apply alignment corrections
-v_Cuts.push_back("applyFOv1Cuts");
+// v_Cuts.push_back("applyFOv1Cuts");
 // v_Cuts.push_back("applyFOv2Cuts");
 // v_Cuts.push_back("applyFOv3Cuts");
+// v_Cuts.push_back("applyFOv4Cuts");
 v_Cuts.push_back("applyTriggers");       // apply triggers
 // v_Cuts.push_back("vetoZmass");           // no leptons in zmass
 // v_Cuts.push_back("requireZmass");        // leptons only in zmass
@@ -94,15 +95,15 @@ v_Cuts.push_back("applyTriggers");       // apply triggers
 v_Cuts.push_back("usetcMET");            // use tcMET
 // v_Cuts.push_back("usepfMET");   //use PFMET 
 // v_Cuts.push_back("chargeFlip");   //use chargeFlip
-// v_Cuts.push_back("vetoMET");             // cut on MET  
+//v_Cuts.push_back("vetoMET");             // cut on MET  
 //v_Cuts.push_back("vetoProjectedMET");    // cut on projected MET
 // v_Cuts.push_back("usecaloJets");         // use caloJETs for jet counting
 //v_Cuts.push_back("usejptJets");          // use jpt jets for jet counting
 v_Cuts.push_back("usepfJets");  // use pf jets for jet counting
-//v_Cuts.push_back("vetoJets");
+// v_Cuts.push_back("vetoJets");
 v_Cuts.push_back("requireEcalEls");
-// v_Cuts.push_back("useFlipRateEstimation");
-v_Cuts.push_back("estimateSingleFakes");
+v_Cuts.push_back("useFlipRateEstimation");
+// v_Cuts.push_back("estimateSingleFakes");
 // v_Cuts.push_back("estimateDoubleFakes");
 
   TChain  *ch_data    = new TChain("Events");  
@@ -124,6 +125,7 @@ v_Cuts.push_back("estimateSingleFakes");
   TChain  *ch_wz      = new TChain("Events");
   TChain  *ch_zz      = new TChain("Events");
   TChain  *ch_vv      = new TChain("Events");
+  TChain  *ch_ppmux      = new TChain("Events");
 
 
 // Luminosity
@@ -131,8 +133,9 @@ v_Cuts.push_back("estimateSingleFakes");
 //   const float LUMINORM = 0.00030355; // 303.55 nb-1
 //   const float LUMINORM = 0.00083828; // 838.28 nb-1
 //   const float LUMINORM = 0.0011; // 1.1 pb-1
-//     const float LUMINORM = 0.01; // 10 pb-1
-   const float LUMINORM = 0.00288; // 2.88 pb-1
+//     const float LUMINORM = 0.02; // 20 pb-1
+//    const float LUMINORM = 0.00288; // 2.88 pb-1
+    const float LUMINORM = 0.0031; // 3.1 pb-1
 
 //     const float LUMINORM = 1; // 1 fb-1
 
@@ -168,13 +171,13 @@ v_Cuts.push_back("estimateSingleFakes");
     // ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root"); 
     ch_ttbar->Add("/nfs-3/userdata/cms2/TTbarJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-07/*.root"); 
     ScanChain(ch_ttbar, v_Cuts, "ttbar",doFRestimation, jetTriggerPt, LUMINORM, kttdil);
-    hist::color("ttbar", kYellow);
+    hist::color("ttbar", 46);
   }
   
   if(runttotr) {
     cout << "Processing ttbar no-dileptons.. "<<endl;
   //  ch_ttbar->Add("/nfs-3/userdata/cms2/TTbar_Spring10-START3X_V26_S09-v1/V03-04-08/*.root");
-    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbarJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-07/*.root");
+//    ch_ttbar->Add("/nfs-3/userdata/cms2/TTbarJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-07/*.root");
     ScanChain(ch_ttbar, v_Cuts,"ttotr", doFRestimation, jetTriggerPt, LUMINORM, kttotr);
     hist::color("ttotr", 30);
   }
@@ -198,7 +201,7 @@ v_Cuts.push_back("estimateSingleFakes");
 
   if (runWgamma) {
     cout << "Processing Wgamma.."<<endl;
-    ch_vgamma->Add("/nfs-3/userdata/cms2/Wgamma_Spring10-START3X_V26_S09-v1/V03-04-08/*.root");
+    ch_wgamma->Add("/nfs-3/userdata/cms2/Wgamma_Spring10-START3X_V26_S09-v1/V03-04-08/*.root");
     ScanChain(ch_wgamma,v_Cuts, "wgamma", doFRestimation, jetTriggerPt, LUMINORM);
     hist::color("wgamma", 40);
   }
@@ -299,10 +302,18 @@ v_Cuts.push_back("estimateSingleFakes");
 
   if(runVV) {
     cout << "Processing VV" << endl;
-    ch_zz->Add("/nfs-3/userdata/cms2/VVJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-13-01/*.root");
+    ch_vv->Add("/nfs-3/userdata/cms2/VVJets-madgraph_Spring10-START3X_V26_S09-v1/V03-04-13-01/*.root");
     ScanChain(ch_vv, v_Cuts, "vv", doFRestimation, jetTriggerPt, LUMINORM);
     hist::color("vv", kRed-5);
   }
+
+  if(runppMux) {
+    cout << "Processing runppMux" << endl;
+    ch_ppmux->Add("/nfs-3/userdata/cms2/InclusiveMu15_Spring10-START3X_V26_S09-v1/V03-04-13-02/*.root");
+    ScanChain(ch_ppmux, v_Cuts, "ppmux", doFRestimation, jetTriggerPt, LUMINORM);
+    hist::color("ppmux", kRed-5);
+  }
+
 
 
   TString cutstring = "";
