@@ -1,8 +1,4 @@
-<<<<<<< pmssm.log
-This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  25 JAN 2011 18:19
-=======
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.24)  26 JAN 2011 13:52
->>>>>>> 1.4
+This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  26 JAN 2011 10:26
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -192,37 +188,24 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 40.
-<<<<<<< pmssm.log
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
-=======
 LaTeX Font Info:    Try loading font information for U+msa on input line 48.
->>>>>>> 1.4
 
 (/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
-<<<<<<< pmssm.log
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
-=======
 LaTeX Font Info:    Try loading font information for U+msb on input line 48.
->>>>>>> 1.4
 
 (/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
-)
-Overfull \hbox (1.62073pt too wide) in paragraph at lines 40--55
-[]\OT1/ptm/m/n/10 We in-ter-pret, for the first time, CMS data within the phe-n
-omeno-log-i-cal MSSM (pMSSM). The pMSSM
- []
-
-[1
+) [1
 
 
-{/usr/local/texlive/2008/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./intro.tex
+{/usr/local/texlive/2008/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./intr
+o.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-) (./motivation.tex
+)
+(./motivation.tex
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 27.
 
 (/usr/local/texlive/2008/texmf-dist/tex/latex/psnfss/omsptm.fd
@@ -238,457 +221,217 @@ im-por-tant im-pli-ca-tion, namely that the renormalization-
 
 ) (./model.tex [2]) (./analysis.tex [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 24.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 25.
 
-<<<<<<< pmssm.log
-
-LaTeX Warning: Reference `sec:model' on page 4 undefined on input line 24.
-
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 24.
 (/usr/local/texlive/2008/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-=======
-(/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
->>>>>>> 1.4
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-<<<<<<< pmssm.log
-) [4])
-(./results.tex
-=======
-) [4]) (./results.tex
->>>>>>> 1.4
+)
 
-LaTeX Warning: Reference `sec:analysis' on page 5 undefined on input line 4.
+LaTeX Warning: Reference `sec:cmsdelphescomp' on page 4 undefined on input line
+ 40.
 
-<<<<<<< pmssm.log
-[5] <figs/fig_m_Q_L.pdf, id=35, 569.12625pt x 541.02126pt>
-=======
-[5] <figs/fig_m_Q_L.pdf, id=38, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
+[4]) (./results.tex [5] <figs/fig_m_Q_L.pdf, id=38, 569.12625pt x 541.02126pt>
 File: figs/fig_m_Q_L.pdf Graphic file (type pdf)
 
 <use figs/fig_m_Q_L.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_Q_3.pdf, id=36, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_Q_3.pdf, id=39, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_Q_3.pdf Graphic file (type pdf)
 
 <use figs/fig_m_Q_3.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_u_1.pdf, id=37, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_u_1.pdf, id=40, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_u_1.pdf Graphic file (type pdf)
 
 <use figs/fig_m_u_1.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_u_3.pdf, id=38, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_u_3.pdf, id=41, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_u_3.pdf Graphic file (type pdf)
 
 <use figs/fig_m_u_3.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_d_1.pdf, id=39, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_d_1.pdf, id=42, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_d_1.pdf Graphic file (type pdf)
 
 <use figs/fig_m_d_1.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_d_3.pdf, id=40, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_d_3.pdf, id=43, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_d_3.pdf Graphic file (type pdf)
 
 <use figs/fig_m_d_3.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_L_L.pdf, id=41, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_L_L.pdf, id=44, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_L_L.pdf Graphic file (type pdf)
 
 <use figs/fig_m_L_L.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_L_3.pdf, id=42, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_L_3.pdf, id=45, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_L_3.pdf Graphic file (type pdf)
 
 <use figs/fig_m_L_3.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_e_1.pdf, id=43, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_e_1.pdf, id=46, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_e_1.pdf Graphic file (type pdf)
 
 <use figs/fig_m_e_1.pdf>
-<<<<<<< pmssm.log
-<figs/fig_m_e_3.pdf, id=44, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_m_e_3.pdf, id=47, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_m_e_3.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_m_e_3.pdf> <figs/fig_M_1.pdf, id=45, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_m_e_3.pdf> <figs/fig_M_1.pdf, id=48, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_M_1.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_M_1.pdf> <figs/fig_M_2.pdf, id=46, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_M_1.pdf> <figs/fig_M_2.pdf, id=49, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_M_2.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_M_2.pdf> <figs/fig_M_3.pdf, id=47, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_M_2.pdf> <figs/fig_M_3.pdf, id=50, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_M_3.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_M_3.pdf> <figs/fig_A_t.pdf, id=48, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_M_3.pdf> <figs/fig_A_t.pdf, id=51, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_A_t.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_A_t.pdf> <figs/fig_A_b.pdf, id=49, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_A_t.pdf> <figs/fig_A_b.pdf, id=52, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_A_b.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_A_b.pdf> <figs/fig_A_tau.pdf, id=50, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_A_b.pdf> <figs/fig_A_tau.pdf, id=53, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_A_tau.pdf Graphic file (type pdf)
 
 <use figs/fig_A_tau.pdf>
-<<<<<<< pmssm.log
-<figs/fig_tanbeta.pdf, id=51, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_tanbeta.pdf, id=54, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_tanbeta.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_tanbeta.pdf> <figs/fig_mu.pdf, id=52, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_tanbeta.pdf> <figs/fig_mu.pdf, id=55, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_mu.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_mu.pdf> <figs/fig_u_L.pdf, id=53, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_mu.pdf> <figs/fig_u_L.pdf, id=56, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_u_L.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_u_L.pdf> <figs/fig_u_R.pdf, id=54, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_u_L.pdf> <figs/fig_u_R.pdf, id=57, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_u_R.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_u_R.pdf> <figs/fig_d_L.pdf, id=55, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_u_R.pdf> <figs/fig_d_L.pdf, id=58, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_d_L.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_d_L.pdf> <figs/fig_d_R.pdf, id=56, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_d_L.pdf> <figs/fig_d_R.pdf, id=59, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_d_R.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_d_R.pdf> <figs/fig_b_1.pdf, id=57, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_d_R.pdf> <figs/fig_b_1.pdf, id=60, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_b_1.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_b_1.pdf> <figs/fig_b_2.pdf, id=58, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_b_1.pdf> <figs/fig_b_2.pdf, id=61, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_b_2.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_b_2.pdf> <figs/fig_t_1.pdf, id=59, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_b_2.pdf> <figs/fig_t_1.pdf, id=62, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_t_1.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_t_1.pdf> <figs/fig_t_2.pdf, id=60, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_t_1.pdf> <figs/fig_t_2.pdf, id=63, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_t_2.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_t_2.pdf> <figs/fig_e_L.pdf, id=61, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_t_2.pdf> <figs/fig_e_L.pdf, id=64, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_e_L.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_e_L.pdf> <figs/fig_e_R.pdf, id=62, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_e_L.pdf> <figs/fig_e_R.pdf, id=65, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_e_R.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_e_R.pdf> <figs/fig_nu_e_L.pdf, id=63, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_e_R.pdf> <figs/fig_nu_e_L.pdf, id=66, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_nu_e_L.pdf Graphic file (type pdf)
 
 <use figs/fig_nu_e_L.pdf>
-<<<<<<< pmssm.log
-<figs/fig_nu_tau_L.pdf, id=64, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_nu_tau_L.pdf, id=67, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_nu_tau_L.pdf Graphic file (type pdf)
 
 <use figs/fig_nu_tau_L.pdf>
-<<<<<<< pmssm.log
-<figs/fig_tau_1.pdf, id=65, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_tau_1.pdf, id=68, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_tau_1.pdf Graphic file (type pdf)
 
 <use figs/fig_tau_1.pdf>
-<<<<<<< pmssm.log
-<figs/fig_tau_2.pdf, id=66, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_tau_2.pdf, id=69, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_tau_2.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_tau_2.pdf> <figs/fig_g.pdf, id=67, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_tau_2.pdf> <figs/fig_g.pdf, id=70, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_g.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_g.pdf> <figs/fig_chi_1_0.pdf, id=68, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_g.pdf> <figs/fig_chi_1_0.pdf, id=71, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_1_0.pdf Graphic file (type pdf)
 
 <use figs/fig_chi_1_0.pdf>
-<<<<<<< pmssm.log
-<figs/fig_chi_2_0.pdf, id=69, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_chi_2_0.pdf, id=72, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_2_0.pdf Graphic file (type pdf)
 
 <use figs/fig_chi_2_0.pdf>
-<<<<<<< pmssm.log
-<figs/fig_chi_3_0.pdf, id=70, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_chi_3_0.pdf, id=73, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_3_0.pdf Graphic file (type pdf)
 
 <use figs/fig_chi_3_0.pdf>
-<<<<<<< pmssm.log
-<figs/fig_chi_4_0.pdf, id=71, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_chi_4_0.pdf, id=74, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_4_0.pdf Graphic file (type pdf)
 
 <use figs/fig_chi_4_0.pdf>
-<<<<<<< pmssm.log
-<figs/fig_chi_1_pm.pdf, id=72, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_chi_1_pm.pdf, id=75, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_1_pm.pdf Graphic file (type pdf)
 
 <use figs/fig_chi_1_pm.pdf>
-<<<<<<< pmssm.log
-<figs/fig_chi_2_pm.pdf, id=73, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_chi_2_pm.pdf, id=76, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_chi_2_pm.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_chi_2_pm.pdf> <figs/fig_h.pdf, id=74, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_chi_2_pm.pdf> <figs/fig_h.pdf, id=77, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_h.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_h.pdf> <figs/fig_H0.pdf, id=75, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_h.pdf> <figs/fig_H0.pdf, id=78, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_H0.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_H0.pdf> <figs/fig_A.pdf, id=76, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_H0.pdf> <figs/fig_A.pdf, id=79, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_A.pdf Graphic file (type pdf)
 
-<<<<<<< pmssm.log
-<use figs/fig_A.pdf> <figs/fig_H_pm.pdf, id=77, 569.12625pt x 541.02126pt>
-=======
 <use figs/fig_A.pdf> <figs/fig_H_pm.pdf, id=80, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_H_pm.pdf Graphic file (type pdf)
 
 <use figs/fig_H_pm.pdf>
-<<<<<<< pmssm.log
-<figs/fig_omega_m.pdf, id=78, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_omega_m.pdf, id=81, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_omega_m.pdf Graphic file (type pdf)
 
 <use figs/fig_omega_m.pdf>
-<<<<<<< pmssm.log
-<figs/fig_drho_m.pdf, id=79, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_drho_m.pdf, id=82, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_drho_m.pdf Graphic file (type pdf)
 
 <use figs/fig_drho_m.pdf>
-<<<<<<< pmssm.log
-<figs/fig_muon_gm2_s.pdf, id=80, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_muon_gm2_s.pdf, id=83, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_muon_gm2_s.pdf Graphic file (type pdf)
 
 <use figs/fig_muon_gm2_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_bsgamma_s.pdf, id=81, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_bsgamma_s.pdf, id=84, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_bsgamma_s.pdf Graphic file (type pdf)
 
 <use figs/fig_bsgamma_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Bsmumu_s.pdf, id=82, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Bsmumu_s.pdf, id=85, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Bsmumu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Bsmumu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Btaunu_s.pdf, id=83, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Btaunu_s.pdf, id=86, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Btaunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Btaunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_RBtaunu_s.pdf, id=84, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_RBtaunu_s.pdf, id=87, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_RBtaunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_RBtaunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_BDtaunu_s.pdf, id=85, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_BDtaunu_s.pdf, id=88, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_BDtaunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_BDtaunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_BDtaunu_BDenu_s.pdf, id=86, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_BDtaunu_BDenu_s.pdf, id=89, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_BDtaunu_BDenu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_BDtaunu_BDenu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Dmunu_s.pdf, id=87, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Dmunu_s.pdf, id=90, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Dmunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Dmunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Dsmunu_s.pdf, id=88, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Dsmunu_s.pdf, id=91, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Dsmunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Dsmunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Dstaunu_s.pdf, id=89, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Dstaunu_s.pdf, id=92, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Dstaunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Dstaunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Kmunu_pimunu_s.pdf, id=90, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Kmunu_pimunu_s.pdf, id=93, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Kmunu_pimunu_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Kmunu_pimunu_s.pdf>
-<<<<<<< pmssm.log
-<figs/fig_Rl23_s.pdf, id=91, 569.12625pt x 541.02126pt>
-=======
 <figs/fig_Rl23_s.pdf, id=94, 569.12625pt x 541.02126pt>
->>>>>>> 1.4
 File: figs/fig_Rl23_s.pdf Graphic file (type pdf)
 
 <use figs/fig_Rl23_s.pdf>) (./conclusion.tex) [6] [7 <./figs/fig_m_Q_L.pdf, pag
@@ -740,14 +483,14 @@ LaTeX Warning: Reference `sec:pmssm' on page 18 undefined on input line 8.
 LaTeX Warning: Citation `TKDTreeBinning' on page 19 undefined on input line 74.
 
 
-<figs/njetht.pdf, id=2645, 569.12625pt x 194.7275pt>
+<figs/njetht.pdf, id=2588, 569.12625pt x 194.7275pt>
 File: figs/njetht.pdf Graphic file (type pdf)
  <use figs/njetht.pdf>
 Overfull \hbox (2.14174pt too wide) in paragraph at lines 84--86
  [] 
  []
 
-<figs/jet1pteta.pdf, id=2646, 569.12625pt x 194.7275pt>
+<figs/jet1pteta.pdf, id=2589, 569.12625pt x 194.7275pt>
 File: figs/jet1pteta.pdf Graphic file (type pdf)
 
 <use figs/jet1pteta.pdf>
@@ -755,7 +498,7 @@ Overfull \hbox (2.14174pt too wide) in paragraph at lines 94--96
  [] 
  []
 
-<figs/alphat.pdf, id=2647, 569.12625pt x 408.52625pt>
+<figs/alphat.pdf, id=2590, 569.12625pt x 408.52625pt>
 File: figs/alphat.pdf Graphic file (type pdf)
  <use figs/alphat.pdf>)
 (./pmssmbbl.tex [19 <./figs/njetht.pdf> <./figs/jet1pteta.pdf>]
@@ -772,63 +515,33 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< pmssm.log
- 2486 strings out of 493876
- 32845 string characters out of 1150567
- 89254 words of memory out of 3000000
- 5660 multiletter control sequences out of 10000+50000
- 19473 words of font info for 42 fonts, out of 3000000 for 5000
+ 2526 strings out of 493876
+ 33374 string characters out of 1150567
+ 91886 words of memory out of 3000000
+ 5688 multiletter control sequences out of 10000+50000
+ 24169 words of font info for 56 fonts, out of 3000000 for 5000
  714 hyphenation exceptions out of 8191
- 29i,10n,24p,1103b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,9n,24p,1128b,255s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2008/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></usr/local/texlive/20
 08/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></usr/local/texlive/2008/texmf-
 dist/fonts/type1/bluesky/cm/cmmi5.pfb></usr/local/texlive/2008/texmf-dist/fonts
-/type1/bluesky/cm/cmmi7.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/blu
-esky/cm/cmr10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cm
-r5.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></us
-r/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></usr/local/t
-exlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmsy7.pfb></usr/local/texlive/200
-8/texmf-dist/fonts/type1/bluesky/ams/msam10.pfb></usr/local/texlive/2008/texmf-
-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2008/texmf-dist/fon
-ts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type
-1/urw/times/utmb8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/time
-s/utmr8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on pmssm.pdf (20 pages, 960717 bytes).
-=======
- 2208 strings out of 256216
- 28082 string characters out of 1917071
- 80617 words of memory out of 1500000
- 5384 multiletter control sequences out of 10000+200000
- 24169 words of font info for 56 fonts, out of 1200000 for 2000
- 645 hyphenation exceptions out of 8191
- 29i,9n,24p,1128b,255s stack positions out of 5000i,500n,6000p,200000b,15000s
-{/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/b
-luesky/cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/
-share/texmf/fonts/type1/bluesky/cm/cmmi5.pfb></usr/share/texmf/fonts/type1/blue
-sky/cm/cmmi6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi7.pfb></usr/share
-/texmf/fonts/type1/bluesky/cm/cmmi9.pfb></usr/share/texmf/fonts/type1/bluesky/c
-m/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr5.pfb></usr/share/texmf
-/fonts/type1/bluesky/cm/cmr6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr7.
-pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts
-/type1/bluesky/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/bluesky/ams/msam10.pf
-b></usr/share/texmf/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf/fonts/
-type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmb8a.pf
-b></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on pmssm.pdf (22 pages, 986723 bytes).
->>>>>>> 1.4
+/type1/bluesky/cm/cmmi6.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/blu
+esky/cm/cmmi7.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cm
+mi9.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></
+usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr5.pfb></usr/local/t
+exlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr6.pfb></usr/local/texlive/2008
+/texmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></usr/local/texlive/2008/texmf-dist
+/fonts/type1/bluesky/cm/cmsy10.pfb></usr/local/texlive/2008/texmf-dist/fonts/ty
+pe1/bluesky/cm/cmsy7.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesk
+y/ams/msam10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/courier/uc
+rr8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pf
+b></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/lo
+cal/texlive/2008/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texliv
+e/2008/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on pmssm.pdf (22 pages, 983110 bytes).
 PDF statistics:
-<<<<<<< pmssm.log
- 2636 PDF objects out of 2984 (max. 8388607)
-=======
- 2734 PDF objects out of 2984 (max. 8388607)
->>>>>>> 1.4
+ 2674 PDF objects out of 2984 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
-<<<<<<< pmssm.log
- 286 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
  301 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> 1.4
 

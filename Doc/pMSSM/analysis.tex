@@ -4,7 +4,7 @@
 One goal of this study is to determine whether current CMS data are sufficient to impose visible constraints on the pMSSM parameter space, and consequently on SUSY mass scales and low energy observables such as $(g-2)_\mu$, BR($b\rightarrow s\gamma$), etc.  To achieve this goal, we carry out the following analysis steps:
 \begin{itemize}
 \item For each of the 6K pMSSM points we generate 10K events.
-\item We perform three approved CMS analyses, namely the
+\item We perform three blessed CMS analyses, namely the
  ``di-jet $\alpha_T$" (Had), ``opposite-sign di-lepton" (OS) and ``same-sign di-lepton" (SS) 
  analyses on each of the 6K pMSSM samples.
 \item For each pMSSM point and for each of the three analyses, we combine the 
@@ -30,17 +30,14 @@ of this scope. For the leptonic studies the agreement is within 25\%.
 During the next iteration our this study, we plan to 
 use the efficiency model outlined in ~\cite{sspaper}.
 
-\subsection{Implementation of three blessed CMS analyses}
+\subsection{Implementation of three CMS analyses}
 
-For each of the 6K pMSSM points, the hadronic and multi-lepton analyses are performed on the simulated and reconstructed 
-events in order to compute the expected signal yields. The hadronic analysis agrees with the full simulation results within 10\%. Details on 
-comparison between the reconstructed quantities can be found in the Section~\ref{sec:compare}.
-
-
-The following table shows the Numerical results of the three CMS analyses for 35 pb$^{-1}$ of luminosity.
+The following table shows the results of the 
+di-jet $\alpha_T$, opposite-sign di-lepton and same-sign di-lepton 
+ CMS analyses for 35 pb$^{-1}$ of integrated luminosity.
 
 \begin{table}[htdp]
-\caption{Numerical results of the three CMS analyses for 35 pb$^{-1}$ as given by {\tt CMSSW} full simulation and {\tt Delphes} for the SUSY benchmarks LM0 and LM1.}
+\caption{Results of the three CMS analyses for 35 pb$^{-1}$.}
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -56,6 +53,12 @@ SS di-lepton & 0 & 1.2 $\pm$ 0.8 & 0.35 \\
 \end{center}
 \label{default}
 \end{table}%
+For each of the 6K pMSSM points, the 
+ analyses are performed on the associated 10K simulated and reconstructed 
+events. This results in three expected signal yields for every pMSSM point. We find that
+our hadronic analysis agrees with the full simulation results within 10\%. Details on the
+comparison between the reconstructed quantities can be found in 
+Section~\ref{sec:cmsdelphescomp}.
 
 
 \subsection{Calculation of the likelihood function}
@@ -71,12 +74,11 @@ written as a function of the  $d = $19-dimensional pMSSM parameter $\theta$.
 In this study, the
  map of $\theta$ to the expected signals $s_k$ is represented non-parametrically
  using the 6K pMSSM points. In principle, we could build a smooth functional approximation to
- this map; however, we have not attempted this in the current study. The likelihood 
- values $L(\theta_i)$,
- where $i$ is the ith pMSSM point, is used as the weight for this point. This is how we 
- incorporate the likelihood function of the three approved CMS analyses in our
- pMSSM interpretation
- of the CMS results. 
+ this map; however, we have not attempted this in the current study. 
+ We incorporate the joint likelihood function of the three CMS analyses by
+ weighting the $i$th pMSSM point by the likelihood 
+ value $L(\theta_i)$ for that point. Since the sampling of points is uniform, the swarm of weighted
+ points constitute a non-parametric representation of $L(\theta)$.
  
  For any likelihood function, exact confidence regions~\cite{James}  can \emph{always} 
  be created in
