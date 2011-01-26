@@ -1,5 +1,6 @@
 \documentclass{cmspaper}
 \usepackage{graphicx}
+\usepackage{appendix}
 \usepackage{rotate}
 \usepackage{relsize}
 \usepackage{amsmath}
@@ -66,13 +67,20 @@ MSSM, the approach we describe is applicable to \emph{any} multi-parameter model
 
 We thank JoAnne Hewett and Thomas G. Rizzo for providing us the 6K pMSSM points used in this analysis.
 
-% ---- appendix ----
-\clearpage
-\input{statistics.tex}
+
 
 % ---- references ----
 %\bibliographystyle{h-physrev}
 %\bibliography{pmssm}
+\clearpage
 \input{pmssmbbl.tex}
+
+% ---- appendix ----
+\clearpage
+\appendices
+\section*{Appendices}
+\input{cmsdelphescomp.tex}
+\clearpage
+\input{statistics.tex}
 
 \end{document}
