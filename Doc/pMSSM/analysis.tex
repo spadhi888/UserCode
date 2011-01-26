@@ -29,24 +29,13 @@ of this scope.
 
 \subsection{Implementation of the three approved CMS analyses}
 
-\begin{table}[htdp]
-\caption{Comparison of signal Monte Carlo yields for the 3 CMS analyses}
-\begin{center}
-\begin{tabular}{|c|cc|cc|}
-\hline
-& \multicolumn{2}{|c|}{LM0} & \multicolumn{2}{|c|}{LM1} \\
-\hline
-& CMSSW & Delphes & CMSSW & Delphes \\
-\hline
-Dijet $\alpha_T$ & & & & \\
-OS di-lepton & & & & \\
-SS dil-epton & & & & \\
-\hline
-\end{tabular}
-\end{center}
-\label{default}
-\end{table}%
+The hadronic as well as multileptons analyses are performed on the simulated and reconstruction 
+events. The hadronic analysis agrees with the full simulation results within 10\%. Details on 
+comparison between the reconstructed quantities can be found in the Section~\ref{sec:compare}.
+For the leptonic studies the agreement is within 25\%, during the next iteration we plan to 
+use the efficiency model as outlined in ~\cite{sspaper}.
 
+The following table shows the Numerical results of the three CMS analyses for 35 pb$^{-1}$ of luminosity.
 
 \begin{table}[htdp]
 \caption{Numerical results of the three CMS analyses for 35 pb$^{-1}$ as given by {\tt CMSSW} full simulation and {\tt Delphes} for the SUSY benchmarks LM0 and LM1.}
@@ -65,7 +54,6 @@ SS di-lepton & 0 & 1.2 $\pm$ 0.8 & 0.35 \\
 \end{center}
 \label{default}
 \end{table}%
-
 
 
 \subsection{Calculation of the likelihood function}
