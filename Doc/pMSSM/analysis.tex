@@ -26,23 +26,35 @@ as explained in Section~\ref{sec:model}.  Information on each point is contained
 the publicly available general purpose detector simulation package {\tt Delphes}~\cite{Ovyn:2009tx}.  Through extensive numerical and shape comparisons we
 conclude that we are able to provide a \emph{very} fast simulation of the CMS detector 
 that is good to within 10\%. An accurate,  fast, simulation is critical for studies
-of this scope. For the leptonic studies the agreement is within 25\%. 
-During the next iteration our this study, we plan to 
+of this scope. For the leptonic studies the agreement is within 25\%. Further details on {\tt CMSSW} fullsim - {\tt Delphes} comparison can be found in Appendix~\ref{sec:cmsdelphescomp}.
+During the next iteration of this study, we plan to 
 use the efficiency model outlined in ~\cite{sspaper}.
 
-\subsection{Implementation of three CMS analyses}
+\subsection{The three CMS analyses}
 
-The following table shows the results of the 
-di-jet $\alpha_T$, opposite-sign di-lepton and same-sign di-lepton 
- CMS analyses for 35 pb$^{-1}$ of integrated luminosity.
+We used the following three blessed CMS SUSY analyses designed for the early 35 pb$^{-1}$ CMS 7 TeV data  collected in 2010:
+\begin{itemize}
+\item Di-jet $\alpha_T$ analysis, investigating the multijets plus missing energy final state with emphasis on the $\alpha_T$ variable proposed by Randall andTucker-Smith
+\item Opposite-sign di-lepton analysis, investigating the opposite-sign di-lepton plus missing energy final state
+\item Same-sign di-lepton analysis, investigating the same-sign di-lepton plus missing energy final state.
+\end{itemize}
+
+Using these analyses, we obtained the observed event counts, background estimates and signal counts, as described in Sections~\ref{sec:dbgcount} and~\ref{sec:sigyield}, all of which will be used as inputs for the 
+
+\subsubsection{Observed event counts and background estimates}
+\label{sec:dbgcount}
+
+The $\alpha_T$ and two di-lepton analyses were developed in detail by CMS SUSY RA1 and RA6 groups respectively and were implemented on the 7 TeV 35 pb$^{-1}$ CMS data and 7 TeV SM and SUSY Monte Carlo generated and simulated by {\it CMSSW} fullsim centrally in 2010.
+
+We will simply take the observed event counts and background estimates directly from the official results of these analyses.  The numbers are summarized in Table~\ref{tab:dbgcount}.
 
 \begin{table}[htdp]
 \caption{Results of the three CMS analyses for 35 pb$^{-1}$.}
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
-Analysis & Observed  & Data-driven SM & MC SM BG \\
-              & data count & BG estimate      & prediction    \\
+Analysis & Observed    & Data-driven SM & MC SM BG \\
+              & event count & BG estimate      & prediction    \\
 (k)          & ($N_k$)     & ($b_k \pm \delta b_k$) & ($b_k^{MC} \pm b_k^{MC}$) \\
 \hline              
 Dijet $\alpha_T$ & 14 & 11.4 $\pm$ 2.0 & 9.2 $\pm$ 0.9 \\
@@ -51,14 +63,14 @@ SS di-lepton & 0 & 1.2 $\pm$ 0.8 & 0.35 \\
 \hline
 \end{tabular}
 \end{center}
-\label{default}
+\label{tab:dbgcount}
 \end{table}%
-For each of the 6K pMSSM points, the 
- analyses are performed on the associated 10K simulated and reconstructed 
-events. This results in three expected signal yields for every pMSSM point. We find that
-our hadronic analysis agrees with the full simulation results within 10\%. Details on the
-comparison between the reconstructed quantities can be found in 
-Section~\ref{sec:cmsdelphescomp}.
+
+
+\subsubsection{Signal yields}
+\label{sec:sigyield}
+
+For each of the 6K pMSSM points, we performed the three analyses on the associated 10K simulated and reconstructed events. This results in three expected signal yields for every pMSSM point. 
 
 
 \subsection{Calculation of the likelihood function}
