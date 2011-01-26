@@ -1,41 +1,81 @@
 \section{Phenomenological MSSM (pMSSM)}
+\label{sec:model}
 
-Phenomenological MSSM is a model that makes no assumptions on the SUSY breaking mechanism.  It is parametrized at the so-called "SUSY scale (i.e. the geometric mean of the two stop masses).  At this low scale, SUSY is defined by over 120 parameters at its most generic form.  However simplifying assumptions can be made without loosing much from the generality of the scenario.  pMSSM construction stays within the CP-conserving MSSM (i.e. no new phases) with minimal flavor violation.  Moreover, to help soften the impact of experimental constraints arising from the flavor sector, the first two generations of sfermions are taken to be degenerate.  This results in the following 19-dimensional parameterization:
+As mentioned, the pMSSM is a 19-dimensional realization of the MSSM 
+with parameters defined at the so-called SUSY scale\footnote{Sometimes 
+also referred to as the scale of electroweak symmetry breaking, $M_{\rm EWSB}$.} 
+$M_{\rm SUSY}=\sqrt{m_{\tilde t_1}m_{\tilde t_2}}$. How do we come to 
+this number of parameters and what are its implications?
 
-\begin{enumerate}
-         \item 10 scalar masses: $m_{\tilde{f}}$ (where 
-$\tilde{f} = \tilde{Q}_L, \tilde{Q}_3, \tilde{L}_1, \tilde{L}_3, 
-\tilde{u}_1, \tilde{d}_1, 
-\tilde{u}_3, \tilde{d}_3, \tilde{e}_1$, and $\tilde{e}_3$),
-
-         \item 3 gaugino masses: $M_{1,2,3}$ (pertaining to U(1), SU(2), 
-and SU(3), respectively),
-         
-         \item 1 $\tan\beta$ parameter,
-         
-         \item 3 trilinear couplings: $A_{b, t, \tau}$,
-         
-         \item 1 pseudo-scalar Higgs mass: $m_A$.
-         
-         \item 1 $\mu$ parameter. 
-         
-\end{enumerate}
-The parameters $m_A$ and $\mu$ can be swapped for the Higgs mass parameters 
-$m_{H_u}$ and $m_{H_d}$.
-
-Berger et. al. performed a multi-dimensional scan to find out what regions in the pMSSM parameter space are consistent with theoretical and experimental constrains.  They did a uniform random sampling of points from within the pMSSM subspace defined by the parameter ranges below
+In its most generic form, just assuming R-parity conservation, 
+the MSSM has over 120 free parameters: 
+SUSY-breaking mass terms and trilinear couplings, Yukawa matrices, 
+CP phases, two VEVs, and a superpotential $\mu$ term. 
+Model builders construct theoretically-motivated economic models 
+that provide relations between these parameters at some high scale, 
+{\it e.g.}, the GUT scale. 
+These then evolved to $M_{\rm SUSY}$ by renormalization group equations 
+to derive model-specific testable predictions. On the other 
+hand, it is expected that once SUSY particles are discovered, measurements 
+of their masses and interactions will allow to reconstruct (at least 
+part of) the Lagrange parameters and thus infer the underlying SUSY 
+breaking mechanism.
+ 
+Luckily not all of the $\sim$120 MSSM parameters are of equal relevance to this end.
+In fact, a couple of reasonable assumptions motivated by experiment serve to 
+simplify the problem a lot. In particular, it is reasonable to restrict ourselves 
+to the CP-conserving MSSM ({\it i.e.}\ no new CP phases) with minimal flavor violation (MFV).  
+Constraints from the flavor sector moreover suggest that the first two generations 
+of sfermions be taken to be degenerate. Regarding Yukawa and trilinear couplings, 
+only those of the third generation matter at leading order. 
+Finally, we assume that the gravitino is heavy\footnote{To be completely honest, 
+this implies after all some assumption on the SUSY breaking mechanism; for instance it 
+excludes low-scale gauge mediation.} and the lightest supersymmetric 
+particle (LSP) is the lightest neutralino, $\tilde\chi^0_1$.
+ 
+This leaves us with the 19 real, weak-scale SUSY Lagrange parameters 
+that define the pMSSM:
+\begin{itemize}
+   \item 3 gaugino masses $M_1$, $M_2$, and $M_3$ 
+         (pertaining to U(1), SU(2), and SU(3) gauginos, respectively);         
+   \item the higgsino mass parameter $\mu$;
+   \item the ratio of the Higgs VEVs $\tan\beta=v_2/v_1$;
+   \item the pseudo-scalar Higgs mass $m_A$;\footnote{The parameters $\mu$ and $m_A$  
+         can be swapped for the Higgs mass parameters $m_{H_1}^2$ and $m_{H_2}^2$.}
+   \item 10 sfermion mass parameters $m_{\tilde{F}}$, where 
+         $\tilde{F} = \tilde{Q}_1, \tilde{U}_1, \tilde{D}_1, 
+                      \tilde{L}_1, \tilde{E}_1, 
+                      \tilde{Q}_3, \tilde{U}_3, \tilde{D}_3, 
+                      \tilde{L}_3$, and $\tilde{E}_3$ \\ 
+(recall that $m_{\tilde{Q}_1}\equiv m_{\tilde{Q}_2}$, 
+           $m_{\tilde{L}_1}\equiv m_{\tilde{L}_2}$, etc.); and          
+   \item 3 trilinear couplings $A_t$, $A_b$ and $A_\tau$                  
+\end{itemize}
+ 
+In \cite{Berger:2008cq}, Berger {\it et al.}\ performed a scan of the pMSSM parameters  
+to find out what regions of parameter space are consistent with theoretical and experimental constrains. In particular they did a uniform random sampling of 
+points from within the following ranges:\footnote{Here note that $M_1$, $M_2$, 
+$\mu$, $A_t$, $A_b$ and $A_\tau$ can have 
+arbitrary signs; $M_3$ was chosen to be positive because only six 
+of all possible sign combinations of $M_i$, $A_i$, $\mu$ are physical.} 
 \begin{eqnarray}
-  \mbox{100 GeV} \leq 	& m_{\tilde{f}} 	& \leq \mbox{1000 GeV}, 	
-  \\ \nonumber
-  \mbox{50 GeV}  \leq	& |M_{1,2},\mu| & \leq \mbox{1000 GeV}, 	
-    \\ \nonumber
-    \mbox{100 GeV} \leq	& M_3 		& \leq  \mbox{1000 GeV},
-    \\ \nonumber
-	& |A_{b,t,\tau}| & \leq \mbox{1000 GeV}, 		
-    \\ \nonumber
-    1  \leq				& \tan\beta		& \leq 50,				
-    \\ \nonumber
-    \mbox{43.5 GeV}	\leq	& m_A			& \leq \mbox{1000 GeV},
+  \mbox{100 GeV} \leq 	& m_{\tilde{F}}  & \leq \mbox{1000 GeV},   \nonumber \\
+  \mbox{50 GeV}  \leq	& |M_{1,2},\mu|  & \leq \mbox{1000 GeV}, 	 \nonumber \\
+  \mbox{100 GeV} \leq	& M_3 	     & \leq \mbox{1000 GeV},   \\
+	                  & |A_{t,b,\tau}| & \leq \mbox{1000 GeV}, 	 \nonumber \\
+    1  \leq			& \tan\beta		& \leq 50,	  \nonumber \\
+    \mbox{43.5 GeV}	\leq	& m_A			& \leq \mbox{1000 GeV},  \nonumber 
 \end{eqnarray}
 
+Imposing SUSY and Higgs mass limits and requiring consistency with low-energy 
+constraints and with the dark matter relic density, 
+they found \cite{Berger:2008cq} that 
+{\it ``the pMSSM leads to a much broader set of predictions for the properties 
+of the SUSY partners as well as for a number of experimental observables than 
+those found in any of the conventional SUSY breaking scenarios such as mSUGRA [CMSSM]. This set of models can easily lead to atypical expectations for SUSY signals 
+at the LHC.''}
 
+As a first step towards a full pMSSM analysis, we use a 6K subset of the 
+pMSSM points generated by Berger {\it et al.}\ and investigate to which 
+extent CMS SUSY analyses with 35~pb$^{-1}$ of data already constrain 
+this sample. 
