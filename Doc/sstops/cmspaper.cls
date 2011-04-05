@@ -40,7 +40,7 @@
 \setlength{\evensidemargin}{25mm}
 \setlength{\marginparwidth}{25mm}
 \setlength{\marginparsep}{\baselineskip}
-\setlength{\topmargin}{30mm}
+\setlength{\topmargin}{20mm}
 \setlength{\headheight}{0mm}
 \setlength{\headsep}{0mm}
 %Lucas-setlength{\footskip}{6mm}
