@@ -1,27 +1,59 @@
 \section{Search for Same Sign Top Quark Pair Production}
 \label{sec:samesign}
 
-This section summarizes the results of the search for same sign $tt$
-pair production in the di-lepton channel. We use two data-driven methods 
-to estimate background characterized by the presence of two isolated high $P_T$ same 
-sign leptons, $\met$, and significant hadronic activity. For the purpose of this note we 
-restrict ourselves to the $ee$, $e\mu$, and $\mu\mu$ final states, {\em i.e.}, we do not 
-consider $\tau$'s, except in the case that the $\tau$ decays leptonically. 
+This analysis is based on the approved same-sign di-lepton search documented in AN 2010/247 v6 \cite{ssnote1}.  
+In that analysis we searched for events with two isolated same sign leptons, two or more jets, and MET ($\met$).
 
-As we will show in Section~\ref{sec:ssyields}, for this modified baseline selection is similar to
-the published opposite sign di-lepton pair production cross section paper~\cite{topxsection}, where the main 
-background is from SM \ttbar decays. The data-driven background prediction is based on a combination 
-of estimating ``fake leptons''~\cite{fakenote} (FakeRate) and electrons reconstructed with the 
-wrong sign~\cite{ssnote1} (Charge FlipRate). The probability for muons to be reconstructed with 
-the wrong sign at the relevant momenta is negligible.
+This final state is exactly the final state that one would expect from top-top production with both top quarks decaying as $t\rightarrow Wb$, $W\rightarrow \ell \nu$.
+In AN 2010/247 we presented event yields and background expectations for several event selections.  
+One of those event selections is very similar to that of the $t\bar{t}$ (opposite sign) dilepton cross-section analysis \cite{topxsection}, 
+and thus it is the appropriate selection for a top-top pair search.  
+Briefly, this selection consists of
+
+\begin{itemize}
+	\item Two same sign leptons of $p_T>20 GeV$, $|\eta|<2.4$
+	\item Two jets of $p_T>30 GeV$, $|\eta|<2.4$
+	\item $\met >20 GeV$ ($e\mu$) or $\met>30 GeV$ ($ee$ or $\mu\mu$)
+\end{itemize}
+
+The results of the search in this kinematical region are summarized in Table 6 of AN 2010/247 v6 \cite{ssnote1}, 
+which is reproduced below as Table \ref{tab:ssyields}.
+We take the results of Table \ref{tab:ssyields} with one important modification: 
+since we are interested in $tt$ production and not $\bar{t}\bar{t}$ production,
+we only consider $\ell^{+}\ell^{+}$ events.  
+Thus the BG estimates in Table \ref{tab:ssyields} have to be divided by two.  
+Both observed events in Table \ref{tab:ssyields} have positive leptons.  
+Then, the bottom line yield and bg prediction is: 
+two events observed and $0.9 \pm 0.6$ expected BG, see Table \ref{tab:sm_preditcion}.
+
+%%% Commented out DLE
+%This section summarizes the results of the search for same sign $tt$
+%pair production in the di-lepton channel. We use two data-driven methods 
+%to estimate background characterized by the presence of two isolated high $P_T$ same 
+%sign leptons, $\met$, and significant hadronic activity. For the purpose of this note we 
+%restrict ourselves to the $ee$, $e\mu$, and $\mu\mu$ final states, {\em i.e.}, we do not 
+%consider $\tau$'s, except in the case that the $\tau$ decays leptonically. 
+%%%
+%As we will show in Section~\ref{sec:ssyields}, for this modified baseline selection is similar to
+%the published opposite sign di-lepton pair production cross section paper~\cite{topxsection}, where the main 
+%background is from SM \ttbar decays. The data-driven background prediction is based on a combination 
+%of estimating ``fake leptons''~\cite{fakenote} (FakeRate) and electrons reconstructed with the 
+%wrong sign~\cite{ssnote1} (Charge FlipRate). The probability for muons to be reconstructed with 
+%the wrong sign at the relevant momenta is negligible.
 
 \subsection{Event Yields}
 \label{sec:ssyields}
 
-The observed and expected SM event yields in 35~pb$^{-1}$ after applying the event selections
-described in Section~\ref{sec:eventselection} to the datasets described in Section~\ref{sec:datasamples} 
-are detailed below. The final event yields also include the systematic uncertanities of
-the method used.
+The observed and expected SM event yields in 35~pb$^{-1}$ reproduced from Table 6 of AN 2010/247 v6 \cite{ssnote1}
+are shown in Table \ref{tab:ssyields}.
+The data-driven background prediction is based on a combination of estimating ``fake leptons''~\cite{fakenote} (FakeRate) 
+and electrons reconstructed with the wrong sign~\cite{ssnote1} (Charge FlipRate). 
+The probability for muons to be reconstructed with the wrong sign at the relevant momenta is negligible.
+
+%after applying the event selections
+%described in Section~\ref{sec:eventselection} to the datasets described in Section~\ref{sec:datasamples} 
+%are detailed below. The final event yields also include the systematic uncertanities of
+%the method used.
 
 \vspace{6 mm}
 \begin{table}[htb]
@@ -59,7 +91,7 @@ Uncertainties in the lower three rows also include the systematic uncertanities 
 \end{center}
 \end{table}
 
-The event yield has the following characteristics:
+The event yields have the following characteristics:
 
 \begin{itemize}
 \item We do not consider rare processes such as $qqW^\pm W^\pm, WWW, t\bar{t}W$, double parton $W^\pm W^\pm$, which are 
@@ -77,15 +109,15 @@ sign events observed in the control region~\cite{ssnote1}.
 
 The dominant SM contribution is from \ttbar decays. The total estimated background 
 is obtained after the application of Fake and Charge Flip rates to the entire ensemble
-of SM samples. The data yield is in good agreement with the predication from both MC as 
+of SM samples \cite{ssnote1}. The data yield is in good agreement with the predication from both MC as 
 well as the data driven predictions. 
 
-One of the key component of same sign top pair search is the fact that the final state mainly  
-includes only one type of sign. For example, in the t-channel exchange: $ uu \rightarrow tt \rightarrow l^+ l^+ \mu \nu b b$
-only +ve sign leptons are involved. As mentioned earlier, the quark quark, $\bar{u}\bar{u}$ scattering 
-is highly suppressed due to the parton luminosities, thus we do not expect any significant contribution 
-from -ve signed leptons. Given that the data driven methods are robust against any given choice of lepton 
-charge~\cite{fakenote1}, we use half of the total background prediction for this search.
+One of the key components of same-sign top pair search is the fact that the final state includes  
+includes mainly one type of sign. 
+For example, in the t-channel exchange: $ uu \rightarrow tt \rightarrow l^+ l^+ \mu \nu b b$ only positively charged leptons are involved. 
+The quark quark, $\bar{u}\bar{u}$ scattering is highly suppressed due to the parton luminosities, thus we do not expect any significant contribution 
+from negatively charged leptons. 
+Given that the data driven methods are robust against any given choice of lepton charge~\cite{fakenote1}, we use half of the total background prediction for this search.
 
 The results is summarized in Table~\ref{tab:sm_preditcion}.
 
@@ -103,14 +135,13 @@ The uncertainty also includes systematic errors.\label{tab:sm_preditcion}}
 \end{table}
 
 %The ``anatomy'' of the 2 observed event is discussed in the appendix.
-Although the observed events have two +ve di-leptons, we do not find this to be a significant deviation 
-from the prediction.
+Although the observed events have two positively charged di-leptons, we do not consider this a significant deviation from the prediction.
 
 \subsection{Systematic Uncertainties}
 \label{sec:sssystematics}
 
-Details of the systematic uncertainties studied are discussed elsewhere~\cite{ssnote1}. Here we summarize
-the aspects important for the aforesaid signal.
+Details of the systematic uncertainties studied are discussed elsewhere~\cite{ssnote1}. 
+We summarize the most important aspects for the previously described signal in Table \ref{tab:systSumm}.
 
 \begin{table}[h]
 \begin{center}
@@ -132,28 +163,34 @@ expectation. Reported values are fractional, relative to the total cross section
 \section{Results}
 \label{sec:ssresults}
 
-In absence of any significant deviation from the predicted background we set 95\% CL. on 
-the number of observed events. Two statistical methods have been used for the upper limit. Both 
-methods assume the errors on signal and background are un-correlated and use a log-normal
-distribution for error pdfs. 
+In absence of any significant deviation from the predicted background we set 95\% CL. on the number of observed events. 
+Two statistical methods have been used for the upper limit. 
+Both methods assume the uncertainties on signal and background are un-correlated and use a log-normal distribution for error pdfs. 
 
 The first method used to compute the upper limit is based on Bayesian statistics~\cite{bayesian}.
 A posterior probability $p(r)$ is used as a function of the signal strength $r = \sigma/\sigma_{SM}$ 
 assuming a uniform prior for $r$ integrating the nuisance parameters associated to the uncertainties.
-The upper limit at 95\% confidence level is then determined by integrating $p(r)$ to determine $r'$ which
-satisfies $\int_{r'}^{\inf} p(r) dr = 0.05$.
+The upper limit at 95\% confidence level is then determined by integrating $p(r)$ to determine $r'$, 
+which satisfies $\int_{r'}^{\inf} p(r) dr = 0.05$.
 
-We use the hybrid frequentist-bayesian $CLs$ approach~\cite{CLS} as the second method. Although the two 
-statistical approaches are not equivalent, in this case we get similar results. 
+We use the hybrid frequentist-bayesian $CLs$ approach~\cite{CLS} as the second method. 
+Although the two statistical approaches are not equivalent, in this case we get similar results. 
 
 \begin{itemize}
 \item Upper limit at 95\% CL. with 12.5\% signal systematic error using Bayesian approach = 5.7  
 \item Upper limit at 95\% CL. with 12.5\% signal systematic error using $CLs$ = 5.6  
 \end{itemize}
 
-We use 5.7 events as the upper limit for the rest of this document. This corresponds to a 95\% CL.  
-upper limit on the effective cross section for new processes, including the effects of experimental
-acceptance and efficiency, of 0.3 pb for the same sign di-lepton channel.
+We use 5.7 events as the upper limit for the rest of this document. 
+This corresponds to a 95\% CL. upper limit on the effective cross section for new processes, 
+including the effects of experimental acceptance and efficiency, of 0.3 pb for the same sign di-lepton channel.
+
+Fig.~\ref{fig:sstopexclusion} shows the exclusion region at 95\% CL. as a function of $Z'$ mass and the right-handed coupling, $f_R$. 
+LO signal cross sections are used for this study. 
+The limit on t-channel exchange diagrams $tt$ covers a significant region as a function of the $Z'$ mass.
+In most cases it does not favor large values of the coupling $f_R$. 
+As expected, when using 35 pb$^{-1}$ of luminosity the limit on $ttj$ production is weak and 
+only excludes up to $m_Z' \sim 510$ GeV for higher values of $f_R$.
 
 \begin{figure}[htb]
 \begin{center}
@@ -164,11 +201,3 @@ as the dotted line excludes the assumptions on $ttj$ pair production. For the re
 scales, $\mu$ is set to the top mass. \label{fig:sstopexclusion}}
 \end{center}
 \end{figure}
-
-Fig.~\ref{fig:sstopexclusion} shows the exclusion region at 95\% CL. as a function of $Z'$ mass for 
-various choices of the right-handed coupling, $f_R$. LO signal cross sections are used for this study. 
-The limits on t-channel exchange diagrams $tt$ covers significant regions as a function of $Z'$ masses. 
-In most cases it does not favor large values of the coupling $f_R$. As expected, when using 35 pb$^{-1}$ of luminosity 
-the limits on $ttj$ production is weak and only excludes until $m_Z' \sim 510$ GeV for higher values of $f_R$.
-
-
