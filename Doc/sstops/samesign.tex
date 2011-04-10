@@ -1,30 +1,46 @@
 \section{Search for Same Sign Top Quark Pair Production}
 \label{sec:samesign}
 
-This analysis is based on the approved same-sign di-lepton search documented in AN 2010/247 v6 \cite{ssnote1}.  
+This analysis is based on the approved same-sign di-lepton search documented in AN 2010/247 v6 \cite{ssnote1}
+and corresponds to an integrated luminosity of 35 pb$^{-1}$.
 In that analysis we searched for events with two isolated same sign leptons, two or more jets, and MET ($\met$).
+This final state is exactly the final state that one would expect from top-top production with 
+both top quarks decaying as $t\rightarrow Wb$, $W\rightarrow \ell \nu$.
 
-This final state is exactly the final state that one would expect from top-top production with both top quarks decaying as $t\rightarrow Wb$, $W\rightarrow \ell \nu$.
+
+
+\subsection{Event Selection}
+
 In AN 2010/247 we presented event yields and background expectations for several event selections.  
-One of those event selections is very similar to that of the $t\bar{t}$ (opposite sign) dilepton cross-section analysis \cite{topxsection}, 
+One of those event selections is very similar to that of the $t\bar{t}$ (opposite sign) dilepton 
+cross-section analysis \cite{topxsection}, 
 and thus it is the appropriate selection for a top-top pair search.  
 Briefly, this selection consists of
 
 \begin{itemize}
-	\item Two same sign leptons of $p_T>20 GeV$, $|\eta|<2.4$
-	\item Two jets of $p_T>30 GeV$, $|\eta|<2.4$
-	\item $\met >20 GeV$ ($e\mu$) or $\met>30 GeV$ ($ee$ or $\mu\mu$)
+	\item Two same sign leptons of $p_T>20$ GeV, $|\eta|<2.4$
+	\item Two jets of $p_T>30$ GeV, $|\eta|<2.4$
+	\item $\met >20$ GeV ($e\mu$) or $\met>30$ GeV ($ee$ or $\mu\mu$)
 \end{itemize}
 
-The results of the search in this kinematical region are summarized in Table 6 of AN 2010/247 v6 \cite{ssnote1}, 
+\noindent More details are to be found in Reference~\cite{ssnote1}.
+
+\subsection{Event Yields and Background}
+\label{sec:ssyields}
+
+The results of the search in this kinematical region are 
+summarized in Table 6 of AN 2010/247 v6 \cite{ssnote1}, 
 which is reproduced below as Table \ref{tab:ssyields}.
-We take the results of Table \ref{tab:ssyields} with one important modification: 
-since we are interested in $tt$ production and not $\bar{t}\bar{t}$ production,
-we only consider $\ell^{+}\ell^{+}$ events.  
-Thus the BG estimates in Table \ref{tab:ssyields} have to be divided by two.  
-Both observed events in Table \ref{tab:ssyields} have positive leptons.  
-Then, the bottom line yield and bg prediction is: 
-two events observed and $0.9 \pm 0.6$ expected BG, see Table \ref{tab:sm_preditcion}.
+
+The data-driven background prediction is based on a combination 
+of estimating ``fake leptons''~\cite{fakenote} (FakeRate) 
+and electrons reconstructed with the wrong sign~\cite{ssnote1} (Charge FlipRate). 
+The probability for muons to be reconstructed with the wrong sign at the 
+relevant momenta is negligible.
+
+
+
+
 
 %%% Commented out DLE
 %This section summarizes the results of the search for same sign $tt$
@@ -41,14 +57,9 @@ two events observed and $0.9 \pm 0.6$ expected BG, see Table \ref{tab:sm_preditc
 %wrong sign~\cite{ssnote1} (Charge FlipRate). The probability for muons to be reconstructed with 
 %the wrong sign at the relevant momenta is negligible.
 
-\subsection{Event Yields}
-\label{sec:ssyields}
 
-The observed and expected SM event yields in 35~pb$^{-1}$ reproduced from Table 6 of AN 2010/247 v6 \cite{ssnote1}
-are shown in Table \ref{tab:ssyields}.
-The data-driven background prediction is based on a combination of estimating ``fake leptons''~\cite{fakenote} (FakeRate) 
-and electrons reconstructed with the wrong sign~\cite{ssnote1} (Charge FlipRate). 
-The probability for muons to be reconstructed with the wrong sign at the relevant momenta is negligible.
+
+
 
 %after applying the event selections
 %described in Section~\ref{sec:eventselection} to the datasets described in Section~\ref{sec:datasamples} 
@@ -60,7 +71,7 @@ The probability for muons to be reconstructed with the wrong sign at the relevan
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-Sample & $ee$    & $\mu\mu$ & $e\mu$      & total \\ \hline
+Sample & $e^{\pm}e^{\pm}$    & $\mu^{\pm}\mu^{\pm}$ & $e^{\pm}\mu^{\pm}$      & total \\ \hline
 % all the MCs
 \hline
 DY  & 0.00000 $\pm$ 0.00000 & 0.00000 $\pm$ 0.00000 & 0.00000 $\pm$ 0.00000 & 0.00000 $\pm$ 0.00000 \\ 
@@ -86,8 +97,11 @@ total data driven prediction & $0.54\pm 0.48$ & $0.13\pm 0.14$ & $1.07\pm 0.72$ 
 total MC driven prediction & $0.01\pm 0.01$ & $0.01\pm 0.01$ & $0.08\pm 0.04$ & $0.10\pm 0.05$ \\\hline\hline
 total bkg prediction & $0.55\pm 0.48$ & $0.14\pm 0.14$ & $1.15\pm 0.7$ & $1.8\pm 1.1$ \\\hline
 \end{tabular}
-\caption{Data and Monte Carlo yields for the same sign di-leptons with $P_T >20$\ GeV. 
-Uncertainties in the lower three rows also include the systematic uncertanities on the method used.\label{tab:ssyields} }
+\caption{\protect Data and Monte Carlo yields for the same sign di-leptons with $P_T >20$\ GeV
+from Reference~\cite{ssnote1}.  Note that this Table inludes $\ell^+\ell^+$ as well
+as $\ell^-\ell^-$; Both signal events are $e^+\mu^+$.
+Uncertainties in the lower three rows also include the systematic 
+uncertanities on the method used.\label{tab:ssyields} }
 \end{center}
 \end{table}
 
@@ -96,8 +110,8 @@ The event yields have the following characteristics:
 \begin{itemize}
 \item We do not consider rare processes such as $qqW^\pm W^\pm, WWW, t\bar{t}W$, double parton $W^\pm W^\pm$, which are 
 negligibly small~\cite{ssnote1}.
-\item We found small contributions (0.01 events) from conversion of prompt photons in $W/Z\gamma$ using MC and are
-not considered in order to avoid double counting in the single fake contributions.
+% \item We found small contributions (0.01 events) from conversion of prompt photons in $W/Z\gamma$ using MC and are
+% not considered in order to avoid double counting in the single fake contributions.
 \item The diboson backgrounds $WW, WZ, ZZ$ are taken from the MC as an additional background estimate. This contribution
 is tabulated as the total MC driven predicition.
 \item The prediction from fake rates includes the systematic error of 50\%. 
@@ -108,18 +122,41 @@ sign events observed in the control region~\cite{ssnote1}.
 \end{itemize}
 
 The dominant SM contribution is from \ttbar decays. The total estimated background 
-is obtained after the application of Fake and Charge Flip rates to the entire ensemble
-of SM samples \cite{ssnote1}. The data yield is in good agreement with the predication from both MC as 
-well as the data driven predictions. 
+is obtained after the application of Fake and Charge Flip rates 
+to the dilepton dataset\cite{ssnote1}. 
+The data yield is in good agreement with the background prediction. 
+% from both MC as 
+% well as the data driven predictions. 
 
-One of the key components of same-sign top pair search is the fact that the final state includes  
-includes mainly one type of sign. 
-For example, in the t-channel exchange: $ uu \rightarrow tt \rightarrow l^+ l^+ \mu \nu b b$ only positively charged leptons are involved. 
-The quark quark, $\bar{u}\bar{u}$ scattering is highly suppressed due to the parton luminosities, thus we do not expect any significant contribution 
-from negatively charged leptons. 
-Given that the data driven methods are robust against any given choice of lepton charge~\cite{fakenote1}, we use half of the total background prediction for this search.
+We take the results of Table \ref{tab:ssyields} with one important modification: 
+since we are interested in $tt$ production and not $\bar{t}\bar{t}$ production,
+we only consider $\ell^{+}\ell^{+}$ events.  
+Thus the BG estimates in Table \ref{tab:ssyields} have to be divided by two.
+Strictly speaking the W$+$jets background, which according to MC is about 25\%
+of the total, is not completely charge symmetric.  This BG is calculated in a data 
+driven was using the fake rate method.  We have repeated the fake rate calculation
+of Table~\ref{tab:ssyields} for positive leptons only; the result is 
+XX events, which is consistent with being one half of the estimate for both
+positive and negative leptons of Table~\ref{tab:ssyields}.
 
-The results is summarized in Table~\ref{tab:sm_preditcion}.
+
+Both observed events in Table \ref{tab:ssyields} have positive leptons.  
+Then, the bottom line yield and bg prediction is: 
+two events observed and $0.9 \pm 0.6$ expected BG, see Table \ref{tab:sm_preditcion}.
+Thus, we see no statistically significant evidence for $pp \to tt$.
+
+
+
+
+% One of the key components of same-sign top pair search is the fact that the final state includes  
+% includes mainly one type of sign. 
+% For example, in the t-channel exchange: $ uu \rightarrow tt \rightarrow l^+ l^+ \mu \nu b b$ only positively charged leptons are involved. 
+% The quark quark, $\bar{u}\bar{u}$ scattering is highly suppressed due to the parton luminosities, thus we do not expect any significant contribution 
+% from negatively charged leptons. 
+% Given that the data driven methods are robust against any given choice of lepton charge~\cite{fakenote1}, we use half of the total background prediction for this search.
+
+
+% The results is summarized in Table~\ref{tab:sm_preditcion}.
 
 \begin{table}[hbt]
 \begin{center}
@@ -135,24 +172,30 @@ The uncertainty also includes systematic errors.\label{tab:sm_preditcion}}
 \end{table}
 
 %The ``anatomy'' of the 2 observed event is discussed in the appendix.
-Although the observed events have two positively charged di-leptons, we do not consider this a significant deviation from the prediction.
+% Although the observed events have two positively charged 
+% di-leptons, we do not consider this a significant deviation from the prediction.
 
-\subsection{Systematic Uncertainties}
+\subsection{Systematic Uncertainties on the Acceptance}
 \label{sec:sssystematics}
 
-Details of the systematic uncertainties studied are discussed elsewhere~\cite{ssnote1}. 
-We summarize the most important aspects for the previously described signal in Table \ref{tab:systSumm}.
+The methods used to determine the systematic uncertaintare are discussed in Reference~\cite{ssnote1}.
+For lepton selections, we take the result from ~\cite{ssnote1}.
+We have recalculated the systematic uncertainties due to ISR/FSR, PDFs, and jet energy scale
+appropriate to the $pp \to tt$ process.  The results are 
+summarized 
+in Table \ref{tab:systSumm}.
 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{lcccc}\hline
 Source 					& $ee$		& $\mu\mu$		& $e\mu$			& all \\ \hline
 Lepton selection			& 11.8\%		& 10.6\%		& 10.8\%			& 10.7\% \\
-Energy scale				& 5\%		& 5\%		& 5\%			& 5\% \\
-ISR/FSR and PDF				& 2\%		& 2\%		& 2\%			& 2\% 	\\
+Energy scale				& X\%		& X\%		& X\%			& X\% \\
+ISR/FSR and PDF				& 3\%		& 3\%		& 3\%			& 3\% 	\\
 Total without luminosity		& 12.9\%		& 11.8\%		& 11.9	& 11.9\%	\\ \hline
 Integrated luminosity			& 4\%		& 4\%		& 4\%			& 4\%	\\ \hline
-Total & 13.6\% & 12.4\% & 12.5\%  & 12.5\% \\
+Total & X\% & X\% & X\%  & X\% \\
+%%% Total & 13.6\% & 12.4\% & 12.5\%  & 12.5\% \\
 \hline
 \end{tabular}
 \caption{\small\label{tab:systSumm}Summary of systematic uncertainties on the signal selection and
