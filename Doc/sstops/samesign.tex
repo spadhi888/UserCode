@@ -170,8 +170,30 @@ The uncertainty also includes systematic errors.\label{tab:sm_preditcion}}
 \label{sec:sssystematics}
 
 The product of acceptance, efficiency, and branching ratio is determined
-from simulation.  It is found to be $1.14 \pm 0.16 \%$, independent of $Z'$ 
-mass (the uncertainty on this quantity is discussed below).
+from simulation.  It is found to be $0.95 \pm 0.13 \%$, independent of $Z'$ 
+mass (the uncertainty on this quantity is discussed below).  This acceptance
+is calculated using the MadGraph {\tt DECAY} package; when Pythia is used
+to decay the top quarks, the acceptance is 20\% higher, see
+Fig.~\ref{fig:topdecays}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.5\linewidth]{figs/effAccBRdecays.pdf}
+\caption{The product of acceptance, efficiency, and branching ratio 
+as determined
+from MC as a function of $Z'$ mass.  
+The red points correspond to events where the
+top decays was handled by Pythia; the blue points correspond to 
+events where the
+top decay was handled by Madgraph, so that spin effects are properly 
+accounted for.
+In this last case the acceptance was corrected for the fact that the 
+$W \to \ell \nu$ branching ratio in MadGraph is 11.1\% instead of 10.8\%.
+\label{fig:topdecays}}
+\end{center}
+\end{figure}
+
+
 
 The methods used to determine the systematic uncertainties are discussed in Reference~\cite{ssnote1}.
 For lepton selections, we take the result from ~\cite{ssnote1}.
@@ -223,7 +245,7 @@ We use 5.7 events as the upper limit for the rest of this document.
 Note that the expected Bayesian limit is 
 $4.44^{+1.43}_{-1.28}$ events.
 
-This corresponds to a 95\% CL. upper limit for $\sigma(pp \to tt)$ of 14.2 pb.
+This corresponds to a 95\% CL. upper limit for $\sigma(pp \to tt)$ of 17.0 pb.
 
 
 Fig.~\ref{fig:sstopexclusion} shows the exclusion region at 95\% CL. as a function of $Z'$ mass and the right-handed coupling, $f_R$. 
@@ -267,6 +289,6 @@ $\mathcal{L} = -\frac{1}{2}\frac{C_{RR}}{\Lambda^2}
  [\bar{u} \gamma^\mu t][\bar{u} \gamma_{\mu} t] + h.c.$~\cite{cdfth2},
 with $\frac{C_{RR}}{\Lambda^2} = \frac{2 g_W^2 f_R^2}{M_{Z'}^2}$.
  Our limit on $f_R$, calculated for $M_{Z'}=2$ TeV, 
-would then correspond to $\frac{C_{RR}}{\Lambda^2} < 2.4$ TeV$^{-2}$ at 
+would then correspond to $\frac{C_{RR}}{\Lambda^2} < 2.6$ TeV$^{-2}$ at 
 95\% confidence.  This is more stringent than the limit recently reported
 by CDF: $\frac{C_{RR}}{\Lambda^2} < 3.7$ TeV$^{-2}$~\cite{cdflimit}.
