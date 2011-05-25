@@ -1,7 +1,0 @@
-<export></export>
-<library name=SusyScanAddOn_plugins file=*.cc>
-  <use name=FWCore/Framework>
-  <use name=FWCore/ParameterSet>
-</library>
-
-
