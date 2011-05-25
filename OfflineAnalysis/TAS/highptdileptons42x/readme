@@ -1,0 +1,103 @@
+Number of good ee Hyps:  0
+Number of good mumu Hyps: 3
+Number of good emu Hyps: 2
+Number of good evts before overlap: 5
+Number of good evts after overlap: 5
+
+===============================Table for ee
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.00 &plusmn;   0.00 | 
+ |     ppmux  |   0.00 &plusmn;   0.00 | 
+ |  Total MC  |   0.00 &plusmn;   0.00 | 
+===============================Table for mm
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.00 &plusmn;   0.00 | 
+ |     ppmux  |   0.55 &plusmn;   0.32 | 
+ |  Total MC  |   0.55 &plusmn;   0.32 | 
+===============================Table for em
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.00 &plusmn;   0.00 | 
+ |     ppmux  |   0.36 &plusmn;   0.26 | 
+ |  Total MC  |   0.36 &plusmn;   0.26 | 
+===============================Table for all
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.00 &plusmn;   0.00 | 
+ |     ppmux  |   0.91 &plusmn;   0.41 | 
+ |  Total MC  |   0.91 &plusmn;   0.41 | 
+
+
+SF - V1
+Number of good ee Hyps:  5
+Number of good mumu Hyps: 0
+Number of good emu Hyps: 2
+Number of good evts before overlap: 7
+Number of good evts after overlap: 7
+
+Mu15
+Number of good ee Hyps:  2
+Number of good mumu Hyps: 137
+Number of good emu Hyps: 341
+Number of good evts before overlap: 480
+Number of good evts after overlap: 480
+
+===============================Table for ee
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   7.62 &plusmn;   3.44 | 
+ |     ppmux  |   0.002 &plusmn;   0.002 | 
+ |  Total MC  |   7.62 &plusmn;   3.44 | 
+===============================Table for mm
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.00 &plusmn;   0.00 | 
+ |     ppmux  |   0.82 &plusmn;   0.08 | 
+ |  Total MC  |   0.82 &plusmn;   0.08 | 
+===============================Table for em
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   1.73 &plusmn;   1.23 | 
+ |     ppmux  |   0.91 &plusmn;   0.06 | 
+ |  Total MC  |   2.64 &plusmn;   1.23 | 
+===============================Table for all
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   9.35 &plusmn;   3.65 | 
+ |     ppmux  |   1.73 &plusmn;   0.11 | 
+ |  Total MC  |  11.08 &plusmn;   3.66 | 
+
+
+DF 
+
+QCD 
+Number of good ee Hyps:  96
+Number of good mumu Hyps: 3
+Number of good emu Hyps: 19
+Number of good evts before overlap: 118
+Number of good evts after overlap: 118
+
+
+Mu15
+Number of good ee Hyps:  88
+Number of good mumu Hyps: 1501
+Number of good emu Hyps: 7274
+Number of good evts before overlap: 8821
+Number of good evts after overlap: 8863
+
+
+===============================Table for ee
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   1.12 &plusmn;   0.12 | 
+ |     ppmux  |   0.001 &plusmn;  0.0001 | 
+ |  Total MC  |   1.12 &plusmn;   0.12 | 
+===============================Table for mm
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   0.44 &plusmn;   0.26 | 
+ |     ppmux  |   0.34 &plusmn;   0.01 | 
+ |  Total MC  |   0.78 &plusmn;   0.26 | 
+===============================Table for em
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   1.08 &plusmn;   0.28 | 
+ |     ppmux  |   0.35 &plusmn;   0.005 | 
+ |  Total MC  |   1.43 &plusmn;   0.28 | 
+===============================Table for all
+ |   *sample* |       *Yield*       |
+ |     qcd30  |   2.64 &plusmn;   0.41 | 
+ |     ppmux  |   0.69 &plusmn;   0.01 | 
+ |  Total MC  |   3.33 &plusmn;   0.41 | 
+

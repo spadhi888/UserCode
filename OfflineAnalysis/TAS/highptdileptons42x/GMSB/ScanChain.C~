@@ -1,0 +1,1338 @@
+/* 
+   Usage:
+   root [0] .L ScanChain.C++
+   root [1] TFile *_file0 = TFile::Open("merged_ntuple.root")
+   root [2] TChain *chain = new TChain("Events")
+   root [3] chain->Add("merged_ntuple.root")
+
+   There are several places where one may create CMS2 cms2
+   It can be done here (in a doAll.C script), i.e.:
+
+   root [4] CMS2 cms2 
+
+
+   It can be done in the source as is done below, or it can be
+   ascertained by including CORE/CMS2.cc as is commented out
+   below.  They are all the same, and everything will work so
+   long as it is created somewhere globally.
+
+   root [5] ScanChain(chain)
+*/
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+#include "TChain.h"
+#include "TFile.h"
+#include "TDirectory.h"
+#include "TROOT.h"
+#include "TString.h"
+#include "selections.cc"
+#include "Histograms.cc"
+#include "../CORE/CMS2.cc"
+#include "goodrun.cc"
+// #include "../CORE/fakerates.cc"
+#include "../CORE/mcSelections.cc"
+#include "../CORE/MT2/MT2.cc"
+#include "../CORE/trackSelections.cc"
+#include "../CORE/eventSelections.cc"
+#include "../CORE/SimpleFakeRate.cc"
+
+#define JETPTCUT 20.0
+
+using namespace tas;
+unsigned int numtightLeps;
+typedef ROOT::Math::LorentzVector<ROOT::Math::PxPyPzE4D<float> > LorentzVector;
+
+bool usePtGt2020;
+bool usePtGt2010;
+bool usePtGt77;
+bool usePtGt1010;
+bool excludePtGt2020;
+bool used0corrPV;
+bool applylepIDCuts;
+bool applyFOv1Cuts;
+bool applyFOv2Cuts;
+bool applyFOv3Cuts;
+bool applyLooseIDCuts;
+bool applylepIsoCuts;
+bool applylepLooseIsoCuts;
+bool applyTriggers;
+bool vetoZmass;
+bool requireZmass;
+bool hypDisamb;
+bool useCorMET;
+bool useOSleptons;
+bool useSSleptons;
+bool usetcMET;
+bool usepfMET;
+bool vetoMET;
+bool vetoProjectedMET;
+bool usejptJets;
+bool usecaloJets;
+bool usepfJets;
+bool vetoJets;
+bool requireEcalEls;
+bool chargeFlip;
+double sumfr=0;
+
+Bool_t sortByPt(LorentzVector lv1, LorentzVector lv2) {
+  return lv1.pt() > lv2.pt();
+}
+
+// Resurrect the DorkyEventIdentifier  
+struct DorkyEventIdentifier {
+  unsigned long int run, event,lumi;
+  bool operator < (const DorkyEventIdentifier &) const;
+  bool operator == (const DorkyEventIdentifier &) const;
+};
+
+bool DorkyEventIdentifier::operator < (const DorkyEventIdentifier &other) const
+{
+     if (run != other.run)
+       return run < other.run;
+     if (event != other.event)
+       return event < other.event;
+     if(lumi != other.lumi)
+       return lumi < other.lumi;
+     return false;
+}
+
+bool DorkyEventIdentifier::operator == (const DorkyEventIdentifier &other) const
+{
+     if (run != other.run)
+          return false;
+     if (event != other.event)
+          return false;
+     return true;
+}
+
+std::set<DorkyEventIdentifier> already_seen;
+bool is_duplicate (const DorkyEventIdentifier &id) {
+     std::pair<std::set<DorkyEventIdentifier>::const_iterator, bool> ret =
+          already_seen.insert(id);
+     return !ret.second;
+}
+
+TH2F *h2_muFR;
+TH2F *h2_elFR;
+
+
+void FillHistograms(const unsigned int hypIdx, const vector<unsigned int> v_jets, const vector<unsigned int> v_jetsNoEtaCut,
+		    const pair<float, float>, const float weight, std::string prefix);
+void getFRHists(float jetTriggerPt);
+double getFRWeight(const int hypIdx, string  elFRversion);
+float GetValueTH2F(Float_t x, Float_t y, const TH2F* h);
+void EndJob();
+
+
+
+void ScanChain( TChain* chain, vector<TString> v_Cuts, string prefix="", 
+		bool doFRestimation = false, float jetTriggerPt = -9999., float lumi = 0.01, float NLOCS=-9999.) { //lumi in fb-1
+
+
+  //deal with the cuts
+  useOSleptons          = find(v_Cuts.begin(), v_Cuts.end(), "useOSleptons"          ) != v_Cuts.end();
+  useSSleptons          = find(v_Cuts.begin(), v_Cuts.end(), "useSSleptons"          ) != v_Cuts.end();
+  usePtGt2020          = find(v_Cuts.begin(), v_Cuts.end(), "usePtGt2020"          ) != v_Cuts.end();
+  usePtGt2010          = find(v_Cuts.begin(), v_Cuts.end(), "usePtGt2010"          ) != v_Cuts.end();
+  usePtGt77            = find(v_Cuts.begin(), v_Cuts.end(), "usePtGt77"            ) != v_Cuts.end();
+  usePtGt1010          = find(v_Cuts.begin(), v_Cuts.end(), "usePtGt1010"          ) != v_Cuts.end();      
+  used0corrPV          = find(v_Cuts.begin(), v_Cuts.end(), "used0corrPV"          ) != v_Cuts.end();
+  excludePtGt2020      = find(v_Cuts.begin(), v_Cuts.end(), "excludePtGt2020"      ) != v_Cuts.end();
+  applylepIDCuts       = find(v_Cuts.begin(), v_Cuts.end(), "applylepIDCuts"       ) != v_Cuts.end(); 
+  applyFOv1Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv1Cuts"        ) != v_Cuts.end(); 
+  applyFOv2Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv2Cuts"        ) != v_Cuts.end(); 
+  applyFOv3Cuts        = find(v_Cuts.begin(), v_Cuts.end(), "applyFOv3Cuts"        ) != v_Cuts.end(); 
+  applyLooseIDCuts     = find(v_Cuts.begin(), v_Cuts.end(), "applyLooseIDCuts"     ) != v_Cuts.end(); 	  
+  applylepIsoCuts      = find(v_Cuts.begin(), v_Cuts.end(), "applylepIsoCuts"      ) != v_Cuts.end(); 
+  applylepLooseIsoCuts = find(v_Cuts.begin(), v_Cuts.end(), "applylepLooseIsoCuts" ) != v_Cuts.end();
+  applyTriggers        = find(v_Cuts.begin(), v_Cuts.end(), "applyTriggers"        ) != v_Cuts.end();
+  vetoZmass            = find(v_Cuts.begin(), v_Cuts.end(), "vetoZmass"            ) != v_Cuts.end();
+  requireZmass         = find(v_Cuts.begin(), v_Cuts.end(), "requireZmass"         ) != v_Cuts.end();
+  hypDisamb            = find(v_Cuts.begin(), v_Cuts.end(), "hypDisamb"            ) != v_Cuts.end();
+  useCorMET            = find(v_Cuts.begin(), v_Cuts.end(), "useCorMET"            ) != v_Cuts.end();
+  usetcMET             = find(v_Cuts.begin(), v_Cuts.end(), "usetcMET"             ) != v_Cuts.end();   
+  usepfMET             = find(v_Cuts.begin(), v_Cuts.end(), "usepfMET"             ) != v_Cuts.end();
+  vetoMET              = find(v_Cuts.begin(), v_Cuts.end(), "vetoMET"              ) != v_Cuts.end();
+  vetoProjectedMET     = find(v_Cuts.begin(), v_Cuts.end(), "vetoProjectedMET"     ) != v_Cuts.end();
+  usecaloJets          = find(v_Cuts.begin(), v_Cuts.end(), "usecaloJets"          ) != v_Cuts.end();
+  usejptJets           = find(v_Cuts.begin(), v_Cuts.end(), "usejptJets"           ) != v_Cuts.end();
+  usepfJets            = find(v_Cuts.begin(), v_Cuts.end(), "usepfJets"            ) != v_Cuts.end();
+  chargeFlip            = find(v_Cuts.begin(), v_Cuts.end(), "chargeFlip"            ) != v_Cuts.end();
+  vetoJets             = find(v_Cuts.begin(), v_Cuts.end(), "vetoJets"             ) != v_Cuts.end();
+  requireEcalEls       = find(v_Cuts.begin(), v_Cuts.end(), "requireEcalEls"       ) != v_Cuts.end();
+
+  cout << "REMEMBER THAT JET COUNTING NOW USES 20 GeV JETS" << endl;
+
+
+  if(doFRestimation && jetTriggerPt < 0) {
+    cout << "Need to specify the jetTrigger to do the FRs. Exiting" << endl;
+    return;
+  }
+
+  //preliminary checks
+  if(usePtGt2020 && usePtGt77) {
+    cout << "You want to use pt > 20,20, and >7,7. While this is ok, its a bit redundant. Please pick the cut you really want" << endl;
+    return;
+  }
+
+  if(usePtGt1010 && usePtGt77) {
+    cout << "You want to use pt > 10,10, and >7,7. While this is ok, its a bit redundant. Please pick the cut you really want" << endl;
+    return;
+  }
+
+  
+  if(!usePtGt2020 && excludePtGt2020) {
+    cout << "Cannot exlcude higer pt region and not use the lower Dilepton pt region. Will end up with no events passing in the greater than 2 jet bin" << endl;
+    return;
+  }
+
+  if(applylepIDCuts  + applyLooseIDCuts + applyFOv1Cuts + applyFOv2Cuts +applyFOv3Cuts > 1 ) {
+    cout << "You have selected too maky ID choices. Please pick one" << endl;
+    return;
+  }
+
+  if(useCorMET + usetcMET + usepfMET > 1) {
+    cout << "Can't use two or more MET algoritms at the same time! Make up your mind!" << endl;
+    return;
+  }
+
+  if(useCorMET + usetcMET + usepfMET == 0) {
+    cout << "Need to use at least one MET algo to make the MT2 and MT2J plots. Please pick either calo, tc or pf MET" << endl;
+    return;
+  }
+
+  if(usejptJets + usecaloJets +usepfJets > 1) {
+    cout << "Can't use two jet algoritms at the same time! Make up your mind!" << endl;
+    return;
+  }
+
+  if(usejptJets + usecaloJets + usepfJets== 0) {
+    cout << "Need to pick at least one jet algoritm for jet counting. Pick either calo or jpt jets!" << endl;
+    return;
+  }
+
+  if(requireZmass + vetoZmass > 1) {
+    cout << "Can't both require and reject events in the Z mass windown at the same time!" << endl;
+    return;
+  }
+
+  if(vetoMET + vetoProjectedMET > 1) {
+    cout << "Projected MET includes the MET veto. If you want projected MET, unselect \"vetoMET\"" << endl;
+    return;
+  }
+
+
+  if(usetcMET)
+    cout << "REMEMBER THAT WERE COMBINING THE SPRING10 AND SUMMER09 SAMPLES. THERE ARE NO CALOTOWERS STORED IN THE SPRING10 SAMPLES. SO WE CANT CORRECT THE TCMET ON THE FLY AND THERE ARE SOME IF STATEMENTS THAT NEED TO BE CLEANED UP WHEN WE MOVE STRAIGHT TO THE SPRING SAMPLES" << endl;
+
+
+
+  TObjArray *listOfFiles = chain->GetListOfFiles();
+  unsigned int nEventsChain=0;
+  unsigned int nEvents = chain->GetEntries();
+  nEventsChain = nEvents;
+  unsigned int nEventsTotal = 0;
+  numtightLeps = 0;
+  unsigned int nGoodHyps[4] = {0,0,0,0};
+  unsigned int nGoodEvts = 0;
+  
+  
+  //fix kfactor for DYmm, tautau events
+  //if(prefix == "DYmm") {
+  //cout << "SCALING DYMM AND TAUTAU EVENTS BY 1.14 BECAUSE WE FORGOT THE KFACTORS. BE CAREFUL!!!!!!" << endl;
+  //lumi = lumi * 1.14;
+  //}
+  //bool isDYee;
+  //TObjArray *objArray = chain->GetListOfFiles();
+  //if(
+
+
+  //book Histograms
+  bookHistos(prefix.c_str());
+
+  // file loop
+  TIter fileIter(listOfFiles);
+  TFile *currentFile = 0;
+
+  //set the good run file
+  set_goodrun_file("goodruns.txt");
+  
+
+  while ( currentFile = (TFile*)fileIter.Next() ) {
+    TFile f(currentFile->GetTitle());
+    TTree *tree = (TTree*)f.Get("Events");
+    cms2.Init(tree);
+    
+    //Event Loop
+    unsigned int nEvents = tree->GetEntries();
+    for( unsigned int event = 0; event < nEvents; ++event) {
+      cms2.GetEntry(event);
+
+// deal with MC later
+
+      if(prefix == "data") {
+        DorkyEventIdentifier id = { evt_run(),evt_event(),evt_lumiBlock() };
+        if (is_duplicate(id)) continue;
+      }
+
+      ++nEventsTotal;
+
+      // Progress feedback to the user
+      if(nEventsTotal%2000 == 0) {
+	// xterm magic from L. Vacavant and A. Cerri
+	if (isatty(1)) {
+	  printf("\015\033[32m ---> \033[1m\033[31m%4.1f%%"
+		 "\033[0m\033[32m <---\033[0m\015", (float)nEventsTotal/(nEventsChain*0.01));
+	  fflush(stdout);
+	}
+      }//if(nEventsTotal%20000 == 0) {
+
+      //select good runs, lumis
+      if(prefix == "data" && !goodrun(evt_run(), evt_lumiBlock()))
+	continue;
+
+      // Cleaning cuts.
+      if(!cleaning_standard(prefix == "data")) continue;
+      if (!cleaning_goodVertex()) continue;
+      if (!cleaning_goodTracks()) continue;
+
+      //get the channels correct
+      int nels, nmus, ntaus;
+      int nleps = 0;
+      if(prefix != "data")
+	nleps = leptonGenpCount_lepTauDecays(nels, nmus, ntaus);
+      if (prefix == "ttdil"   &&  nleps  != 2) continue;
+      if (prefix == "ttotr"    &&  nleps == 2) continue;
+      if (prefix == "DYee"     &&  nleps != 2) continue;
+      if (prefix == "DYmm"     &&  nleps != 2) continue;
+      if (prefix == "DYtautau" &&  nleps != 2) continue;
+      
+         
+      //10pb-1 
+      float weight = 1.;
+      if(prefix != "data") {
+	if(NLOCS > 0)
+	  weight = evt_scale1fb()*lumi*NLOCS/(evt_xsec_incl()*evt_kfactor());
+	else 
+	  weight = evt_scale1fb()*lumi;	  
+      }
+
+
+      vector<unsigned int> v_goodHyps;
+      v_goodHyps.clear();
+      vector<float> v_weights;
+      v_weights.clear();
+      for(unsigned int hypIdx = 0; hypIdx < hyp_p4().size(); hypIdx++) {//hyploop
+	
+	int id_lt = hyp_lt_id()[hypIdx]; 
+	int id_ll = hyp_ll_id()[hypIdx];
+	int idx_lt = hyp_lt_index()[hypIdx];
+	int idx_ll = hyp_ll_index()[hypIdx];
+	LorentzVector lt_p4 = hyp_lt_p4()[hypIdx]; 
+	LorentzVector ll_p4 = hyp_ll_p4()[hypIdx];
+	
+
+     if (chargeFlip) {
+       bool mischarge = false;
+       
+       if (TMath::Abs(hyp_ll_id()[hypIdx]) == 11) {
+	 int elIndex = hyp_ll_index()[hypIdx];
+	 if ( isChargeFlip(elIndex)) mischarge = true;
+       }
+       
+       if (TMath::Abs(hyp_lt_id()[hypIdx]) == 11) {
+	 int elIndex = hyp_lt_index()[hypIdx];
+	 if ( isChargeFlip(elIndex)) mischarge = true;
+       }
+       if (mischarge) continue;
+      }   
+
+//        cout << "run,lumi,number: " << evt_run() << "," << evt_lumiBlock() << "," << evt_event() << " hyp Idx: " << hypIdx << endl;
+//        cout << "lt Pt: " << lt_p4.Pt() << " ll Pt" << ll_p4.Pt() << endl;
+
+	// opposite charge
+	if (useOSleptons) {
+	  if (id_lt * id_ll > 0) continue;
+        }
+
+	// same charge
+        if (useSSleptons) {
+          if (id_lt * id_ll < 0) continue;
+        }
+
+	//if a muon, always require global and tracker
+	if(abs(id_lt)==13) {
+	  if (((mus_type()[idx_lt]) & (1<<1)) == 0)    continue; // global muon
+	  if (((mus_type()[idx_lt]) & (1<<2)) == 0)    continue; // tracker muon
+	  
+	}
+	if(abs(id_ll)==13) {
+	  if (((mus_type()[idx_ll]) & (1<<1)) == 0)    continue; // global muon
+	  if (((mus_type()[idx_ll]) & (1<<2)) == 0)    continue; // tracker muon
+	}
+
+	if(requireEcalEls) {
+	  //ask that the electron is ecal driven
+	  if(abs(id_lt) == 11) {
+	    if (!(els_type()[idx_lt] & (1<<2)))
+	      continue;
+	  }
+	  if(abs(id_ll) == 11) {
+	    if (!(els_type()[idx_ll] & (1<<2)))
+	      continue;
+	  }
+	}
+
+	//regardless of jet bin
+	//cut at Pt > 20, 20
+	if(usePtGt2020) {
+	  if(lt_p4.Pt() < 20. || ll_p4.Pt() < 20.)
+	    continue;
+	}
+
+	if(usePtGt77) {
+	  if(lt_p4.Pt() < 7. || ll_p4.Pt() < 7.)
+	    continue;
+	}
+
+	if(usePtGt1010) {
+	  if(lt_p4.Pt() < 10. || ll_p4.Pt() < 10.)
+	    continue;
+	}
+
+
+	//cut at tight Pt > 20, loose Pt > 10
+	if(usePtGt2010) {
+	  if(TMath::Max(lt_p4.Pt(),ll_p4.Pt()) < 20)
+	    continue;
+	  if(TMath::Min(lt_p4.Pt(),ll_p4.Pt()) < 10)
+	    continue;
+	}
+	
+
+	//only look at events where loose lepton Pt < 20, tight > 20
+	if(excludePtGt2020) {
+	  if(lt_p4.Pt() > 20. && ll_p4.Pt() > 20.)
+	    continue; 
+	  if(lt_p4.Pt() < 10 || ll_p4.Pt() < 10.)
+	    continue; 
+	}
+
+
+	if(doFRestimation) {
+	  //unsigned int elFRversion = 9999;
+	  string elFRversion;
+	  if(applyFOv1Cuts)
+	    elFRversion = Form("eFRv1%du", (int)jetTriggerPt);
+	  else if(applyFOv2Cuts)
+	    elFRversion = Form("eFRv2%du", (int)jetTriggerPt);
+	  else if(applyFOv3Cuts)
+	    elFRversion = Form("eFRv3%du", (int)jetTriggerPt);
+          else
+            elFRversion = "undefined"; 
+
+	  if(elFRversion == "undefined") {
+	    cout << "asking for FR version that is not supported. quitting" << endl;
+	    return;
+	  }
+	  float FRweight = getFRWeight(hypIdx, elFRversion); 
+	  if(FRweight < -1.) 
+	    continue;
+	  v_goodHyps.push_back(hypIdx);
+	  v_weights.push_back(FRweight); 
+	  continue;
+	}
+	
+	//require lepton ID cuts?
+	if(applylepIDCuts) {
+	  if(!isGoodHypNoIso(hypIdx))//, used0corrPV) 
+	    continue;
+	}
+
+	/*
+	  if(hyp_type()[hypIdx] == 0) {
+	  cout << "tight normchi2:  " << mus_gfit_chi2().at(idx_lt)/cms2.mus_gfit_ndof().at(idx_lt) << endl;
+	  cout << "tight d0      :  " << TMath::Abs(cms2.mus_d0corr().at(idx_lt)) << endl;
+	  cout << "tight iso     :  " << muonIsoValue(idx_lt) << endl;
+	  cout << "loose normchi2:  " << mus_gfit_chi2().at(idx_ll)/cms2.mus_gfit_ndof().at(idx_ll) << endl;
+	  cout << "loose d0      :  " << TMath::Abs(cms2.mus_d0corr().at(idx_ll)) << endl;
+	  cout << "loose iso     :  " << muonIsoValue(idx_ll) << endl;
+	  }
+	*/
+
+	
+	if(applyLooseIDCuts) {
+	  if(!isGoodLeptonLooseID(id_lt, idx_lt))
+	    continue; 
+	  if(!isGoodLeptonLooseID(id_ll, idx_ll))
+	    continue; 
+	}
+
+	//common for muons, so do all here
+	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts) {
+	  
+	  if(abs(id_lt) == 13) 
+	    if(!isFakeableMuon(idx_lt))
+	      continue;
+	  if(abs(id_ll) == 13) 
+	    if(!isFakeableMuon(idx_ll))
+	      continue;
+	  
+	  if(abs(id_lt) == 11) {
+	    if(applyFOv1Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_el_ttbarV1_v1) )
+	      continue;
+	    if(applyFOv2Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_el_ttbarV1_v2) )
+	      continue;
+	    if(applyFOv3Cuts && !pass_electronSelection(idx_lt, electronSelectionFO_el_ttbarV1_v3) )
+	      continue;
+	  }
+	  if(abs(id_ll) == 11) {
+	    if(applyFOv1Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_el_ttbarV1_v1) )
+	      continue;
+	    if(applyFOv2Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_el_ttbarV1_v2) )
+	      continue;
+	    if(applyFOv3Cuts && !pass_electronSelection(idx_ll, electronSelectionFO_el_ttbarV1_v3) )
+	      continue;
+	  }
+	}//	if(applyFOv1Cuts || applyFOv2Cuts || applyFOv3Cuts) {
+
+	    
+	  
+	
+	// require lepton isolation cuts?
+	if(applylepIsoCuts) {
+	  if(!isGoodHypwIso(hypIdx))
+	    continue;
+	}
+	
+	if(applylepLooseIsoCuts) {
+// -s	  if(abs(id_lt) == 11 && electronIsolation_relsusy_cand1(idx_lt, true) > 0.4) 
+//	    continue;
+// -s	  if(abs(id_ll) == 11 && electronIsolation_relsusy_cand1(idx_ll, true) > 0.4) 
+//	    continue;
+// -s	  if(abs(id_lt) == 13 && muonIsoValue(idx_lt) > 0.4)
+//	    continue; 
+// -s	  if(abs(id_ll) == 13 && muonIsoValue(idx_ll) > 0.4)
+//	    continue; 
+	}
+	  
+	
+	//loose cuts with no Isolation
+	//if(applyTTDilReferenceSelNoIso) {
+	//if(!isGoodRefHypNoIso(hypIdx))
+	//continue;
+	//}
+
+	//if(applyTTDilReferenceSelwIso) {
+	//if(!isGoodRefHypwIso(hypIdx))
+	//continue;
+	//}
+
+	v_goodHyps.push_back(hypIdx);	
+	v_weights.push_back(1);	
+      }//hypothesis loop
+      
+      //
+      // perform hypothesis disambiguation
+      //
+      if(v_goodHyps.size() == 0) 
+	continue;
+      
+      if(hypDisamb) {
+	int strasbourgDilType = -1;
+	unsigned int goodHyp = (unsigned int)eventDilIndexByWeightTTDil08(v_goodHyps, strasbourgDilType, false, false);
+        vector<unsigned int>::const_iterator goodHyp_it = find(v_goodHyps.begin(), v_goodHyps.end(), goodHyp);
+	if(goodHyp_it == v_goodHyps.end()) {
+	  cout << "The weight index does not correspond to the index of the best hypothesis!!!! Something is wrong" 
+               << "We will quit" << endl;
+          return;
+	}
+
+	//clear this vector and put in the goodHyp vector in here so we can then save some space
+	//and loop over this vector below. Useful when we're not using the hypDisambiguation
+	//get the index of the goodHyp in the vector of goodHyps
+	unsigned int goodHyp_idx = goodHyp_it - v_goodHyps.begin();
+	//get the weight of the corresponding goodHyp
+	float goodHyp_weight = v_weights[goodHyp_idx];
+	v_goodHyps.clear();
+        v_weights.clear();
+	v_goodHyps.push_back(goodHyp);
+	v_weights.push_back(goodHyp_weight);
+      }//if(hypDisamb)
+
+
+      //now loop over the good hypotheses. If we require hypothesis disambiguation,
+      //we will only have one entry in the vector of good hypothesis
+      for(unsigned int i = 0; i < v_goodHyps.size(); i++) {
+	
+	unsigned int hypIdx = v_goodHyps[i];
+	weight = weight*v_weights[i];
+
+	int type = hyp_type()[hypIdx];
+
+	//require trigger?
+	if(applyTriggers) {
+	  bool passMu = passHLTTrigger("HLT_Mu5");
+	  bool passEl = passHLTTrigger("HLT_Photon10_L1R");
+	  if(type == 0 && !passMu)
+	    continue;
+	  if(type == 3 && !passEl)
+	    continue;
+	  if((type == 1 || type == 2) && !passMu && !passEl)
+	    continue;
+	}//applyTriggers
+	
+	// z mass window
+	if(vetoZmass) {
+	  if(type == 0 || type == 3) {
+	    if (inZmassWindow(hyp_p4()[hypIdx].mass())) 
+	      continue;
+	  }
+	}//vetoZmass
+	
+	if(requireZmass) {
+	  if(type == 0 || type == 3) {
+	    if (!inZmassWindow(hyp_p4()[hypIdx].mass())) 
+	      continue;
+	  }
+	}//requireZmass
+	
+	//get the jets passing cuts 
+	vector<unsigned int> v_goodJets;
+	vector<unsigned int> v_goodJetsNoEtaCut;
+	vector<LorentzVector> v_jetP4s;
+	if(usecaloJets) {
+	  for(unsigned int i = 0; i < jets_p4().size(); i++) 
+	    v_jetP4s.push_back(jets_p4()[i]*jets_cor()[i]); //jets are uncorrected in our ntuples
+	}
+	if(usejptJets)
+	  v_jetP4s = jpts_p4();
+	if(usepfJets) 
+	  v_jetP4s = pfjets_p4();
+	for (unsigned int j = 0; j < v_jetP4s.size(); ++j) {
+	  if (isGoodDilHypJet(v_jetP4s.at(j), hypIdx, JETPTCUT, 2.4, 0.4, true)) 
+	    v_goodJets.push_back(j);
+	  if(isGoodDilHypJet(v_jetP4s.at(j), hypIdx, JETPTCUT, 9999, 0.4, true)) 
+	    v_goodJetsNoEtaCut.push_back(j);
+	}
+
+	
+	//if we want to veto on nJets, do it here
+	if(vetoJets) {
+	  if(v_goodJets.size() < 2)
+	    continue;
+	}
+	
+	//if we want to lower the pt cut, do the selection here
+	//this is njet dependent. Only want to lower the pt cut to 20,10 
+	//in the nJet > 1 bin
+	if(usePtGt2010) {
+	  //if(v_goodJets.size() > 1) {//if nJets > 1, the use lower pt cut
+	  if(max(hyp_lt_p4()[hypIdx].Pt(), hyp_ll_p4()[hypIdx].Pt()) < 20.)
+	    continue;
+	  if(min(hyp_lt_p4()[hypIdx].Pt(), hyp_ll_p4()[hypIdx].Pt()) < 10.)
+	    continue;
+	  //} else { //this is in the beginning already, but being paranoid
+	  //if(min(hyp_lt_p4()[hypIdx].Pt(), hyp_ll_p4()[hypIdx].Pt()) < 20.)
+	  //continue;
+	  //}
+	}//if(usePtGt2010)
+	
+	// MET cut
+	string metAlgo;
+	if(useCorMET   ) metAlgo  = "CorMET";
+	if(usetcMET    ) metAlgo  = "tcMET";
+	if(usepfMET    ) metAlgo  = "pfMET"; 	
+	pair<float, float> p_met; //met and met phi
+	if(usetcMET || usepfMET) {
+	  p_met = getMet(metAlgo, hypIdx, prefix);
+	  
+	  if(p_met.first < 0) {
+	    cout << "Something is wrong with the MET. Exiting" << endl;
+	    return;
+	  }
+	  //the cut is 30 for ee/mm hyps to reject DY
+	  //20 for emu
+	  if(vetoMET) {
+	    if(hyp_type()[hypIdx] == 0 || hyp_type()[hypIdx] == 3) {
+	      if(p_met.first < 30.) continue;
+	    }
+	    if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+	      if(p_met.first < 20.)   continue;
+	    }
+	  }
+
+	  if(vetoProjectedMET) {
+	    if(hyp_type()[hypIdx] == 0 || hyp_type()[hypIdx] == 3) {
+	      if(p_met.first < 30.) continue;
+	    }
+	    if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+	      if(p_met.first < 20.)   continue;
+	    }
+	    if(v_goodJets.size() < 2 && hyp_p4()[hypIdx].M() < 80.) {
+	      if(projectedMET(p_met.first, p_met.second, hypIdx) < 10)
+		continue;
+	    }
+	  }
+	  
+	} else if(useCorMET) {
+
+	  cout << "THIS HAS BEEN COMMENTED OUT FOR NOW. DOES NOTHING" << endl;
+	  /*
+	  //this is to agree with Slava
+	  float globalJESscaleRescale = 1.;
+	  bool muJetClean = true;
+	  float metx = met_pat_metCor_hyp(hypIdx)*cos(met_pat_metPhiCor_hyp(hypIdx));
+	  float mety = met_pat_metCor_hyp(hypIdx)*sin(met_pat_metPhiCor_hyp(hypIdx));
+	  //DOUBLE CHECK THIS !!!!!!!
+	  if(usecaloJets) {
+	  unsigned int nJused = 0;
+	  unsigned int nJ = jets_p4().size();
+	  for (unsigned int iJ = 0; iJ < nJ; ++iJ){
+	  if (isGoodDilHypJet(jets_cor()[iJ]*jets_p4()[iJ], hypIdx, 0, 2.4, 0.4,muJetClean)){
+	  metx -= cms2.jets_cor()[iJ]*cms2.jets_p4()[iJ].x()*(globalJESscaleRescale - 1.); 
+	  mety -= cms2.jets_cor()[iJ]*cms2.jets_p4()[iJ].y()*(globalJESscaleRescale - 1.); 
+	  nJused++;
+	  }
+	  }//jet loop
+	  }//if use caloJETS
+	  
+	  p_met = make_pair(sqrt(metx*metx + mety*mety), atan2(mety, metx));
+	  if(vetoMET) {
+	  if(hyp_type()[hypIdx] == 0 || hyp_type()[hypIdx] == 3) {
+	  if(p_met.first < 30.) continue;
+	  }
+	  if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+	  if(p_met.first < 20.)   continue;
+	  }
+	  }
+
+	  if(vetoProjectedMET) {
+	  if(v_goodJets.size() < 2 && hyp_p4()[hypIdx].M() < 80.) {
+	  if(projectedMET(p_met.first, p_met.second, hypIdx) < 10)
+	  continue;
+	  }
+	  if(hyp_type()[hypIdx] == 0 || hyp_type()[hypIdx] == 3) {
+	  if(p_met.first < 30.) continue;
+	  }
+	  if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+	  if(p_met.first < 20.)   continue;
+	  }
+	  }
+	  */
+	}//if vetoing on corrected caloMet
+	
+
+	nGoodHyps[hyp_type()[hypIdx]]++;	
+	if(prefix == "data") {
+	  cout << evt_run() << "   " << evt_lumiBlock() << "   " << evt_event();
+	  string type = "";
+	  if(hyp_type()[hypIdx] == 0)
+	    type = "mumu";
+	  else if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2)
+	    type = "emu";
+	  else 
+	    type = "ee";
+	  cout << "(" << type << ", NJets = " << v_goodJets.size() << ")" << endl; 
+	    
+	}
+	FillHistograms(hypIdx, v_goodJets, v_goodJetsNoEtaCut, p_met, weight, prefix);	
+	
+      }//hypothesis loop
+      if(v_goodHyps.size() > 0)
+	nGoodEvts++;
+    }//event loop
+  }//file loop
+  cout << "Number of good ee Hyps:  " << nGoodHyps[3] << endl;
+  cout << "Number of good mumu Hyps: " << nGoodHyps[0] << endl;
+  cout << "Number of good emu Hyps: " << nGoodHyps[1] + nGoodHyps[2] << endl;
+  cout << "Number of good evts before overlap: " << nGoodEvts << endl; 
+  cout << "Number of good evts after overlap: " << nGoodHyps[0] + nGoodHyps[1] + nGoodHyps[2] + nGoodHyps[3] << endl; 
+  cout << "sum fr: " << sumfr << endl;
+  EndJob();
+  cout << "Total number of events after overlap " << nEventsTotal << endl; 
+  cout << "Total number of events before overlap " << nEventsChain << endl; 
+  if ( nEventsChain != nEventsTotal ) {
+//    std::cout << "ERROR: number of events from files is not equal to total number of events" << std::endl;
+  }
+    
+    
+}
+
+void FillHistograms(const unsigned int hypIdx, const vector<unsigned int> v_jets, const vector<unsigned int> v_jetsNoEtaCut,
+		    const pair<float, float> p_met, const float weight, std::string prefix) {
+  
+  int type   = hyp_type()[hypIdx];
+  int lt_id  = hyp_lt_id()[hypIdx];
+  int lt_idx = hyp_lt_index()[hypIdx];
+  LorentzVector lt_p4 = hyp_lt_p4()[hypIdx];	
+  
+  int ll_id  = hyp_ll_id()[hypIdx];
+  int ll_idx = hyp_ll_index()[hypIdx];
+  LorentzVector ll_p4 = hyp_ll_p4()[hypIdx];
+  LorentzVector hypp4 = hyp_p4()[hypIdx];	
+  
+
+  //make a vector of corrected jets
+  vector<LorentzVector> v_jets_p4;
+  for(unsigned int i = 0; i < v_jets.size(); i++) {
+    if(usecaloJets)
+      v_jets_p4.push_back(jets_p4()[v_jets[i]]*jets_cor()[v_jets[i]]);
+    else if(usejptJets)
+      v_jets_p4.push_back(jpts_p4()[v_jets[i]]);
+    else if(usepfJets)
+      v_jets_p4.push_back(pfjets_p4()[v_jets[i]]);
+  }
+			  
+
+  //sort the jets
+  std::sort(v_jets_p4.begin(), v_jets_p4.end(), sortByPt);
+  
+  //instead of duplicating all the fills twice (once for the correct type and then for the 
+  //histogram that combines them all, we can loop over a vector of ints of size 2 whose first 
+  //entry is for index of the histogram of all the channels. From Histograms.cc (bookhistos):
+  //suffixall[0] = "ee";
+  //suffixall[1] = "mm";
+  //suffixall[2] = "em";
+  //suffixall[3] = "all";
+  
+  vector<int> v_type;
+  v_type.push_back(3);	
+  if(type == 1 || type == 2) //emu
+    v_type.push_back(2);
+  if(type == 0) //mumu
+    v_type.push_back(1);
+  if(type == 3) //ee
+    v_type.push_back(0);	
+
+
+  unsigned int jetBin = v_jets.size();
+  if(jetBin > 3)
+    jetBin = 4;
+  
+  for(unsigned int i = 0; i < v_type.size(); i++) {
+    
+    //which channel?
+    unsigned int ch  = v_type.at(i);
+      
+    
+    hnJet[ch]                         ->Fill(jetBin,        weight);
+    
+    if(inZmassWindow(hypp4.mass())) {
+      hnJetinZwindow[ch]             ->Fill(jetBin,        weight);
+      hdilMassTightWindow[ch][jetBin]->Fill(hypp4.mass(),  weight); 
+    }
+    else
+      hnJetoutZwindow[ch]             ->Fill(jetBin,        weight);	
+    
+    if(abs(lt_id)==11) {
+      helePt[ch][jetBin]              ->Fill(lt_p4.Pt(),    weight);
+      helePhi[ch][jetBin]             ->Fill(lt_p4.Phi(),   weight); 
+      heleEta[ch][jetBin]             ->Fill(lt_p4.Eta(),   weight);
+// -s      float relIso = electronIsolation_relsusy_cand1(lt_idx, true);
+      float relIso = 1;
+      float sumIso = relIso*max(els_p4()[lt_idx].Pt(), (float)20.);
+      helSumIso[ch][jetBin]           ->Fill(sumIso, weight); 
+      helRelIso[ch][jetBin]           ->Fill(relIso, weight); 	
+      helRelIsoTrack[ch][jetBin]      ->Fill(els_tkJuraIso()[lt_idx], weight);
+      double caloIso = els_hcalIso()[lt_idx];
+      if (fabs(els_etaSC()[lt_idx]) > 1.479) caloIso += els_ecalIso()[lt_idx];
+      if (fabs(els_etaSC()[lt_idx]) <= 1.479) caloIso += max(0., (els_ecalIso()[lt_idx] -1.));
+      helRelIsoCalo[ch][jetBin]       ->Fill(caloIso, weight                    );
+      heled0BS[ch][jetBin]            ->Fill(els_d0corr()[lt_idx], weight       );
+      heled0PV[ch][jetBin]            ->Fill(getd0wrtPV(els_trk_p4()[lt_idx], els_d0()[lt_idx]), weight);
+      heleEmaxOE5x5[ch][jetBin]       ->Fill(els_eMax()[lt_idx]/els_e5x5()[lt_idx], weight);
+
+      helIsoTrack[ch][jetBin]         ->Fill(els_tkJuraIso()[lt_idx], weight);
+      helIsoEcal[ch][jetBin]          ->Fill(els_ecalIso()[lt_idx],   weight);
+      helIsoHcal[ch][jetBin]          ->Fill(els_hcalIso()[lt_idx],   weight);
+
+      if (fabs(els_etaSC()[lt_idx]) < 1.479) {
+	helIsoTrackb[ch][jetBin]         ->Fill(els_tkJuraIso()[lt_idx], weight);
+	helIsoEcalb[ch][jetBin]          ->Fill(els_ecalIso()[lt_idx],   weight);
+	helIsoHcalb[ch][jetBin]          ->Fill(els_hcalIso()[lt_idx],   weight);
+      } else {
+	helIsoTracke[ch][jetBin]         ->Fill(els_tkJuraIso()[lt_idx], weight);
+	helIsoEcale[ch][jetBin]          ->Fill(els_ecalIso()[lt_idx],   weight);
+	helIsoHcale[ch][jetBin]          ->Fill(els_hcalIso()[lt_idx],   weight);
+      }
+      
+    }//if(abs(lt_id)==11) {
+    if(abs(ll_id)==11) {
+      helePt[ch][jetBin]              ->Fill(ll_p4.Pt(),    weight);	
+      helePhi[ch][jetBin]             ->Fill(ll_p4.Phi(),   weight); 
+      heleEta[ch][jetBin]             ->Fill(ll_p4.Eta(),   weight);
+//-s      float relIso = electronIsolation_relsusy_cand1(ll_idx, true);
+      float relIso = 1;
+      float sumIso = relIso*max(els_p4()[ll_idx].Pt(), (float)20.);
+      helSumIso[ch][jetBin]           ->Fill(sumIso, weight); 
+      helRelIso[ch][jetBin]           ->Fill(relIso, weight); 	
+      helRelIsoTrack[ch][jetBin]      ->Fill(els_tkJuraIso()[ll_idx], weight);
+      double caloIso = els_hcalIso()[lt_idx];
+      if (fabs(els_etaSC()[ll_idx]) > 1.479) caloIso += els_ecalIso()[ll_idx];
+      if (fabs(els_etaSC()[ll_idx]) <= 1.479) caloIso += max(0., (els_ecalIso()[ll_idx] -1.));
+      helRelIsoCalo[ch][jetBin]       ->Fill(caloIso, weight);	
+      heled0BS[ch][jetBin]            ->Fill(els_d0corr()[ll_idx], weight);
+      heled0PV[ch][jetBin]            ->Fill(getd0wrtPV(els_trk_p4()[ll_idx], els_d0()[ll_idx]), weight);
+      heleEmaxOE5x5[ch][jetBin]       ->Fill(els_eMax()[ll_idx]/els_e5x5()[ll_idx], weight);
+
+      if (fabs(els_etaSC()[ll_idx]) < 1.479) {
+	helIsoTrackb[ch][jetBin]         ->Fill(els_tkJuraIso()[ll_idx], weight);
+	helIsoEcalb[ch][jetBin]          ->Fill(els_ecalIso()[ll_idx],   weight);
+	helIsoHcalb[ch][jetBin]          ->Fill(els_hcalIso()[ll_idx],   weight);
+      } else {
+	helIsoTracke[ch][jetBin]         ->Fill(els_tkJuraIso()[ll_idx], weight);
+	helIsoEcale[ch][jetBin]          ->Fill(els_ecalIso()[ll_idx],   weight);
+	helIsoHcale[ch][jetBin]          ->Fill(els_hcalIso()[ll_idx],   weight);
+      }
+
+    }//if(abs(ll_id)==11) {
+    if(abs(lt_id) == 13) {
+      hmuPt[ch][jetBin]               ->Fill(lt_p4.Pt(),    weight); 
+      hmuPtFromSilicon[ch][jetBin]    ->Fill(mus_trk_p4()[lt_idx].Pt(), weight);
+      hmuPhi[ch][jetBin]              ->Fill(lt_p4.Phi(),   weight);	
+      hmuEta[ch][jetBin]              ->Fill(lt_p4.Eta(),   weight);
+      float relIso = muonIsoValue(lt_idx);
+      float sumIso = relIso*max(mus_p4()[lt_idx].Pt(), (float)20);
+      hmuSumIso[ch][jetBin]           ->Fill(min(sumIso, (float)24.99), weight);	
+      hmuRelIso[ch][jetBin]           ->Fill(relIso, weight);
+      hmuRelIsoTrack[ch][jetBin]      ->Fill(mus_iso03_sumPt()[lt_idx]/max(mus_p4()[lt_idx].Pt(), (float)20.), weight);
+      hmuRelIsoCalo[ch][jetBin]       ->Fill((mus_iso03_hadEt()[lt_idx]+mus_iso03_emEt()[lt_idx])/max(mus_p4()[lt_idx].Pt(), (float)20.), weight);	
+      hmud0BS[ch][jetBin]             ->Fill(mus_d0corr()[lt_idx], weight);
+      hmud0PV[ch][jetBin]             ->Fill(getd0wrtPV(mus_trk_p4()[lt_idx], mus_d0()[lt_idx]), weight);
+    }
+    if(abs(ll_id) == 13) {
+      hmuPt[ch][jetBin]               ->Fill(ll_p4.Pt(),    weight); 
+      hmuPtFromSilicon[ch][jetBin]    ->Fill(mus_trk_p4()[ll_idx].Pt(), weight);
+      hmuPhi[ch][jetBin]              ->Fill(ll_p4.Phi(), weight);	
+      hmuEta[ch][jetBin]              ->Fill(ll_p4.Eta(),   weight);
+      float relIso = muonIsoValue(ll_idx);
+      float sumIso = relIso*max(mus_p4()[ll_idx].Pt(), (float)20);
+      hmuSumIso[ch][jetBin]           ->Fill(min(sumIso, (float)24.99), weight);	
+      hmuRelIso[ch][jetBin]           ->Fill(relIso, weight);
+      hmuRelIsoTrack[ch][jetBin]      ->Fill(mus_iso03_sumPt()[ll_idx]/max(mus_p4()[ll_idx].Pt(), (float)20), weight);
+      hmuRelIsoCalo[ch][jetBin]       ->Fill((mus_iso03_hadEt()[ll_idx]+mus_iso03_emEt()[ll_idx])/max(mus_p4()[ll_idx].Pt(), (float)20.), weight);	
+      hmud0BS[ch][jetBin]             ->Fill(mus_d0corr()[ll_idx], weight);
+      hmud0PV[ch][jetBin]             ->Fill(getd0wrtPV(mus_trk_p4()[ll_idx], mus_d0()[ll_idx]), weight);
+    }
+    
+    hminLepPt[ch][jetBin]             ->Fill(min(lt_p4.Pt(), ll_p4.Pt()), weight); 
+    hmaxLepPt[ch][jetBin]             ->Fill(max(lt_p4.Pt(), ll_p4.Pt()), weight);
+    
+    double dphi = fabs(lt_p4.Phi() - ll_p4.Phi());
+    if (dphi > TMath::Pi()) dphi = TMath::TwoPi() - dphi;
+    
+    hdphiLep[ch][jetBin]              ->Fill(dphi,                    weight);
+    hdilMass[ch][jetBin]              ->Fill(hypp4.mass(),            weight);	
+    hdilPt[ch][jetBin]                ->Fill(hypp4.Pt(),              weight);
+    hmet[ch][jetBin]                  ->Fill(evt_metMuonJESCorr(),    weight); 
+    hmetPhi[ch][jetBin]               ->Fill(evt_metMuonJESCorrPhi(), weight); 
+    hpfmet[ch][jetBin]                ->Fill(evt_pfmet(),             weight);
+    hpfmetPhi[ch][jetBin]             ->Fill(evt_pfmetPhi(),          weight); 
+    double tcmet = evt_tcmet();
+    double tcmetPhi = evt_tcmetPhi();
+    if(prefix == "data") {
+      metStruct cortcmet = correctedTCMET();
+      tcmet = cortcmet.met;
+      tcmetPhi = cortcmet.metphi;
+    }
+    correctTcMETForHypMus(hypIdx, tcmet, tcmetPhi);
+    htcmet[ch][jetBin]                ->Fill(tcmet,           weight); 
+    htcmetPhi[ch][jetBin]             ->Fill(tcmetPhi,        weight); 
+    
+    //projected MET
+    hprojmet[ch][jetBin]              ->Fill(projectedMET(evt_metMuonJESCorr(),
+							  evt_metMuonJESCorrPhi(),
+							  hypIdx),    weight);  
+    hprojpfmet[ch][jetBin]            ->Fill(projectedMET(evt_pfmet(), evt_pfmetPhi(),
+							  hypIdx), weight); 
+    hprojtcmet[ch][jetBin]            ->Fill(projectedMET(tcmet, tcmetPhi,
+							  hypIdx), weight);
+
+
+    hmetVsDilepPt[ch][jetBin]         ->Fill(hypp4.Pt(), evt_metMuonCorr(), weight); 
+    hmetOverPtVsDphi[ch][jetBin]      ->Fill(dphi, evt_metMuonCorr()/hypp4.Pt(), weight); 
+
+    hpfmetVsDilepPt[ch][jetBin]       ->Fill(hypp4.Pt(), evt_pfmet(),       weight); 
+    hpfmetOverPtVsDphi[ch][jetBin]    ->Fill(dphi, evt_pfmet()/hypp4.Pt(),  weight);  
+
+    htcmetVsDilepPt[ch][jetBin]       ->Fill(hypp4.Pt(), tcmet,       weight);
+    htcmetOverPtVsDphi[ch][jetBin]    ->Fill(dphi, tcmet/hypp4.Pt(),  weight);
+
+    hdphillvsmll[ch][jetBin]          ->Fill(hypp4.mass(), dphi, weight);
+
+    
+    if(v_jets_p4.size() > 0) {
+      hptJet1[ch][jetBin]             ->Fill(v_jets_p4[0].Pt(),   weight);
+      hetaJet1[ch][jetBin]            ->Fill(v_jets_p4[0].Eta(),  weight); 
+    }
+    if(v_jets_p4.size() > 1) {
+      hptJet2[ch][jetBin]             ->Fill(v_jets_p4[1].Pt(),   weight); 
+      hetaJet2[ch][jetBin]            ->Fill(v_jets_p4[1].Eta(),  weight); 
+    }
+    if(v_jets_p4.size() > 2) {
+      hptJet3[ch][jetBin]             ->Fill(v_jets_p4[2].Pt(),   weight); 
+      hetaJet3[ch][jetBin]            ->Fill(v_jets_p4[2].Eta(),  weight); 
+    }
+    if(v_jets_p4.size() > 3) {
+      hptJet4[ch][jetBin]             ->Fill(v_jets_p4[3].Pt(),   weight); 
+      hetaJet4[ch][jetBin]            ->Fill(v_jets_p4[3].Eta(),  weight); 
+    }
+    
+    //numTightLep[ch][jetBin]; 
+    //heleSumPt[ch][jetBin]; 
+    //hmuSumPt[ch][jetBin]; 
+   
+    
+        
+    //hnJetLepVeto[ch]; 
+
+    //fill MT2 stuff - use jets with no eta cut
+    v_jets_p4.clear();	
+    for(unsigned int i = 0; i < v_jetsNoEtaCut.size(); i++) {
+      if(usecaloJets)
+	v_jets_p4.push_back(jets_p4()[v_jetsNoEtaCut[i]]*jets_cor()[v_jetsNoEtaCut[i]]);
+      else if(usejptJets) {
+	v_jets_p4.push_back(jpts_p4()[v_jetsNoEtaCut[i]]);	
+      } else if(usepfJets) {
+	v_jets_p4.push_back(pfjets_p4()[v_jetsNoEtaCut[i]]);	
+      }
+    }
+//    hmt2[ch][jetBin]                   ->Fill(MT2(p_met.first, p_met.second, lt_p4, ll_p4, 0.0, false), weight);	
+//    if(v_jets.size() > 1) 
+//      hmt2J[ch][jetBin]                ->Fill(MT2J(p_met.first, p_met.second, lt_p4, ll_p4, v_jets_p4, 0.0, BISECT, false),weight);	
+  }
+    
+}
+
+// ****************************************************************
+// Does the event pass the monster event cuts??
+// ****************************************************************
+
+
+// *****************************************************************
+//get the FR weight
+// *****************************************************************
+double getFRWeight(const int hypIdx, string elFRversion) {
+
+  bool isGoodMut = false;
+  bool isGoodMul = false;
+  bool isFOMut   = false;
+  bool isFOMul   = false;
+
+  if(hyp_type()[hypIdx] == 0) {
+    
+    unsigned int iMut = hyp_lt_index()[hypIdx];
+    unsigned int iMul = hyp_ll_index()[hypIdx];
+    
+    if(isGoodLeptonwIso(13, iMut) )
+      isGoodMut = true;
+    
+    if(isGoodLeptonwIso(13, iMul) )
+      isGoodMul = true;
+    
+    if(isFakeableMuon(iMut))
+      isFOMut = true;
+       
+    if(isFakeableMuon(iMul))
+      isFOMul = true;
+
+    //if both are good, we return
+    //PDK - CHANGED!!!
+
+    if( isGoodMut || isGoodMul) 
+      return -9999.;
+    
+    if(!isFOMut || !isFOMul)
+      return -9999.;
+    
+    SimpleFakeRate fake("/home/spadhi/Work/TAS/ttbar/dileptons/data/FakeRates31May.root", "muFR15u");
+    
+    double FRMut = fake.getFR(mus_p4()[iMut].pt(), mus_p4()[iMut].eta());
+    double FRMul = fake.getFR(mus_p4()[iMul].pt(), mus_p4()[iMul].eta());
+
+//    cout << "Sanjay mumu " << (FRMut/(1-FRMut))*(FRMul/(1-FRMul)) << endl;
+
+    return (FRMut/(1-FRMut))*(FRMul/(1-FRMul));
+	  
+  }//mumu case
+
+
+  //now we do the ee case
+  if(hyp_type()[hypIdx] == 3) {
+	  
+    unsigned int iElt = hyp_lt_index()[hypIdx];
+    unsigned int iEll = hyp_ll_index()[hypIdx];
+	  
+    bool isGoodElt = false;
+    bool isGoodEll = false;
+    bool isFOElt   = false;
+    bool isFOEll   = false;
+
+    if(isGoodLeptonwIso(11, iElt))
+      isGoodElt = true;
+       
+    if(isGoodLeptonwIso(11, iEll))
+      isGoodEll = true;
+
+    if(isFakeableElectron(iElt,elFRversion))
+      isFOElt = true;
+    
+    if(isFakeableElectron(iEll,elFRversion))
+      isFOEll = true;
+    //if both are good, we continue
+    //CHANGED!!
+    if( isGoodElt || isGoodEll) 
+      return -9999.;
+
+    if( !isFOElt || !isFOEll)
+      return -9999.;
+    
+    //double FRElt = elFakeProb(iElt, elFRversion);
+    //double FREll = elFakeProb(iEll, elFRversion);
+    char* url;
+    url = new char[elFRversion.length() + 1];
+    strcpy(url, elFRversion.c_str()); 
+    SimpleFakeRate fake("/home/spadhi/Work/TAS/ttbar/dileptons/data/FakeRates31May.root", url);
+
+    double FRElt = fake.getFR(els_p4()[iElt].pt(), els_p4()[iElt].eta());
+    double FREll = fake.getFR(els_p4()[iEll].pt(), els_p4()[iEll].eta());
+    sumfr = sumfr +  (FRElt/(1-FRElt))*(FREll/(1-FREll));
+
+    delete [] url;
+
+    return (FRElt/(1-FRElt))*(FREll/(1-FREll));
+
+  }//ee case
+
+  if(hyp_type()[hypIdx] == 1 || hyp_type()[hypIdx] == 2) {
+    
+    int iEl = 0;
+    int iMu = 0;
+    if(hyp_type()[hypIdx] == 2) {
+      iEl = hyp_lt_index()[hypIdx];
+      iMu = hyp_ll_index()[hypIdx];
+    } 
+    if (hyp_type()[hypIdx] == 1) {
+      iEl = hyp_ll_index()[hypIdx];
+      iMu = hyp_lt_index()[hypIdx];
+    } 
+    
+    bool isGoodEl = false;
+    bool isFOEl   = false;
+    bool isGoodMu = false;
+    bool isFOMu   = false;
+    
+    if(isGoodLeptonwIso(11, iEl))
+      isGoodEl = true;
+    
+    if(isGoodLeptonwIso(13, iMu))
+      isGoodMu = true;
+
+    if(isFakeableElectron(iEl,elFRversion))
+      isFOEl = true;
+    
+    if(isFakeableMuon(iMu))
+      isFOMu = true;
+    
+    //if both the electron and muon are good, then we have to continue to the next hypothesis!
+    //CHANGED TO OR - PDK
+    if(isGoodMu || isGoodEl)
+      return -9999.;
+    
+    //if either fail FO, return!!!
+    if(!isFOMu || !isFOEl)
+      return -9999.;
+    char* url;
+    url = new char[elFRversion.length() + 1];
+    strcpy(url, elFRversion.c_str());
+
+    SimpleFakeRate mufr("/home/spadhi/Work/TAS/ttbar/dileptons/data/FakeRates31May.root", "muFR15u");
+    SimpleFakeRate elfr("/home/spadhi/Work/TAS/ttbar/dileptons/data/FakeRates31May.root", url);
+
+    delete [] url;
+
+
+    double FRMu = mufr.getFR(mus_p4()[iMu].pt(), mus_p4()[iMu].eta());
+    double FREl = elfr.getFR(els_p4()[iEl].pt(), els_p4()[iEl].eta());
+
+    return FRMu*FREl/(1-FRMu)/(1-FREl);
+
+  } //emu case
+
+  return -9999.;
+}
+
+
+void getFRHists(float jetTriggerPt) {
+
+  TFile *f = TFile::Open("/home/spadhi/Work/TAS/ttbar/dileptons/data/FakeRates31May.root");  
+  
+  h2_muFR = (TH2F*)f->Get(Form("muFR%du", (int)jetTriggerPt));
+  if(applyFOv1Cuts)
+    h2_elFR = (TH2F*)f->Get(Form("eFRv1%du", (int)jetTriggerPt));
+  if(applyFOv2Cuts)
+    h2_elFR = (TH2F*)f->Get(Form("eFRv2%du", (int)jetTriggerPt));
+  if(applyFOv3Cuts)
+    h2_elFR = (TH2F*)f->Get(Form("eFRv3%du", (int)jetTriggerPt));
+  f->Close();
+}  
+
+
+// *****************************************************************
+//get the bin value
+// *****************************************************************
+float GetValueTH2F(Float_t x, Float_t y, const TH2F* h) {
+
+  Int_t binx = h->GetXaxis()->FindBin(x);
+  Int_t biny = h->GetYaxis()->FindBin(y);
+  return h->GetBinContent(binx, biny);
+ 
+}
+
+
+void EndJob() {
+
+  for(unsigned int i = 0; i < 4; i++) {
+    for(unsigned int j = 2; j < 5; j++) { //loop to fill the geq2 histos
+      
+      helePt[i][5]->Add(helePt[i][j]);
+      hmuPt[i][5]->Add(hmuPt[i][j]);
+      hmuPtFromSilicon[i][5]->Add(hmuPtFromSilicon[i][j]);
+      hminLepPt[i][5]->Add(hminLepPt[i][j]);
+      hmaxLepPt[i][5]->Add(hmaxLepPt[i][j]);
+      helePhi[i][5]->Add(helePhi[i][j]);
+      hmuPhi[i][5]->Add(hmuPhi[i][j]);
+      hdphiLep[i][5]->Add(hdphiLep[i][j]);
+      heleEta[i][5]->Add(heleEta[i][j]);
+      hmuEta[i][5]->Add(hmuEta[i][j]);
+      heled0BS[i][5]->Add(heled0BS[i][j]);
+      heled0PV[i][5]->Add(heled0PV[i][j]);
+      hmud0BS[i][5]->Add(heled0PV[i][j]);
+      hmud0PV[i][5]->Add(heled0PV[i][j]);
+      heleEmaxOE5x5[i][5]->Add(heleEmaxOE5x5[i][j]);
+
+
+      helIsoTrack[i][5]->Add(helIsoTrack[i][j]);
+      helIsoEcal[i][5]->Add(helIsoEcal[i][j]);
+      helIsoHcal[i][5]->Add(helIsoHcal[i][j]);
+
+      helIsoTrackb[i][5]->Add(helIsoTrackb[i][j]);
+      helIsoEcalb[i][5]->Add(helIsoEcalb[i][j]);
+      helIsoHcalb[i][5]->Add(helIsoHcalb[i][j]);
+
+      helIsoTracke[i][5]->Add(helIsoTracke[i][j]);
+      helIsoEcale[i][5]->Add(helIsoEcale[i][j]);
+      helIsoHcale[i][5]->Add(helIsoHcale[i][j]);
+           
+
+
+      hdilMass[i][5]->Add(hdilMass[i][j]);
+      hdilMassTightWindow[i][5]->Add(hdilMassTightWindow[i][j]);
+      hdilPt[i][5]->Add(hdilPt[i][j]);
+      hmet[i][5]->Add(hmet[i][j]);
+      hmetPhi[i][5]->Add(hmetPhi[i][j]);
+      hpfmet[i][5]->Add(hpfmet[i][j]);
+      hpfmetPhi[i][5]->Add(hpfmetPhi[i][j]); 
+      htcmet[i][5]->Add(htcmet[i][j]);
+      htcmetPhi[i][5]->Add(htcmetPhi[i][j]);
+      hptJet1[i][5]->Add(hptJet1[i][j]);
+      hptJet2[i][5]->Add(hptJet2[i][j]);
+      hptJet3[i][5]->Add(hptJet3[i][j]);
+      hptJet4[i][5]->Add(hptJet4[i][j]);
+      hetaJet1[i][5]->Add(hetaJet1[i][j]);
+      hetaJet2[i][5]->Add(hetaJet2[i][j]);
+      hetaJet3[i][5]->Add(hetaJet3[i][j]);
+      hetaJet4[i][5]->Add(hetaJet4[i][j]);
+      heleSumPt[i][5]->Add(heleSumPt[i][j]);
+      hmuSumPt[i][5]->Add(hmuSumPt[i][j]);
+      
+      hmuSumIso[i][5]->Add(hmuSumIso[i][j]);
+      helSumIso[i][5]->Add(helSumIso[i][j]);
+      hmuRelIso[i][5]->Add(hmuRelIso[i][j]);
+      helRelIso[i][5]->Add(helRelIso[i][j]);
+      hmuRelIsoTrack[i][5]->Add(hmuRelIsoTrack[i][j]);
+      helRelIsoTrack[i][5]->Add(helRelIsoTrack[i][j]);
+      hmuRelIsoCalo[i][5]->Add(hmuRelIsoCalo[i][j]);
+      helRelIsoCalo[i][5]->Add(helRelIsoCalo[i][j]);
+      
+      hmt2[i][5]->Add(hmt2[i][j]);
+      hmt2J[i][5]->Add(hmt2J[i][j]);
+      
+    }
+   
+    for(unsigned int j = 0; j < 5; j++) { //loop to fill the all jet bins histos
+       
+      helePt[i][6]->Add(helePt[i][j]);
+      hmuPt[i][6]->Add(hmuPt[i][j]);
+      hmuPtFromSilicon[i][6]->Add(hmuPtFromSilicon[i][j]);
+      hminLepPt[i][6]->Add(hminLepPt[i][j]);
+      hmaxLepPt[i][6]->Add(hmaxLepPt[i][j]);
+      helePhi[i][6]->Add(helePhi[i][j]);
+      hmuPhi[i][6]->Add(hmuPhi[i][j]);
+      hdphiLep[i][6]->Add(hdphiLep[i][j]);
+      heleEta[i][6]->Add(heleEta[i][j]);
+      hmuEta[i][6]->Add(hmuEta[i][j]);
+      heled0BS[i][6]->Add(heled0BS[i][j]);
+      heled0PV[i][6]->Add(heled0PV[i][j]);
+      hmud0BS[i][6]->Add(heled0PV[i][j]);
+      hmud0PV[i][6]->Add(heled0PV[i][j]);
+      heleEmaxOE5x5[i][6]->Add(heleEmaxOE5x5[i][j]);
+
+
+      helIsoTrack[i][5]->Add(helIsoTrack[i][j]);
+      helIsoEcal[i][5]->Add(helIsoEcal[i][j]);
+      helIsoHcal[i][5]->Add(helIsoHcal[i][j]);
+
+      helIsoTrackb[i][5]->Add(helIsoTrackb[i][j]);
+      helIsoEcalb[i][5]->Add(helIsoEcalb[i][j]);
+      helIsoHcalb[i][5]->Add(helIsoHcalb[i][j]);
+
+      helIsoTracke[i][5]->Add(helIsoTracke[i][j]);
+      helIsoEcale[i][5]->Add(helIsoEcale[i][j]);
+      helIsoHcale[i][5]->Add(helIsoHcale[i][j]);
+           
+      hdilMass[i][6]->Add(hdilMass[i][j]);
+      hdilMassTightWindow[i][6]->Add(hdilMassTightWindow[i][j]);
+      hdilPt[i][6]->Add(hdilPt[i][j]);
+      hmet[i][6]->Add(hmet[i][j]);
+      hmetPhi[i][6]->Add(hmetPhi[i][j]);
+      hpfmet[i][6]->Add(hpfmet[i][j]);
+      hpfmetPhi[i][6]->Add(hpfmetPhi[i][j]); 
+      htcmet[i][6]->Add(htcmet[i][j]);
+      htcmetPhi[i][6]->Add(htcmetPhi[i][j]);
+      hptJet1[i][6]->Add(hptJet1[i][j]);
+      hptJet2[i][6]->Add(hptJet2[i][j]);
+      hptJet3[i][6]->Add(hptJet3[i][j]);
+      hptJet4[i][6]->Add(hptJet4[i][j]);
+      hetaJet1[i][6]->Add(hetaJet1[i][j]);
+      hetaJet2[i][6]->Add(hetaJet2[i][j]);
+      hetaJet3[i][6]->Add(hetaJet3[i][j]);
+      hetaJet4[i][6]->Add(hetaJet4[i][j]);
+      heleSumPt[i][6]->Add(heleSumPt[i][j]);
+      hmuSumPt[i][6]->Add(hmuSumPt[i][j]);
+      
+      hmuSumIso[i][6]->Add(hmuSumIso[i][j]);
+      helSumIso[i][6]->Add(helSumIso[i][j]);
+      hmuRelIso[i][6]->Add(hmuRelIso[i][j]);
+      helRelIso[i][6]->Add(helRelIso[i][j]);
+      hmuRelIsoTrack[i][6]->Add(hmuRelIsoTrack[i][j]);
+      helRelIsoTrack[i][6]->Add(helRelIsoTrack[i][j]);
+      hmuRelIsoCalo[i][6]->Add(hmuRelIsoCalo[i][j]);
+      helRelIsoCalo[i][6]->Add(helRelIsoCalo[i][j]);
+      
+      hmt2[i][6]->Add(hmt2[i][j]);
+      hmt2J[i][6]->Add(hmt2J[i][j]);
+
+    }
+ 
+  }
+
+  delete h2_muFR;
+  delete h2_elFR;
+  
+
+}
+
