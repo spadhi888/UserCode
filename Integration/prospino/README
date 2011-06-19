@@ -1,0 +1,10 @@
+tar -zcf prospinomain.tar.gz 
+./prospino.sh lm0
+
+# This will produce 
+prospino.dat  
+prospino.dat2  
+prospino.dat3
+
+prospino.dat contains all the sub-processes and the NLO as well as the LO 
+cross sections
