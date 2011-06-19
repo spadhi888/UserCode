@@ -1,5 +1,10 @@
+Source code from: http://www.thphys.uni-heidelberg.de/~plehn/prospino/
+
+In order to use the executable: 
+
 tar -zcf prospinomain.tar.gz 
 ./prospino.sh lm0
+
 
 # This will produce 
 prospino.dat  
