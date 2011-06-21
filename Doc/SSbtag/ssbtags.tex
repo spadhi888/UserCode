@@ -1,0 +1,53 @@
+\documentclass{cmspaper}
+\usepackage{graphicx}
+\usepackage{rotate}
+\usepackage{relsize}
+\usepackage{lineno}
+
+\newcommand{\met} {\ensuremath{E\!\!\!\!/_T}}
+\newcommand{\ttbar} {\ensuremath{t\bar{t}~}}
+\newcommand{\ptll} {\ensuremath{P_T(\ell\ell)}}
+\newcommand{\ptllres} {\ensuremath{P^{\rm res}_T(\ell\ell)}}
+\def\ack{\section*{Acknowledgments}}
+
+\linenumbers
+
+\begin{document}
+
+%==============================================================================
+% title page for many authors
+%
+\begin{titlepage}
+\title{Search for Supersymmetry in same sign dilepton final states with b Jets and Missing Energy at the LHC}
+
+  \begin{Authlist}
+    D.~ Barge, C.~Campagnari, P.~Kalavase, D.~Kovalskyi, V.~Krutelyov, J.~Ribnik
+    \Instfoot{ucsb}{University of California, Santa Barbara}
+    W.~Andrews, G.~Cerati, D.~Evans, F.~Golf, I.~MacNeill, S.~Padhi, Y.~Tu, F.~W\"urthwein, A.~Yagil, J.~Yoo
+    \Instfoot{ucsd}{University of California, San Diego}
+    L.~Bauerdick, I.~Bloch, K.~Burkett, I.~Fisk, Y.~Gao, O.~Gutsche, B.~Hooberman, S.~Jindariani, J.~Linacre
+    \Instfoot{fnal}{Fermi National Accelerator Laboratory, Batavia, Illinois}
+  \end{Authlist}
+
+\begin{abstract}
+We search for supersymmetry in same sign dilepton final states with at least two b jets 
+and large \met~. The search is performed in a data sample collected with the CMS detector
+of pp collisions at a centre-of-mass energy of 7 TeV, corresponding to an integrated
+luminosity of $349$ pb$^{-1}$. For these searches, the dominant background is from \ttbar 
+events. No excess above the standard model background expectation is observed.
+Upper limits at 95\% confidence level are set on the number of observed events.
+%pMSSM as well as the simplified models 
+%involving stop and sbottom productions.
+\end{abstract}
+\end{titlepage}
+
+\input{intro.tex}
+%\input{mcmodels.tex}
+\input{search.tex}
+\input{systematic.tex}
+\input{result.tex}
+\input{conclusion.tex}
+
+\clearpage
+\input{bib.tex}
+\end{document}
