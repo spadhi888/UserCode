@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+         echo Usage: $0 \<Input\> \<Output\>
+         exit 127
+fi
+
+cp -f $1 suspect2_lha.in
+
+./suspect > suspect.log
+
+higgs=119
+
+./hmass ${higgs} > slhaspectrum.in
+
+./sdecay > sdecay.log
+
+cp -f susyhit_slha.out $2

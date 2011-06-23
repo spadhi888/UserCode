@@ -1,0 +1,90 @@
+#!/bin/bash
+
+echo "Input the name of the slha file to be generated, followed by [ENTER]:"
+read filename
+
+echo "Input M1, M2, and M3 (Bino, Wino, and Gluino masses) separated by single spaces, followed by [ENTER]:"
+read  M1 M2 M3
+
+echo "Input Mu (Higgsino mass) and TANBETA, separated by a single space, followed by [ENTER]:"
+read MUTERM TANB
+
+echo "Input MeR, MeL, and MQ (Left and Right Handed Slepton and Squark Masses) separated by single spaces, followed by [ENTER]:"
+read MER MEL MQL1
+
+echo "Input MtauR, MtauL, MBR, BTR, MQ3 (Left and Right Handed Stau, Right handed Sbottom, and Stop, and Stop-Sbottom Doublet Masses) separated by single spaces, followed by [ENTER]:"
+read MTAUR MTAUL MBR MTR MQL3
+
+MUR=${MQL1}
+MDR=${MQL1}
+
+XT=0
+XB=0
+XL=0
+
+T=`echo "scale = 2;${XT}+(${MUTERM}/${TANB})" | bc`
+AT=`printf "%0.f\n" $T`
+B=`echo "scale = 2;${XB}+${MUTERM}*${TANB}" | bc`
+AB=`printf "%0.f\n" $B`
+L=`echo "scale = 2;${XL}+${MUTERM}*${TANB}" | bc`
+AL=`printf "%0.f\n" $L`
+
+MTOP=172
+MAPOLE=1500
+
+outputfile="${filename}.dat"
+slhafile="temp1_${filename}.slha"
+herwigfile="temp1_${filename}.hwg"
+
+params1="${MTOP}"
+params2="${M3},${MUTERM},${MAPOLE},${TANB}"
+params3="${MQL1},${MDR},${MUR},${MEL},${MER}"
+params4="${MQL3},${MBR},${MTR},${MTAUL},${MTAUR},${AT},${AB},${AL}"
+params5="${MQL1},${MDR},${MUR},${MEL},${MER}"
+params6="${M1},${M2}"
+params7="/"
+
+./isasusy.x <<EOF
+
+${outputfile}
+${slhafile}
+${herwigfile}
+${params1}
+${params2}
+${params3}
+${params4}
+${params5}
+${params6}
+${params7}
+
+EOF
+
+rm temp1_${filename}.hwg
+
+./susyspec ${M3} ${MQL1} ${MUR} ${MDR} ${MQL3} ${MTR} ${MBR} ${AT} ${AB} ${AL} ${MUTERM} ${M1} ${M2} ${TANB} ${MEL} ${MTAUL} ${MER} ${MTAUR} > temp2_${filename}.suspect
+
+cd susylha
+./susylha ../temp2_${filename}.suspect ../temp2_${filename}.slha
+
+cd ..
+
+rm -f temp2_${filename}.suspect
+
+g++ decaycutter.cc -o decaycutter
+g++ BRextractor.cc -o BRextractor
+g++ appender.cc -o appender
+
+./BRextractor temp2_${filename}.slha temp1.slha selectron_L
+./BRextractor temp2_${filename}.slha temp1.slha smuon_L
+./BRextractor temp2_${filename}.slha temp1.slha stau_1
+
+./decaycutter temp1_${filename}.slha temp3_${filename}.slha
+
+./appender temp3_${filename}.slha temp1.slha ${filename}.slha
+
+rm -f cut1.slha
+rm -f cut2.slha
+rm -f temp1.slha
+rm -f temp1_${filename}.slha
+rm -f temp2_${filename}.slha
+rm -f temp3_${filename}.slha

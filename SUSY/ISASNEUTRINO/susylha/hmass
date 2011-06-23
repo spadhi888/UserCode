@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+         echo Usage: $0 \<hmass\>  
+         exit 127
+fi
+
+SDStart=suspect2_lha.out
+
+cat $SDStart |  awk '{
+
+     if ($1 == "BLOCK") {BLOCK=$2; print $0}
+
+     else if(BLOCK=="MASS" && $1==25)  print " ",$1,'$1'"E+00",$3,$4
+
+     else print $0
+
+}'

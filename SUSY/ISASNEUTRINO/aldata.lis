@@ -1,0 +1,102 @@
+1Nypatchy executing with files / options
+
+   1  PAM       isajet.car
+   2  FORT      aldata.f
+   3  read      ./tmpcradle.cra
+   4  print     aldata.lis
+   5  CC       -    ...
+
+ Version: PATCHY  5.05 /3  1996/06/29 17.00     .RJP, today: 11/01/24 11.39
+
+     1  + +USE,*ISAJET,LINUX
+     2  + +USE,CERN
+     3  + +USE,RANLUX
+     4  + +EXE,ISADATA
+
+     5  + +PAM,T=C.
+
+ ---> start reading file  isajet.car
+
+ Read Pam file: RUTGERS modification of ISAJET 7.80
+
+ Read Pam file: ISAJET 7.80 29-OCT-2009 12:50:36 - Rutgers Version April 201
+
+     1  + +QUIT.
+
+ --------------------------------------
+ Summary of patches in processing order
+
+ Processing mode selections                        Other status bits for P=X
+
+ U - use                                           F - skipped by +PATCH,X,IF=...
+ L - list                                           M - skipped by +IMITATE,X
+ E - exe                                             X - not +EXE but deck to ASM
+ D - divert                                           P - partial +USE,X,D=...
+ X - xdivert                Self +         Self        R - P=X,T=REPEAT
+                    Inhibit Foreign  Trans   only       Q - quoted in IF=X
+                    ------- ------- ------ ------
+        Patch        ULEDX   ULEDX   LEDX   LEDX   FMXPRQ  Used from P=
+
+      0 CRA*               . U     .      .      .     R   CRA*
+
+ RUTGERS modification of ISAJET 7.80
+      0 @RUTGERS           .       .      .      .
+
+ ISAJET 7.80 29-OCT-2009 12:50:36 - Rutge
+      0 @ISAJET            .       .      .      .
+      2 *ISAJET            . U     .      .      .         CRA*
+     20 LINUX              . U     .      .      .         CRA*
+     25 ISACDE             . U     .      .      .         *ISAJET
+     31 ISADATA            . U E   .      .  E   .         *ISAJET
+     33 ISAJET             . U     .      .      .         *ISAJET
+    240 ISASUSY            . U     .      .      .         *ISAJET
+    400 ISATAPE            . U     .      .      .         *ISAJET
+    401 ISATAPE            . U     .      .      .         *ISAJET
+    420 ISARUN             . U     .      .      . F       *ISAJET
+    569 CRA*               . U     .      .      .     R   CRA*
+
+ Quoted patches not seen on the PAM files
+
+      0 CDC                .       .      .      .      Q
+      0 CDCPACK            .       .      .      .      Q
+      0 CERN               . U     .      .      .      Q  CRA*
+      0 DOUBLE             . U     .      .      .      Q  LINUX
+      0 ETA                .       .      .      .      Q
+      0 HDECAY2            .       .      .      .      Q
+      0 HDECAY3            .       .      .      .      Q
+      0 IBM                .       .      .      .      Q
+      0 IBMRT              .       .      .      .      Q
+      0 IMPNONE            . U     .      .      .      Q  LINUX
+      0 INTERACT           .       .      .      .      Q
+      0 LEVEL2             .       .      .      .      Q
+      0 MOVEFTN            . U     .      .      .      Q  LINUX
+      0 NOCERN             .       .      .      .      Q
+      0 NORANLUX           .       .      .      .      Q
+      0 PDFLIB             .       .      .      .      Q
+      0 RANFFTN            .       .      .      .      Q
+      0 RANLUX             . U     .      .      .      Q  CRA*
+      0 SGI                .       .      .      .      Q
+      0 SINGLE             .       .      .      .      Q
+      0 STDIO              . U     .      .      .      Q  LINUX
+      0 SUN                .       .      .      .      Q
+      0 VAX                .       .      .      .      Q
+
+ Other patches not seen
+
+      0 RANFCALL           . U     .      .      .         LINUX
+
+ Name stack:       significant name length is 32 characters
+                9% used of   6000 name slots available
+                6% used of  48000 bytes of text available
+
+ Read:           6 lines from the cradle
+             99438 lines from   2 PAM files for  1 lines +PAM
+
+ Written:
+
+   physical FORT:0          1 units    619 lines to file  aldata.f
+
+    logical FORT:1          1 decks written via FORT:0
+
+ No errors, no warnings.
+
