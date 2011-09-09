@@ -1,55 +1,158 @@
-\documentclass{cmspaper}
-\usepackage{graphicx}
-\usepackage{appendix}
-\usepackage{rotate}
-\usepackage{relsize}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{cite}
+\documentclass[12pt,aps,preprint,nofootinbib]{revtex4}
 
-\newcommand{\met} {\ensuremath{E\!\!\!\!/_T}}
-\newcommand{\ttbar} {\ensuremath{t\bar{t}~}}
-\newcommand{\ptll} {\ensuremath{P_T(\ell\ell)}}
-\newcommand{\ptllres} {\ensuremath{P^{\rm res}_T(\ell\ell)}}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{color}
+\usepackage{appendix}
+
+\def\lsim{\mathrel{\raise.3ex\hbox{$<$\kern-.75em\lower1ex\hbox{$\sim$}}}}
+\def\gsim{\mathrel{\raise.3ex\hbox{$>$\kern-.75em\lower1ex\hbox{$\sim$}}}}
+
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+
+\def\ptmiss{\cancel{p}_{T}}
+\def\etmiss{\cancel{E}_{T}}
+
+\def\dm{\Delta M}
+\def\mi{M_1}
+\def\mii{M_2}
+\def\miii{M_3}
+%\def\mg{m_{\tilde g}}
+\def\mg{M_3}
+\def\mf{m_{\tilde f}}
+\def\mlsp{M_{LSP}}
+
+%
+\def\lsp{{\chi^0_1}}
+\def\none{{\chi^0_1}}
+\def\ntwo{{\chi^0_2}}
+\def\ni{{\chi^0_i}}
+\def\cone{{\chi^\pm_1}}
+\def\ctwo{{\chi^\pm_2}}
+\def\ci{{\chi^\pm_i}}
+\def\mnone{M_{\chi^0_1}}
+\def\mntwo{M_{\chi^0_2}}
+\def\mni{M_{\chi^0_i}}
+\def\mcone{M_{\chi^\pm_1}}
+\def\mctwo{M_{\chi^\pm_2}}
+\def\mw{M_W}
+\def\mz{M_Z}
+\def\s{\tilde}
+%
+
+\def\nn{\noindent}
+\def\non{\nonumber}
+\def\ie{{\it i.e.}}
+\def\eg{{\it e.g.}}
+\def\etc{{\it etc}}
+\def\etal{{\it et al.}}
+\def\ibid{{\it ibid}.}
+\def\tev{\,{\rm TeV}}
+\def\gev{\,{\rm GeV}}
+\def\mev{\,{\rm MeV}}
+\def\ev{\,{\rm eV}}
+\def\to{\rightarrow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+%\preprint{~~MADPH-10-1556}
+\preprint{~~CERN-PACC-1101}
 
-%==============================================================================
-% title page for many authors
-%
-\begin{titlepage}
-\title{CMS study towards phenomenological MSSM}
+\title{Interpreting CMS data in the phenomenological MSSM}
 
-  \begin{Authlist}
-    Maurizio Pierini
-    \Instfoot{cern}{CERN}    
-    Maria Spiropulu
-    \Instfoot{caltech}{CERN \& California Institute Of Technology, Pasadena}    
-    Filip Moortgat, Luc Pape
-    \Instfoot{eth}{ETH, Zurich, Switzerland}
-    Joseph Lykken
-    \Instfoot{fnal}{Fermi National Accelerator Laboratory, Batavia, Illinois}
-    Harrison Prosper, Sezen Sekmen
-    \Instfoot{fsu}{Florida State University, Tallahassee}
-    Sabine Kraml
-    \Instfoot{lpsc}{LPSC Grenoble, France}
-    Sanjay Padhi
-    \Instfoot{ucsd}{University of California, San Diego}
-    
-  \end{Authlist}
+\author{Sabine Kraml$^{\bf a}$}
+\email{sabine.kraml@lpsc.in2p3.fr}
 
+\author{Joseph Lykken$^{\bf b}$}
+\email{jlykken@gmail.com}
+
+\author{Filip Moortgat$^{\bf c}$}
+\email{filip.moortgat@cern.ch}
+
+\author{Sanjay Padhi$^{\bf d}$}
+\email{sanjay.padhi@cern.ch}
+
+\author{Luc Pape$^{\bf c}$}
+\email{luc.pape@cern.ch}
+
+\author{Maurizio Pierini$^{\bf e}$}
+\email{maurizio.pierini@cern.ch}
+
+\author{Harrison Prosper$^{\bf f}$}
+\email{harry@hep.fsu.edu}
+
+\author{Sezen Sekmen$^{\bf f}$}
+\email{ssekmen@mail.cern.ch}
+
+\author{Maria Spiropulu$^{\bf e,g}$}
+\email{smaria@cern.ch}
+
+\affiliation{
+$^{\bf a}$  LPSC Grenoble, France\\
+$^{\bf b}$  FNAL, Batavia, Illinois, USA\\
+$^{\bf c}$  ETH, Zurich, Switzerland\\
+$^{\bf d}$  University of California, San Diego, USA\\
+$^{\bf e}$  CERN, Switzerland\\
+$^{\bf f}$  Florida State University, Tallahassee, USA\\
+$^{\bf g}$  California Institute Of Technology, USA
+}
 \begin{abstract}
-CMS study towards phenomenological MSSM ..
+We interpret within the phenomenological MSSM (pMSSM) the data taken with the CMS detector during the 7 TeV LHC run.  
+The pMSSM is a 19-dimensional parametrization of the MSSM that captures most of 
+its phenomenological features. The 19-dimensional model
+encompasses, and goes beyond, a broad range of more constrained SUSY models (such as the CMSSM). 
+Using profile likelihoods, we examine the influence of each of the 
+19 parameters and determine to which parameters 
+(and predicted observables) the current CMS data are most sensitive. 
+We provide constraints on quantities sensitive to hadronic as well as multi-lepton final states, 
+based on the 2011 CMS data-set corresponding to 1~fb$^{-1}$ of integrated luminosity.
+In contrast to constraints derived for particular SUSY breaking schemes 
+such as the CMSSM, our results provide more generic conclusions on how the current 
+data constrain the MSSM. Moreover, while the focus of this study is the 
+MSSM, the approach we describe is applicable to \emph{any} multi-parameter model.
 \end{abstract}
-\end{titlepage}
+
+\maketitle
+
+\input{intro.tex}
+\input{motivation.tex}
+\input{model.tex}
+%\input{limit.tex}
+\input{analysis.tex}
+\input{results.tex}
+\input{conclusion.tex}
 
 \section*{Acknowledgements}
+We thank ..
 
 \clearpage
+\input{resultsfigs.tex}
 
-% ---- references ----
-%\bibliographystyle{h-physrev}
-%\bibliography{pmssm}
+
+\newpage
+
+\input{pmssmbbl.tex}
+% ---- appendix ----
 \clearpage
+\appendices
+\section*{Appendices}
+\input{cmsdelphescomp.tex}
+\clearpage
+\input{statistics.tex}
+
 
 \end{document}
+
+
