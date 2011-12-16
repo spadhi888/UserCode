@@ -3,14 +3,15 @@
 \usepackage{rotate}
 \usepackage{relsize}
 \usepackage{lineno}
+\usepackage{slashed}
 
-\newcommand{\met} {\ensuremath{E\!\!\!\!/_T}}
-\newcommand{\ttbar} {\ensuremath{t\bar{t}~}}
 \newcommand{\ptll} {\ensuremath{P_T(\ell\ell)}}
 \newcommand{\ptllres} {\ensuremath{P^{\rm res}_T(\ell\ell)}}
 \def\ack{\section*{Acknowledgments}}
 
 \linenumbers
+
+\input{definitions}
 
 \begin{document}
 
@@ -33,7 +34,7 @@
 A search for New Physics in the same sign dilepton final state with at least two b jets 
 and \met~ is performed. This analysis uses a data sample collected with the CMS detector
 of pp collisions at a centre-of-mass energy of 7 TeV, corresponding to an integrated
-luminosity of $349$ pb$^{-1}$. For these searches, the dominant background is from \ttbar 
+luminosity of \intLumi. For these searches, the dominant background is from \ttbar 
 events. No excess above the standard model background expectation is observed.
 Upper limits at 95\% confidence level are set on the number of observed events.
 %pMSSM as well as the simplified models 
@@ -44,11 +45,16 @@ Upper limits at 95\% confidence level are set on the number of observed events.
 \input{intro.tex}
 %\input{mcmodels.tex}
 \input{inclsearch.tex}
-\input{systematic.tex}
+\input{systematic.tex}open 
 \input{inclresult.tex}
 \input{stampCollecting.tex}
 \input{conclusion.tex}
 
 \clearpage
 \input{bib.tex}
+
+\clearpage
+\appendix
+\input{yields_exclusive.tex}
+
 \end{document}
