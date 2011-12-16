@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#rm aLotOfPattuple
+#T2tt_yields_sorted.txt
+
+#line=5
+
+rm FinsTot.C
+rm FinsSel1.C
+rm FinsSel2.C
+
+nLINE=$(cat ../T2tt_yields_sorted.txt | wc | awk '{print $1}' )
+
+echo $nLINE
+
+#for line in i<10; do
+for (( line=1; line<=$nLINE; line++ ))
+#for (( line=1; line<=10; line++ ))
+do
+
+#echo $line
+
+#stop=$(cat ../T2tt_yields_sorted.txt | awk '{print $1}')
+#lsp=$(cat ../T2tt_yields_sorted.txt | awk '{print $2}')
+
+stop=$(cat ../T2tt_yields_sorted.txt | head -n $line | tail -1 | awk '{print $1}')
+lsp=$(cat ../T2tt_yields_sorted.txt | head -n $line | tail -1 | awk '{print $2}')
+totEv=$(cat ../T2tt_yields_sorted.txt | head -n $line | tail -1 | awk '{print $3}')
+sel1=$(cat ../T2tt_yields_sorted.txt | head -n $line | tail -1 | awk '{print $4}')
+sel2=$(cat ../T2tt_yields_sorted.txt | head -n $line | tail -1 | awk '{print $5}')
+
+echo 'stop = '$stop' lsp = '$lsp' nEv =' $totEv
+##echo 'stop = '$stop' lsp = '$lsp
+
+#echo 'h->Fill(h->FindBin('$stop'),h->FindBin('$lsp'),'$totEv');' >> FinsTot.C
+#echo 'h->Fill(h->FindBin('$stop'),h->FindBin('$lsp'),'$sel1');' >> FinsSel1.C
+#echo 'h->Fill(h->FindBin('$stop'),h->FindBin('$lsp'),'$sel2');' >> FinsSel2.C
+
+echo 'h->Fill('$stop','$lsp','$totEv');' >> FinsTot.C
+echo 'h->Fill('$stop','$lsp','$sel1');' >> FinsSel1.C
+echo 'h->Fill('$stop','$lsp','$sel2');' >> FinsSel2.C
+
+done
+
+#void doFinn(){
+
+##TH2F *h = new TH2F("", "", 60 , 0., 1500., 60 , 0., 1500.);
+
+##h->Draw("");
+
+#  TFile f("Finn.root","UPDATE");
+#  h->SetName("totEv");
+#  h->SetName("sel1");
+#  h->SetName("sel2");
+#  h->Write();
+#  f.Close();
+
+#}

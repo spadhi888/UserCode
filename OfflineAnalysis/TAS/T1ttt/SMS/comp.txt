@@ -1,0 +1,1088 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version  5.27/06b   5 November 2010   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.27/06b (branches/v5-27-06-patches@36515, Nov 05 2010, 15:46:56 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+Loading CMS TDR style... done.
+
+Processing SMS.C+...
+Info in <TUnixSystem::ACLiC>: creating shared library /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:21: warning: unused parameter 'xs'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C: In function 'TGraph* getRefXsecGraph(TH2F*, std::string, double)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:112: warning: unused variable 'xsLimitBelow'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:157: warning: comparison between signed and unsigned integer expressions
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:165: warning: comparison between signed and unsigned integer expressions
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:3,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH2F* clone2F(TH2F*)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:108: warning: unused variable 'xLow'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:109: warning: unused variable 'xHigh'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:112: warning: unused variable 'yLow'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:113: warning: unused variable 'yHigh'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH2D* get2DHisto(char*, char*, char*, double, int)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:321: warning: comparison with string literal results in unspecified behaviour
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH1* getHisto(char*, char*, char*, int, double)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:377: warning: comparison with string literal results in unspecified behaviour
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:375: warning: unused variable 'H'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH1* getHisto(char*, char*, char*, char*, char*, int, double, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:477: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:477: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: At global scope:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:507: warning: unused parameter 'weight'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:531: warning: unused parameter 'weight'
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'TH1* get1dHisto(char*, char*, double)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:37: warning: unused variable 'bin_X'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void stopSummary()':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:92: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:92: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:92: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:96: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:96: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:97: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:97: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:99: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:99: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:101: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:101: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:102: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:102: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:103: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:103: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:104: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:104: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:106: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:106: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:108: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:108: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:109: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:109: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void xSec()':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:777: warning: unused variable 'xG'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:817: warning: unused variable 'yG'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:858: warning: unused variable 'xSq'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:879: warning: unused variable 'ySq'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void SMSplot(bool, bool, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2092: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2093: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2094: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2096: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2097: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2098: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2100: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2106: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2107: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2110: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2112: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2113: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2114: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2116: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2117: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2118: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2120: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2121: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2122: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2123: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2124: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2126: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2127: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2128: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2129: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2131: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2132: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2134: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2135: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2137: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2138: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2140: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2141: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2143: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2144: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2146: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2152: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2152: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2153: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2153: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2161: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2161: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2224: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2224: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2225: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2225: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2234: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2234: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2295: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2295: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2296: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2296: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2299: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2299: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2299: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2300: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2300: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2300: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2302: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2302: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2303: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2303: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2305: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2305: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2313: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2313: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2372: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2372: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2373: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2373: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2374: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2374: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2375: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2375: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2376: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2376: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2377: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2377: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2389: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2448: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2448: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2449: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2449: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2451: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2451: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2474: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2474: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2475: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2475: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2477: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2477: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2478: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2478: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2480: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2480: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2481: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2481: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2483: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2483: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2485: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2485: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2485: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2489: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2489: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2490: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2490: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2492: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2492: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2493: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2493: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2504: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2504: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2504: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2504: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1994: warning: unused variable '_file_RA2b_T1bbbb_ge2bTight'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1995: warning: unused variable '_file_RA2b_T1bbbb_ge2bLoose'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1996: warning: unused variable '_file_RA2b_T1bbbb_ge1bTight'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1997: warning: unused variable '_file_RA2b_T1bbbb_ge1bLoose'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2128: warning: unused variable 'selection_RA2_lowHTMHT'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void labelling(TH2F*, char*, char*, std::string, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1247: warning: 'line2' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void SMSplot(bool, bool, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2205: warning: 'y' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2274: warning: 'y' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2424: warning: 'y' may be used uninitialized in this function
+getting Name h_T1lh_OS_2010_HT
+h_T1lh_OS_2010_HT_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_MET
+h_T1lh_OS_2010_MET_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_ANN
+h_T1lh_OS_2010_ANN_cloned  Cross Section 95% C.L. upper limit
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_ANN_limit
+h_T1lh_OS_ANN_limit_cloned 
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HTmet
+h_T1lnu_SS_2010_HTmet_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HT
+h_T1lnu_SS_2010_HT_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_met
+h_T1lnu_SS_2010_met_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HTmet
+h_T1lnu_SS_lowPt_HTmet_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HT
+h_T1lnu_SS_lowPt_HT_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_met
+h_T1lnu_SS_lowPt_met_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1_ted
+h_T1_ted_cloned 
+nBinX 60 nBinY 60
+getting Name h_T2_ted
+h_T2_ted_cloned 
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_200
+h_T5zz_warren_200_cloned Scan xsection UL
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_100
+h_T5zz_warren_100_cloned Scan xsection UL
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff50
+h_T5zz_jzbdiff50_cloned 
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff100
+h_T5zz_jzbdiff100_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Loose
+h_RA4_T2tt_Loose_cloned cloneLoose
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Tight
+h_RA4_T2tt_Tight_cloned cloneTight
+nBinX 60 nBinY 60
+getting Name h_MT2_T2tt
+h_MT2_T2tt_cloned cloneTight
+nBinX 60 nBinY 60
+getting Name h_RA2_T1_high
+h_RA2_T1_high_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name h_RA2_T1_HT
+h_RA2_T1_HT_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name limitObs_T1_HT500MHT350
+limitObs_T1_HT500MHT350_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name h_RA2_T1_HT
+h_RA2_T1_HT_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name h_RA2_T1_high_exp
+h_RA2_T1_high_exp_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name limitExp_T1_HT500MHT350
+limitExp_T1_HT500MHT350_cloned pp#rightarrow#tilde{g}#tilde{g}, #tilde{g}#rightarrow qq#tilde{#chi}^{0}; m(#tilde{q})>>m(#tilde{g})
+nBinX 36 nBinY 44
+getting Name h_RA2b_T2tt_1bLoose
+h_RA2b_T2tt_1bLoose_cloned T2tt ge1b loose, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bLoose
+h_RA2b_T2tt_2bLoose_cloned T2tt ge2b loose, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_1bTight
+h_RA2b_T2tt_1bTight_cloned T2tt ge1b tight, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bTight
+h_RA2b_T2tt_2bTight_cloned T2tt ge2b tight, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_best_T1bbbb
+h_RA2b_best_T1bbbb_cloned observed cross-section UL (pb)
+nBinX 37 nBinY 47
+getting Name h_RA2b_T1bbbb_ge2bTight
+h_RA2b_T1bbbb_ge2bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge2bLoose
+h_RA2b_T1bbbb_ge2bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bTight
+h_RA2b_T1bbbb_ge1bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bLoose
+h_RA2b_T1bbbb_ge1bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2blow_T1bbbb
+h_MT2blow_T1bbbb_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2bhigh_T1
+h_MT2bhigh_T1_cloned 
+nBinX 60 nBinY 60
+name h_T5zz_MET200_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T5zz_warren_200.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T5zz_warren_200.eps has been created
+name h_T5zz_MET100_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T5zz_warren_100.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T5zz_warren_100.eps has been created
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+Warning in <TFile::Append>: Replacing existing TH1: crossSec_cloned (Potential memory leak).
+name comparison_T5zz_warren_xSec
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_warren_xSec_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_warren_xSec_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_warren_xSec_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/comparison_T5zz_warren_xSec.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparison_T5zz_warren_xSec.eps has been created
+Info in <TCanvas::Print>: png file RESULT/comparison_T5zz_Warren_analysis.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparison_T5zz_Warren_analysis.eps has been created
+name h_T5zz_jzb50_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb50_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb50_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb50_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T5zz_JZB_50.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T5zz_JZB_50.eps has been created
+name h_T5zz_jzb100_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb100_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb100_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_jzb100_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T5zz_JZB_100.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T5zz_JZB_100.eps has been created
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+Warning in <TFile::Append>: Replacing existing TH1: crossSec_cloned (Potential memory leak).
+name comparison_T5zz_jzb_xSec
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_jzb_xSec_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_jzb_xSec_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comparison_T5zz_jzb_xSec_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/comparison_T5zz_JZB_xSec.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparison_T5zz_JZB_xSec.eps has been created
+Info in <TCanvas::Print>: png file RESULT/comparison_T5zz_JZB_analysis.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparison_T5zz_JZB_analysis.eps has been created
+name h_T1_alphaT_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1_alphaT_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1_alphaT_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1_alphaT_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1_ted.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1_ted.eps has been created
+name h_T2_alphaT_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T2_alphaT_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T2_alphaT_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T2_alphaT_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T2_ted.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T2_ted.eps has been created
+name h_MT2blow_T1bbbb_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2blow_T1bbbb_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2blow_T1bbbb_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2blow_T1bbbb_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_MT2b_T1bbbb.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_MT2b_T1bbbb.eps has been created
+name h_MT2bhigh_T1_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2bhigh_T1_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2bhigh_T1_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2bhigh_T1_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_MT2b_T1.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_MT2b_T1.eps has been created
+name h_T1lh_OS_HT_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_HT_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_HT_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_HT_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lh_OS_2010_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lh_OS_2010_HT.eps has been created
+name h_T1lh_OS_MET_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_MET_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_MET_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_MET_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lh_OS_2010_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lh_OS_2010_met.eps has been created
+name h_T1lh_OS_ANN_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_ANN_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_ANN_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lh_OS_ANN_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lh_OS_2010_ANN.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lh_OS_2010_ANN.eps has been created
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+getting Name comp_T1lh_OS_2010_HT
+comp_T1lh_OS_2010_HT_cloned crossSec
+nBinX 60 nBinY 60
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+name comp_T1lh_OS_2010_HT_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comp_T1lh_OS_2010_HT_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comp_T1lh_OS_2010_HT_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_comp_T1lh_OS_2010_HT_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/comparisonOS_xSec.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparisonOS_xSec.eps has been created
+Info in <TCanvas::Print>: png file RESULT/comparisonOS_analysis.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparisonOS_analysis.eps has been created
+name h_T1lnu_SS_2010_HT_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HT_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HT_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HT_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_2010_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_2010_HT.eps has been created
+name h_T1lnu_SS_2010_met_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_met_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_met_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_met_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_2010_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_2010_met.eps has been created
+name h_T1lnu_SS_2010_HTmet_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HTmet_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HTmet_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_2010_HTmet_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_2010_HTmet.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_2010_HTmet.eps has been created
+name h_T1lnu_SS_lowPt_HTmet_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HTmet_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HTmet_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HTmet_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_lowPt_HTmet.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_lowPt_HTmet.eps has been created
+name h_T1lnu_SS_lowPt_HT_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HT_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HT_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_HT_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_lowPt_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_lowPt_HT.eps has been created
+name h_T1lnu_SS_lowPt_met_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_met_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_met_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T1lnu_SS_lowPt_met_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T1lnu_SS_lowPt_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T1lnu_SS_lowPt_met.eps has been created
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+getting Name crossSec
+crossSec_cloned crossSec
+nBinX 60 nBinY 60
+Warning in <TFile::Append>: Replacing existing TH1: crossSec_cloned (Potential memory leak).
+name crossSec_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_crossSec_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_crossSec_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_crossSec_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/comparisonSS_xSec.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparisonSS_xSec.eps has been created
+Info in <TCanvas::Print>: png file RESULT/comparisonSS_analysis.png has been created
+Info in <TCanvas::Print>: eps file RESULT/comparisonSS_analysis.eps has been created
+name limitObs_T1_HT500MHT350_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_limitObs_T1_HT500MHT350_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_limitObs_T1_HT500MHT350_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_limitObs_T1_HT500MHT350_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2_T1_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2_T1_HT.eps has been created
+name limitObs_T1_HT500MHT350
+before here 
+==> nBinX 36 nBinY 44 xLow 300 xHigh 1200 yLow 100 yHigh 1200
+HERE graph_limitObs_T1_HT500MHT350_1.000000
+before return
+I'm here 1
+==> nBinX 36 nBinY 44 xLow 300 xHigh 1200 yLow 100 yHigh 1200
+HERE graph_limitObs_T1_HT500MHT350_0.333333
+before return
+I'm here 13 
+==> nBinX 36 nBinY 44 xLow 300 xHigh 1200 yLow 100 yHigh 1200
+HERE graph_limitObs_T1_HT500MHT350_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2_T1_MHT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2_T1_MHT.eps has been created
+name h_RA2_T1_high_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2_T1_high_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2_T1_high_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2_T1_high_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2_T1_highHTMHT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2_T1_highHTMHT.eps has been created
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: crossSec (Potential memory leak).
+name h_RA2b_T2tt_1bLoose_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bLoose_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bLoose_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bLoose_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bLoose_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2b_T2tt_1bLoose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2b_T2tt_1bLoose.eps has been created
+name h_RA2b_T2tt_2bLoose_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bLoose_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bLoose_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bLoose_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bLoose_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2b_T2tt_2bLoose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2b_T2tt_2bLoose.eps has been created
+name h_RA2b_T2tt_1bTight_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bTight_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bTight_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bTight_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_1bTight_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2b_T2tt_1bTight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2b_T2tt_1bTight.eps has been created
+name h_RA2b_T2tt_2bTight_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bTight_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bTight_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bTight_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_T2tt_2bTight_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA2b_T2tt_2bTight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA2b_T2tt_2bTight.eps has been created
+name h_RA4_T2tt_Tight_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Tight_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Tight_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Tight_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Tight_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA4_T2tt_Tight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA4_T2tt_Tight.eps has been created
+name h_RA4_T2tt_Loose_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Loose_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Loose_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Loose_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA4_T2tt_Loose_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_h_RA4_T2tt_Loose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_h_RA4_T2tt_Loose.eps has been created
+name h_RA2b_best_T1bbbb_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_best_T1bbbb_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_best_T1bbbb_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_RA2b_best_T1bbbb_cloned_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_RA2b_T1bbbb_best.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_RA2b_T1bbbb_best.eps has been created
+name h_MT2_T2tt_cloned
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2_T2tt_cloned_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2_T2tt_cloned_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2_T2tt_cloned_3.000000
+before return
+I'm here 3 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_MT2_T2tt_cloned_10.000000
+before return
+Info in <TCanvas::Print>: png file RESULT/h_limit_MT2b_T2tt.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_MT2b_T2tt.eps has been created
+getting Name h_T1lh_OS_2010_HT
+h_T1lh_OS_2010_HT_cloned Events
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_MET
+h_T1lh_OS_2010_MET_cloned Events
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_ANN
+h_T1lh_OS_2010_ANN_cloned Acceptance x Efficiency 
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_ANN_efficiency
+h_T1lh_OS_ANN_efficiency_cloned 
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HTmet
+h_T1lnu_SS_2010_HTmet_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HT
+h_T1lnu_SS_2010_HT_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_met
+h_T1lnu_SS_2010_met_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HTmet
+h_T1lnu_SS_lowPt_HTmet_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HT
+h_T1lnu_SS_lowPt_HT_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_met
+h_T1lnu_SS_lowPt_met_cloned efficiency T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1_ted
+h_T1_ted_cloned effHadSum
+nBinX 60 nBinY 60
+getting Name h_T2_ted
+h_T2_ted_cloned effHadSum
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_200
+h_T5zz_warren_200_cloned Scan Efficiency
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_100
+h_T5zz_warren_100_cloned Scan Efficiency
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff50
+h_T5zz_jzbdiff50_cloned 
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff100
+h_T5zz_jzbdiff100_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Loose
+h_RA4_T2tt_Loose_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Tight
+h_RA4_T2tt_Tight_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2_T2tt
+h_MT2_T2tt_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2_T1_high
+h_RA2_T1_high_cloned RA2 High MHT: HT>800 & MHT>500 GeV
+nBinX 60 nBinY 60
+getting Name h_RA2_T1_HT
+h_RA2_T1_HT_cloned RA2 High HT: HT>800 & MHT>200 GeV
+nBinX 60 nBinY 60
+getting Name efficiency_T1_HT500MHT350
+efficiency_T1_HT500MHT350_cloned RA2 Medium HT,MHT: HT>500 & MHT>350 GeV
+nBinX 60 nBinY 60
+getting Name h_RA2_T1_HT
+h_RA2_T1_HT_cloned RA2 High HT: HT>800 & MHT>200 GeV
+nBinX 60 nBinY 60
+getting Name h_RA2_T1_high_exp
+h_RA2_T1_high_exp_cloned RA2 High MHT: HT>800 & MHT>500 GeV
+nBinX 60 nBinY 60
+getting Name efficiency_T1_HT500MHT350
+efficiency_T1_HT500MHT350_cloned RA2 Medium HT,MHT: HT>500 & MHT>350 GeV
+nBinX 60 nBinY 60
+Warning in <TFile::Append>: Replacing existing TH1: efficiency_T1_HT500MHT350_cloned (Potential memory leak).
+getting Name h_RA2b_T2tt_1bLoose
+h_RA2b_T2tt_1bLoose_cloned T2tt ge1b loose, Selection Efficiency
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bLoose
+h_RA2b_T2tt_2bLoose_cloned T2tt ge2b loose, Selection Efficiency
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_1bTight
+h_RA2b_T2tt_1bTight_cloned T2tt ge1b tight, Selection Efficiency
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bTight
+h_RA2b_T2tt_2bTight_cloned T2tt ge2b tight, Selection Efficiency
+nBinX 37 nBinY 47
+getting Name h_RA2b_best_T1bbbb
+h_RA2b_best_T1bbbb_cloned efficiency
+nBinX 37 nBinY 47
+getting Name h_RA2b_T1bbbb_ge2bTight
+h_RA2b_T1bbbb_ge2bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge2bLoose
+h_RA2b_T1bbbb_ge2bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bTight
+h_RA2b_T1bbbb_ge1bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bLoose
+h_RA2b_T1bbbb_ge1bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2blow_T1bbbb
+h_MT2blow_T1bbbb_cloned 
+nBinX 80 nBinY 80
+getting Name h_MT2bhigh_T1
+h_MT2bhigh_T1_cloned 
+nBinX 60 nBinY 60
+name h_T5zz_MET200_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T5zz_warren_200.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T5zz_warren_200.eps has been created
+name h_T5zz_MET100_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T5zz_warren_100.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T5zz_warren_100.eps has been created
+name h_h_T5zz_jzb50_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T5zz_JZB_50.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T5zz_JZB_50.eps has been created
+name h_h_T5zz_jzb100_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T5zz_JZB_100.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T5zz_JZB_100.eps has been created
+name h_T1_alphaT_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1_ted.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1_ted.eps has been created
+name h_T2_alphaT_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T2_ted.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T2_ted.eps has been created
+name h_MT2blow_T1bbbb_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_MT2b_T1bbbb.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_MT2b_T1bbbb.eps has been created
+name h_MT2bhigh_T1_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_MT2b_T1.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_MT2b_T1.eps has been created
+name h_T1lh_OS_HT_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lh_OS_2010_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lh_OS_2010_HT.eps has been created
+name h_T1lh_OS_MET_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lh_OS_2010_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lh_OS_2010_met.eps has been created
+name h_T1lh_OS_ANN_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lh_OS_2010_ANN.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lh_OS_2010_ANN.eps has been created
+name h_T1lnu_SS_2010_HT_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_2010_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_2010_HT.eps has been created
+name h_T1lnu_SS_2010_met_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_2010_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_2010_met.eps has been created
+name h_T1lnu_SS_2010_HTmet_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_2010_HTmet.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_2010_HTmet.eps has been created
+name h_T1lnu_SS_lowPt_HTmet_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_lowPt_HTmet.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_lowPt_HTmet.eps has been created
+name h_T1lnu_SS_lowPt_HT_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_lowPt_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_lowPt_HT.eps has been created
+name h_T1lnu_SS_lowPt_met_efficiency
+Info in <TCanvas::Print>: png file RESULT/h_eff_T1lnu_SS_lowPt_met.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_T1lnu_SS_lowPt_met.eps has been created
+name efficiency_T1_HT500MHT350_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2_T1_HT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2_T1_HT.eps has been created
+name efficiency_T1_HT500MHT350
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2_T1_MHT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2_T1_MHT.eps has been created
+name h_RA2_T1_high_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2_T1_highHTMHT.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2_T1_highHTMHT.eps has been created
+name h_RA2b_T2tt_1bLoose_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2b_T2tt_1bLoose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2b_T2tt_1bLoose.eps has been created
+name h_RA2b_T2tt_2bLoose_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2b_T2tt_2bLoose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2b_T2tt_2bLoose.eps has been created
+name h_RA2b_T2tt_1bTight_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2b_T2tt_1bTight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2b_T2tt_1bTight.eps has been created
+name h_RA2b_T2tt_2bTight_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA2b_T2tt_2bTight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA2b_T2tt_2bTight.eps has been created
+name h_RA4_T2tt_Tight_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA4_T2tt_Tight.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA4_T2tt_Tight.eps has been created
+name h_RA4_T2tt_Loose_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_h_RA4_T2tt_Loose.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_h_RA4_T2tt_Loose.eps has been created
+name h_RA2b_best_T1bbbb_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_RA2b_T1bbbb_best.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_RA2b_T1bbbb_best.eps has been created
+name h_MT2_T2tt_cloned
+Info in <TCanvas::Print>: png file RESULT/h_eff_MT2b_T2tt.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_eff_MT2b_T2tt.eps has been created
+..q.qq

@@ -1,0 +1,392 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version  5.27/06b   5 November 2010   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.27/06b (branches/v5-27-06-patches@36515, Nov 05 2010, 15:46:56 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+Loading CMS TDR style... done.
+
+Processing SMS.C+...
+Info in <TUnixSystem::ACLiC>: creating shared library /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:21: warning: unused parameter 'xs'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C: In function 'TGraph* getRefXsecGraph(TH2F*, std::string, double)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:112: warning: unused variable 'xsLimitBelow'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:157: warning: comparison between signed and unsigned integer expressions
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/SMS_utils.C:165: warning: comparison between signed and unsigned integer expressions
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:3,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH2D* get2DHisto(char*, char*, char*, double, int)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:313: warning: comparison with string literal results in unspecified behaviour
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH1* getHisto(char*, char*, char*, int, double)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:369: warning: comparison with string literal results in unspecified behaviour
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:367: warning: unused variable 'H'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: In function 'TH1* getHisto(char*, char*, char*, char*, char*, int, double, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:469: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:469: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C: At global scope:
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:499: warning: unused parameter 'weight'
+/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C:523: warning: unused parameter 'weight'
+In file included from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.h:34,
+                 from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/SMS_C_ACLiC_dict.cxx:16:
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void stopSummary()':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:55: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:55: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:55: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:59: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:59: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:60: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:60: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:62: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:62: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:63: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:63: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:64: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:64: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:65: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:65: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:67: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:67: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void xSec()':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:713: warning: unused variable 'xG'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:753: warning: unused variable 'yG'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:794: warning: unused variable 'xSq'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:815: warning: unused variable 'ySq'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void SMSplot(bool, bool, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1963: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1964: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1965: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1967: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1968: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1969: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1971: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1977: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1978: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1981: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1983: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1984: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1985: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1987: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1988: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1989: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1991: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1992: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1993: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1994: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1995: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1997: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1998: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2001: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2002: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2004: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2005: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2007: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2008: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2010: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2011: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2013: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2019: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2019: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2020: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2020: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2028: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2028: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2091: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2091: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2092: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2092: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2101: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2101: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2162: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2162: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2163: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2163: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2166: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2166: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2166: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2167: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2167: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2167: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2169: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2169: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2170: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2170: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2172: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2172: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2180: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2180: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2239: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2239: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2240: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2240: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2241: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2241: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2242: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2242: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2243: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2243: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2244: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2244: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2256: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2315: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2315: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2316: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2316: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2318: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2318: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2319: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2319: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2321: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2321: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2322: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2322: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2324: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2324: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2328: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2328: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2329: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2329: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2331: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2331: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2332: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2332: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2343: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2343: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2343: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2343: warning: deprecated conversion from string constant to 'char*'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1870: warning: unused variable '_file_RA2b_T1bbbb_ge2bTight'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1871: warning: unused variable '_file_RA2b_T1bbbb_ge2bLoose'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1872: warning: unused variable '_file_RA2b_T1bbbb_ge1bTight'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1873: warning: unused variable '_file_RA2b_T1bbbb_ge1bLoose'
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void labelling(TH2F*, char*, char*, std::string, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1178: warning: 'line2' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:1248: warning: 'refGraph_histo_10' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C: In function 'void SMSplot(bool, bool, bool)':
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2072: warning: 'y' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2141: warning: 'y' may be used uninitialized in this function
+/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS.C:2291: warning: 'y' may be used uninitialized in this function
+getting Name h_T1lh_OS_2010_HT
+h_T1lh_OS_2010_HT_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_MET
+h_T1lh_OS_2010_MET_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_2010_ANN
+h_T1lh_OS_2010_ANN_cloned  Cross Section 95% C.L. upper limit
+nBinX 60 nBinY 60
+getting Name h_T1lh_OS_ANN_limit
+h_T1lh_OS_ANN_limit_cloned 
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HTmet
+h_T1lnu_SS_2010_HTmet_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_HT
+h_T1lnu_SS_2010_HT_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_2010_met
+h_T1lnu_SS_2010_met_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HTmet
+h_T1lnu_SS_lowPt_HTmet_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_HT
+h_T1lnu_SS_lowPt_HT_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1lnu_SS_lowPt_met
+h_T1lnu_SS_lowPt_met_cloned #sigma limit T1lnu
+nBinX 60 nBinY 60
+getting Name h_T1_ted
+h_T1_ted_cloned 
+nBinX 60 nBinY 60
+getting Name h_T2_ted
+h_T2_ted_cloned 
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_200
+h_T5zz_warren_200_cloned Scan xsection UL
+nBinX 60 nBinY 60
+getting Name h_T5zz_warren_100
+h_T5zz_warren_100_cloned Scan xsection UL
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff50
+h_T5zz_jzbdiff50_cloned 
+nBinX 60 nBinY 60
+getting Name h_T5zz_jzbdiff100
+h_T5zz_jzbdiff100_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Loose
+h_RA4_T2tt_Loose_cloned cloneLoose
+nBinX 60 nBinY 60
+getting Name h_RA4_T2tt_Tight
+h_RA4_T2tt_Tight_cloned cloneTight
+nBinX 60 nBinY 60
+getting Name h_MT2_T2tt
+h_MT2_T2tt_cloned cloneTight
+nBinX 60 nBinY 60
+getting Name h_RA2b_T2tt_1bLoose
+h_RA2b_T2tt_1bLoose_cloned T2tt ge1b loose, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bLoose
+h_RA2b_T2tt_2bLoose_cloned T2tt ge2b loose, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_1bTight
+h_RA2b_T2tt_1bTight_cloned T2tt ge1b tight, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_T2tt_2bTight
+h_RA2b_T2tt_2bTight_cloned T2tt ge2b tight, measured cross section UL (pb) - CLs
+nBinX 37 nBinY 47
+getting Name h_RA2b_best_T1bbbb
+h_RA2b_best_T1bbbb_cloned best upper limit
+nBinX 22 nBinY 23
+getting Name h_RA2b_T1bbbb_ge2bTight
+h_RA2b_T1bbbb_ge2bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge2bLoose
+h_RA2b_T1bbbb_ge2bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bTight
+h_RA2b_T1bbbb_ge1bTight_cloned 
+nBinX 60 nBinY 60
+getting Name h_RA2b_T1bbbb_ge1bLoose
+h_RA2b_T1bbbb_ge1bLoose_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2blow_T1bbbb
+h_MT2blow_T1bbbb_cloned 
+nBinX 60 nBinY 60
+getting Name h_MT2bhigh_T1
+h_MT2bhigh_T1_cloned 
+nBinX 60 nBinY 60
+name h_T5zz_MET200_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET200_limit_3.000000
+before return
+I'm here 3 
+Info in <TCanvas::Print>: png file RESULT/h_limit_T5zz_warren_200.png has been created
+Info in <TCanvas::Print>: eps file RESULT/h_limit_T5zz_warren_200.eps has been created
+name h_T5zz_MET100_limit
+before here 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_1.000000
+before return
+I'm here 1
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_0.333333
+before return
+I'm here 13 
+==> nBinX 60 nBinY 60 xLow 0 xHigh 1500 yLow 0 yHigh 1500
+HERE graph_h_T5zz_MET100_limit_3.000000
+before return
+I'm here 3 
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+#0  0x0000003a8b29a115 in waitpid () from /lib64/libc.so.6
+#1  0x0000003a8b23c481 in do_system () from /lib64/libc.so.6
+#2  0x00002b753e3f8222 in TUnixSystem::StackTrace() ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#3  0x00002b753e3f8cdc in TUnixSystem::DispatchSignals(ESignals) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#4  <signal handler called>
+#5  0x00002b7540c106ad in TLegend::PaintPrimitives() ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGraf.so
+#6  0x00002b7540d9f1f7 in TPad::Paint(char const*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#7  0x00002b7540da686c in TPad::Print(char const*, char const*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#8  0x00002b7540da48af in TPad::SaveAs(char const*, char const*) const ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#9  0x00002b7540e43228 in printCanvas(TH2F*, char*, char*, char*, char*, bool, bool, bool) ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#10 0x00002b7540e462bf in SMSplot(bool, bool, bool) ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#11 0x00002b7540e49195 in SMS() ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#12 0x00002b7540e491b9 in G__SMS_C_ACLiC_dict__0_1563(G__value*, char const*, G__param*, int) ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#13 0x00002b753e962114 in Cint::G__ExceptionWrapper(int (*)(G__value*, char const*, G__param*, int), G__value*, char*, G__param*, int) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#14 0x00002b753ea18a70 in G__execute_call ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#15 0x00002b753ea19879 in G__call_cppfunc ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#16 0x00002b753e9f83d6 in G__interpret_func ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#17 0x00002b753e9e634a in G__getfunction ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#18 0x00002b753e9b980a in G__getitem ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#19 0x00002b753e9bdb54 in G__getexpr ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#20 0x00002b753e9cb99e in G__calc_internal ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#21 0x00002b753ea554be in G__process_cmd ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCint.so
+#22 0x00002b753e3ba705 in TCint::ProcessLine(char const*, TInterpreter::EErrorCode*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#23 0x00002b753e3b7123 in TCint::ProcessLineSynch(char const*, TInterpreter::EErrorCode*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#24 0x00002b753e3183e1 in TApplication::ExecuteFile(char const*, int*, bool) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#25 0x00002b753e31614b in TApplication::ProcessLine(char const*, bool, int*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libCore.so
+#26 0x00002b753f503b73 in TRint::Run(bool) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libRint.so
+#27 0x000000000040100d in main ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+If they do not help you then please submit a bug report at
+http://root.cern.ch/bugs. Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#5  0x00002b7540c106ad in TLegend::PaintPrimitives() ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGraf.so
+#6  0x00002b7540d9f1f7 in TPad::Paint(char const*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#7  0x00002b7540da686c in TPad::Print(char const*, char const*) ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#8  0x00002b7540da48af in TPad::SaveAs(char const*, char const*) const ()
+   from /afs/cern.ch/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_3/external/slc5_amd64_gcc434/lib/libGpad.so
+#9  0x00002b7540e43228 in printCanvas(TH2F*, char*, char*, char*, char*, bool, bool, bool) ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#10 0x00002b7540e462bf in SMSplot(bool, bool, bool) ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+#11 0x00002b7540e49195 in SMS() ()
+   from /afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/SMS/./SMS_C.so
+===========================================================
+
+

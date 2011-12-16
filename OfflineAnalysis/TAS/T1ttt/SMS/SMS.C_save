@@ -1,0 +1,4696 @@
+//#include "/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/macro_utils.C"
+//#include "/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/sensitivityUtils.C"
+
+#include "/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_4_2_3/src/PhysicsTools/PatExamples/test/verySimple.C"
+#include "TObjArray.h"
+
+
+void makeEffRatio() {
+   
+  TH2 *hb_h_2W=get2DHisto("SCAN/smsT6_had.root","scan_baseline","Scan",1,1);
+  TH2 *ha_h_2W=get2DHisto("SCAN/smsT6_had.root","scan_all","Scan",1,1);
+  TH2 *hall_h_2W=get2DHisto("SCAN/smsT6_had.root","scan_all_before","Scan",1,1);
+
+  TH2 *hb_l_2W=get2DHisto("SCAN/smsT6_lept.root","scan_baseline","Scan",1,1);
+  TH2 *ha_l_2W=get2DHisto("SCAN/smsT6_lept.root","scan_all","Scan",1,1);
+  TH2 *hall_l_2W=get2DHisto("SCAN/smsT6_lept.root","scan_all_before","Scan",1,1);
+
+  hb_h_2W->Divide(hall_h_2W);
+  hb_l_2W->Divide(hall_l_2W);
+
+  hb_l_2W->SetMaximum(0.40);
+  hb_h_2W->SetMaximum(0.40);
+
+  hb_l_2W->SetTitle("");
+  hb_h_2W->SetTitle("");
+
+  /////
+  /////
+
+  TH2 *hb_h_TT=get2DHisto("SCAN/smsT1tt_had.root","scan_baseline","Scan",1,1);
+  TH2 *ha_h_TT=get2DHisto("SCAN/smsT1tt_had.root","scan_all","Scan",1,1);
+  TH2 *hall_h_TT=get2DHisto("SCAN/smsT1tt_had.root","scan_all_before","Scan",1,1);
+
+  TH2 *hb_l_TT=get2DHisto("SCAN/smsT1tt_lept.root","scan_baseline","Scan",1,1);
+  TH2 *ha_l_TT=get2DHisto("SCAN/smsT1tt_lept.root","scan_all","Scan",1,1);
+  TH2 *hall_l_TT=get2DHisto("SCAN/smsT1tt_lept.root","scan_all_before","Scan",1,1);
+
+  hb_h_TT->Divide(hall_h_TT);
+  hb_l_TT->Divide(hall_l_TT);
+
+  hb_l_TT->SetMaximum(0.40);
+  hb_h_TT->SetMaximum(0.40);
+
+  hb_l_TT->SetTitle("");
+  hb_h_TT->SetTitle("");
+
+  /////
+  /////
+
+  TH2 *hb_h_tb=get2DHisto("SCAN/smsT1tb_had.root","scan_baseline","Scan",1,1);
+  TH2 *ha_h_tb=get2DHisto("SCAN/smsT1tb_had.root","scan_all","Scan",1,1);
+  TH2 *hall_h_tb=get2DHisto("SCAN/smsT1tb_had.root","scan_all_before","Scan",1,1);
+
+  TH2 *hb_l_tb=get2DHisto("SCAN/smsT1tb_lept.root","scan_baseline","Scan",1,1);
+  TH2 *ha_l_tb=get2DHisto("SCAN/smsT1tb_lept.root","scan_all","Scan",1,1);
+  TH2 *hall_l_tb=get2DHisto("SCAN/smsT1tb_lept.root","scan_all_before","Scan",1,1);
+
+  hb_h_tb->Divide(hall_h_tb);
+  hb_l_tb->Divide(hall_l_tb);
+
+  hb_l_tb->SetMaximum(0.40);
+  hb_h_tb->SetMaximum(0.40);
+
+  hb_l_tb->SetTitle("");
+  hb_h_tb->SetTitle("");
+
+
+  /////
+  /////
+
+  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1",0,0,1200,600);
+  cPlot1->Divide(3,2);
+
+  cPlot1->cd(1);
+  hb_h_2W->Draw("colz");
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "had 2W");
+
+  TLine *l1;
+  l1 = new TLine(400., 236., 1000., 836.);
+
+  TLine *l2;
+  l2 = new TLine(300., 300., 1000., 1000.);
+  
+  l1->SetLineColor(2);
+  l1->SetLineStyle(2);
+  l1->Draw("same");
+
+  l2->SetLineColor(1);
+  l2->SetLineStyle(1);
+  l2->Draw("same");
+
+  cPlot1->cd(2);
+  hb_h_tb->Draw("colz");
+  //  l1->Draw("same");
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "had tb");
+  //  l1->Draw("same");
+
+  cPlot1->cd(3);
+  hb_h_TT->Draw("colz");
+  //  l1->Draw("same");
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "had tt");
+
+  cPlot1->cd(4);
+  hb_l_2W->Draw("colz");
+  l1->Draw("same");
+  l2->Draw("same");
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "lept 2W");
+
+  cPlot1->cd(5);
+  hb_l_tb->Draw("colz");
+  //  l1->Draw("same");
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "lept tb");
+
+  cPlot1->cd(6);
+  hb_l_TT->Draw("colz");
+  //  l1->Draw("same");
+
+
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.08);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, "lept tt");
+
+  cPlot1->SaveAs("EffonLept.gif");
+
+  return ;
+  
+}
+
+
+
+void xSec() {
+
+  tdrStyle->SetPadLeftMargin(0.15);
+
+  Double_t xG[38]={
+    100.0,
+    125.0,
+    150.0,
+    175.0,
+    200.0,
+    225.0,
+    250.0,
+    275.0,
+    300.0,
+    325.0,
+    350.0,
+    375.0,
+    400.0,
+    425.0,
+    450.0,
+    475.0,
+    50.0, // this is the little one
+    500.0,
+    525.0,
+    550.0,
+    575.0,
+    600.0,
+    625.0,
+    650.0,
+    675.0,
+    700.0,
+    725.0,
+    75.0,
+    750.0,
+    775.0,
+    800.0,
+    825.0,
+    850.0,
+    875.0,
+    900.0,
+    925.0,
+    950.0, // this is the highest
+  };
+
+  Double_t yG[38]={
+    0.212E+05,
+    0.717E+04,
+    0.286E+04,
+    0.128E+04,
+    625.,
+    326.,
+    180.,
+    104.,
+    62.1,
+    38.3,
+    24.2,
+    15.7,
+    10.4,
+    6.97,
+    4.76,
+    3.30,
+    0.484E+06,
+    2.31,
+    1.64,
+    1.17,
+    0.847,
+    0.617,
+    0.453,
+    0.335,
+    0.249,
+    0.186,
+    0.140,
+    0.810E+05,
+    0.106,
+    0.801E-01,
+    0.610E-01,
+    0.466E-01,
+    0.358E-01,
+    0.275E-01,
+    0.212E-01,
+    0.164E-01,
+    0.128E-01
+  };
+
+
+  Double_t xSq[18]={
+    100.0,
+    150.0,
+    200.0,
+    250.0,
+    300.0,
+    350.0,
+    400.0,
+    450.0,
+    500.0,
+    550.0,
+    600.0,
+    650.0,
+    700.0,
+    750.0,
+    800.0,
+    850.0,
+    900.0,
+  };
+
+
+  Double_t ySq[18]={
+    0.393E+04,
+    547.,
+    123.,
+    36.8,
+    13.3,
+    5.48,
+    2.49,
+    1.22,
+    0.630,
+    0.342,
+    0.193,
+    0.112,
+    0.666E-01,
+    0.404E-01,
+    0.249E-01,
+    0.156E-01,
+    0.981E-02,
+  };
+
+
+  TH1D * Gluino= new TH1D("gluino","gluino pair production",40, 0., 1000.);
+  TH1D * Squark= new TH1D("squark","squark pair production",40, 0., 1000.);
+
+  for (Int_t i=1;i<38+1;i++) {
+    Gluino->SetBinContent(Gluino->FindBin(xG[i-1]),yG[i-1]);
+  }
+
+  for (Int_t i=1;i<18+1;i++) {
+    Squark->SetBinContent(Squark->FindBin(xSq[i-1]),ySq[i-1]);
+  }
+
+  Squark->SetYTitle("pb");
+  Gluino->SetYTitle("pb");
+
+  Squark->SetXTitle("m_{Squark}");
+  Gluino->SetXTitle("m_{Gluino}");
+
+  Squark->SetTitle("");
+  Gluino->SetTitle("");
+
+  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1");
+  cPlot1->SetLogy(1);
+  Squark->Draw(" p ");
+
+  cPlot1->Draw("colz");
+  cPlot1->SaveAs("SCAN/SquarkCrossSection.gif");
+  cPlot1->Print("SCAN/SquarkCrossSection.eps");
+
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot");
+  cPlot->SetLogy(1);
+
+  Gluino->Draw(" p ");
+
+  cPlot->Draw("colz");
+  cPlot->SaveAs("SCAN/GluinoCrossSection.gif");
+  cPlot->Print("SCAN/GluinoCrossSection.eps");
+
+  //  gr = new TGraph(38,x,y);
+  //  gr->Draw("A*");
+
+  return ;
+  
+  TFile f("reference_xSec.root","UPDATE");
+  Gluino->Write();
+  Squark->Write();
+  f.Close();
+
+}
+
+TH1* getLM1(char * histoToDraw,char * dirToDraw, double rebin ) {
+  
+  TH1 *h1_scale=getHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_4_2_patch1/src/PhysicsTools/PatAlgos/test/histo_LM1_HT200.root","scale","Scale",1,1);
+  double LM1_scale=1./h1_scale->GetBinContent(2);
+  
+  TH1 *h1=getHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_4_2_patch1/src/PhysicsTools/PatAlgos/test/histo_LM1_HT200.root",histoToDraw,dirToDraw,rebin,LM1_scale);
+  
+  return h1;
+  
+}
+
+
+TH1* getLM0(char * histoToDraw,char * dirToDraw, double rebin ) {
+   
+  TH1 *h1_scale=getHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_4_2_patch1/src/PhysicsTools/PatAlgos/test/histo_LM0_HT200.root","scale","Scale",1,1);
+  double LM1_scale=1./h1_scale->GetBinContent(2);
+  
+  TH1 *h1=getHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_4_2_patch1/src/PhysicsTools/PatAlgos/test/histo_LM0_HT200.root",histoToDraw,dirToDraw,rebin,LM1_scale);
+  
+  return h1;
+  
+}
+
+/*
+double getBkgError(int xBin) {
+  
+  double error=999999999999.;
+  
+  TFile *_file0 = TFile::Open("AllBkg.root");
+  //  TFile *_file0 = TFile::Open("AllBkg_ptNNLj.root");
+  //  TFile *_file0 = TFile::Open("AllBkg_NNlj_vetoTOP.root");
+  TH1F * hQCDhad = (TH1F*) _file0->Get("hQCDhad");
+  TH1F * hQCDlept = (TH1F*) _file0->Get("hQCDlept");
+  TH1F * hZinv = (TH1F*) _file0->Get("hZinv");
+  TH1F * hHadTau = (TH1F*) _file0->Get("hHadTau");
+  TH1F * hMu = (TH1F*) _file0->Get("hMu");
+  TH1F * hEle = (TH1F*) _file0->Get("hEle");
+  TH1F * hSum = (TH1F*) _file0->Get("hSumAll");
+
+  double integralB=hSum->Integral(hSum->FindBin(xBin),hSum->GetNbinsX()+1);
+  double integralQCDhad=hQCDhad->Integral(hQCDhad->FindBin(xBin),hQCDhad->GetNbinsX()+1);
+  double integralQCDlept=hQCDlept->Integral(hQCDlept->FindBin(xBin),hQCDlept->GetNbinsX()+1);
+  double integralZinv=hZinv->Integral(hZinv->FindBin(xBin),hZinv->GetNbinsX()+1);
+  double integralTAU=hHadTau->Integral(hHadTau->FindBin(xBin),hHadTau->GetNbinsX()+1);
+  double integralMU=hMu->Integral(hMu->FindBin(xBin),hMu->GetNbinsX()+1);
+  double integralELE=hEle->Integral(hEle->FindBin(xBin),hMu->GetNbinsX()+1);
+  bool first=true;
+  bool bob=false;
+  bool statOnly=false;
+  error=calculateError(first,statOnly, bob, integralB,integralZinv, integralTAU, integralQCDhad, integralQCDlept,integralMU,integralELE);
+ 
+  _file0->Close();
+ 
+  cout << "error " << error << endl;
+ 
+  //  std::pair<double,double > BKG;
+  
+  //  BKG.first=integralB;
+  //  BKG.second=error;
+  
+  return error;
+
+}
+
+*/
+
+
+void DrawChargino(char * label){
+  
+  tdrStyle->SetPadLeftMargin(0.14);
+  tdrStyle->SetTextSize(0.05);
+  tdrStyle->SetTextFont(0.72);
+
+  TFile *_file0 = TFile::Open("SCAN/histo_Gluino_T3_slice14.root");
+  //  TFile *_file0 = TFile::Open("SCAN/histo_SquarkPair_T4_slice14.root");
+  //  TFile *_file0 = TFile::Open("/data/dalfonso/SCAN/histo_Gluino_T3_test.root");
+  //  TFile *_file0 = TFile::Open("SCAN/histo_SquarkPair_T5.root");
+  
+  // TFile *_file0 = TFile::Open("SCAN/histo_Gluino_T3.root");
+
+  /*
+  if(label=="T3") {
+    char * fileName="SCAN/histo_Gluino_T3.root";
+    char * titleX="m_{Squark} (GeV)";
+    char * titleHistoRef="Squark";
+  }
+
+  if(label=="T4") {
+    char * fileName="SCAN/histo_SquarkPair_T4.root";
+    char * titleX="m_{Gluino} (GeV)";
+    char * titleHistoRef="Gluino";
+  }
+  */
+
+  TDirectory *dir = (TDirectory*) _file0->Get("Scan");
+  TH3D *h1 = (TH3D*) dir->Get("masses");  
+  
+  Int_t  nBinX= h1->GetXaxis()->GetNbins();
+  Int_t  nBinY= h1->GetYaxis()->GetNbins();
+  Int_t  nBinZ= h1->GetZaxis()->GetNbins();
+  
+  //  TH2D * h_NPoint= new TH2D("NPoints","NPoints",30, 25., 1525., 30, 25., 1525.);
+  
+  TH2D * h_NPoint= new TH2D("NPoints","NPoints",22, 25., 1125., 22, 25., 1125.);
+  TH1D * h_ChSplit= new TH1D("MassSplit_CH_LSP","MassSplit",100, 0., 200.);
+  
+  for(int i=0; i<nBinX ; i++) { // i=LSP
+    for(int k=0; k<nBinZ ; k++) { //k=GL
+      
+      int nPoint=0;
+      
+      for(int j=0; j<nBinY ; j++) { //j=CH
+	
+	if(h1->GetBinContent(i,j,k)!=0)   nPoint++;
+	//	if(h1->GetBinContent(i,j,k)!=0)   h_NPoint->Fill(i,k,1);
+	//	cout << h1->GetBinContent(i,j,k) << endl;
+	
+	if(h1->GetBinContent(i,j,k)!=0)  cout << "MLSP "<< h1->GetXaxis()->GetBinLowEdge(i) << " MGLUINO " << h1->GetZaxis()->GetBinLowEdge(k) << " MChargino " << h1->GetYaxis()->GetBinLowEdge(j) << " chargino Points " << nPoint << endl;
+	
+	/*	
+	if(MCH=((MLSP+MGL)/2)) cout << "slide1: MLSP "<< h1->GetXaxis()->GetBinLowEdge(i) << " MGLUINO " << h1->GetZaxis()->GetBinLowEdge(k) << " MChargino " << h1->GetYaxis()->GetBinLowEdge(j) << " chargino Points " << nPoint << endl;
+	
+	if(MCH=(MLSP+82)) cout << "slice 3: MLSP "<< h1->GetXaxis()->GetBinLowEdge(i) << " MGLUINO " << h1->GetZaxis()->GetBinLowEdge(k) << " MChargino " << h1->GetYaxis()->GetBinLowEdge(j) << " chargino Points " << nPoint << endl;
+	*/
+      }
+      
+      //      if(nPoint!=0) cout << "MLSP "<< h1->GetXaxis()->GetBinLowEdge(i) << " MGLUINO " << h1->GetZaxis()->GetBinLowEdge(k) << " chargino Points " << nPoint << endl;
+      
+      if(nPoint!=0)  h_NPoint->SetBinContent(k,i,nPoint);
+      
+      ///////    h_ChSplit->Fill((h1->GetXaxis()->GetBinLowEdge(i))-(h1->GetYaxis()->GetBinLowEdge(j))); 
+      
+      
+    }   
+  }
+
+  h_NPoint->SetXTitle("m_{Squark}");
+  //  h_NPoint->SetXTitle("m_{Gluino}");
+  h_NPoint->SetYTitle("LSP");
+  //  h_NPoint->SetTextSize(.04);
+  gStyle->SetTextSize(10);
+  gStyle->SetTextFont(62);
+
+  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1");
+
+  h_NPoint->Draw("text");
+  
+  cPlot1->Draw("colz");
+  cPlot1->SaveAs("SCAN/charginoPoints_T3.gif");
+  cPlot1->Print("SCAN/charginoPoints_T3.eps");
+
+  return;
+
+  TCanvas *cPlot2 = new TCanvas("cPlot2","cPlot2");
+
+  h_ChSplit->Draw("hist"); 
+  
+  cPlot2->SaveAs("SCAN/massSplit_T3.gif");
+  cPlot2->Print("SCAN/massSplit_T3.eps");
+
+
+  return;
+
+}
+
+void  DrawOsetScan(TH1* h1, char * title, double max, char * label, char *type) {
+  
+  gStyle->SetPaintTextFormat(".1f");
+
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot");  
+
+  if(max!=0) h1->SetMaximum(max);
+  h1->SetTitle(title);
+  h1->Draw("colz text");
+  
+  char titlePlot[1000];
+  sprintf(titlePlot,"%s_%s_%s.png",h1->GetName(),label,type);
+  
+  cPlot->SaveAs(titlePlot);  
+  
+}
+
+
+void DrawOsetHisto(TH1* h1, bool first, int color, int style, TCanvas * c) {
+  
+  if(h1 ) h1->SetLineColor(color);
+  if(h1 ) h1->SetMarkerColor(color);
+  if(h1 ) h1->SetLineStyle(style);
+  //  if(h1) h1->GetXaxis()->SetTitle("#Delta #Phi (j_{1},j_{3})");
+  
+  TH1D *empty = new TH1D("empty","empty",100,0.,3.14);
+  empty->SetMaximum(0.2);
+  
+
+  if( first && h1->GetName()==TString("biasedDphi_vetoIsoEleMuon_anyDPhi_")) { 
+    h1->SetXTitle("biased dPhi");
+    empty->Draw("hist");
+    first=false;    
+  }
+
+  if( first && h1->GetName()==TString("etaLj_vetoIsoEleMuon_anyDPhi_")) { 
+    h1->SetXTitle("biased dPhi");
+    empty->Draw("hist");
+    first=false;    
+  }
+    
+  if(first && h1) h1->DrawNormalized("hist");
+  if(!first && h1) h1->DrawNormalized("hist same");
+  
+  c->Update();
+
+}
+
+
+/*
+  char * histoToDraw2="jetSize_vetoIsoEleMuon_DPhi_MPT_anyPhi12_anyTOP_";
+  char * histoToDraw3="ptLj_vetoIsoEleMuon_DPhi_";
+  char * histoToDraw4="ptNLj_vetoIsoEleMuon_DPhi_";
+  char * histoToDraw5="ptNNLj_vetoIsoEleMuon_DPhi_";  
+
+  TH1 *ha=getHisto(filename, histoToDraw2 ,"searchCut",1,OSETscale);
+  TH1 *hb=getHisto(filename, histoToDraw3 ,"PtPhi",2,OSETscale);
+  TH1 *hc=getHisto(filename, histoToDraw4 ,"PtPhi",2,OSETscale);
+  TH1 *hd=getHisto(filename, histoToDraw5 ,"PtPhi",2,OSETscale);
+
+  //	TH1D *ha_bkg=getHisto(filename, histoToDraw2 ,"searchCut",1,1);
+  TH1 *hb_bkg=getHisto("AllBkg_ptLj_vetoIsoEleMuon_DPhi_.root", "AllBkg_ptLj_vetoIsoEleMuon_DPhi_.root" ,"0",1,1);
+  TH1 *hc_bkg=getHisto("AllBkg_ptNLj_vetoIsoEleMuon_DPhi_.root", "AllBkg_ptNLj_vetoIsoEleMuon_DPhi_.root","0",1,1);
+  TH1 *hd_bkg=getHisto("AllBkg_ptNNLj_vetoIsoEleMuon_DPhi_.root", "AllBkg_ptNNLj_vetoIsoEleMuon_DPhi_.root" ,"0",1,1);
+  
+  c->cd(1);
+  if(first) {
+    if(ha ) ha->SetLineColor(i+2);
+    if(ha ) ha->SetMarkerColor(i+2);
+    //	  if(ha ) ha->SetLineColor(color);
+    if(ha ) ha->SetLineStyle(j+1);
+    if(ha ) ha->DrawNormalized("hist");
+    //	first=false;
+  } else {
+    if(ha ) ha->SetLineColor(i+2);
+    if(ha ) ha->SetMarkerColor(i+2);
+    //	  if(ha ) ha->SetLineColor(color);
+    if(ha ) ha->SetLineStyle(j+1);
+    if(ha ) ha->DrawNormalized("hist same");
+  }
+	
+  char title[10000];
+  sprintf(title,"MGL%d_MLSP%d",MGL[i],MLSP[j]);
+  
+  if(ha ) plotLeg(title, 1./OSETscale, ha ,0.1*(i+1)+j*0.05);       
+  
+  c->cd(2);
+  if(first) {
+    if(hb ) hb->SetLineColor(i+2);
+    if(hb ) hb->SetMarkerColor(i+2);
+    if(hb ) hb->SetLineStyle(j+1);
+    if(hb ) hb->DrawNormalized("hist");
+    if(hb_bkg) hb_bkg->SetLineColor(1);
+    if(hb_bkg) hb_bkg->DrawNormalized("hist same");
+    //	first=false;
+	} else {
+    if(hb ) hb->SetLineColor(i+2);
+    if(hb ) hb->SetMarkerColor(i+2);
+    if(hb ) hb->SetLineStyle(j+1);
+    if(hb ) hb->DrawNormalized("hist same");
+  }
+  
+  c->cd(3);
+  if(first) {
+    if(hc ) hc->SetLineColor(i+2);
+    if(hc ) hc->SetMarkerColor(i+2);
+    if(hc ) hc->SetLineStyle(j+1);
+    if(hc ) hc->DrawNormalized("hist");
+    if(hc_bkg) hc_bkg->DrawNormalized("hist same");
+    //	first=false;
+  } else {
+    if(hc ) hc->SetLineColor(i+2);
+    if(hc ) hc->SetMarkerColor(i+2);
+    if(hc ) hc->SetLineStyle(j+1);
+    if(hc ) hc->DrawNormalized("hist same");
+  }
+
+  c->cd(4);
+  if(first) {
+    if(hd ) hd->SetLineColor(i+2);
+    if(hd ) hd->SetMarkerColor(i+2);
+    if(hd ) hd->SetLineStyle(j+1);
+    if(hd ) hd->DrawNormalized("hist");
+    if(hd_bkg) hd_bkg->DrawNormalized("hist same");
+    //	first=false;
+  } else {
+    if(hd ) hd->SetLineColor(i+2);
+    if(hd ) hd->SetMarkerColor(i+2);
+    if(hd ) hd->SetLineStyle(j+1);
+    if(hd ) hd->DrawNormalized("hist same");
+  }
+  
+  //     if(ha ) cout << "draw i "<< i << " j "<< j << endl; 
+    
+  //"MHT", "MHT", 200, 0, 2000,"JetID");
+	
+  TH1 *he=getHisto(filename, "MHT" ,"JetID",5,OSETscale);
+  
+  c2->cd();
+  //      c->GetPad(5)->SetLogy(1);
+  c2->SetLogy(1);
+  if(first) {
+    if(he && (MGL[i]-MLSP[j])<250) {
+      //     if(he && (MGL[i]-MLSP[j])>250 && (MGL[i]-MLSP[j])<500) {
+      he->GetXaxis()->SetRangeUser(0.,1000.);
+      he->SetLineColor(i+1);
+      he->SetMarkerColor(i+1);
+      he->SetLineStyle(j+1);
+      he->SetTitle("");
+      he->SetXTitle("MHT");
+      he->DrawNormalized("hist");
+      plotLeg(title, 1./OSETscale, he ,0.1*(i+1)+j*0.05);
+      first=false;
+    }
+  } else {
+    //    if(he && (MGL[i]-MLSP[j])>=250 && (MGL[i]-MLSP[j])<500) {
+    if(he && (MGL[i]-MLSP[j])<250) {
+      he->SetLineColor(i+1);
+      he->SetMarkerColor(i+1);
+      he->SetLineStyle(j+1);
+      he->DrawNormalized("hist same");
+      plotLeg(title, 1./OSETscale, he ,0.1*(i+1)+j*0.05);
+    }
+  }
+  
+  //      if(he && (MGL[i]-MLSP[j])<250) plotLeg(title, 1./OSETscale, he ,0.1*(i+1)+j*0.05);
+  //      if(he && (MGL[i]-MLSP[j])<250) cout << "draw i "<< i << " j "<< j << endl; 
+  
+}
+
+*/
+
+void OSETgrid(char * histoToDraw, char * dirToDraw) {
+
+  TString label;
+  TString type;
+
+  /*
+  //THESE ARE FOR THE t7A 
+  label="t7A_23";
+  double nEv=10000;
+  cout << "label " << label << endl;
+
+  TH2D* hYield = new TH2D("Yield", "Yield", 20 , 0, 1000, 20, 0, 1000);
+  TH2D* hEff = new TH2D("Eff", "Eff", 20 , 0, 1000, 20, 0, 1000);
+  //  TH2D* hYield250 = new TH2D("Yield250", "Yield250", 20 , 0, 1000, 20, 0, 1000);
+  //  TH2D* hEff250 = new TH2D("Eff250", "Eff250", 20 , 0, 1000, 20, 0, 1000);
+  TH2D* hSig = new TH2D("Significance", "Significance", 20 , 0, 1000, 20, 0, 1000);
+
+  Int_t MGL[4] = { 300,450,600,750 };
+  //  Int_t MLSP[5] = { 100,200,300,450,600 };
+  Int_t MLSP[4] = { 100,200,300,450 };
+  Int_t MChi2[4] = { 200,300,450,600 };
+  hYield->SetYTitle("M(gluino)-M(Chi2)");
+  hYield->SetXTitle("M(Chi2)-M(LSP)");
+  hEff->SetYTitle("M(gluino)-M(Chi2)");
+  hEff->SetXTitle("M(Chi2)-M(LSP)");
+  //  hYield250->SetYTitle("M(gluino)-M(Chi2)");
+  //  hYield250->SetXTitle("M(Chi2)-M(LSP)");
+  //  hEff250->SetYTitle("M(gluino)-M(Chi2)");
+  //  hEff250->SetXTitle("M(Chi2)-M(LSP)");
+  hSig->SetYTitle("M(gluino)-M(Chi2)");
+  hSig->SetXTitle("M(Chi2)-M(LSP)");
+  */
+
+  //THESE ARE FOR THE t7A 
+  label="t7A_1";
+  double nEv=5000;
+  cout << "label " << label << endl;
+
+  TH2D* hYield = new TH2D("Yield", "Yield", 20 , 0, 1000, 20, 0, 1000);
+  TH2D* hEff = new TH2D("Eff", "Eff", 20 , 0, 1000, 20, 0, 1000);
+  //  TH2D* hYield250 = new TH2D("Yield250", "Yield250", 20 , 0, 1000, 20, 0, 1000);
+  //  TH2D* hEff250 = new TH2D("Eff250", "Eff250", 20 , 0, 1000, 20, 0, 1000);
+  TH2D* hSig = new TH2D("Significance", "Significance", 20 , 0, 1000, 20, 0, 1000);
+
+  Int_t MGL[4] = { 300,450,600,750 };
+  //  Int_t MLSP[5] = { 100,200,300,450,600 };
+  Int_t MLSP[4] = { 100,200,300,450 };
+  Int_t MChi2[4] = { 200,300,450,600 };
+  hYield->SetYTitle("M(gluino)-M(LSP)");
+  hYield->SetXTitle("M(LSP)");
+  hEff->SetYTitle("M(gluino)-M(LSP)");
+  hEff->SetXTitle("M(LSP)");
+  //  hYield250->SetYTitle("M(gluino)-M(LSP)");
+  //  hYield250->SetXTitle("M(LSP)");
+  //  hEff250->SetYTitle("M(gluino)-M(LSP)");
+  //  hEff250->SetXTitle("M(LSP)");
+  hSig->SetYTitle("M(gluino)-M(LSP)");
+  hSig->SetXTitle("M(LSP)");
+
+  /*
+  //THESE ARE FOR THE q123_23  
+  sprintf(label,"q123-1");
+  cout << "label " << label << endl;
+  sprintf(label,"q123");
+  Int_t MGL[4] = { 250,350,450,550 };
+  Int_t MLSP[5] = { 60,140,220,300 };
+  Int_t MChi2[5] = { 150,230,310,390 };
+  hYield->SetYTitle("M(squark)-M(Chi2)");
+  hYield->SetXTitle("M(Chi2)-M(LSP)");
+  hEff->SetYTitle("M(squark)-M(Chi2)");
+  hEff->SetXTitle("M(Chi2)-M(LSP)");
+  hYield250->SetYTitle("M(squark)-M(Chi2)");
+  hYield250->SetXTitle("M(Chi2)-M(LSP)");
+  hEff250->SetYTitle("M(squark)-M(Chi2)");
+  hEff250->SetXTitle("M(Chi2)-M(LSP)");
+  hSig->SetYTitle("M(squark)-M(Chi2)");
+  hSig->SetXTitle("M(Chi2)-M(LSP)");
+  */
+  
+  /*
+  //THESE ARE FOR THE t123_23  
+  sprintf(label,"t123_23");
+  cout << "label " << label << endl;
+
+  Int_t MGL[4] = { 300,450,600,750 };
+  Int_t MLSP[4] = { 100,200,300,450 };
+  hYield->SetYTitle("M(gluino)-M(LSP)");
+  hYield->SetXTitle("M(LSP)");
+  hEff->SetYTitle("M(gluino)-M(LSP)");
+  hEff->SetXTitle("M(LSP)");
+  hYield250->SetYTitle("M(gluino)-M(LSP)");
+  hYield250->SetXTitle("M(LSP)");
+  hEff250->SetYTitle("M(gluino)-M(LSP)");
+  hEff250->SetXTitle("M(LSP)");
+  hSig->SetYTitle("M(gluino)-M(LSP)");
+  hSig->SetXTitle("M(LSP)");
+  */
+
+  /*
+  //THESE ARE FOR THE t6 
+
+  TH2D* hYield = new TH2D("Yield", "Yield", 20 , 0, 500, 40, 0, 1000);
+  TH2D* hEff = new TH2D("Eff", "Eff", 20 , 0, 500, 40, 0, 1000);
+  //  TH2D* hYield250 = new TH2D("Yield250", "Yield250", 20 , 0, 500, 40, 0, 1000);
+  //  TH2D* hEff250 = new TH2D("Eff250", "Eff250", 20 , 0, 500, 40, 0, 1000);
+  TH2D* hSig = new TH2D("Significance", "Significance", 20 , 0, 500, 40, 0, 1000);
+
+  sprintf(label,"t6_23");
+  cout << "label " << label << endl;
+  double nEv=10000;
+  
+  //  sprintf(label,"t6_4");
+  //  cout << "label " << label << endl;
+  //  double nEv=5000;
+  
+  //  sprintf(label,"t6_1");
+  //  cout << "label " << label << endl;
+  //  double nEv=5000;
+  
+  Int_t MGL[3] = {450,600,750};
+  Int_t MLSP[4] = {75,150,225,300};
+  hYield->SetYTitle("M(gluino)-M(LSP)");
+  hYield->SetXTitle("M(LSP)");
+  hEff->SetYTitle("M(gluino)-M(LSP)");
+  hEff->SetXTitle("M(LSP)");
+  //  hYield250->SetYTitle("M(gluino)-M(LSP)");
+  //  hYield250->SetXTitle("M(LSP)");
+  //  hEff250->SetYTitle("M(gluino)-M(LSP)");
+  //  hEff250->SetXTitle("M(LSP)");
+  hSig->SetYTitle("M(gluino)-M(LSP)");
+  hSig->SetXTitle("M(LSP)");
+  */
+
+  //////////    
+  //////////    
+  //////////    
+  //////////    
+  
+  int xBin=0;
+
+  if(histoToDraw=="MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") {
+    xBin=250;   type="MHT"; 
+    cout << "####### MHT " << endl;
+  }
+
+  if(histoToDraw=="HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") {
+    xBin=500; type="HT";
+    cout << "####### HT " << endl;
+  }
+
+  if(histoToDraw=="ptNNLj_vetoIsoEleMuon_DPhi_") {
+    xBin=90; type="3j";
+    cout << "####### 3j " << endl;
+  }
+  
+  double BKGerror=getBkgError(histoToDraw, dirToDraw, 2, xBin );
+  
+  //////////    
+  //////////    
+  //////////    
+  //////////    
+  
+  TH2D *hRelEff;
+
+  TCanvas *c2 = new TCanvas("c2","c2",0,0,600,600);
+  c2->cd();
+  
+  bool first=true;
+
+  //  int color=1;
+
+  //  for (int j=0; j<4; j++) { // MLSP[j]
+  //    for (int i=0; i<3 ; i++) { // MGL[i]
+      
+  for (int j=0; j<4; j++) { // MLSP[j]
+    for (int i=0; i<4 ; i++) { // MGL[i]
+    //    for (int i=0; i<1 ; i++) { // MGL[i]
+      if((label=="t7A_23") || (label=="t7A_1")) {
+	//	for (int k=0; k<4; k++) {
+       for (int k=0; k<1; k++) {
+
+	//	color++;
+	//  for (int i=0;i<3 ; i++) {
+	//    for (int j=0;j<4; j++) {
+	
+	char filename[1000];
+	if(label=="t7A_23") sprintf(filename,"t7A_23/histo_t7A_4jetsPlus1W_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+	if(label=="t7A_1") sprintf(filename,"t7A_1/histo_t7A_4jetsPlus1W_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+
+	if(label=="t6_23") sprintf(filename,"t6_23/histo_t6_2t2j_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+	if(label=="t6_4") sprintf(filename,"t6_4/histo_t6_2t2j_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+	if(label=="t6_1") sprintf(filename,"t6_1/histo_t6_2t2j_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+
+	//   this is q123_1
+	//	sprintf(filename,"histo_q123A_2jetsPlus012W_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+	//      sprintf(filename,"q123_23_latest/histo_q123A_2jetsPlus012W_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+
+	//	sprintf(filename,"histo_t5A_4jetsPlusWs_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+	//	sprintf(filename,"histo_t7A_4jetsPlus1W_MGL_%d_MLSP_%d_MChi2%d_HT200.root",MGL[i],MLSP[j],MChi2[k]);
+
+	//      char filename[1000];
+	//      sprintf(filename,"q123_23/histo_t123_4jets_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+	
+	//      char filename[1000];
+	//      sprintf(filename,"histo_t4_4top_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+	
+	//      char filename[1000];
+      	//	sprintf(filename,"histo_t123_4jets_MGL_%d_MLSP_%d_HT200.root",MGL[i],MLSP[j]);
+	
+	double xSec=0.;
+	
+	TH1 *hxSec=getHisto(filename,"xSec","Scale",1,1);
+	if(hxSec) xSec=hxSec->GetBinContent(2);
+	if(hxSec) cout << "ev in 100 pb-1    "<< xSec << endl;
+	
+	double OSETscale=1000;
+	if(xSec!=0) OSETscale=nEv/xSec;
+	
+	/*
+	  TH1 *hscale=getHisto(filename,"scale","Scale",1,1);
+	  if(hscale) OSETscale=1./hscale->GetBinContent(2);
+	  if(hscale) cout << "scale"<< OSETscale << endl;
+	*/	
+	
+	//	TH1 *h1=getHisto(filename, histoToDraw ,"searchCut",1,OSETscale);
+	TH1 *h1=getHisto(filename, histoToDraw ,dirToDraw ,1 ,OSETscale);
+	//	TH1 *h1=getHisto(filename, histoToDraw5 ,"PtPhi",1,OSETscale);
+	
+	double sig=999;
+	
+	if(h1)  sig=(h1->Integral(h1->FindBin(xBin),h1->GetNbinsX()+1))/BKGerror;
+	//	double sig=(h1->Integral(1,h1->GetNbinsX()+1))/BKGerror;      
+	
+	if(h1) cout << "****** Signal "  << h1->Integral(h1->FindBin(xBin),h1->GetNbinsX()+1) << endl;
+	if(h1) cout << "****** bkgError "  << BKGerror << " significance " << sig << endl;	
+	if(h1) cout << filename << "     " << h1->Integral() << endl;      
+	//	
+	//      if(h1) hEff->Fill(hEff->GetXaxis()->FindBin(MGL[i]),hEff->GetYaxis()->FindBin(MLSP[j]),h1->Integral()/xSec);
+
+	if((label=="t6_23") || (label=="t6_1") || (label=="t7A_1")) {
+	  if(h1) hSig->Fill(MLSP[j],MGL[i]-MLSP[j],sig);	  
+	  if(h1) hEff->Fill(MLSP[j],MGL[i]-MLSP[j],h1->Integral()/xSec);
+	  if(h1) hYield->Fill(MLSP[j],MGL[i]-MLSP[j],h1->Integral());
+	  //	if(h1) hEff250->Fill(MLSP[j],MGL[i]-MLSP[j],h1->Integral(h1->FindBin(250),h1->GetNbinsX())/xSec);
+	  //	if(h1) hYield250->Fill(MLSP[j],MGL[i]-MLSP[j],h1->Integral(h1->FindBin(250),h1->GetNbinsX()));
+	  cout << "============="<< endl;	  
+	}
+	
+	if(label=="t7A_23") {
+	  if(h1) hSig->Fill(MChi2[k]-MLSP[j],MGL[i]-MChi2[k],sig);
+	  if(h1) hEff->Fill(MChi2[k]-MLSP[j],MGL[i]-MChi2[k],h1->Integral()/xSec);
+	  if(h1) hYield->Fill(MChi2[k]-MLSP[j],MGL[i]-MChi2[k],h1->Integral());	  
+	  //	if(h1) hEff250->Fill(MChi2[k]-MLSP[j],MGL[i]-MChi2[k],h1->Integral(h1->FindBin(250),h1->GetNbinsX())/xSec);
+	  //	if(h1) hYield250->Fill(MChi2[k]-MLSP[j],MGL[i]-MChi2[k],h1->Integral(h1->FindBin(250),h1->GetNbinsX()));
+	  cout << "============="<< endl;
+	}
+	
+	//	hRelEff = (TH2D*) hYield250->Clone();
+	//	hRelEff->Divide(hYield);
+	
+	/*
+	TH1 *ha=getHisto(filename, histoToDraw ,dirToDraw,1,OSETscale);
+	if(histoToDraw=="ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_" && ha) ha->GetXaxis()->SetRangeUser(0,2);
+	
+	if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_" && ha) ha->GetXaxis()->SetRangeUser(0,1);
+	
+	if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_" && ha) ha->Rebin(4);	
+	
+	if(histoToDraw=="LjEta_vetoIsoEleMuon_DPhi_" && ha) ha->GetXaxis()->SetRangeUser(-5.,5.);	
+	if(histoToDraw=="NLjEta_vetoIsoEleMuon_DPhi_" && ha) ha->GetXaxis()->SetRangeUser(-5.,5.);	
+	if(histoToDraw=="NNLjEta_vetoIsoEleMuon_DPhi_" && ha) ha->GetXaxis()->SetRangeUser(-5.,5.);	
+	if(histoToDraw=="DPhi1-MHT_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4);	
+	if(histoToDraw=="DPhi2-MHT_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4);	
+	if(histoToDraw=="DPhi3-MHT_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4);	
+	if(histoToDraw=="pt31_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(2);	
+	if(histoToDraw=="pt32_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(2);	
+	if(histoToDraw=="pt21_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(2);
+	if(histoToDraw=="DPhi12_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4);	
+	if(histoToDraw=="DPhi23_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4); 
+	if(histoToDraw=="DPhi13_vetoIsoEleMuon_DPhi_" && ha) ha->Rebin(4); 
+	if(histoToDraw=="biasedDphi_vetoIsoEleMuon_anyDPhi_" && ha) ha->Rebin(4); 
+	if(histoToDraw=="ptAsimmetry31_vetoIsoEleMuon_anyDPhi_" && ha) ha->Rebin(4); 
+	if(histoToDraw=="ptAsimmetry21_vetoIsoEleMuon_anyDPhi_" && ha) ha->Rebin(4); 
+	
+	DrawOsetHisto(ha, first, i+2, j-1+1,c2);
+	if(ha) first=false;
+	*/
+
+	}
+       } // loop on k      
+
+    } // loop on j 
+  } // loop on i
+
+  /*
+  TH1 *hLM1=getLM1(histoToDraw,dirToDraw, 1);
+  //  c2->cd();
+  if(histoToDraw=="ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM1->GetXaxis()->SetRangeUser(0,2);	
+  if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM1->GetXaxis()->SetRangeUser(0,1);	
+  if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM1->Rebin(4);	
+  if(histoToDraw=="LjEta_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NLjEta_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NNLjEta_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="DPhi1-MHT_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4);	
+  if(histoToDraw=="DPhi2-MHT_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4);	
+  if(histoToDraw=="DPhi3-MHT_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4);	
+  if(histoToDraw=="pt31_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(2);	
+  if(histoToDraw=="pt32_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(2);	
+  if(histoToDraw=="pt21_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(2);	
+  if(histoToDraw=="DPhi12_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4);	
+  if(histoToDraw=="DPhi13_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4);	
+  if(histoToDraw=="DPhi23_vetoIsoEleMuon_DPhi_" && hLM1) hLM1->Rebin(4); 
+  if(histoToDraw=="biasedDphi_vetoIsoEleMuon_anyDPhi_" && hLM1) hLM1->Rebin(4);
+  if(histoToDraw=="ptAsimmetry31_vetoIsoEleMuon_anyDPhi_" && hLM1) hLM1->Rebin(4); 
+  if(histoToDraw=="ptAsimmetry21_vetoIsoEleMuon_anyDPhi_" && hLM1) hLM1->Rebin(4); 
+
+  hLM1->SetLineColor(1); 
+  hLM1->DrawNormalized("hist same");
+
+
+  TH1 *hLM0=getLM0(histoToDraw,dirToDraw, 1);
+  //  c2->cd();
+  if(histoToDraw=="ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM0->GetXaxis()->SetRangeUser(0,2);	
+  //  if(histoToDraw=="ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM0->GetXaxis()->SetRangeUser(0,2);	
+  if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM0->GetXaxis()->SetRangeUser(0,1);	
+  if(histoToDraw=="ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hLM0->Rebin(4);	
+  if(histoToDraw=="LjEta_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NLjEta_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NNLjEta_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="DPhi1-MHT_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4);	
+  if(histoToDraw=="DPhi2-MHT_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4); 
+  if(histoToDraw=="DPhi3-MHT_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4);	
+  if(histoToDraw=="pt31_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(2);	
+  if(histoToDraw=="pt32_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(2);	
+  if(histoToDraw=="pt21_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(2);	
+  if(histoToDraw=="DPhi12_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4);	
+  if(histoToDraw=="DPhi23_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4); 
+  if(histoToDraw=="DPhi13_vetoIsoEleMuon_DPhi_" && hLM0) hLM0->Rebin(4); 
+  if(histoToDraw=="biasedDphi_vetoIsoEleMuon_anyDPhi_" && hLM0) hLM0->Rebin(4); 
+  if(histoToDraw=="ptAsimmetry31_vetoIsoEleMuon_anyDPhi_" && hLM0) hLM0->Rebin(4); 
+  if(histoToDraw=="ptAsimmetry21_vetoIsoEleMuon_anyDPhi_" && hLM0) hLM0->Rebin(4); 
+
+  hLM0->SetLineColor(12);
+  hLM0->DrawNormalized("hist same");
+  
+  TH1* hBkg_=getBkg(histoToDraw,dirToDraw, 1) ;
+  //  THStack* hBkg_=getBkg(histoToDraw,dirToDraw, 1) ;
+  //  if(histoToDraw=="ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_") hBkg_->GetXaxis()->SetRangeUser(0,2);	
+  //  hBkg_->SetFillColor(10);
+  hBkg_->SetLineColor(46);
+  if(histoToDraw=="LjEta_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NLjEta_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="NNLjEta_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->GetXaxis()->SetRangeUser(-5.,5.);	
+  if(histoToDraw=="DPhi1-MHT_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4);	
+  if(histoToDraw=="DPhi2-MHT_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4); 
+  if(histoToDraw=="DPhi3-MHT_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4);	
+  if(histoToDraw=="pt31_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(2);	
+  if(histoToDraw=="pt32_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(2);	
+  if(histoToDraw=="pt21_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(2);	
+  if(histoToDraw=="DPhi12_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4);	
+  if(histoToDraw=="DPhi23_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4); 
+  if(histoToDraw=="DPhi13_vetoIsoEleMuon_DPhi_" && hBkg_) hBkg_->Rebin(4); 
+  if(histoToDraw=="biasedDphi_vetoIsoEleMuon_anyDPhi_" && hBkg_) hBkg_->Rebin(4); 
+  if(histoToDraw=="ptAsimmetry31_vetoIsoEleMuon_anyDPhi_" && hBkg_) hBkg_->Rebin(4); 
+
+  hBkg_->DrawNormalized("hist same");
+ 
+  //  c2->SaveAs("kinematics.png");
+  c2->Print("kinematics.ps"); 
+
+  */
+
+  DrawOsetScan(hYield,"Yield @ 100 pb-1",0,label,type);
+  DrawOsetScan(hEff,"efficiency ",1,label,type);
+
+  //  DrawOsetScan(hYield250,"MHT>250",0,label);
+  //  DrawOsetScan(hEff250,"efficiency  MHT>250",1,label);
+  //  DrawOsetScan(hRelEff,"relative efficiency",0,label);
+
+  DrawOsetScan(hSig,"Significance @ 100 pb-1", 8,label,type); 
+
+}
+
+
+void significance(){
+
+  OSETgrid("MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+  //  OSETgrid("HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+  //  OSETgrid("ptNNLj_vetoIsoEleMuon_DPhi_","PtPhi");
+
+}
+
+void kinematics(){
+
+  TCanvas *c2 = new TCanvas("c2","c2");
+  c2->Print("kinematics.ps(");
+  
+  OSETgrid("MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+  OSETgrid("HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+  OSETgrid("ptLj_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("ptNLj_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("ptNNLj_vetoIsoEleMuon_DPhi_","PtPhi");
+
+  OSETgrid("pt31_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("pt32_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("pt21_vetoIsoEleMuon_DPhi_","PtPhi");
+
+  OSETgrid("ratio_mht_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+  OSETgrid("ratio_j1_HT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+ 
+  OSETgrid("DPhi12_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("DPhi13_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("DPhi1-MHT_vetoIsoEleMuon_DPhi_","DPhi");
+  OSETgrid("DPhi2-MHT_vetoIsoEleMuon_DPhi_","DPhi");
+  OSETgrid("DPhi3-MHT_vetoIsoEleMuon_DPhi_","DPhi");
+  OSETgrid("biasedDphi_vetoIsoEleMuon_anyDPhi_","DPhi");
+
+  OSETgrid("ptAsimmetry21_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("ptAsimmetry31_vetoIsoEleMuon_DPhi_","PtPhi");
+
+  OSETgrid("pMinus_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("pPlus_vetoIsoEleMuon_DPhi_","PtPhi");
+  OSETgrid("pPlusMinus_vetoIsoEleMuon_DPhi_","PtPhi");
+  
+  OSETgrid("etaLj_vetoIsoEleMuon_DPhi_","ETA");
+  OSETgrid("etaMaxAll_vetoIsoEleMuon_DPhi_","ETA");
+  OSETgrid("etaAsi_vetoIsoEleMuon_DPhi_","ETA");
+  OSETgrid("sumSqAllEta_vetoIsoEleMuon_DPhi_","ETA");
+//  OSETgrid("MHTEta_vetoIsoEleMuon_DPhi_","ETA");
+  
+  OSETgrid("MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_","searchCut");
+
+  /*
+  char * histoToDraw="MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_"; //searchCut
+  char * histoToDraw2="MHT_vetoIsoEleMuon_DPhi_anyMPT_anyPhi12_anyTOP_"; //searchCut
+  char * histoToDraw3="ptLj_vetoIsoEleMuon_DPhi_"; //PtPhi
+  char * histoToDraw4="ptNLj_vetoIsoEleMuon_DPhi_"; //PtPhi
+  char * histoToDraw5="ptNNLj_vetoIsoEleMuon_DPhi_"; //PtPhi
+  char * histoToDraw6="DPhi12_vetoIsoEleMuon_DPhi_"; //PtPhi
+  char * histoToDraw7="DPhi13_vetoIsoEleMuon_DPhi_"; //PtPhi
+  */
+
+  // c2->Print("kinematics.ps)");
+}
+
+void plotPreliminary(){
+  
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.04);
+  latexLabel.SetNDC();
+  latexLabel.DrawLatex(0.5, 0.7, "CMS Preliminary");
+  latexLabel.DrawLatex(0.5, 0.65, "#sqrt{s} = 7 TeV");
+  latexLabel.DrawLatex(0.5, 0.6, "L=36.1 pb^{-1}");
+  
+  // TLegend *lg = new TLegend(0.56, 0.60, 0.9, 0.74);
+  // lg->SetFillColor(kWhite);
+  // lg->SetLineColor(kWhite);
+  // lg->SetShadowColor(kWhite);
+  
+  latexLabel.DrawLatex(0.5,0.85, "95% CL curves");
+  latexLabel.DrawLatex(0.5, 0.80, "MSUGRA, tan#beta=3,A_{0}=0, #mu>0");
+  
+} 
+
+//h_acc_T1_HT
+//hlimit_gluino_T1_HT
+
+//h_acc_T1_MHT
+//hlimit_gluino_T1_MHT
+
+void luminosityTrend() {
+
+  TH2D *hlimit=get2DHisto("luminoisty_limit.root", "hlimit_squark_T2_MHT", "0", 1,1);
+  TH2D *hacc=get2DHisto("luminoisty_limit.root", "h_acc_T1_HT", "0", 1,1);
+
+  TH1F *hRef=getHisto("/afs/cern.ch/user/d/dalfonso/public/reference_xSec.root", "gluino", "0", 1,1);
+  
+  //  TH2F * xSecAcc= new TH2F("xSec_Acc","xSec_Acc",hlimit->GetNbinsX(), 375., 1025., hlimit->GetNbinsY(), 75., 1025.);
+
+  //  TH2F* limit_ref = (TH2F*) limit->Clone();
+
+  TH2F * xSecAcc = (TH2F*) hlimit->Clone();  
+
+  for(int i=1; i<(hlimit->GetNbinsX()+1); i++) {
+    
+    for(int j=1; j<(hlimit->GetNbinsY()+1); j++) {
+      
+      if(!(hlimit->GetBinContent(i,j)==0)) {
+	
+	double limit = hlimit->GetBinContent(i,j);
+	double acc = hacc->GetBinContent(i,j); 
+	double refXsec = hRef->GetBinContent(hRef->FindBin(hlimit->GetXaxis()->GetBinCenter(i))); 
+	
+	if(refXsec!=0) xSecAcc->SetBinContent(i,j,(refXsec*acc*36)); 
+	if(refXsec==0) xSecAcc->SetBinContent(i,j,0);
+	
+      }  
+    }
+  }
+
+
+  //  char * exp="Experimental uncertainty A #times #varepsilon";
+  //  char * teo="Theoretical uncertainty A #times #varepsilon";
+  char * selectionHT="High H_{T} selection";
+  char * selectionMHT="High #slash{H}_{T} selection";
+  
+  TCanvas *cExp = new TCanvas("cExp","cExp");
+  //  xSecAcc->SetXTitle(hlimit->GetXTitle());  
+  //  xSecAcc->SetYTitle(hlimit->GetYTitle()); 
+  cExp->SetLogz(1);
+  //  xSecAcc->SetMaximum(50); 
+  xSecAcc->SetMinimum(0.01); 
+  xSecAcc->SetTitle(""); 
+  xSecAcc->GetXaxis()->SetRangeUser(375.,975.);
+  xSecAcc->GetYaxis()->SetRangeUser(75.,975.);
+  xSecAcc->SetZTitle("#sigma_{ref} * (Acc * #epsilon) * Lumi ");  
+
+  cout << "hlimit X:" << hlimit->GetNbinsX() << " Y: " << hlimit->GetNbinsY() << endl;
+  cout << "hacc X:" << hacc->GetNbinsX() << " Y: " << hacc->GetNbinsY() << endl;
+
+  xSecAcc->Draw("colz");
+  
+
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  
+  latexLabel.DrawLatex(400, 950, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  //  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "A #times #varepsilon");
+  latexLabel.DrawLatex(400, 900, selectionHT);
+
+  cExp->SaveAs("luminosity_T1_HT.gif");
+  cExp->Print("luminosity_T1_HT.eps");
+  
+}
+
+
+//TGraph * getRefXsecGraph(TH2F* limit, char * type, double refMult) {
+TGraph * getRefXsecGraph(TH2F* limit, char * type, int refMult) {
+
+  cout << "refMult " << refMult << " type " << type << endl;
+
+  Double_t pointsX[22];
+  Double_t pointsY[22];
+  unsigned int counter=1;
+
+  char * mass="";
+
+  if(type=="T1") mass="gluino";
+  if(type=="T2") mass="squark";
+  if(type=="T5zz") mass="gluino";
+  if(type=="T1lnu") mass="gluino";
+
+
+  TH1F *hRef=getHisto("/afs/cern.ch/user/d/dalfonso/public/reference_xSec.root", mass, "0", 1,1);
+  TH2F* limit_ref = (TH2F*) limit->Clone();
+
+  //  TH2F * xSec_ref= new TH2F("xSec_ref","xSec_ref",30, 25., 1525., 60, 25., 1525.);
+  TH2F * xSec_ref= new TH2F("xSec_ref","xSec_ref",60, 0., 1500., 60, 0., 1500.);
+
+  for(int i=1; i<(limit->GetNbinsX()+1); i++) {
+    
+    for(int j=1; j<(limit->GetNbinsY()+1); j++) {
+      
+      if(!(limit->GetBinContent(i,j)==0) && (type=="T1")) xSec_ref->SetBinContent(i,j,refMult*hRef->GetBinContent(hRef->FindBin(xSec_ref->GetXaxis()->GetBinCenter(i)))); 
+      if(!(limit->GetBinContent(i,j)==0) && (type=="T2")) xSec_ref->SetBinContent(i,j,refMult*(4./5)*hRef->GetBinContent(hRef->FindBin(xSec_ref->GetXaxis()->GetBinCenter(i)))); 
+      if(!(limit->GetBinContent(i,j)==0) && (type=="T5zz")) xSec_ref->SetBinContent(i,j,refMult*hRef->GetBinContent(hRef->FindBin(xSec_ref->GetXaxis()->GetBinCenter(i))));       
+
+
+    }
+    
+  }
+
+  TH2D*  xSec_ref1= (TH2D*) xSec_ref->Clone();
+
+  limit_ref->Divide(xSec_ref);
+
+  xSec_ref->SetDirectory(0);
+  xSec_ref->Delete();
+  hRef->Delete();
+
+  for(int i=1; i<(limit_ref->GetNbinsX()+1); i++) {
+    
+  for(int j=1; j<(limit_ref->GetNbinsY()+1); j++) {
+      
+      if(limit_ref->GetBinContent(i,j)==0) limit_ref->SetBinContent(i,j,-1);
+
+      if( limit_ref->GetBinContent(i,j)>0. && limit_ref->GetBinContent(i,j)<=1.) {
+	
+	//	cout << "x = " << limit_ref->GetXaxis()->GetBinCenter(i) << " y = " << limit_ref->GetYaxis()->GetBinCenter(j) << endl;
+	if(limit_ref->GetBinContent(i,j+1)>1) {
+
+	  //	  cout << "==> x = " << limit_ref->GetXaxis()->GetBinCenter(i) << " y = " << limit_ref->GetYaxis()->GetBinCenter(j) << endl;
+
+	  // if centered
+	  pointsX[counter]=limit_ref->GetXaxis()->GetBinCenter(i);
+	  pointsY[counter]=limit_ref->GetYaxis()->GetBinCenter(j);
+
+	  //
+	  counter++;
+          
+	}
+		
+      }
+     
+      if(limit_ref->GetBinContent(i,j)>1) limit_ref->SetBinContent(i,j,-1);
+      
+    }
+    
+  }
+  
+  if(counter>1) {
+    pointsX[counter]=pointsX[counter-1];
+    pointsY[counter]=100;  
+  }
+ 
+  //  for (int ix = 0; ix < counter+1; ++ix) {
+  //    cout << "@@@@ x = " << pointsX[ix] << " y = " << pointsY[ix] << endl;
+  //  }
+
+  //  const char * titleHisto;
+  //  cout << limit_ref->GetName() << endl;
+
+  char titleHisto[1000];
+
+  sprintf(titleHisto,"graph_%s_%d",limit_ref->GetName(),refMult);
+  
+  cout << titleHisto << endl;
+
+  TGraph * gr = new TGraph(counter+1,pointsX,pointsY);
+  
+  gr->SetName(titleHisto);
+  // gr->Draw("same");
+
+  return gr;
+
+
+  /*
+  //  TGraph * g1 = new TGraph(limit_ref); // Get Next graph
+  //  g1->Draw("p");
+
+  cExp->SaveAs("temp.gif");
+  
+  return;
+  
+  //  limit_ref->Draw("surf");
+  
+  gPad->Update();
+  limit_ref->SetContour(3,contours);
+
+  limit_ref->Draw("cont list");
+
+  cExp->SaveAs(toPlot);
+
+  TList* contLevel = NULL;
+  TGraph* curv     = NULL;
+  TGraph* g1       = NULL;
+  TGraph* g13      = NULL;
+  TGraph* g3       = NULL;
+  TGraph* g4       = NULL;
+  
+  TObjArray *conts = (TObjArray*)gROOT->GetListOfSpecials()->FindObject("contours");
+
+  Int_t ncontours     = conts->GetSize();
+  
+  cout << "nCont "<< ncontours << endl;
+  
+  for(int i = 0; i < conts->GetSize(); i++){
+    contLevel = (TList*)conts->At(i);
+    
+    printf("Contour %d has %d Graphs\n", i, contLevel->GetSize());
+    
+    curv = (TGraph*)contLevel->First();
+    
+    for(int j = 0; j < contLevel->GetSize(); j++){
+      
+      // Draw clones of the graphs to avoid deletions in case the 1st
+      // pad is redrawn.
+      
+      //      gc->Draw("L");
+      
+      if(i==0) g1 = (TGraph*) curv->Clone();
+      if(i==1) g13 = (TGraph*) curv->Clone();
+      if(i==2) g3 = (TGraph*) curv->Clone();
+      
+      curv = (TGraph*) contLevel->After(curv); // Get Next graph
+      
+    }
+    
+    //    gc = (TGraph*)curv->Clone();
+    //    gc->Draw("C");
+    
+  }
+
+ 
+  g1->SetMarkerColor(1);
+  g1->Draw("P");
+  g13->SetMarkerColor(5);
+  g13->Draw("P same");
+  g3->SetMarkerColor(4);
+  g3->Draw("P same");
+
+
+  Double_t x1, y1, z1;
+  Double_t x2, y2, z2;
+  Double_t x3, y3, z3;
+
+  for(int i=0; i<g1->GetN(); i++) {
+    
+    g1->GetPoint(i, x1, y1);
+    g13->GetPoint(i, x2, y2);
+    g3->GetPoint(i, x3, y3);
+    
+    cout << "--G1: x1 " << x1 << " y1 " << y1 << endl;
+    cout << "G13: x2 " << x2 << " y2 " << y1 << endl;
+    cout << "G3: x3 " << x3 << " y2 " << y3 << endl;
+    
+  }
+ 
+  
+  TObjArray *graph = new TObjArray();
+
+  graph->Add(g1);
+  graph->Add(g13);
+  graph->Add(g3);
+
+  return graph;
+
+    //  return g3;
+
+  */
+  
+}
+
+TH2D* error_combination(char * label, char * type, char * region, bool write) {
+  
+  TH2D*  PDFrel;
+
+  // #include "/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/setTDRStyle.C"
+  //  tdrStyle->SetPadRightMargin(0.25);
+  tdrStyle->SetPadLeftMargin(0.15);
+  tdrStyle->SetPaintTextFormat(".2g");
+  //gROOT->ForceStyle();
+
+  char * mass="";
+  char * titleX="";
+  char * fileName="";
+  char * fileName1="";
+  char * fileName2="";
+  char * leg="";
+  char * text="";
+
+  if(type=="T2") mass="squark";
+  if(type=="T2") titleX="m_{squark} (GeV) ";
+  if(type=="T2") leg="SQ SQ -> 2jets + LSPs";
+  
+  if(type=="T1") mass="gluino";
+  if(type=="T1") titleX="m_{gluino} (GeV)";
+  if(type=="T1") leg="GL GL -> 4jets + LSPs";
+
+  if(type=="T1") fileName2="ISRUncertaintyHists_T1_10March.root";
+  if(type=="T2") fileName2="ISRUncertaintyHists_T2_10March.root";
+
+  //  if(type=="T1") fileName1="GluinoPair_PDFSyst__03082011.root";
+  if(type=="T1") fileName1="GluinoPair_PDFSyst__03102011.root";
+  if(type=="T2") fileName1="SquarkPair_PDFSyst__03102011.root";
+
+  /*
+  if(type=="T2") fileName1="SquarkPair_PDFSyst__03082011.root";
+  //  if(type=="T2") fileName1="SquarkPair_PDFSyst__03032011.root";
+  //  if(type=="T2") fileName2="ISRUncertaintyHists_T2.root";
+  if(type=="T2") fileName2="ISRUncertaintyHists_T2_5March.root";
+  
+  if(type=="T1") fileName1="GluinoPair_PDFSyst__03082011.root";
+  //  if(type=="T1") fileName1="GluinoPair_PDFSyst__03032011.root";
+  //  if(type=="T1") fileName2="ISRUncertaintyHists_T1.root";
+  if(type=="T1") fileName2="ISRUncertaintyHists_T1_5March.root";
+
+  //    if(type=="T2") fileName1="SquarkPair_PDFSyst.root";
+  //    if(type=="T1") fileName1="GluinoPair_PDFSyst.root";
+  */  
+
+
+  char titleHisto[1000];
+  char titleHisto2[1000];
+
+  TH2D * relEff;
+  TH2D * theoryUnc;
+  TH2D * theoryOffset;
+
+  if(label=="exp") {
+    
+    sprintf(titleHisto,"ExpRelUnc_%s_%s_%s",mass,type,region);
+
+    relEff= new TH2D(titleHisto,titleHisto,30, 25., 1525., 60, 25., 1525.);
+    
+    //    if(type=="T2") fileName="SCAN/histo_Squark_filterGood.root";
+    //    if(type=="T1") fileName="SCAN/histo_Gluino_filterGood.root";
+    /////    if(type=="T2") fileName="SCAN/histo_Squark_filterGoodAll.root";
+    ////    if(type=="T1") fileName="SCAN/histo_Gluino_filterGoodAll.root";
+
+    if(type=="T1") fileName="~bellan/public/for_Maria/histo_Gluino_filterGoodAll_03112011.root";
+    if(type=="T2") fileName="SCAN/histo_Squark_filterGoodAll.root";
+
+    TH2D *h;
+    TH2D *hup;
+    TH2D *hdwn;
+    
+    TH2D * PDF;
+    TH2D * PDFunc;
+    TH2D * ISR;
+    TH2D * def;
+
+    
+    if(type=="T2" && region=="HT") h=get2DHisto(fileName, "scan_mht150_ht500", "Scan" , 1,1);
+    if(type=="T2" && region=="HT") hup=get2DHisto(fileName, "scan_3j_ht500_mht150_UP", "Scan" , 1,1);
+    if(type=="T2" && region=="HT") hdwn=get2DHisto(fileName, "scan_3j_ht500_mht150_Dwn", "Scan" , 1,1);
+    if(type=="T2" && region=="HT") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighHT", 1,1);
+    if(type=="T2" && region=="HT") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsHighHT", 1,1);
+    
+    if(type=="T2" && region=="MHT") h=get2DHisto(fileName, "scan_mht250", "Scan" , 1,1);
+    if(type=="T2" && region=="MHT") hup=get2DHisto(fileName, "scan_3j_ht300_mht250_UP", "Scan" , 1,1);
+    if(type=="T2" && region=="MHT") hdwn=get2DHisto(fileName, "scan_3j_ht300_mht250_Dwn", "Scan" , 1,1);
+    if(type=="T2" && region=="MHT") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighMHT", 1,1);
+    if(type=="T2" && region=="MHT") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsHighMHT", 1,1);
+
+    if(type=="T2" && region=="baseline") h=get2DHisto(fileName, "scan_baseline", "Scan" , 1,1);
+    //    if(region=="baseline") h=get2DHisto(fileName, "scan_mht150", "Scan" , 1,1);
+    if(type=="T2" && region=="baseline") hup=get2DHisto(fileName, "scan_3j_ht300_mht150_UP", "Scan" , 1,1);
+    if(type=="T2" && region=="baseline") hdwn=get2DHisto(fileName, "scan_3j_ht300_mht150_Dwn", "Scan" , 1,1);
+    if(type=="T2" && region=="baseline") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsBaseline", 1,1);
+    if(type=="T2" && region=="baseline") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsBaseline", 1,1);
+    
+
+    if(type=="T1" && region=="HT") h=get2DHisto(fileName, "scan_mht150_ht500", "0" , 1,1);
+    if(type=="T1" && region=="HT") hup=get2DHisto(fileName, "scan_3j_ht500_mht150_UP", "0" , 1,1);
+    if(type=="T1" && region=="HT") hdwn=get2DHisto(fileName, "scan_3j_ht500_mht150_Dwn", "0" , 1,1);
+    if(type=="T1" && region=="HT") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighHT", 1,1);
+    if(type=="T1" && region=="HT") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsHighHT", 1,1);
+    
+    if(type=="T1" && region=="MHT") h=get2DHisto(fileName, "scan_mht250", "0" , 1,1);
+    if(type=="T1" && region=="MHT") hup=get2DHisto(fileName, "scan_3j_ht300_mht250_UP", "0" , 1,1);
+    if(type=="T1" && region=="MHT") hdwn=get2DHisto(fileName, "scan_3j_ht300_mht250_Dwn", "0" , 1,1);
+    if(type=="T1" && region=="MHT") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighMHT", 1,1);
+    if(type=="T1" && region=="MHT") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsHighMHT", 1,1);
+
+    if(type=="T1" && region=="baseline") h=get2DHisto(fileName, "scan_baseline", "0" , 1,1);
+    //    if(region=="baseline") h=get2DHisto(fileName, "scan_mht150", "Scan" , 1,1);
+    if(type=="T1" && region=="baseline") hup=get2DHisto(fileName, "scan_3j_ht300_mht150_UP", "0" , 1,1);
+    if(type=="T1" && region=="baseline") hdwn=get2DHisto(fileName, "scan_3j_ht300_mht150_Dwn", "0" , 1,1);
+    if(type=="T1" && region=="baseline") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsBaseline", 1,1);
+    if(type=="T1" && region=="baseline") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsBaseline", 1,1);
+
+    TH2D*  PDFrel= (TH2D*) PDFunc->Clone();
+    PDFrel->Divide(PDF);
+    
+    //    PDFrel->Draw("colz");
+
+    //    TH2D * relEff= new TH2D(titleHisto,titleHisto,30, 25., 1525., 30, 25., 1525.);
+    
+    for(int i=1; i<(relEff->GetNbinsX()+1); i++) {
+      for(int j=1; j<(relEff->GetNbinsY()+1); j++) {
+	
+	//	if((h->GetBinContent(i,j)==0)) continue;
+
+	if((h->GetBinContent(h->GetXaxis()->FindBin(relEff->GetXaxis()->GetBinCenter(i)),h->GetYaxis()->FindBin(relEff->GetYaxis()->GetBinCenter(j)))==0)) continue;
+
+	double ContentUp=hup->GetBinContent(hup->GetXaxis()->FindBin(relEff->GetXaxis()->GetBinCenter(i)),hup->GetYaxis()->FindBin(relEff->GetYaxis()->GetBinCenter(j)));
+	double ContentDwn=hdwn->GetBinContent(hdwn->GetXaxis()->FindBin(relEff->GetXaxis()->GetBinCenter(i)),hdwn->GetYaxis()->FindBin(relEff->GetYaxis()->GetBinCenter(j)));
+    
+	double Content=h->GetBinContent(h->GetXaxis()->FindBin(relEff->GetXaxis()->GetBinCenter(i)),h->GetYaxis()->FindBin(relEff->GetYaxis()->GetBinCenter(j)));
+
+	double StatContent=PDFrel->GetBinContent(PDFrel->GetXaxis()->FindBin(relEff->GetXaxis()->GetBinCenter(i)),PDFrel->GetYaxis()->FindBin(relEff->GetYaxis()->GetBinCenter(j)));
+ 
+	//	cout << "baseline " << Content << " Up " << ContentUp << " Dwn " << ContentDwn << endl;
+	//	double trigger=0.01*Content;
+	//	double cleaning=0.02*Content;
+
+	double x1 = (ContentUp-Content)/Content; 
+	double x2 = (ContentDwn-Content)/Content; 
+	double sigmaJES = (sqrt(x1*x1)+sqrt(x2*x2))/2;
+	//	double newContent=sqrt(sigmaJES*sigmaJES+StatContent*StatContent+trigger*trigger+cleaning*cleaning);
+	double newContent=sqrt(sigmaJES*sigmaJES+StatContent*StatContent);
+	//	double newContent=sqrt(sigmaJES*sigmaJES);
+	//        double newContent=sqrt(x1*x1);
+	//	double newContent=sqrt(StatContent*StatContent);
+	
+	relEff->SetBinContent(i,j,newContent);
+	//	if(!(h->GetBinContent(i,j)==0)) relEff->SetBinContent(i,j,StatContent);
+
+      }
+    }
+
+    TCanvas *cExp = new TCanvas("cExp","cExp");
+    relEff->SetXTitle(titleX);  
+    relEff->SetYTitle("m_{LSP} (GeV)"); 
+    relEff->SetTitle(""); 
+    relEff->SetMinimum(0.); 
+    relEff->SetMaximum(1.); 
+
+    relEff->Draw("colz");
+
+    //    cExp->SaveAs("test.gif");
+
+    if(write) {
+      TFile f("uncertainty_test.root","UPDATE");
+      relEff->Write();
+      f.Close();
+    }
+
+    return relEff;
+
+  }
+
+  if(label=="teo") {
+
+    text="theory uncertainty";    
+
+    //    char titleHisto[1000];
+    sprintf(titleHisto,"theoryUnc_%s_%s_%s",mass,type,region);
+
+    //    char titleHisto2[1000];
+    sprintf(titleHisto2,"acceptance_%s_%s_%s",mass,type,region);
+
+    theoryUnc= new TH2D(titleHisto,titleHisto,30, 25., 1525., 60, 25., 1525.);
+    theoryOffset= new TH2D(titleHisto2,titleHisto2,30, 25., 1525., 60, 25., 1525.);
+
+    char titlePlot[1000];
+    sprintf(titlePlot,"SCAN/teoSyst_%s.C",mass);
+
+    TFile *file1 = TFile::Open(fileName1);
+    TFile *file2 = TFile::Open(fileName2);
+
+    ////$$$$
+    ////$$$$
+    ////$$$$
+
+    TH2D * PDF;
+    TH2D * PDFunc;
+    TH2D * ISR;
+    TH2D * def;
+
+    if(region=="baseline") PDF =get2DHisto(fileName1, "AcceptancePDFs", "pdfSystematicsBaseline", 1,1);
+    if(region=="baseline") PDFunc =get2DHisto(fileName1, "AcceptancePDFsUnc", "pdfSystematicsBaseline", 1,1);
+
+    //    if(region=="baseline") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsBaseline", 1,1);
+    //    if(region=="baseline") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsBaseline", 1,1);
+
+
+    //TEORETICAL OMITTED
+
+    /*
+    if(region=="HT") PDF =get2DHisto(fileName1, "AcceptancePDFs", "pdfSystematicsHighHT", 1,1);
+    if(region=="HT") PDFunc =get2DHisto(fileName1, "AcceptancePDFsUnc", "pdfSystematicsHighHT", 1,1);
+
+    if(region=="MHT") PDF=get2DHisto(fileName1, "AcceptancePDFs", "pdfSystematicsHighMHT", 1,1);    
+    if(region=="MHT") PDFunc =get2DHisto(fileName1, "AcceptancePDFsUnc", "pdfSystematicsHighMHT", 1,1);
+    */
+    if(region=="HT") PDF =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighHT", 1,1);
+    if(region=="HT") PDFunc =get2DHisto(fileName1, "DefaultAcceptanceUnc", "pdfSystematicsHighHT", 1,1);
+
+    if(region=="MHT") PDF=get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighMHT", 1,1);    
+    if(region=="MHT") PDFunc =get2DHisto(fileName1, "DefaultAcceptance", "pdfSystematicsHighMHT", 1,1);
+
+    if(region=="baseline") ISR =get2DHisto(fileName2, "h_EffIsrReweighted_Baseline", "0", 1,1); 
+    if(region=="baseline") def =get2DHisto(fileName2, "h_EffNominal_Baseline", "0", 1,1); 
+
+    if(region=="HT") ISR =get2DHisto(fileName2, "h_EffIsrReweighted_HighHT", "0", 1, 1); 
+    if(region=="HT") def =get2DHisto(fileName2, "h_EffNominal_HighHT", "0", 1, 1); 
+
+    if(region=="MHT") ISR =get2DHisto(fileName2, "h_EffIsrReweighted_HighMHT", "0", 1, 1); 
+    if(region=="MHT") def =get2DHisto(fileName2, "h_EffNominal_HighMHT", "0", 1, 1); 
+
+    TH2D*  ISRunc= (TH2D*) ISR->Clone();
+    def->Scale(-1.);
+    
+    ISRunc->Add(def);
+    ISRunc->Divide(def);
+    //    ISRunc->Scale(-1.);
+    
+    /*
+      TH2D*  PDFrel= (TH2D*) PDFunc->Clone();
+      PDFrel->Divide(PDF);
+
+      PDFrel->Draw("colz");
+      
+      return;
+    */
+    
+    ///$$$$
+    ///$$$$
+    ///$$$$
+    
+    cout << "PDFunc x " << PDFunc->GetNbinsX() << "" << " y " << PDFunc->GetNbinsY() << endl;
+    cout << "PDF x " << PDF->GetNbinsX() << "" << " y " << PDF->GetNbinsY() << endl;
+    cout << "ISR x " << ISRunc->GetNbinsX() << "" << " y " << ISRunc->GetNbinsY() << endl;
+    
+    //    TH2D * theoryUnc= new TH2D(titleHisto, titleHisto, 30, 25., 1525., 30, 25., 1525.);
+    //    TH2D * theoryOffset= new TH2D(titleHisto2, titleHisto2, 30, 25., 1525., 30, 25., 1525.);
+
+    for(int i=1; i<(theoryUnc->GetNbinsX()+1); i++) {
+      for(int j=1; j<(theoryUnc->GetNbinsY()+1); j++) {
+	
+	//	cout << "MGL "<< theoryUnc->GetXaxis()->GetBinCenter(i)<< " LSP " << theoryUnc->GetYaxis()->GetBinCenter(j) << endl;
+
+	//	if((ISR->GetBinContent(i,j)==0)) continue;
+	if((PDFunc->GetBinContent(PDFunc->GetXaxis()->FindBin(theoryUnc->GetXaxis()->GetBinCenter(i)),PDFunc->GetYaxis()->FindBin(theoryUnc->GetYaxis()->GetBinCenter(j)))==0)) continue;
+	
+	//	double PDFContent=PDFrel->GetBinContent(PDFrel->GetXaxis()->FindBin(theoryUnc->GetXaxis()->GetBinCenter(i)),PDFrel->GetYaxis()->FindBin(theoryUnc->GetYaxis()->GetBinCenter(j)));
+	double PDFUncContent=PDFunc->GetBinContent(PDFunc->GetXaxis()->FindBin(theoryUnc->GetXaxis()->GetBinCenter(i)),PDFunc->GetYaxis()->FindBin(theoryUnc->GetYaxis()->GetBinCenter(j)));
+	
+	double ISRContent=ISRunc->GetBinContent(ISRunc->GetXaxis()->FindBin(theoryUnc->GetXaxis()->GetBinCenter(i)),ISRunc->GetYaxis()->FindBin(theoryUnc->GetYaxis()->GetBinCenter(j)));
+	double newContent=sqrt(PDFUncContent*PDFUncContent+ISRContent*ISRContent);
+	//	double newContent=sqrt(PDFUncContent*PDFUncContent);
+	//	double newContent=sqrt(ISRContent*ISRContent);
+
+	//	cout << "MGL "<< theoryUnc->GetXaxis()->GetBinCenter(i)<< " LSP " << theoryUnc->GetYaxis()->GetBinCenter(j) << " value " << PDFUncContent << "newContent" << newContent << endl;
+
+	
+	//    	double newContent=sqrt(PDFContent*PDFContent);
+	//     	double newContent=sqrt(ISRContent*ISRContent);
+	
+	theoryUnc->SetBinContent(i,j,newContent);
+	//	if(!(ISR->GetBinContent(i,j)==0)) theoryUnc->SetBinContent(i,j,ISRContent);
+	//	if((ISR->GetBinContent(i,j)==0)) theoryUnc->SetBinContent(i,j,-1.);
+	
+	double PDFoffset=PDF->GetBinContent(PDF->GetXaxis()->FindBin(theoryOffset->GetXaxis()->GetBinCenter(i)),PDF->GetYaxis()->FindBin(theoryOffset->GetYaxis()->GetBinCenter(j)));
+	
+	theoryOffset->SetBinContent(i,j,PDFoffset);
+	
+      } 
+    }
+
+    ///$$$$
+    ///$$$$
+    ///$$$$
+
+    TCanvas *cTheo = new TCanvas("cTheo","cTheo");
+    theoryUnc->SetXTitle(titleX);  
+    theoryUnc->SetYTitle("m_{LSP} (GeV)"); 
+    theoryUnc->SetTitle(""); 
+    theoryUnc->SetMinimum(0.); 
+    theoryUnc->SetMaximum(1.); 
+
+    theoryUnc->Draw("colz");
+
+    //    cTheo->SaveAs(titlePlot);
+    
+    char * dirname="";
+    if(type=="T1" && region =="HT") dirname="T1_HT";
+    if(type=="T1" && region =="MHT") dirname="T1_MHT";
+    
+    if(type=="T2" && region =="HT") dirname="T2_HT";
+    if(type=="T2" && region =="MHT") dirname="T2_MHT";
+    
+    /* TEO OMITTED
+
+    if(write){
+      TFile f("uncertainty.root","UPDATE");
+      theoryUnc->Write();
+
+      //      TDirectory * mydir = f.mkdir(dirname,dirname);
+      //      mydir->cd();
+      //      mydir->Write();
+      //      PDFunc->Write();
+
+      f.Close();
+    }
+    */
+    ////
+   
+    theoryOffset->SetMinimum(0.); 
+    theoryOffset->SetMaximum(1.); 
+
+    theoryOffset->SetXTitle(titleX);  
+    theoryOffset->SetYTitle("m_{LSP} (GeV)"); 
+    theoryOffset->SetTitle(""); 
+    theoryOffset->Draw("colz");
+
+    TLatex latexLabel1;
+    latexLabel1.SetTextSize(0.04);
+    latexLabel1.SetNDC();
+    latexLabel1.DrawLatex(0.2, 0.8, leg);
+    latexLabel1.DrawLatex(0.2, 0.75, "theory offset");   
+   
+    if(write) {
+      TFile f("uncertainty.root","UPDATE");
+      theoryOffset->Write();
+      f.Close();
+    }
+
+    return theoryUnc; 
+
+  }
+
+}
+
+
+void compare() {
+
+  //  TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h4c=get2DHisto(fileName, "scan_mht150_ht400", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h4d=get2DHisto(fileName, "scan_mht150_ht600", "Scan", 1,1); // full high MHT selection
+
+  TH2D *h4=get2DHisto("SCAN/histo_SquarkPair_T4_hadOnly.root", "scan_mht150_ht500_slice4", "Scan", 1,1);  
+  TH2D *h1=get2DHisto("SCAN/histo_Gluino_Copy.root", "scan_mht150_ht500", "Scan", 1,1);  
+
+  h4->Divide(h1);
+
+  h4->Draw("colz");
+
+
+}
+
+void MSUGRA_Scan(char * label) {
+ 
+  // #include "/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/setTDRStyle.C"
+  //  tdrStyle->SetPadRightMargin(0.25);
+  tdrStyle->SetPadLeftMargin(0.15);
+  tdrStyle->SetPaintTextFormat(".2g");
+  //gROOT->ForceStyle();
+
+  char * mass="";
+  char * titleX="";
+  char * fileName="";
+  char * leg="";
+  char * text="";
+  
+  if(label=="pdf") {
+       
+    mass="squark";
+    titleX="m_{squark} (GeV)";
+    //    char * fileName="SquarkPair_PDFSyst.root";
+    //    char * fileName="SquarkPair_PDFSyst__03032011.root";
+    //    char * fileName="SquarkPair_PDFSyst__03082011.root";
+    fileName="SquarkPair_PDFSyst__03102011.root";
+    leg="SQ SQ -> 2jets + LSPs";
+
+    /*
+    mass="gluino";
+    titleX="m_{gluino} (GeV)";
+    //    char * fileName="GluinoPair_PDFSyst.root";
+    //    fileName="GluinoPair_PDFSyst__03032011.root";
+    //    fileName="GluinoPair_PDFSyst__03082011.root";
+    fileName = "GluinoPair_PDFSyst__03082011.root";
+    leg="GL GL -> 4jets + LSPs";
+    */
+
+    text="PDF variation";
+
+    char titlePlot1[1000];
+    sprintf(titlePlot1,"SCAN/pdfSyst_%s.eps",mass);
+    char titlePlot2[1000];
+    sprintf(titlePlot2,"SCAN/pdfSystUnc_%s.eps",mass);
+    char titlePlot3[1000];
+    sprintf(titlePlot3,"SCAN/statError_%s.eps",mass);
+   
+    TFile *file0 = TFile::Open(fileName);
+  
+    TH2D * PDF =get2DHisto(fileName, "AcceptancePDFs", "pdfSystematicsBaseline", 1,1); 
+    TH2D * defPDF =get2DHisto(fileName, "DefaultAcceptance", "pdfSystematicsBaseline", 1,1); 
+
+    TH2D * defPDFunc =get2DHisto(fileName, "DefaultAcceptanceUnc", "pdfSystematicsBaseline", 1,1); 
+
+    TH2D * PDFunc =get2DHisto(fileName, "AcceptancePDFsUnc", "pdfSystematicsBaseline", 1,1); 
+
+    TH2D*  PDFclone= (TH2D*) PDF->Clone();
+    defPDF->Scale(-1.);
+
+    PDFclone->Add(defPDF);
+    PDFclone->Divide(defPDF);
+    PDFclone->Scale(-1);
+    defPDF->Scale(-1.);
+
+    for(int i=1; i<(PDF->GetNbinsX()+1); i++) {
+      //    for(int j=1; j<(12+1); j++) {
+      for(int j=1; j<(PDF->GetNbinsY()+1); j++) {
+	
+	if((PDF->GetBinContent(i,j)==0)) PDFclone->SetBinContent(i,j,-1);
+	if((PDFunc->GetBinContent(i,j)==0)) PDFunc->SetBinContent(i,j,-1);
+	if((defPDFunc->GetBinContent(i,j)==0)) defPDFunc->SetBinContent(i,j,-1);
+	
+      }
+    }
+
+    defPDFunc->Divide(defPDF);
+
+    TCanvas *cPlot9 = new TCanvas("cPlot9","cPlot9");
+    defPDFunc->SetXTitle(titleX);  
+    defPDFunc->SetYTitle("m_{LSP} (GeV)"); 
+    defPDFunc->SetTitle(""); 
+    defPDFunc->SetMinimum(0); 
+    defPDFunc->SetMaximum(0.10); 
+
+    //    defPDFunc->GetXaxis()->SetRangeUser(0.0,1150.);
+    //    defPDFunc->GetYaxis()->SetRangeUser(0.0,1150.);
+    defPDFunc->GetXaxis()->SetRangeUser(375.,975.);
+    defPDFunc->GetYaxis()->SetRangeUser(75.,975.);
+
+    //    PDFclone->GetXaxis->SetRangeUser(0.0,1050.);
+    //  eff_leptDphi->SetZTitle("pb"); 
+
+    defPDFunc->Draw("colz");
+
+    TLatex latexLabel;
+    latexLabel.SetTextSize(0.04);
+    latexLabel.SetNDC();
+    latexLabel.DrawLatex(0.2, 0.8, leg);
+    latexLabel.DrawLatex(0.2, 0.75, "stat uncertainty");
+
+    cPlot9->SaveAs(titlePlot3);
+    //    cPlot10->Print("SCAN/effBaselinePDF_T1.eps");
+    
+    TCanvas *cPlot10 = new TCanvas("cPlot10","cPlot10");
+    PDFclone->SetXTitle(titleX);  
+    PDFclone->SetYTitle("m_{LSP} (GeV)"); 
+    PDFclone->SetTitle(""); 
+    PDFclone->SetMinimum(-0.1); 
+    PDFclone->SetMaximum(1); 
+
+    //    PDFclone->GetXaxis->SetRangeUser(0.0,1050.);
+    //  eff_leptDphi->SetZTitle("pb"); 
+    //    PDFclone->GetXaxis()->SetRangeUser(0.0,1150.);
+    //    PDFclone->GetYaxis()->SetRangeUser(0.0,1150.);
+    PDFclone->GetXaxis()->SetRangeUser(375.,975.);
+    PDFclone->GetYaxis()->SetRangeUser(75.,975.);
+
+    PDFclone->Draw("colz");
+
+    TLatex latexLabel1;
+    latexLabel1.SetTextSize(0.04);
+    latexLabel1.SetNDC();
+    latexLabel1.DrawLatex(0.2, 0.8, leg);
+    latexLabel1.DrawLatex(0.2, 0.75, text);
+
+    cPlot10->SaveAs(titlePlot1);
+    //    cPlot10->Print("SCAN/effBaselinePDF_T1.eps");
+  
+    TCanvas *cPlot11 = new TCanvas("cPlot11","cPlot11");
+    PDFunc->SetXTitle(titleX);  
+    PDFunc->SetYTitle("m_{LSP} (GeV)"); 
+    PDFunc->SetTitle(""); 
+    PDFunc->SetMinimum(-0.1); 
+    PDFunc->SetMaximum(0.5); 
+    //  eff_leptDphi->SetZTitle("pb"); 
+    //    PDFunc->GetXaxis()->SetRangeUser(0.0,1150.);
+    //    PDFunc->GetYaxis()->SetRangeUser(0.0,1150.);
+    PDFunc->GetXaxis()->SetRangeUser(375.,975.);
+    PDFunc->GetYaxis()->SetRangeUser(75.,975.);
+    PDFunc->Draw("colz");
+
+    TLatex latexLabel2;
+    latexLabel2.SetTextSize(0.04);
+    latexLabel2.SetNDC();
+    latexLabel2.DrawLatex(0.2, 0.8, leg);
+    latexLabel2.DrawLatex(0.2, 0.75, text);
+
+
+    cPlot11->SaveAs(titlePlot2);
+
+    return;
+
+  }
+  
+  if(label=="ISR") {
+
+    
+    mass="squark";
+    titleX="m_{squark}";
+    fileName="ISRUncertaintyHists_T2_10March.root";
+    leg="SQ SQ -> 2jets + LSPs";
+   
+    /* 
+    mass="gluino";
+    titleX="m_{gluino}";
+    leg="GL GL -> 4jets + LSPs";
+    fileName="ISRUncertaintyHists_T1_10March.root";
+    */
+    text="ISR variation";
+
+    char titlePlot1[1000];
+    sprintf(titlePlot1,"SCAN/ISRSyst_%s.eps",mass);
+    
+    
+    TH2D * ISR =get2DHisto(fileName, "h_EffIsrReweighted_Baseline", "0", 1,1); 
+    TH2D * def =get2DHisto(fileName, "h_EffNominal_Baseline", "0", 1,1); 
+    
+    TH2D*  ISRclone= (TH2D*) ISR->Clone();
+    def->Scale(-1.);
+    
+    ISRclone->Add(def);
+    ISRclone->Divide(def);
+    //    ISRclone->Scale(-1);
+    
+    for(int i=1; i<(ISR->GetNbinsX()+1); i++) {
+      //    for(int j=1; j<(12+1); j++) {
+      for(int j=1; j<(ISR->GetNbinsY()+1); j++) {
+	
+	if((ISR->GetBinContent(i,j)==0)) ISRclone->SetBinContent(i,j,-1);
+	
+      }
+    }
+    
+    TCanvas *cPlot10 = new TCanvas("cPlot10","cPlot10");
+    ISRclone->SetXTitle(titleX);  
+    ISRclone->SetYTitle("m_{LSP} (GeV)"); 
+    ISRclone->SetTitle(""); 
+    ISRclone->SetMinimum(-0.1); 
+    ISRclone->SetMaximum(0.5); 
+    ISRclone->GetXaxis()->SetRangeUser(375.,975.);
+    ISRclone->GetYaxis()->SetRangeUser(75.,975.);
+    ISRclone->Draw("colz");
+
+    TLatex latexLabel;
+    latexLabel.SetTextSize(0.04);
+    latexLabel.SetNDC();
+    latexLabel.DrawLatex(0.2, 0.8, leg);
+    latexLabel.DrawLatex(0.2, 0.75, text);
+    
+
+    cPlot10->SaveAs(titlePlot1);
+
+    return;
+
+  }
+
+  if(label=="limit") {
+    
+    /*
+      char * mass="squark";
+      char * titleX="m_{squark}";
+      char * fileName="SMSlimitsSquark.root";
+      char * leg="SQ SQ -> 2jets + LSPs";
+      char titlePlot[1000];
+      sprintf(titlePlot,"SCAN/limit_%s_refXsec.eps",mass);
+    */
+    
+   
+    char * mass="gluino";
+    char * titleX="m_{gluino} (GeV)";
+    //    char * fileName="SMSlimitsGluino.root";
+    char * fileName="/data/rossin/CMS/Limits/LimitSMS5_1.root";
+    char * leg="GL GL -> 4jets + LSPs";
+    //  plotLeg(leg, 1, eff_lept ,0.2, 0.8);
+    char titlePlot[1000];
+    //    sprintf(titlePlot,"SCAN/limit_%s_refXsec.eps",mass);
+    sprintf(titlePlot,"RESULT/limit_%s_refXsec.eps",mass);
+    
+
+    TFile *file0 = TFile::Open(fileName);
+    //    TFile *file0 = TFile::Open("SMSlimitsSquark.root");
+
+    //    TH2D * RobLimit = (TH2D*) file0->Get("limit");
+    TH2D * RobLimit = (TH2D*) file0->Get("hlimit_gluino_T1_MHT");
+
+    TCanvas *cPlot26 = new TCanvas("cPlot26","cPlot26");
+    cPlot26->SetLogz(1);
+    RobLimit->SetXTitle(titleX);  
+    RobLimit->SetYTitle("m_{LSP} (GeV)"); 
+    RobLimit->SetZTitle("pb"); 
+    RobLimit->SetTitle(""); 
+    RobLimit->SetMinimum(0.1); 
+    RobLimit->SetMaximum(20); 
+    RobLimit->Draw("colz");
+    cPlot26->SaveAs("SCAN/limit.gif");
+    cPlot26->Print("SCAN/limit.eps");
+    
+    //    return;
+
+    TH1D *hRef=getHisto("/afs/cern.ch/user/d/dalfonso/public/reference_xSec.root", mass, "0", 1,1);
+    //    TH2D* limit_ref = (TH2D*) limit->Clone();
+    TH2D* limit_ref = (TH2D*) RobLimit->Clone();
+    TH2D * xSec_ref= new TH2D("xSec_ref","xSec_ref",22, 25., 1125., 22, 25., 1125.);
+    //    TH2D * xSec_refPlus= new TH2D("xSec_refPlus","xSec_refPlus",22, 25., 1125., 22, 25., 1125.);
+    //    TH2D * xSec_refMinus= new TH2D("xSec_refMinus","xSec_refMinus",22, 25., 1125., 22, 25., 1125.);
+    
+    // that has 40 bins of 25 GeV step
+    
+    for(int i=1; i<(30+1); i++) {
+      //    for(int j=1; j<(12+1); j++) {
+
+      cout << "x " << xSec_ref->GetXaxis()->GetBinCenter(i) << " content " << hRef->GetBinContent(hRef->FindBin(xSec_ref->GetXaxis()->GetBinCenter(i))) << endl;
+
+      for(int j=1; j<(30+1); j++) {
+	
+	if(!(RobLimit->GetBinContent(i,j)==0)) xSec_ref->SetBinContent(i,j,hRef->GetBinContent(hRef->FindBin(xSec_ref->GetXaxis()->GetBinCenter(i))));      
+
+      }
+      
+    }
+    
+    TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1");
+    cPlot1->SetLogz(1);
+    //    xSec_ref->SetXTitle("m_{Gluino} (GeV)");  
+    xSec_ref->SetXTitle(titleX); 
+    xSec_ref->SetYTitle("m_{LSP} (GeV)"); 
+    xSec_ref->SetZTitle("pb"); 
+    xSec_ref->SetTitle(""); 
+    //    xSec_ref->SetMinimum(20); 
+    //    xSec_ref->SetMaximum(1); 
+    xSec_ref->Draw("colz");
+    cPlot1->SaveAs("crossSection.gif");
+    cPlot1->Print("crossSection.eps");
+
+    double contours1[1];
+    contours1[0] = 1.;
+
+    double contoursPlus[1];
+    contoursPlus[0] = 1/3.;
+
+    double contoursMinus[1];
+    contoursMinus[0] = 3.;
+    
+    limit_ref->SetLineColor(1);
+
+    TH2D*  xSec_ref1= (TH2D*) xSec_ref->Clone();
+
+    xSec_ref1->Divide(limit_ref);
+    xSec_ref1->SetFillColor(kBlack);  
+    xSec_ref1->SetFillStyle(0);  
+    xSec_ref1->SetLineColor(kRed);  
+    xSec_ref1->SetMarkerColor(kBlack);  
+    xSec_ref1->SetLineWidth(3);  
+    xSec_ref1->SetLineStyle(1);  
+    xSec_ref1->SetContour(1,contours1);
+    RobLimit->Draw("colz");
+    char * leg="#sigma^{prod} = #sigma^{NLO-QCD}";
+    plotLeg(leg, 1,xSec_ref1,0.16, 0.6); 
+
+    xSec_ref1->Draw("cont1 same");
+
+    cout << "color Line " << xSec_ref1->GetLineColor() << endl;
+
+    TH2D*  xSec_refPlus= (TH2D*) xSec_ref->Clone();
+
+    xSec_refPlus->Divide(limit_ref);
+    xSec_refPlus->SetLineColor(kRed);  
+    xSec_refPlus->SetLineWidth(3);  
+    xSec_refPlus->SetLineStyle(3);  
+    xSec_refPlus->SetContour(1,contoursPlus);
+    //    limit->Draw("colz");
+    xSec_refPlus->Draw("cont1 same");
+    char * legPlus="#sigma^{prod} = 3 x #sigma^{NLO-QCD}";
+    plotLeg(legPlus, 1,xSec_refPlus,0.16, 0.55); 
+
+
+    TH2D*  xSec_refMinus= (TH2D*) xSec_ref->Clone();
+
+    xSec_refMinus->Divide(limit_ref);
+    xSec_refMinus->SetLineWidth(3);  
+    xSec_refMinus->SetLineStyle(2);  
+    xSec_refMinus->SetLineColor(kRed);  
+    xSec_refMinus->SetContour(1,contoursMinus);
+    //    limit->Draw("colz");
+    char * legMinus="#sigma^{prod} = 1/3 x #sigma^{NLO-QCD}";
+    plotLeg(legMinus, 1,xSec_refMinus,0.16, 0.5); 
+    xSec_refMinus->Draw("cont1 same");
+
+    cPlot1->SaveAs("SCAN/limit_Squark_refXsec.gif");
+    cPlot1->Print(titlePlot);
+
+    return;
+
+  }
+
+  char * fileName;
+  char * titleX;
+  char * titleHistoRef;
+  char * leg;
+  char * leg2;
+  char * slice;
+  char * slice1;
+  char * slice4;
+  
+  if(label=="T2") {
+    //    fileName="SCAN/histo_Squark.root";
+    //    fileName="SCAN/histo_Squark_filterGoodAll.root";
+    fileName="SCAN/histo_Squark_Copy.root";
+
+    //    fileName="SCAN/histo_Squark_filterGoodAll_277-8.root";
+    //    fileName="SCAN/histo_Squark_filterGoodAll_279-80.root";
+
+    titleX="m_{Squark} (GeV)";
+    titleHistoRef="squark";
+
+    leg="SQ SQ #rightarrow 2jets + LSPs";
+    //    leg2="qqbar #rightarrow SQ SQ"; // 277
+    leg2="gg #rightarrow SQ SQ"; //279
+
+  }
+
+  if(label=="T1") {
+
+    //    fileName="SCAN/histo_Gluino_filterGoodAll.root";
+
+    //    fileName="SCAN/histo_Gluino_filterGoodAll_243.root";
+    //   fileName="SCAN/histo_Gluino_filterGoodAll_244.root";
+
+    fileName="SCAN/histo_Gluino_Copy.root";
+
+    titleX="m_{Gluino} (GeV)";
+    titleHistoRef="gluino";
+
+    leg="GL GL #rightarrow 4jets + LSPs";
+    leg2="qqbar #rightarrow GL GL"; // 243
+    //    leg2="gg #rightarrow GL GL"; //244
+
+  }
+
+  if(label=="T3") {
+    //    char * fileName="SCAN/histo_Gluino_T3.root";
+    //    fileName="SCAN/histo_Gluino_T3.root";
+
+    fileName="SCAN/histo_Gluino_T3.root";
+
+    titleX="m_{Squark} (GeV)";
+    titleHistoRef="Squark";
+    leg="SQ SQ #rightarrow 2jets + 1W (#rightarrow jj) + LSPs";
+    //    slice4="m_{Chi} = m_{LSP)+82";
+    //    slice1="m_{Chi} = 1/2*(m_{LSP}+m_{Gluino})";
+    slice4="m_{#chi^{+}} = m_{LSP}+82";
+    slice1="m_{#chi^{+}} = 1/2*(m_{LSP}+m_{#tilde{G}})";
+    slice="slice1";
+
+  }
+
+  if(label=="T4") {
+    fileName="SCAN/histo_SquarkPair_T4_hadOnly.root";
+    //    fileName="SCAN/histo_SquarkPair_T4.root";
+    //    char * fileName="SCAN/histo_SquarkPair_T4_slice4.root";
+    //    fileName="SCAN/histo_SquarkPair_T4_slice14.root";
+    titleX="m_{Gluino} (GeV)";
+    titleHistoRef="Gluino";
+    leg="GL GL #rightarrow 4jets + 1W (#rightarrow jj) + LSPs";
+
+    slice4="m_{#chi^{+}} = m_{LSP}+82";
+    slice1="m_{#chi^{+}} = 1/2*(m_{LSP}+m_{#tilde{G}})";
+    slice="slice1";
+
+    //    slice4="m_{Chi} = m_{LSP)+82";
+    //    slice1="m_{Chi} = 1/2*(m_{LSP}+m_{Gluino})";
+
+  }
+
+  if(label=="T5") {
+    fileName="SCAN/histo_SquarkPair_T5.root";
+    titleX="m_{Squark} (GeV)";
+    titleHistoRef="Squark";
+    leg="SQ SQ #rightarrow 2jets + 2W + LSPs";
+  }
+
+
+  if(label=="T6") {
+    fileName="SCAN/histo_SquarkPair_T6.root";
+    titleX="m_{Gluino} (GeV)";
+    titleHistoRef="Gluino";
+    leg="GL GL #rightarrow 4jets + 2W + LSPs";
+  }
+
+
+  //  TH2D *h1=get2DHisto(fileName, "scan_all", "Scan", 1,1);
+  TH2D *h1=get2DHisto(fileName, "scan_all_slice1", "Scan", 1,1);
+  //  TH2D *h1=get2DHisto(fileName, "scan_all_slice4", "Scan", 1,1);
+  //  TH2D *h2=get2DHisto(fileName, "scan_3jHt", "Scan" , 1,1);
+  TH2D *h2=get2DHisto(fileName, "scan_3j", "Scan" , 1,1);
+
+  ///  h2->Scale(0.5);
+
+  TH2D *h3=get2DHisto(fileName, "scan_mht150", "Scan", 1,1);  // preselection 3jets, HT,mht
+  /*
+    TH2D *h4=get2DHisto(fileName, "scan_mht250", "Scan", 1,1); // full high MHT selection
+    
+    TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500", "Scan", 1,1); // full high MHT selection
+    TH2D *h4c=get2DHisto(fileName, "scan_mht150_ht400", "Scan", 1,1); // full high MHT selection
+    TH2D *h4d=get2DHisto(fileName, "scan_mht150_ht600", "Scan", 1,1); // full high MHT selection
+    
+    TH2D *h4e=get2DHisto(fileName, "scan_mht200", "Scan", 1,1); // full high MHT selection
+    TH2D *h4f=get2DHisto(fileName, "scan_mht300", "Scan", 1,1); // full high MHT selection
+    TH2D *h7=get2DHisto(fileName, "scan_baseline", "Scan", 1,1);  
+  */
+
+  //  TH2D *h7=get2DHisto(fileName, "scan_baseline", "Scan", 1,1);  
+  TH2D *h7=get2DHisto(fileName, "scan_baseline_slice1", "Scan", 1,1);  
+  //  TH2D *h7=get2DHisto(fileName, "scan_baseline_slice4", "Scan", 1,1);  
+
+  TH2D *h4=get2DHisto(fileName, "scan_mht250", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h4=get2DHisto(fileName, "scan_mht250_slice1", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h4=get2DHisto(fileName, "scan_mht250_slice4", "Scan", 1,1); // full high MHT selection
+
+  TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500", "Scan", 1,1); // full high MHT selection
+  TH2D *h4c=get2DHisto(fileName, "scan_mht150_ht400", "Scan", 1,1); // full high MHT selection
+  TH2D *h4d=get2DHisto(fileName, "scan_mht150_ht600", "Scan", 1,1); // full high MHT selection
+
+  /*
+    TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500_slice1", "Scan", 1,1); // full high MHT selection
+    TH2D *h4c=get2DHisto(fileName, "scan_mht150_ht400_slice1", "Scan", 1,1); // full high MHT selection
+    TH2D *h4d=get2DHisto(fileName, "scan_mht150_ht600_slice1", "Scan", 1,1); // full high MHT selection
+  */
+
+  /*
+  TH2D *h4=get2DHisto(fileName, "scan_mht250", "Scan", 1,1); // full high MHT selection
+  
+  TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500", "Scan", 1,1); // full high MHT selection
+  TH2D *h4c=get2DHisto(fileName, "scan_mht150_ht400", "Scan", 1,1); // full high MHT selection
+  TH2D *h4d=get2DHisto(fileName, "scan_mht150_ht600", "Scan", 1,1); // full high MHT selection
+  */
+
+  TH2D *h4e=get2DHisto(fileName, "scan_mht200", "Scan", 1,1); // full high MHT selection
+  TH2D *h4f=get2DHisto(fileName, "scan_mht300", "Scan", 1,1); // full high MHT selection
+
+  TH2D *h6a=get2DHisto(fileName, "scan_MHToverHT50", "Scan", 1,1);
+  TH2D *h6b=get2DHisto(fileName, "scan_MHToverHT75", "Scan", 1,1);
+
+  //  TH2D *h4=get2DHisto(fileName, "scan_mht250_slice4", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h4b=get2DHisto(fileName, "scan_mht150_ht500_slice4", "Scan", 1,1); // full high MHT selection
+  //  TH2D *h7=get2DHisto(fileName, "scan_baseline_slice4", "Scan", 1,1);    
+
+  TH2D *h_ch_3jHt=get2DHisto(fileName, "scan_3jHt_massPlit", "Scan", 1,1);
+  TH2D *h_ch_all=get2DHisto(fileName, "scan_all_massPlit", "Scan", 1,1);
+
+  TH2D *h3up=get2DHisto(fileName, "scan_3j_ht300_mht150_UP", "Scan" , 1,1);
+  TH2D *h3dwn=get2DHisto(fileName, "scan_3j_ht300_mht150_Dwn", "Scan" , 1,1);
+  TH2D *h3Res=get2DHisto(fileName, "scan_3j_ht300_mht150_ResNom", "Scan" , 1,1);
+
+  //  TH2D *h3up=get2DHisto(fileName, "scan_3j_ht300_mht150_UPFlat", "Scan" , 1,1);
+  //  TH2D *h3dwn=get2DHisto(fileName, "scan_3j_ht300_mht150_DwnFlat", "Scan" , 1,1);
+  
+  TH2D *h8=get2DHisto(fileName, "scan_vetoIsoEleMuon", "Scan", 1,1);
+  TH2D *h5=get2DHisto(fileName, "scan_dPhi", "Scan", 1,1);
+  
+  TH2D *h5a=get2DHisto(fileName, "scan_dPhi1", "Scan", 1,1);
+  TH2D *h5b=get2DHisto(fileName, "scan_dPhi2", "Scan", 1,1);
+  TH2D *h5c=get2DHisto(fileName, "scan_dPhi3", "Scan", 1,1);
+  TH2D *h5d=get2DHisto(fileName, "scan_R1", "Scan", 1,1);
+  
+  /*
+    TH2D *h3=get2DHisto("SCAN/histo_Gluino.root", "scan_ht500", "Scan", 1,1);
+    TH2D *h7=get2DHisto("SCAN/histo_Gluino.root", "scan_hadLM", "Scan", 1,1);  
+    TH2D *h9=get2DHisto("SCAN/histo_Gluino.root","scan_mht300_ht600", "Scan", 1,1);
+  */
+  
+  //22, 25., 1125.
+  
+  //  TH2D * eff_Pre= new TH2D("EffBaseline","EffBaseline",30, 25., 1525., 30, 25., 1525.); // for T1 and T2
+  TH2D * eff_Pre = new TH2D("EffBaseline","EffBaseline",30, 25., 1525., 60, 25., 1525.); // for T3 and T4
+  TH2D * eff_PreUp = new TH2D("S_EffBaseline_Up","S_EffBaseline_Up",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_PreDwn = new TH2D("S_EffBaseline_Dwn","S_EffBaseline_Dwn",30, 25., 1525., 60, 25., 1525.);
+
+  TH2D * eff_Res = new TH2D("S_EffBaseline_Res","S_EffBaseline_Res",30, 25., 1525., 60, 25., 1525.);
+  
+  TH2D * eff_250 = new TH2D("Eff_mht250","Eff_mht250",30, 25., 1525., 60, 25., 1525.);
+  
+  TH2D * eff_Rel200 = new TH2D("Eff_mhtRel200","Eff_mhtRel200",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Rel250 = new TH2D("Eff_mhtRel250","Eff_mhtRel250",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Rel300 = new TH2D("Eff_mhtRel300","Eff_mhtRel300",30, 25., 1525., 60, 25., 1525.);
+  
+  TH2D * eff_500 = new TH2D("Eff_ht500","Eff_ht500",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Rel500 = new TH2D("Eff_htRel500","Eff_htRel500",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Rel400 = new TH2D("Eff_htRel400","Eff_htRel400",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Rel600 = new TH2D("Eff_htRel600","Eff_htRel600",30, 25., 1525., 60, 25., 1525.);
+
+  TH2D * eff_over50 = new TH2D("Eff_MHToverHT50","Eff_MHToverHT50",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_over75 = new TH2D("Eff_MHToverHT75","Eff_MHToverHT75",30, 25., 1525., 60, 25., 1525.);
+
+  //  TH2D * eff_leptDphi = new TH2D("leptDphi","leptDphi",20, 0., 1000, 8, 100., 500.);
+  TH2D * eff_Dphi = new TH2D("Dphi","Dphi",30, 25., 1525., 60, 25., 1525.);
+
+  TH2D * eff_newDphi = new TH2D("newDphi","newDphi",30, 25., 1525., 60, 25., 1525.);
+
+  TH2D * eff_Dphi1 = new TH2D("Dphi1","Dphi1",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Dphi2 = new TH2D("Dphi2","Dphi2",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_Dphi3 = new TH2D("Dphi3","Dphi3",30, 25., 1525., 60, 25., 1525.);
+  TH2D * eff_R1 = new TH2D("R1","R1",30, 25., 1525., 60, 25., 1525.);
+  
+  TH2D * eff_lept= new TH2D("hLept","hLept",30, 25., 1525., 60, 25., 1525.);  
+
+  TH2D * eff_ch= new TH2D("hCh","hCh",30, 25., 1525., 60, 25., 1525.);  
+
+  TH2D * xSec= new TH2D("xSec","xSec",30, 25., 1525., 60, 25., 1525.);
+ 
+  //  TH2D * limit= new TH2D("limit","limit",22, 25., 1125., 22, 25., 1125.);  
+
+  //  TH2D *RobLimit =get2DHisto("SMSlimits.root", "limit", "0", 1,1);
+
+  for(int i=1; i<(30+1); i++) {
+    for(int j=1; j<(60+1); j++) {
+    //    for(int j=1; j<(60+1); j++) {
+      //      cout << h2->GetBinContent(i,j) << endl;
+      
+      /*
+      //      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j-2,(h2->GetBinContent(i,j)/h1->GetBinContent(i,j)));      
+      //      if(!(h1->GetBinContent(i,j)==0)) eff_leptDphi->SetBinContent(i,j-2,(h5->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j-2,(h5->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      
+      if(!(h1->GetBinContent(i,j)==0)) eff_250->SetBinContent(i,j-2,(h4->GetBinContent(i,j)/h1->GetBinContent(i,j)));      
+      if(!(h1->GetBinContent(i,j)==0)) eff_500->SetBinContent(i,j-2,(h3->GetBinContent(i,j)/h1->GetBinContent(i,j)));      
+      
+      if(!(h1->GetBinContent(i,j)==0)) eff_lept->SetBinContent(i,j-2,(h8->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      if(!(h1->GetBinContent(i,j)==0)) eff_Had->SetBinContent(i,j-2,(h7->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      
+      */
+      
+      
+      /*    
+	    if(!(h1->GetBinContent(i,j)==0)) eff_300_600->SetBinContent(i,j-5,(h9->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+	    
+	    if(!(h1->GetBinContent(i,j)==0)) eff_Had->SetBinContent(i,j-5,(h7->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+	    if(!(h2->GetBinContent(i,j)==0)) eff_Dphi->SetBinContent(i,j-5,(h1->GetBinContent(i,j)*h5->GetBinContent(i,j)/(h8->GetBinContent(i,j)*h2->GetBinContent(i,j))));
+	    
+      */
+  
+      /*
+      if(!(h1->GetBinContent(i,j)==0) && (label=="T3" || label=="T4") ) eff_Pre->SetBinContent(i,j,(h7->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      //      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j,(h2->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      if(!(h1->GetBinContent(i,j)==0) && (label=="T3" || label=="T4")) eff_250->SetBinContent(i,j,(h4->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      if(!(h1->GetBinContent(i,j)==0) && (label=="T3" || label=="T4")) eff_500->SetBinContent(i,j,(h4b->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+      */
+
+      //      if(!(h2->GetBinContent(i,j)==0) && (label=="T3" || label=="T4")) eff_lept->SetBinContent(i,j,(h8->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+      //$$$$
+
+      //      if(!(h2->GetBinContent(i,j)==0)) eff_Dphi->SetBinContent(i,j,(h5->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+      /*
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel250->SetBinContent(i,j,(h4->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+	
+	
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel200->SetBinContent(i,j,(h4e->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel300->SetBinContent(i,j,(h4f->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+	
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel500->SetBinContent(i,j,(h4b->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel400->SetBinContent(i,j,(h4c->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+	if(!(h7->GetBinContent(i,j)==0)) eff_Rel600->SetBinContent(i,j,(h4d->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+      */
+
+      ///
+
+      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j,(h7->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      // to play a bit
+      //      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j,(h2->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      /*
+
+      if(!(h1->GetBinContent(i,j)==0)) eff_250->SetBinContent(i,j,(h4->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      if(!(h1->GetBinContent(i,j)==0)) eff_over50->SetBinContent(i,j,(h6a->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+      if(!(h1->GetBinContent(i,j)==0)) eff_over75->SetBinContent(i,j,(h6b->GetBinContent(i,j)/h7->GetBinContent(i,j)));
+
+      if((h1->GetBinContent(i,j)==0)) eff_over50->SetBinContent(i,j,-1);
+      if((h1->GetBinContent(i,j)==0)) eff_over50->SetBinContent(i,j,-1);
+
+      if((h1->GetBinContent(i,j)==0)) eff_over75->SetBinContent(i,j,-1);
+      if((h1->GetBinContent(i,j)==0)) eff_over75->SetBinContent(i,j,-1);
+
+      if(!(h1->GetBinContent(i,j)==0)) eff_500->SetBinContent(i,j,(h4b->GetBinContent(i,j)/h1->GetBinContent(i,j)));
+
+      if(!(h2->GetBinContent(i,j)==0)) eff_lept->SetBinContent(i,j,(h8->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+      if(!(h2->GetBinContent(i,j)==0)) eff_Dphi->SetBinContent(i,j,(h5->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+      */
+
+      //      if(!(h3->GetBinContent(i,j)==0)) eff_Res->SetBinContent(i,j,(h3Res->GetBinContent(i,j)-h3->GetBinContent(i,j))/h3->GetBinContent(i,j));
+      //      if((h3->GetBinContent(i,j)==0)) eff_Res->SetBinContent(i,j,-1);
+      //      if((h3->GetBinContent(i,j)==0)) eff_Res->SetBinContent(i,j,-1);
+
+      //      if(!(h2->GetBinContent(i,j)==0)) eff_Dphi1->SetBinContent(i,j,(h5a->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+      //      if(!(h2->GetBinContent(i,j)==0)) eff_Dphi2->SetBinContent(i,j,(h5b->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+      //      if(!(h2->GetBinContent(i,j)==0)) eff_Dphi3->SetBinContent(i,j,(h5c->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+     
+      if(!(h7->GetBinContent(i,j)==0)) eff_PreUp->SetBinContent(i,j,(h3up->GetBinContent(i,j)-h7->GetBinContent(i,j))/h7->GetBinContent(i,j));
+      if(!(h7->GetBinContent(i,j)==0)) eff_PreDwn->SetBinContent(i,j,(h3dwn->GetBinContent(i,j)-h7->GetBinContent(i,j))/h7->GetBinContent(i,j));
+
+      if((h7->GetBinContent(i,j)==0)) eff_PreUp->SetBinContent(i,j,-1);
+      if((h7->GetBinContent(i,j)==0)) eff_PreDwn->SetBinContent(i,j,-1);
+     
+
+      //      if(!(h_ch_all->GetBinContent(i,j)==0)) eff_ch->SetBinContent(i,j,(h_ch_3jHt->GetBinContent(i,j)/h_ch_all->GetBinContent(i,j)));
+
+      /*    
+      //    if(!(h6->GetBinContent(i,j)==0)) xSec->SetBinContent(i,j,(h1->GetBinContent(i,j)/h6->GetBinContent(i,j)));      
+   
+      if(!(h2->GetBinContent(i,j)==0)) eff_R1->SetBinContent(i,j,(h5d->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+      if(!(h2->GetBinContent(i,j)==0)) eff_newDphi->SetBinContent(i,j,(h5d->GetBinContent(i,j)/h2->GetBinContent(i,j))*(h5a->GetBinContent(i,j)/h2->GetBinContent(i,j))*(h5c->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+
+      */
+      //      if(!(h1->GetBinContent(i,j)==0)) eff_Pre->SetBinContent(i,j,(h3->GetBinContent(i,j)/h1->GetBinContent(i,j))*(h5->GetBinContent(i,j)/h2->GetBinContent(i,j)));
+    
+      //      if(!(h1->GetBinContent(i,j)==0)) limit->SetBinContent(i,j,1);            
+
+      //      cout << h2->GetBinContent(i,j) << endl;
+      
+    }
+  }
+
+
+  TCanvas *cPlot10 = new TCanvas("cPlot10","cPlot10");
+  eff_Pre->SetXTitle(titleX);  
+  eff_Pre->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Pre->SetTitle(""); 
+  eff_Pre->SetMinimum(0); 
+  eff_Pre->SetMaximum(1); 
+  eff_Pre->GetXaxis()->SetRangeUser(375.,975.);
+  eff_Pre->GetYaxis()->SetRangeUser(75.,975.);
+  //  eff_leptDphi->SetZTitle("pb"); 
+  //  eff_Pre->Draw("colz text");
+  eff_Pre->Draw("colz");
+  eff_Pre->SetLineColor(0); 
+  plotLeg(leg, 1, eff_Pre ,0.2, 0.8); 
+  //  cPlot10->SaveAs("SCAN/effBaseSelection.gif");
+  //  cPlot10->Print("SCAN/effBaseSelection.eps");
+  //  cPlot10->SaveAs("SCAN/eff_3j.gif");
+  //  cPlot10->Print("SCAN/eff_3j.eps");
+ 
+  char titlePlot1[1000];
+  char titlePlot2[1000];
+  
+  if(label=="T1") sprintf(titlePlot1,"SCAN/effBaseSelection_%s.eps","T1");
+  if(label=="T1") sprintf(titlePlot2,"SCAN/effBaseSelection_%s.gif","T1");
+  
+  if(label=="T2") sprintf(titlePlot1,"SCAN/effBaseSelection_%s.eps","T2");
+  if(label=="T2") sprintf(titlePlot2,"SCAN/effBaseSelection_%s.gif","T2");
+  
+  TLine *l1;
+  TLine *l2;
+  
+  l2 = new TLine(400., 400., 1000., 1000.);
+  l1 = new TLine(400., 114., 1000., 836.);
+  
+  l1->SetLineColor(2);
+  l1->SetLineStyle(2);
+
+  l2->SetLineColor(1);
+  l2->SetLineStyle(1);
+  
+  if(label=="T3" || label=="T4") l1->Draw("same");
+  if(label=="T3" || label=="T4") l2->Draw("same");
+  
+  if(label=="T3") sprintf(titlePlot1,"SCAN/effBaseSelection_%s.eps","T3");
+  if(label=="T3") sprintf(titlePlot2,"SCAN/effBaseSelection_%s.gif","T3");
+  
+  if(label=="T4") sprintf(titlePlot1,"SCAN/effBaseSelection_%s.eps","T4");
+  if(label=="T4") sprintf(titlePlot2,"SCAN/effBaseSelection_%s.gif","T4");
+  
+  cPlot10->SaveAs(titlePlot2);
+  cPlot10->Print(titlePlot1);
+  
+  return;
+  
+  TCanvas *cPlot10Up = new TCanvas("cPlot10Up","cPlot10Up");
+  cPlot10Up->cd();
+  eff_PreUp->SetXTitle(titleX);  
+  eff_PreUp->SetYTitle("m_{LSP} (GeV)"); 
+  eff_PreUp->SetTitle(""); 
+  eff_PreUp->SetMinimum(-0.15); 
+  eff_PreUp->SetMaximum(0.15); 
+  eff_PreUp->GetXaxis()->SetRangeUser(375.,975.);
+  eff_PreUp->GetYaxis()->SetRangeUser(75.,975.);
+  //  eff_leptDphi->SetZTitle("pb"); 
+  eff_PreUp->Draw("colz");
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.04);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, leg);
+  latexLabel1.DrawLatex(0.2, 0.75, "+ JES unc"); 
+  //  cPlot10Up->SaveAs("SCAN/effBaseSelectionUp.gif");
+  //  cPlot10Up->Print("SCAN/effBaseSelectionUp.eps");
+
+  char titlePlot1a[1000];
+  char titlePlot2a[1000];
+
+  if(label=="T1") sprintf(titlePlot1a,"SCAN/effBaseSelectionUp_%s_DB.eps","gluino");
+  if(label=="T1") sprintf(titlePlot2a,"SCAN/effBaseSelectionUp_%s_DB.gif","gluino");
+
+  if(label=="T2") sprintf(titlePlot1a,"SCAN/effBaseSelectionUp_%s_DB.eps","T2");
+  if(label=="T2") sprintf(titlePlot2a,"SCAN/effBaseSelectionUp_%s_DB.gif","T2");
+
+  cPlot10Up->Print(titlePlot1a);
+  cPlot10Up->SaveAs(titlePlot2a);
+
+  TCanvas *cPlot10Dwn = new TCanvas("cPlot10Dwn","cPlot10Dwn");
+  cPlot10Dwn->cd();
+  eff_PreDwn->SetXTitle(titleX);  
+  eff_PreDwn->SetYTitle("m_{LSP} (GeV)"); 
+  eff_PreDwn->SetTitle(""); 
+  eff_PreDwn->SetMinimum(-0.15); 
+  eff_PreDwn->SetMaximum(0.15);
+  eff_PreDwn->GetXaxis()->SetRangeUser(375.,975.);
+  eff_PreDwn->GetYaxis()->SetRangeUser(75.,975.);
+  //  eff_leptDphi->SetZTitle("pb"); 
+  eff_PreDwn->Draw("colz");
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.04);
+  latexLabel.SetNDC();
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  latexLabel.DrawLatex(0.2, 0.75, "- JES unc"); 
+
+  char titlePlot1b[1000];
+  char titlePlot2b[1000];
+
+  if(label=="T1") sprintf(titlePlot1b,"SCAN/effBaseSelectionDwn_%s_DB.eps","gluino");
+  if(label=="T1") sprintf(titlePlot2b,"SCAN/effBaseSelectionDwn_%s_DB.gif","gluino");
+
+  if(label=="T2") sprintf(titlePlot1b,"SCAN/effBaseSelectionDwn_%s_DB.eps","T2");
+  if(label=="T2") sprintf(titlePlot2b,"SCAN/effBaseSelectionDwn_%s_DB.gif","T2");
+
+  cPlot10Dwn->SaveAs(titlePlot2b);
+  cPlot10Dwn->Print(titlePlot1b);
+
+  return;
+
+
+  cout << " h1: X" << h1->GetXaxis()->GetNbins() << " h1: Y" << h1->GetYaxis()->GetNbins() << endl;
+  cout << " h7: X" << h7->GetXaxis()->GetNbins() << " h7: Y" << h7->GetYaxis()->GetNbins() << endl;
+
+  cout << "OUT " << endl;
+   
+  /*  
+      TFile f("EfficiencySquark.root","UPDATE");
+      eff_Pre->Write();
+      eff_500->Write();
+      eff_250->Write();
+      f.Close();
+      
+      return;
+  */
+ 
+  /*
+    if(label=="T3" || label=="T4") eff_lept->RebinX(2);
+    if(label=="T3" || label=="T4") eff_lept->RebinY(2);
+    
+    if(label=="T3" || label=="T4") eff_Dphi->RebinX(2);
+    if(label=="T3" || label=="T4") eff_Dphi->RebinY(2);
+    
+    if(label=="T3" || label=="T4") eff_Pre->RebinX(2);
+    if(label=="T3" || label=="T4") eff_Pre->RebinY(2);
+
+    if(label=="T3" || label=="T4") eff_250->RebinX(2);
+    if(label=="T3" || label=="T4") eff_250->RebinY(2);
+
+    if(label=="T3" || label=="T4") eff_500->RebinX(2);
+    if(label=="T3" || label=="T4") eff_500->RebinY(2);
+  */
+
+  TCanvas *cPlot10 = new TCanvas("cPlot10","cPlot10");
+  eff_Pre->SetXTitle(titleX);  
+  eff_Pre->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Pre->SetTitle(""); 
+  eff_Pre->SetMinimum(0); 
+  eff_Pre->SetMaximum(1); 
+  eff_Pre->SetLineColor(0);  
+  //  if(label=="T3" || label=="T4") eff_Pre->RebinX(2);
+  //  if(label=="T3" || label=="T4") eff_Pre->RebinY(2);
+  eff_Pre->GetXaxis()->SetRangeUser(375.,975.);
+  eff_Pre->GetYaxis()->SetRangeUser(75.,975.);
+  //  eff_leptDphi->SetZTitle("pb"); 
+
+  //  eff_Pre->SetMarkerSize(1.5);
+
+  eff_Pre->Draw("colz");
+  //  eff_Pre->Draw("colz");
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.04);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel1.DrawLatex(0.2, 0.75, "baseline"); 
+  latexLabel1.DrawLatex(0.2, 0.75, "3j Ht"); 
+  latexLabel1.DrawLatex(0.2, 0.7, leg2);
+  if(slice=="slice1") latexLabel1.DrawLatex(0.2, 0.7, slice1); 
+  if(slice=="slice4") latexLabel1.DrawLatex(0.2, 0.7, slice4); 
+  //  plotLeg(leg, 1, eff_Pre ,0.2, 0.8); 
+  //  cPlot10->SaveAs("SCAN/effBaseSelection.gif");
+  //  cPlot10->Print("SCAN/effBaseSelection.eps");
+  //  cPlot10->SaveAs("SCAN/eff_3j.gif");
+  //  cPlot10->Print("SCAN/eff_3j.eps");
+
+  /*
+  gStyle->SetMarkerColor(2);
+
+  TMarker t1=TMarker(500., 300., 21);
+  TMarker t2=TMarker(700., 500., 21);
+  TMarker t3=TMarker(900., 700., 21);
+
+  TMarker t4=TMarker(700., 200., 21);
+  TMarker t5=TMarker(900., 200., 21);
+
+  TMarker t6=TMarker(700., 500., 21);
+  TMarker t7=TMarker(900., 500., 21);
+ 
+  t1.Draw("same");    
+  t2.Draw("same");    
+  t3.Draw("same");    
+
+  t4.Draw("same");    
+  t5.Draw("same");    
+
+  t6.Draw("same");    
+  t7.Draw("same");    
+
+  cPlot10->Update();
+  */
+
+  char titlePlot1[1000];
+  char titlePlot2[1000];
+
+  sprintf(titlePlot1,"SCAN/effBaseSelection_%s.eps",label);
+  sprintf(titlePlot2,"SCAN/effBaseSelection_%s.gif",label);
+
+  /*
+  if(slice=="slice1") sprintf(titlePlot1,"SCAN/effBaseSelection_%s_%s.eps",label,"slice1");
+  if(slice=="slice1") sprintf(titlePlot2,"SCAN/effBaseSelection_%s_%s.gif",label,"slice1");
+  if(slice=="slice4") sprintf(titlePlot1,"SCAN/effBaseSelection_%s_%s.eps",label,"slice4");
+  if(slice=="slice4") sprintf(titlePlot2,"SCAN/effBaseSelection_%s_%s.gif",label,"slice4");
+  */
+
+  cPlot10->Print(titlePlot1);
+  cPlot10->SaveAs(titlePlot2);
+
+  cout << "ciao ciao " << endl;
+
+  return;
+
+  TCanvas *cPlot5 = new TCanvas("cPlot5","cPlot5");
+  cPlot5->cd();
+  eff_250->SetXTitle(titleX);  
+  eff_250->SetYTitle("m_{LSP} (GeV)");
+  eff_250->SetTitle(""); 
+  eff_250->SetMaximum(1.);
+  eff_250->SetMinimum(0.);
+  //  if(label=="T3" || label=="T4") eff_250->RebinX(2);
+  //  if(label=="T3" || label=="T4") eff_250->RebinY(2);
+  eff_250->GetXaxis()->SetRangeUser(375.,975.);
+  eff_250->GetYaxis()->SetRangeUser(75.,975.);
+
+  eff_250->SetMarkerSize(1.5);
+
+  eff_250->Draw("colz text");
+
+  latexLabel1.SetTextSize(0.04);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, leg);
+  latexLabel1.DrawLatex(0.2, 0.75, "high MHT"); 
+  if(slice=="slice1") latexLabel1.DrawLatex(0.2, 0.7, slice1); 
+  if(slice=="slice4") latexLabel1.DrawLatex(0.2, 0.7, slice4); 
+
+  //  eff_250->SetLineColor(0); 
+  //  plotLeg(leg, 1, eff_250 ,0.2, 0.8); 
+  //  cPlot5->SaveAs("SCAN/eff250.gif");
+  //  cPlot5->Print("SCAN/eff250.eps");
+  char titlePlot1[1000];
+  char titlePlot2[1000];
+  if(slice=="slice1") sprintf(titlePlot1,"SCAN/eff250_%s_%s.eps",label,"slice1");
+  if(slice=="slice1") sprintf(titlePlot2,"SCAN/eff250_%s_%s.gif",label,"slice1");
+  if(slice=="slice4") sprintf(titlePlot1,"SCAN/eff250_%s_%s.eps",label,"slice4");
+  if(slice=="slice4") sprintf(titlePlot2,"SCAN/eff250_%s_%s.gif",label,"slice4");
+  cPlot5->Print(titlePlot1);
+  cPlot5->SaveAs(titlePlot2);
+
+  TCanvas *cPlot5b = new TCanvas("cPlot5b","cPlot5b");
+  cPlot5b->cd();
+  eff_500->SetXTitle(titleX);  
+  eff_500->SetYTitle("m_{LSP} (GeV)");
+  eff_500->SetTitle(""); 
+  eff_500->SetMaximum(1.);
+  eff_500->SetMinimum(0.);
+  //  if(label=="T3" || label=="T4") eff_500->RebinX(2);
+  //  if(label=="T3" || label=="T4") eff_500->RebinY(2);
+  eff_500->GetXaxis()->SetRangeUser(375.,975.);
+  eff_500->GetYaxis()->SetRangeUser(75.,975.);
+
+  eff_500->SetMarkerSize(1.5);
+
+  eff_500->Draw("colz text");
+  eff_500->SetLineColor(0); 
+
+  latexLabel1.SetTextSize(0.04);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, leg);
+  latexLabel1.DrawLatex(0.2, 0.75, "high HT"); 
+  if(slice=="slice1") latexLabel1.DrawLatex(0.2, 0.7, slice1); 
+  if(slice=="slice4") latexLabel1.DrawLatex(0.2, 0.7, slice4); 
+
+  //  plotLeg(leg, 1, eff_500 ,0.2, 0.8); 
+  //  cPlot5b->SaveAs("SCAN/eff500.gif");
+  //  cPlot5b->Print("SCAN/eff500.eps");
+  char titlePlot1[1000];
+  char titlePlot2[1000];
+  if(slice=="slice4") sprintf(titlePlot1,"SCAN/eff500_%s_%s.eps",label,"slice4");
+  if(slice=="slice4") sprintf(titlePlot2,"SCAN/eff500_%s_%s.gif",label,"slice4");
+
+  if(slice=="slice1") sprintf(titlePlot1,"SCAN/eff500_%s_%s.eps",label,"slice1");
+  if(slice=="slice1") sprintf(titlePlot2,"SCAN/eff500_%s_%s.gif",label,"slice1");
+
+  cPlot5b->Print(titlePlot1);
+  cPlot5b->SaveAs(titlePlot2);
+
+  //  return; 
+
+  /*
+    TCanvas *cPlot9 = new TCanvas("cPlot9","cPlot9");
+    eff_Res->SetXTitle(titleX);  
+    eff_Res->SetYTitle("m_{LSP} (GeV)"); 
+    eff_Res->SetTitle(""); 
+    eff_Res->SetMinimum(-0.025); 
+    eff_Res->SetMaximum(0.025); 
+    eff_Res->Draw("colz");
+    eff_Res->SetLineColor(0); 
+    plotLeg(leg, 1, eff_Res ,0.2, 0.8); 
+    cPlot9->SaveAs("SCAN/baselineResSF.gif");
+    cPlot9->Print("SCAN/baselineResSF.eps");
+
+    return;
+  */
+
+  //  return;
+
+  TCanvas *cPlot7 = new TCanvas("cPlot7","cPlot7");
+  eff_Dphi->SetXTitle(titleX);  
+  eff_Dphi->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Dphi->SetTitle(""); 
+  eff_Dphi->SetMinimum(0.7); 
+  eff_Dphi->SetMaximum(0.9); 
+  eff_Dphi->SetLineColor(0); 
+  eff_Dphi->GetXaxis()->SetRangeUser(375.,975.);
+  eff_Dphi->GetYaxis()->SetRangeUser(75.,975.);
+  eff_Dphi->Draw("colz");
+  TLatex latexLabel1;
+  latexLabel1.SetTextSize(0.04);
+  latexLabel1.SetNDC();
+  latexLabel1.DrawLatex(0.2, 0.8, leg);
+  latexLabel1.DrawLatex(0.2, 0.75, "dPhi(j,MHT)"); 
+  cPlot7->SaveAs("SCAN/dPhiEff.gif");
+  cPlot7->Print("SCAN/dPhiEff.eps");
+
+  //  return;
+
+  TCanvas *cPlot7a = new TCanvas("cPlot7a","cPlot7a");
+  eff_Dphi1->SetXTitle(titleX);  
+  eff_Dphi1->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Dphi1->SetTitle(""); 
+  eff_Dphi1->SetMinimum(0); 
+  eff_Dphi1->SetMaximum(1); 
+  eff_Dphi1->Draw("colz text");
+  cPlot7a->SaveAs("SCAN/dPhiEff1.gif");
+  cPlot7a->Print("SCAN/dPhiEff1.eps");
+
+  TCanvas *cPlot7b = new TCanvas("cPlot7b","cPlot7b");
+  eff_Dphi2->SetXTitle(titleX);  
+  eff_Dphi2->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Dphi2->SetTitle(""); 
+  eff_Dphi2->SetMinimum(0); 
+  eff_Dphi2->SetMaximum(1); 
+  eff_Dphi2->Draw("colz text");
+  cPlot7b->SaveAs("SCAN/dPhiEff2.gif");
+  cPlot7b->Print("SCAN/dPhiEff2.eps");
+
+  TCanvas *cPlot7c = new TCanvas("cPlot7c","cPlot7c");
+  eff_Dphi3->SetXTitle(titleX);  
+  eff_Dphi3->SetYTitle("m_{LSP} (GeV)"); 
+  eff_Dphi3->SetTitle(""); 
+  eff_Dphi3->SetMinimum(0); 
+  eff_Dphi3->SetMaximum(1); 
+  eff_Dphi3->Draw("colz text");
+  cPlot7c->SaveAs("SCAN/dPhiEff3.gif");
+  cPlot7c->Print("SCAN/dPhiEff3.eps");
+
+  //  return;
+
+ 
+  return;
+
+  /*
+  TCanvas *cPlot9 = new TCanvas("cPlot9","cPlot9");
+  eff_lept->SetXTitle(titleX);  
+  eff_lept->SetYTitle("m_{LSP} (GeV)"); 
+  eff_lept->SetTitle(""); 
+  eff_lept->SetMinimum(0); 
+  eff_lept->SetMaximum(1); 
+  eff_lept->Draw("colz");
+  eff_lept->SetLineColor(0); 
+  plotLeg(leg, 1, eff_lept ,0.2, 0.8); 
+  cPlot9->SaveAs("SCAN/leptonVetoEff.gif");
+  cPlot9->Print("SCAN/leptonVetoEff.eps");
+
+  */
+
+  /*
+  TCanvas *cPlot5 = new TCanvas("cPlot5","cPlot5");
+  cPlot5->cd();
+  eff_250->SetXTitle(titleX);  
+  eff_250->SetYTitle("m_{LSP} (GeV)");
+  eff_250->SetTitle(""); 
+  eff_250->SetMaximum(1.);
+  eff_250->SetMinimum(0.);
+  eff_250->Draw("colz text");
+  eff_250->SetLineColor(0); 
+  plotLeg(leg, 1, eff_250 ,0.2, 0.8); 
+  cPlot5->SaveAs("SCAN/eff250.gif");
+  cPlot5->Print("SCAN/eff250.eps");
+
+  TCanvas *cPlot5b = new TCanvas("cPlot5b","cPlot5b");
+  cPlot5b->cd();
+  eff_500->SetXTitle(titleX);  
+  eff_500->SetYTitle("m_{LSP} (GeV)");
+  eff_500->SetTitle(""); 
+  eff_500->SetMaximum(1.);
+  eff_500->SetMinimum(0.);
+  eff_500->Draw("colz text");
+  eff_500->SetLineColor(0); 
+  plotLeg(leg, 1, eff_500 ,0.2, 0.8); 
+  cPlot5b->SaveAs("SCAN/eff500.gif");
+  cPlot5b->Print("SCAN/eff500.eps");
+  */
+
+  Double_t contours[6];
+  contours[0] = 0.;
+  contours[1] = 0.2;
+  contours[2] = 0.4;
+  contours[3] = 0.6;
+  contours[4] = 0.8;
+  contours[5] = 1.;
+  
+  //  eff_Rel250->SetContour(6, contours);
+
+  gStyle->SetPalette(1);
+  //  gStyle->SetLineWidth(3);
+  gStyle->SetNumberContours(5); 
+
+
+  TCanvas *cPlot15 = new TCanvas("cPlot15","cPlot15");
+  cPlot15->cd();
+
+  eff_Rel250->SetXTitle(titleX);  
+  eff_Rel250->SetYTitle("m_{LSP} (GeV)");
+  eff_Rel250->SetTitle(""); 
+  eff_Rel250->SetMaximum(1.);
+  eff_Rel250->SetMinimum(0.);
+  //  eff_Rel250->Draw("cont1 z list");
+  eff_Rel250->Draw("colz");
+  gPad->Update();
+  //  eff_Rel250->SetLineColor(0); 
+  plotLeg(leg, 1, eff_Rel250 ,0.2, 0.8); 
+  cPlot15->SaveAs("SCAN/eff250rel.gif");
+  cPlot15->Print("SCAN/eff250rel.eps");
+
+  TCanvas *cPlot16 = new TCanvas("cPlot16","cPlot16");
+  cPlot16->cd();
+
+  eff_Rel500->SetXTitle(titleX);  
+  eff_Rel500->SetYTitle("m_{LSP} (GeV)");
+  eff_Rel500->SetTitle(""); 
+  eff_Rel500->SetMaximum(1.);
+  eff_Rel500->SetMinimum(0.);
+  eff_Rel500->Draw("cont1 z list");
+  gPad->Update();
+  //  eff_Rel500->SetLineColor(0); 
+  plotLeg(leg, 1, eff_Rel500 ,0.2, 0.8); 
+  cPlot16->SaveAs("SCAN/eff500rel.gif");
+  cPlot16->Print("SCAN/eff500rel.eps");
+
+  TCanvas *cPlot17 = new TCanvas("cPlot17","cPlot17");
+
+  eff_Rel250->SetLineWidth(3);
+  eff_Rel250->Draw("cont1 z list");
+  eff_Rel500->SetLineStyle(2);
+  eff_Rel500->SetLineWidth(3);
+  eff_Rel500->Draw("cont1 z list same");
+  //  eff_Rel250->SetLineColor(0); 
+  plotLeg("QQ; high MHT", 1, eff_Rel250 ,0.2, 0.7); 
+  plotLeg("QQ; high HT", 1, eff_Rel500 ,0.2, 0.6); 
+  
+  /*
+    Double_t x0, y0, z0;
+    char val[20];
+    
+    TObjArray *conts = (TObjArray*)gROOT->GetListOfSpecials()->FindObject("contours");
+    Int_t TotalConts = conts->GetSize();
+    for(i = 0; i < TotalConts; i++){
+    contLevel = (TList*)conts->At(i);
+    if (i<3) z0 = contours[2-i];
+    else     z0 = contours[i];
+    }
+  */
+  
+  cPlot17->SaveAs("SCAN/effrel_scan.gif");
+  cPlot17->Print("SCAN/effrel_scan.eps");
+
+  TCanvas *cPlot18 = new TCanvas("cPlot18","cPlot18");
+  
+  eff_Rel400->SetTitle("");
+  eff_Rel400->SetLineWidth(3);
+  eff_Rel400->Draw("cont1 z list");
+  //  gPad->Update();
+
+  eff_Rel500->SetLineStyle(2);
+  eff_Rel500->SetLineWidth(4);
+  eff_Rel500->Draw("cont1 z same list");
+  //  gPad->Update();
+
+  eff_Rel600->SetLineStyle(8);
+  eff_Rel600->SetLineWidth(4);
+  eff_Rel600->Draw("cont1 z same list");
+  //  gPad->Update();
+
+  /*
+  TObjArray *cont = gROOT->GetListOfSpecials()->FindObject("contours")
+  Int_t ncontours     = cont->GetSize();
+  TList *list         = (TList*)cont->At(i);
+  list->GetSize();
+  TGraph *gr1 = (TGraph*)list->First();
+  //  TGraph *gr2 = (TGraph*)list->First();
+  TGraph *gr3 = (TGraph*)list->Last();
+  gr1->Draw("");
+  gr3->Draw("same");
+  */
+
+  //  eff_Rel250->SetLineColor(0); 
+  plotLeg("baseline + HT > 400", 1, eff_Rel400 ,0.2, 0.7); 
+  plotLeg("baseline + HT > 500", 1, eff_Rel500 ,0.2, 0.75); 
+  plotLeg("baseline + HT > 600", 1, eff_Rel600 ,0.2, 0.8); 
+
+  cPlot18->SaveAs("SCAN/effrel_scanHT.gif");
+  cPlot18->Print("SCAN/effrel_scanHT.eps");
+
+  TCanvas *cPlot19 = new TCanvas("cPlot19","cPlot19");
+  
+  //  eff_Rel200->SetTitle("");
+  //  eff_Rel200->SetLineWidth(3);
+  //  eff_Rel200->Draw("cont1 z list");
+  //  gPad->Update();
+
+  eff_Rel250->SetMaximum(1);
+  eff_Rel250->SetLineStyle(2);
+  eff_Rel250->SetLineWidth(4);
+  eff_Rel250->Draw("cont1 z list");
+  gPad->Update();
+
+  eff_Rel300->SetMaximum(1);
+  eff_Rel300->SetLineStyle(8);
+  eff_Rel300->SetLineWidth(4);
+  eff_Rel300->Draw("cont1 z same list");
+  gPad->Update();
+  plotLeg("baseline + MHT > 200", 1, eff_Rel200 ,0.2, 0.7); 
+  plotLeg("baseline + MHT > 250", 1, eff_Rel250 ,0.2, 0.75); 
+  plotLeg("baseline + MHT > 300", 1, eff_Rel300 ,0.2, 0.8); 
+
+  cPlot19->SaveAs("SCAN/effrel_scanMHT.gif");
+  cPlot19->Print("SCAN/effrel_scanMHT.eps");
+
+
+  TCanvas *cPlot20 = new TCanvas("cPlot20","cPlot20");
+  
+  eff_over50->SetTitle("");
+
+  eff_over50->SetXTitle(titleX);  
+  eff_over50->SetYTitle("m_{LSP} (GeV)");
+  eff_over50->SetMaximum(1.);
+  eff_over50->SetMinimum(0.);
+  eff_over50->SetLineStyle(2);
+  eff_over50->SetLineWidth(4);
+  eff_over50->Draw("cont4 z");
+  //  gPad->Update();
+
+  eff_Rel250->SetMaximum(1);
+  eff_Rel250->SetLineStyle(1);
+  eff_Rel250->SetLineWidth(4);
+  //  eff_Rel250->Draw("cont1 z same list");
+  //  gPad->Update();
+
+  eff_over75->SetMaximum(1);
+  eff_over75->SetLineStyle(8);
+  eff_over75->SetLineWidth(4);
+  //  eff_over75->Draw("cont1 z same list");
+  //  gPad->Update();
+  //  plotLeg("baseline + MHT > 250", 1, eff_Rel250 ,0.2, 0.8); 
+  //  plotLeg("baseline + MHT/HT > 0.5", 1, eff_over50 ,0.2, 0.7); 
+  //  plotLeg("baseline + MHT/HT > 0.75", 1, eff_over75 ,0.2, 0.75); 
+
+  cPlot20->SaveAs("SCAN/effrel_scanMHToverHT.gif");
+  cPlot20->Print("SCAN/effrel_scanMHToverHT.eps");
+
+  return;
+
+  TCanvas *cPlot6 = new TCanvas("cPlot6","cPlot6");
+  eff_ch->SetXTitle("m_{SQ} - m_{CH}(GeV)");  
+  eff_ch->SetYTitle("m_{CH} - m_{LSP}(GeV)"); 
+  eff_ch->SetTitle(""); 
+  eff_ch->SetMinimum(0); 
+  eff_ch->SetMaximum(1); 
+  eff_ch->Draw("colz");
+  cPlot6->SaveAs("SCAN/eff_1W.gif");
+  cPlot6->Print("SCAN/eff_1W.eps");
+
+  TCanvas *cPlot7d = new TCanvas("cPlot7d","cPlot7d");
+  eff_R1->SetXTitle(titleX);  
+  eff_R1->SetYTitle("m_{LSP} (GeV)"); 
+  eff_R1->SetTitle(""); 
+  eff_R1->SetMinimum(0); 
+  eff_R1->SetMaximum(1); 
+  eff_R1->Draw("colz");
+  cPlot7d->SaveAs("SCAN/dPhiR1.gif");
+  cPlot7d->Print("SCAN/dPhiR1.eps");
+
+  TCanvas *cPlot7e = new TCanvas("cPlot7e","cPlot7e");
+  eff_newDphi->SetXTitle(titleX);  
+  eff_newDphi->SetYTitle("m_{LSP} (GeV)"); 
+  eff_newDphi->SetTitle(""); 
+  eff_newDphi->SetMinimum(0); 
+  eff_newDphi->SetMaximum(1); 
+  eff_newDphi->Draw("colz");
+  cPlot7e->SaveAs("SCAN/newdPhi.gif");
+  cPlot7e->Print("SCAN/newdPhi.eps");
+
+  TH2D* limit_250 = (TH2D*) eff_250->Clone();
+
+  limit->Divide(limit_250);
+  limit->Scale(16/36.1);
+
+  TCanvas *cPlot6 = new TCanvas("cPlot6","cPlot6");
+  cPlot6->cd();
+  limit->SetXTitle(titleX);  
+  limit->SetYTitle("m_{LSP} (GeV)");
+  limit->SetZTitle("pb"); 
+  limit->SetTitle(""); 
+  limit->Draw("colz");
+  cPlot6->SaveAs("SCAN/limit250.gif");
+  cPlot6->Print("SCAN/limit250.eps");
+
+  TCanvas *cPlot2 = new TCanvas("cPlot2","cPlot2");
+  cPlot2->cd();
+
+  TH2D* limit_ref = (TH2D*) limit->Clone();
+  TH2D * xSec_ref= new TH2D("xSec_ref","xSec_ref",22, 25., 1125., 22, 25., 1125.);
+  TH2D * xSec_refPlus= new TH2D("xSec_refPlus","xSec_refPlus",22, 25., 1125., 22, 25., 1125.);
+  TH2D * xSec_refMinus= new TH2D("xSec_refMinus","xSec_refMinus",22, 25., 1125., 22, 25., 1125.);
+
+  // that has 40 bins of 25 GeV step
+
+  for(int i=1; i<(30+1); i++) {
+    //    for(int j=1; j<(12+1); j++) {
+    for(int j=1; j<(30+1); j++) {
+      
+      if(!(h1->GetBinContent(i,j)==0)) xSec_ref->SetBinContent(i,j, hRef->GetBinContent(i) );      
+
+    }
+
+  }
+
+  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1");
+  xSec_ref->SetXTitle(titleX);  
+  xSec_ref->SetYTitle("m_{LSP} (GeV)"); 
+  xSec_ref->SetZTitle("pb"); 
+  xSec_ref->SetTitle(""); 
+  //  eff_xsec->SetMinimum(20); 
+  //  eff_xsec->SetMaximum(1); 
+  xSec_ref->Draw("colz");
+  cPlot1->SaveAs("crossSection.gif");
+  cPlot1->Print("crossSection.eps");
+
+  double contours1[1];
+  contours1[0] = 1.;
+
+  double contoursPlus[1];
+  contoursPlus[0] = 3.;
+
+  double contoursMinus[1];
+  contoursMinus[0] = 1./3;
+
+  //  xSec_ref->SetMaximum(20);
+
+  xSec_ref->Divide(limit_ref);
+  xSec_ref->SetLineColor(1);  
+  xSec_ref->SetLineWidth(3);  
+  xSec_ref->SetLineStyle(1);  
+  xSec_ref->SetContour(1,contours1);
+  limit->Draw("colz");
+  xSec_ref->Draw("cont1 same");
+  //  xSec_ref->Draw("colz");
+
+  xSec_refPlus->Divide(limit_ref);
+  xSec_refPlus->SetLineColor(1);  
+  xSec_refPlus->SetLineWidth(3);  
+  xSec_refPlus->SetLineStyle(2);  
+  xSec_refPlus->SetContour(1,contoursPlus);
+  xSec_refPlus->Draw("cont1 same");
+
+  xSec_refMinus->Divide(limit_ref);
+  xSec_refMinus->SetLineColor(1);  
+  xSec_refMinus->SetLineWidth(3);  
+  xSec_refMinus->SetLineStyle(3);  
+  xSec_refMinus->SetContour(1,contoursMinus);
+  xSec_refMinus->Draw("cont1 same");
+
+  cPlot2->SaveAs("limit250_ref.gif");
+  cPlot2->Print("limit250_ref.eps");
+
+  /*
+    h6_ref->SetLineColor(1);  
+    h6_ref->SetContour(1,contours1);
+    h6_ref->Draw("cont1 same");
+    
+    h6_ref->Draw("co");
+  */
+
+  return;
+
+  TCanvas *cPlot8 = new TCanvas("cPlot8","cPlot8");
+  eff_Had->SetXTitle("m_{0} (GeV)");  
+  eff_Had->SetYTitle("m_{1/2} (GeV)"); 
+  //  eff_Pre->SetMinimum(0); 
+  //  eff_Pre->SetMaximum(0.5); 
+  //  eff_leptDphi->SetZTitle("pb"); 
+  eff_Had->Draw("colz");
+  cPlot8->SaveAs("hadTopology.gif");
+  cPlot8->Print("hadTopology.eps");
+
+  TCanvas *cPlot11 = new TCanvas("cPlot11","cPlot11");
+  eff_300_600->SetXTitle("m_{0} (GeV)");  
+  eff_300_600->SetYTitle("m_{1/2} (GeV)"); 
+  //  eff_Pre->SetMinimum(0); 
+  //  eff_Pre->SetMaximum(0.5); 
+  //  eff_leptDphi->SetZTitle("pb"); 
+  eff_300_600->Draw("colz");
+  cPlot11->SaveAs("eff_300_600.gif");
+  cPlot11->Print("eff_300_600.eps");
+  
+  /*  
+      TCanvas *cPlot10 = new TCanvas("cPlot10","cPlot10");
+      eff_Pre->SetXTitle("m_{0} (GeV)");  
+      eff_Pre->SetYTitle("m_{1/2} (GeV)"); 
+      //  eff_Pre->SetMinimum(0); 
+      //  eff_Pre->SetMaximum(0.5); 
+      //  eff_leptDphi->SetZTitle("pb"); 
+      eff_Pre->Draw("colz");
+      cPlot10->SaveAs("effBaseSelection.gif");
+      cPlot10->Print("effBaseSelection.eps");
+  */
+  
+  /*
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot");
+  cPlot->cd();
+  cPlot->Divide(2,2);
+  
+  cPlot->cd(1);
+  eff_Pre->Draw("colz");
+  cPlot->cd(2);
+  eff_leptDphi->Draw("colz");
+
+  cPlot->cd(3);
+  eff_250->Draw("colz");
+  cPlot->cd(4);
+  eff_500->Draw("colz");
+
+  cPlot->SaveAs("effScan.gif");
+  cPlot->Print("effScan.eps");
+  */
+
+  TH2D * xSec= new TH2D("xSec","xSec",20, 0., 1000, 20, 100., 500.);
+  TH2D * Yield_pre= new TH2D("Yield_pre","Yield_pre",20, 0., 1000, 20, 100., 500.);
+  TH2D * Yield_250= new TH2D("Yield_250","Yield_250",20, 0., 1000, 20, 100., 500.);
+  TH2D * Yield_500= new TH2D("Yield_500","Yield_500",20, 0., 1000, 20, 100., 500.);
+  TH2D * Yield_leptDphi= new TH2D("Yield_leptDphi","Yield_leptDphi",20, 0., 1000, 20, 0., 500.);
+
+  TH2D * Yield_300_600= new TH2D("Yield_300_600","Yield_300_600",20, 0., 1000, 20, 100., 500.);
+
+  //  for(int i=1; i<(20+1); i++) {
+  //    for(int j=1; j<(12+1); j++) {
+
+  for(int i=1; i<(20+1); i++) {
+    //    for(int j=3; j<(12+1); j++) {
+
+    for(int j=1; j<(30+1); j++) {
+
+      /*    
+      if(!(h6->GetBinContent(i,j)==0)) xSec->SetBinContent(i,j-2,(h1->GetBinContent(i,j)/h6->GetBinContent(i,j)));      
+      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_pre->SetBinContent(i,j-2,(h2->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_leptDphi->SetBinContent(i,j-2,(h5->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);
+      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_250->SetBinContent(i,j-2,(h4->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_500->SetBinContent(i,j-2,(h3->GetBinContent(i,j)/h6->GetBinContent(i,j))*100); 
+      */
+
+      if(!(h6->GetBinContent(i,j)==0)) xSec->SetBinContent(i,j-5,(h1->GetBinContent(i,j)/h6->GetBinContent(i,j)));      
+      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_pre->SetBinContent(i,j-5,(h2->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_leptDphi->SetBinContent(i,j-5,(h5->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);
+      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_250->SetBinContent(i,j-5,(h4->GetBinContent(i,j)/h6->GetBinContent(i,j))*100);      
+      if(!(h1->GetBinContent(i,j)==0)) Yield_500->SetBinContent(i,j-5,(h3->GetBinContent(i,j)/h6->GetBinContent(i,j))*100); 
+
+      if(!(h6->GetBinContent(i,j)==0)) Yield_300_600->SetBinContent(i,j-5,(h9->GetBinContent(i,j)/h6->GetBinContent(i,j))*1000);      
+
+    }
+  }
+
+  TCanvas *cPlot2 = new TCanvas("cPlot2","cPlot2");
+  //  cPlot2->Divide(2,2);
+  cPlot2->SetLogz(1);
+    
+  xSec->SetMaximum(500);  
+  xSec->SetMinimum(0.01);  
+
+  xSec->SetXTitle("m_{0} (GeV)");  
+  xSec->SetYTitle("m_{1/2} (GeV)"); 
+  xSec->SetZTitle("pb"); 
+  xSec->Draw("colz");
+  
+  cPlot2->SaveAs("xSec.gif");
+  cPlot2->Print("xSec.eps");
+
+  TCanvas *cPlot51 = new TCanvas("cPlot3","cPlot3");
+  cPlot51->cd();
+
+  Yield_300_600->SetXTitle("m_{0} (GeV)");  
+  Yield_300_600->SetYTitle("m_{1/2} (GeV)");
+  Yield_300_600->SetMaximum(500);
+  Yield_300_600->Draw("colz");
+  cPlot51->SaveAs("yield300.gif");
+  cPlot51->Print("yield300.eps");
+
+  TCanvas *cPlot4 = new TCanvas("cPlot4","cPlot4");
+  cPlot4->cd();
+
+  Yield_250->SetLineWidth(3);  
+  Yield_250->SetLineColor(1);  
+  Yield_250->SetXTitle("m_{0} (GeV)");  
+  Yield_250->SetYTitle("m_{1/2} (GeV)");  
+  
+  TH2D* Yield_50_ = (TH2D*) Yield_250->Clone();
+  TH2D* Yield_200_ = (TH2D*) Yield_250->Clone();
+  TH2D* Yield_100_ = (TH2D*) Yield_250->Clone();
+
+  double contours100[1];
+  //  contours100[0] = 41.1;
+  contours100[0] = 46.23;
+
+  double contours200[1];
+  contours200[0] = 78.8;
+
+  double contours50[1];
+  contours50[0] = 22.2;
+
+  Yield_100_->SetLineColor(1);  
+  Yield_100_->SetContour(1,contours100);
+  Yield_100_->Draw("cont1");
+
+  //  Yield_200_->Scale(2);
+  Yield_200_->SetLineColor(2);  
+  Yield_200_->SetContour(1,contours200);
+  //  Yield_200_->Draw("cont1 same ");
+
+  //  Yield_50_->SetLineColor(4);  
+  Yield_50_->Scale(0.5);
+  Yield_50_->SetContour(1,contours50);
+  //  Yield_50_->Draw("cont1 same");
+  
+  plotPreliminary();
+
+  cPlot4->SaveAs("CLevel.gif");
+  cPlot4->SaveAs("CLevel.eps");
+
+
+  return;
+
+  TCanvas *cPlot3 = new TCanvas("cPlot3","cPlot3");
+  cPlot3->cd();
+  cPlot3->Divide(2,2);
+  
+  cPlot3->cd(1);
+  Yield_pre->SetMaximum(500);
+  Yield_pre->Draw("colz");
+  cPlot3->cd(2);
+  Yield_leptDphi->SetMaximum(500);
+  Yield_leptDphi->Draw("colz");
+  cPlot3->cd(3);
+  Yield_250->SetMaximum(500);
+  Yield_250->Draw("colz");
+  cPlot3->cd(4);
+  Yield_500->SetMaximum(500);
+  Yield_500->Draw("colz");
+
+  cPlot3->SaveAs("yieldScan.gif");
+  cPlot3->Print("yieldScan.eps");
+
+
+}
+
+void MSUGRA_OSET() {
+  
+  //  MSUGRA_Scan("T4");
+  //  MSUGRA_Scan("T3");
+  
+  //  return;
+  
+  /*
+    MSUGRA_Scan("T1");
+    MSUGRA_Scan("T2");
+    //  MSUGRA_Scan("T4");
+    
+    //  return;
+  */
+  
+  /*
+ TH2D * h_acc_T1_baseline =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/GluinoPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsBaseline" , 1,1);
+
+ TH2D * h_acc_T2_baseline =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/SquarkPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsBaseline" , 1,1);
+
+
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  latexLabel.SetNDC();
+
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot",0,0,1000,500);
+  cPlot->Divide(2,1);
+  //  cPlot->SetLogz(1);
+
+  cPlot->cd(1);
+  h_acc_T1_baseline->SetMaximum(1.);
+  h_acc_T1_baseline->SetTitle("");
+  h_acc_T1_baseline->SetXTitle("m_{gluino} (GeV)");
+  h_acc_T1_baseline->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T1_baseline->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T1_baseline->GetYaxis()->SetRangeUser(75.,975.);
+  h_acc_T1_baseline->Draw("colz");
+  
+  char * leg="GL GL -> 4jets + LSPs";
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  latexLabel.DrawLatex(0.2, 0.75, "acceptance");
+  latexLabel.DrawLatex(0.2, 0.7, "Baseline selection");
+
+  gPad->SaveAs("RESULT/acc_T1_baseline.eps");
+
+  cPlot->cd(2);
+  h_acc_T2_baseline->SetMaximum(1.);
+  h_acc_T2_baseline->SetTitle("");
+  h_acc_T2_baseline->SetXTitle("m_{squark} (GeV)");
+  h_acc_T2_baseline->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T2_baseline->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T2_baseline->GetYaxis()->SetRangeUser(75.,975.);
+  h_acc_T2_baseline->Draw("colz");
+  
+  leg="SQ SQ -> 2jets + LSPs";
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  latexLabel.DrawLatex(0.2, 0.75, "acceptance");
+  latexLabel.DrawLatex(0.2, 0.7, "Baseline selection");
+
+  gPad->SaveAs("RESULT/acc_T2_baseline.eps");
+
+  return;
+
+  */
+
+  //  gStyle->SetNumberContours(40); 
+
+  gStyle->SetTitleYOffset(1.7);
+  gStyle->SetTitleXOffset(1.1);
+  //  gStyle->SetTitleZOffset(1);
+
+  /*
+  
+  error_combination("exp","T1","HT", true);
+  error_combination("exp","T1","MHT", true);
+  //  error_combination("exp","T1","baseline", true);
+  
+  error_combination("exp","T2","HT", true);
+  error_combination("exp","T2","MHT", true);
+  //  error_combination("exp","T2","baseline", true);
+  
+  error_combination("teo","T1","HT", true);
+  error_combination("teo","T1","MHT", true);
+  //  error_combination("teo","T1","baseline", true);
+  
+  error_combination("teo","T2","HT", true);
+  error_combination("teo","T2","MHT", true);
+  //  error_combination("teo","T2","baseline", true);
+  
+  return;
+  */ 
+  
+  //  TFile *_file0 = TFile::Open("uncertainty.root");
+  
+  //  TFile *_file0 = TFile::Open("/afs/cern.ch/user/d/dalfonso/public/uncertainty__03032001.root");
+  //  TFile *_file0 = TFile::Open("/afs/cern.ch/user/d/dalfonso/public/uncertainty_10March.root");
+  TFile *_file0 = TFile::Open("/afs/cern.ch/user/d/dalfonso/public/uncertainty_11March.root");
+  //  TFile *_file0 = TFile::Open("/afs/cern.ch/user/d/dalfonso/public/uncertainty_11March_noTeo.root");
+  
+  TFile *_file_T1_HT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_0.root");
+  TFile *_file_T1_MHT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_1.root");
+  TFile *_file_T2_HT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_2.root");
+  TFile *_file_T2_MHT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_3.root");
+ 
+  /*
+   TFile *_file_T1_HT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_NoThUnc0.root");
+   TFile *_file_T1_MHT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_NoThUnc1.root");
+   TFile *_file_T2_HT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_NoThUnc2.root");
+   TFile *_file_T2_MHT = TFile::Open("/data/rossin/CMS/Limits/LimitSMS5_11032011_LN_NoThUnc3.root");
+  */  
+
+  /*
+    TFile *_file_T1_HT = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/ROBERTO_11March_logN/LimitSMS5_11032011_LN01_0.root");
+    TFile *_file_T1_MHT = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/ROBERTO_11March_logN/LimitSMS5_11032011_LN01_1.root");
+    TFile *_file_T2_HT = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/ROBERTO_11March_logN/LimitSMS5_11032011_LN01_2.root");
+    TFile *_file_T2_MHT = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/ROBERTO_11March_logN/LimitSMS5_11032011_LN01_3.root");
+  */ 
+
+  TFile *_file_T1_ = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/SCAN/histo_Gluino_filterGoodAll.root");
+  TFile *_file_T2_ = TFile::Open("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/SCAN/histo_Squark_filterGoodAll.root");
+  
+  /*
+    TH2D * h_acc_T1_HT =get2DHisto("SCAN/histo_Gluino_filterGood.root", "scan_mht150_ht500", "Scan" , 1,1);
+    TH2D * h_acc_T1_MHT =get2DHisto("SCAN/histo_Gluino_filterGood.root", "scan_mht250", "Scan" , 1,1);
+    
+    TH2D * h_acc_T2_HT =get2DHisto("SCAN/histo_Squark_filterGood.root", "scan_mht150_ht500", "Scan" , 1,1);
+    TH2D * h_acc_T2_MHT =get2DHisto("SCAN/histo_Squark_filterGood.root", "scan_mht250", "Scan" , 1,1);
+  */
+  
+  /*
+    TH2D * h_acc_T1_HT =get2DHisto("GluinoPair_PDFSyst__03082011.root", "AcceptancePDFs", "pdfSystematicsHighHT" , 1,1);
+    TH2D * h_acc_T1_MHT =get2DHisto("GluinoPair_PDFSyst__03082011.root", "AcceptancePDFs", "pdfSystematicsHighMHT" , 1,1);
+    
+    TH2D * h_acc_T2_HT =get2DHisto("SquarkPair_PDFSyst__03082011.root", "AcceptancePDFs", "pdfSystematicsHighHT" , 1,1);
+    TH2D * h_acc_T2_MHT =get2DHisto("SquarkPair_PDFSyst__03082011.root", "AcceptancePDFs", "pdfSystematicsHighHT" , 1,1);
+  */
+
+  TH2D * h_acc_T1_HT =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/GluinoPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsHighHT" , 1,1);
+  TH2D * h_acc_T1_MHT =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/GluinoPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsHighMHT" , 1,1);
+  
+  TH2D * h_acc_T2_HT =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/SquarkPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsHighHT" , 1,1);
+  TH2D * h_acc_T2_MHT =get2DHisto("/afs/cern.ch/user/d/dalfonso/scratch0/CMSSW_3_8_6/src/PhysicsTools/PatExamples/test/SquarkPair_PDFSyst__03102011.root", "DefaultAcceptance", "pdfSystematicsHighMHT" , 1,1);
+
+  TH2F * h_exp_T1_HT = (TH2F*) _file0->Get("ExpRelUnc_gluino_T1_HT");
+  TH2F * h_exp_T1_MHT = (TH2F*) _file0->Get("ExpRelUnc_gluino_T1_MHT");
+
+  TH2F * h_teo_T1_HT = (TH2F*) _file0->Get("theoryUnc_gluino_T1_HT");
+  TH2F * h_teo_T1_MHT = (TH2F*) _file0->Get("theoryUnc_gluino_T1_MHT");
+
+  ////
+
+  TH2F * h_limit_T1_HT = (TH2F*) _file_T1_HT->Get("hlimit_gluino_T1_HT");
+  TH2F * h_limit_T1_MHT = (TH2F*) _file_T1_MHT->Get("hlimit_gluino_T1_MHT");
+
+  TH2F * h_exp_T2_HT = (TH2F*) _file0->Get("ExpRelUnc_squark_T2_HT");
+  TH2F * h_exp_T2_MHT = (TH2F*) _file0->Get("ExpRelUnc_squark_T2_MHT");
+
+  TH2F * h_teo_T2_HT = (TH2F*) _file0->Get("theoryUnc_squark_T2_HT");
+  TH2F * h_teo_T2_MHT = (TH2F*) _file0->Get("theoryUnc_squark_T2_MHT");
+
+  TH2F * h_limit_T2_HT = (TH2F*) _file_T2_HT->Get("hlimit_squark_T2_HT");
+  TH2F * h_limit_T2_MHT = (TH2F*) _file_T2_MHT->Get("hlimit_squark_T2_MHT");
+
+  /*
+  //#include "/afs/cern.ch/user/d/dalfonso/scratch0/UserCode/dalfonso/Utils/setTDRStyle.C"
+  
+  tdrStyle->SetLeftMargin(0.18);
+  tdrStyle->SetRightMargin(0.2);
+  tdrStyle->SetBottomMargin(0.14);
+  */
+
+  ////
+
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  latexLabel.SetNDC();
+  
+  //  char * leg="GL GL -> 4jets + LSPs";
+  char * leg="#tilde{G} #tilde{G} #rightarrow 4jets + LSPs";
+
+  char * exp="Experimental uncertainty A #times #varepsilon";
+  char * teo="Theoretical uncertainty A #times #varepsilon";
+  char * selectionHT="High H_{T} selection";
+  char * selectionMHT="High #slash{H}_{T} selection";
+  
+  //  TCanvas *cPlot = new TCanvas("cPlot","cPlot",0,0,10000,5000);
+  //  TCanvas *cPlot = new TCanvas("cPlot","cPlot",0,0,2000,1000);
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot",0,0,1000,500);
+  cPlot->Divide(4,2);
+  //  cPlot->SetLogz(1);
+  
+  cPlot->cd(1);
+  h_acc_T1_HT->SetMaximum(1.);
+  h_acc_T1_HT->SetTitle("");
+  h_acc_T1_HT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_acc_T1_HT->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T1_HT->SetZTitle("A #times #varepsilon");
+  h_acc_T1_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T1_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_acc_T1_HT->GetZaxis()->SetTitleOffset(1.);
+  h_acc_T1_HT->Draw("colz");
+
+  
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "A #times #varepsilon");
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_acc_T1_HT->SetName("h_acc_T1_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_acc_T1_HT->Write();
+  f.Close();
+  
+  //  gPad->SetCanvasSize(100,100);
+  //  gPad->SetPad(0., 0., 100., 100.);
+
+  gPad->SaveAs("RESULT/acc_T1_HT.eps");
+  gPad->SaveAs("RESULT/acc_T1_HT.ps");
+  gPad->SaveAs("RESULT/acc_T1_HT.pdf");
+  gPad->SaveAs("RESULT/acc_T1_HT.png");
+
+  ////
+
+  cPlot->cd(2);
+  h_exp_T1_HT->SetTitle("");
+  h_exp_T1_HT->SetMaximum(0.20);
+  h_exp_T1_HT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_exp_T1_HT->SetZTitle(exp);
+  h_exp_T1_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_exp_T1_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_exp_T1_HT->Draw("colz");
+  
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, exp);
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  gPad->SaveAs("RESULT/exp_T1_HT.eps");
+  gPad->SaveAs("RESULT/exp_T1_HT.pdf");
+  gPad->SaveAs("RESULT/exp_T1_HT.png");
+
+  h_exp_T1_HT->SetName("h_expUnc_T1_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_exp_T1_HT->Write();
+  f.Close();
+
+
+  cPlot->cd(3);
+  h_teo_T1_HT->SetTitle("");
+  h_teo_T1_HT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_teo_T1_HT->SetZTitle(teo);
+  h_teo_T1_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_teo_T1_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_teo_T1_HT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, teo);
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_teo_T1_HT->SetName("h_teoUnc_T1_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_teo_T1_HT->Write();
+  f.Close();
+
+  gPad->SaveAs("RESULT/teo_T1_HT.eps");
+  gPad->SaveAs("RESULT/teo_T1_HT.pdf");
+  gPad->SaveAs("RESULT/teo_T1_HT.png");
+
+
+  cPlot->cd(4);
+
+  h_limit_T1_HT->SetTitle("");
+  h_limit_T1_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_limit_T1_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_limit_T1_HT->SetMaximum(50);
+  h_limit_T1_HT->SetMinimum(0.1);
+
+  cout << " 400-300 " << h_limit_T1_HT->GetBinContent(h_limit_T1_HT->FindBin(400,350)) << endl;
+
+  gPad->SetLogz(1);
+  h_limit_T1_HT->SetTitle("");
+  h_limit_T1_HT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_limit_T1_HT->SetYTitle("m_{LSP} (GeV)");
+  h_limit_T1_HT->SetZTitle("95% CL upper limit on #sigma (pb)");
+  h_limit_T1_HT->Draw("colz");
+
+  h_limit_T1_HT->SetName("h_limit_T1_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_limit_T1_HT->Write();
+  f.Close();
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "95% CL upper limit on #sigma");
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  TGraph * refGraph_T1_HT_1=getRefXsecGraph(h_limit_T1_HT,"T1",1.);
+  TGraph * refGraph_T1_HT_13=getRefXsecGraph(h_limit_T1_HT,"T1",1./3);
+  TGraph * refGraph_T1_HT_3=getRefXsecGraph(h_limit_T1_HT,"T1",3.);
+  
+  refGraph_T1_HT_1->SetLineStyle(1);
+  refGraph_T1_HT_13->SetLineStyle(2);
+  refGraph_T1_HT_3->SetLineStyle(3);
+  
+  refGraph_T1_HT_1->Draw("L same");
+  refGraph_T1_HT_13->Draw("L same");
+  refGraph_T1_HT_3->Draw("L same");
+  
+  TLegend* this_leg = new TLegend(0.2,0.65,0.4,0.73);
+  this_leg->SetFillColor(0);
+  this_leg->SetBorderSize(0);
+  this_leg->SetTextSize(0.035);
+  this_leg->AddEntry(refGraph_T1_HT_1,"#sigma^{prod} = #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T1_HT_3,"#sigma^{prod} = 3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T1_HT_13,"#sigma^{prod} = 1/3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->Draw();
+
+  TPad *pad = gPad;
+  //  TCanvas* tc->Copy(gPad);
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  temp->SaveAs("RESULT/limit_T1_HT.eps");
+  temp->SaveAs("RESULT/limit_T1_HT.pdf");
+  temp->SaveAs("RESULT/limit_T1_HT.png");
+
+  delete temp;  
+
+  cPlot->cd(5);
+  h_acc_T1_MHT->Draw("colz");
+  //  h_acc_T1_MHT->SetTitle(h_acc_T1_MHT->GetName());
+  h_acc_T1_MHT->SetTitle("");
+  h_acc_T1_MHT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_acc_T1_MHT->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T1_MHT->SetZTitle("A #times #varepsilon");
+  h_acc_T1_MHT->SetMaximum(1);
+  //  h_acc_T1_MHT->SetMaximum(0.3);
+  h_acc_T1_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T1_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_acc_T1_MHT->Draw("colz");
+  
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "A #times #varepsilon");
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_acc_T1_MHT->SetName("h_acc_T1_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_acc_T1_MHT->Write();
+  f.Close();
+
+
+  gPad->SaveAs("RESULT/acc_T1_MHT.eps");
+  gPad->SaveAs("RESULT/acc_T1_MHT.pdf");
+  gPad->SaveAs("RESULT/acc_T1_MHT.png");
+
+  cPlot->cd(6);
+  h_exp_T1_MHT->SetTitle("");
+  //  h_exp_T1_MHT->SetTitle(h_exp_T1_MHT->GetName());
+  h_exp_T1_MHT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_exp_T1_MHT->SetZTitle(exp);
+  h_exp_T1_MHT->SetMaximum(0.20);
+  h_exp_T1_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_exp_T1_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_exp_T1_MHT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, exp);
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_exp_T1_MHT->SetName("h_expUnc_T1_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_exp_T1_MHT->Write();
+  f.Close();
+
+
+  gPad->SaveAs("RESULT/exp_T1_MHT.eps");
+  gPad->SaveAs("RESULT/exp_T1_MHT.pdf");
+  gPad->SaveAs("RESULT/exp_T1_MHT.png");
+
+  cPlot->cd(7);
+  h_teo_T1_MHT->SetTitle("");
+  //  h_teo_T1_MHT->SetTitle(h_teo_T1_MHT->GetName());
+  h_teo_T1_MHT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_teo_T1_MHT->SetZTitle(teo);
+  h_teo_T1_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_teo_T1_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_teo_T1_MHT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, teo);
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+  gPad->SaveAs("RESULT/teo_T1_MHT.eps");
+  gPad->SaveAs("RESULT/teo_T1_MHT.pdf");
+  gPad->SaveAs("RESULT/teo_T1_MHT.png");
+
+  h_teo_T1_MHT->SetName("h_teoUnc_T1_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_teo_T1_MHT->Write();
+  f.Close();
+
+  //  TObjArray * refGraph_T1_MHT=getRefXsecGraph(h_limit_T1_MHT,"T1");
+
+  cPlot->cd(8);
+  gPad->SetLogz(1);
+
+  h_limit_T1_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_limit_T1_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_limit_T1_MHT->SetTitle("");
+  h_limit_T1_MHT->SetXTitle("m_{#tilde{G}} (GeV)");
+  h_limit_T1_MHT->SetYTitle("m_{LSP} (GeV)");
+  h_limit_T1_MHT->SetZTitle("95% CL upper limit on #sigma (pb)");
+  h_limit_T1_MHT->SetMaximum(50);
+  h_limit_T1_MHT->SetMinimum(0.1);
+  h_limit_T1_MHT->Draw("colz");
+
+  h_limit_T1_MHT->SetName("h_limit_T1_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_limit_T1_MHT->Write();
+  f.Close();
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "95% CL upper limit on #sigma");
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  TGraph * refGraph_T1_MHT_1=getRefXsecGraph(h_limit_T1_MHT,"T1",1.);
+  TGraph * refGraph_T1_MHT_13=getRefXsecGraph(h_limit_T1_MHT,"T1",1./3);
+  TGraph * refGraph_T1_MHT_3=getRefXsecGraph(h_limit_T1_MHT,"T1",3.);
+
+  refGraph_T1_MHT_1->SetLineStyle(1);
+  refGraph_T1_MHT_13->SetLineStyle(2);
+  refGraph_T1_MHT_3->SetLineStyle(3);
+
+  refGraph_T1_MHT_1->Draw("L same");
+  refGraph_T1_MHT_13->Draw("L same");
+  refGraph_T1_MHT_3->Draw("L same");
+
+  TLegend* this_leg = new TLegend(0.2,0.65,0.4,0.73);
+  this_leg->SetFillColor(0);
+  this_leg->SetBorderSize(0);
+  this_leg->SetTextSize(0.035);
+  this_leg->AddEntry(refGraph_T1_MHT_1,"#sigma^{prod} = #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T1_MHT_3,"#sigma^{prod} = 3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T1_MHT_13,"#sigma^{prod} = 1/3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->Draw();
+ 
+
+  TPad *pad = gPad;
+  //  TCanvas* tc->Copy(gPad);
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  temp->SaveAs("RESULT/limit_T1_MHT.eps");
+  temp->SaveAs("RESULT/limit_T1_MHT.pdf");
+  temp->SaveAs("RESULT/limit_T1_MHT.png");
+
+  delete temp;
+
+  cPlot->SaveAs("T1.C");
+
+  //  leg="SQ SQ -> 2jets + LSPs";
+  leg="#tilde{Q} #tilde{Q} #rightarrow 2jets + LSPs";
+
+  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1",0,0,1000,500);
+  //  TCanvas *cPlot1 = new TCanvas("cPlot1","cPlot1",0,0,10000,5000);
+  //  TCanvas *cPlot1 = new TCanvas("cPlot","cPlot",0,0,2000,1000);
+  cPlot1->Divide(4,2);
+  //  cPlot->SetLogz(1);
+
+  cPlot1->cd(1);
+  h_acc_T2_HT->SetTitle("");
+  h_acc_T2_HT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_acc_T2_HT->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T2_HT->SetZTitle("A #times #varepsilon");
+
+  h_acc_T2_HT->SetMaximum(1);
+  h_acc_T2_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T2_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_acc_T2_HT->Draw("colz");
+  
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);      
+  //  latexLabel.DrawLatex(0.2, 0.75, "A #times #varepsilon");
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_acc_T2_HT->SetName("h_acc_T2_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_acc_T2_HT->Write();
+  f.Close();
+
+
+  gPad->SaveAs("RESULT/acc_T2_HT.eps");
+  gPad->SaveAs("RESULT/acc_T2_HT.pdf");
+  gPad->SaveAs("RESULT/acc_T2_HT.png");
+
+  cPlot1->cd(2);
+  h_exp_T2_HT->SetTitle("");
+  h_exp_T2_HT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_exp_T2_HT->SetZTitle(exp);
+  h_exp_T2_HT->SetMaximum(0.20);
+  h_exp_T2_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_exp_T2_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_exp_T2_HT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  //  latexLabel.DrawLatex(0.2, 0.75, exp);
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_exp_T2_HT->SetName("h_expUnc_T2_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_exp_T2_HT->Write();
+  f.Close();
+
+  gPad->SaveAs("RESULT/exp_T2_HT.eps");
+  gPad->SaveAs("RESULT/exp_T2_HT.pdf");
+  gPad->SaveAs("RESULT/exp_T2_HT.png");
+
+  cPlot1->cd(3);
+  h_teo_T2_HT->SetTitle("");
+  h_teo_T2_HT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_teo_T2_HT->SetZTitle(teo);
+  h_teo_T2_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_teo_T2_HT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_teo_T2_HT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, teo);
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_teo_T2_HT->SetName("h_teoUnc_T2_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_teo_T2_HT->Write();
+  f.Close();
+
+
+  gPad->SaveAs("RESULT/teo_T2_HT.eps");
+  gPad->SaveAs("RESULT/teo_T2_HT.pdf");
+  gPad->SaveAs("RESULT/teo_T2_HT.png");
+
+  //  gPad->SaveAs("RESULT/limit_T1_HT.eps");
+
+  //  TObjArray * refGraph_T2_HT=getRefXsecGraph(h_limit_T2_HT,"T2");
+
+  cPlot1->cd(4);
+
+  gPad->SetLogz(1);
+  //  h_limit_T2_HT->SetMaximum(100);
+  h_limit_T2_HT->SetMaximum(50);
+  h_limit_T2_HT->SetMinimum(0.1);
+  h_limit_T2_HT->SetTitle("");
+  h_limit_T2_HT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_limit_T2_HT->SetYTitle("m_{LSP} (GeV)");
+  h_limit_T2_HT->SetZTitle("95% CL upper limit on #sigma (pb)");
+  h_limit_T2_HT->Draw("colz");
+
+  //  TGraph refxSec=getRefXsecGraph(h_limit_T1_MHT,"T1");
+  //  refxSec->SetLineColor(1);
+  //  refxSec->Draw("same");
+
+  h_limit_T2_HT->GetXaxis()->SetRangeUser(375.,975.);
+  h_limit_T2_HT->GetYaxis()->SetRangeUser(100.,1000.);
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "95% CL upper limit on #sigma");
+  latexLabel.DrawLatex(0.2, 0.75, selectionHT);
+
+  h_limit_T2_HT->SetName("h_limit_T2_HT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_limit_T2_HT->Write();
+  f.Close();
+
+  TGraph * refGraph_T2_HT_1=getRefXsecGraph(h_limit_T2_HT,"T2",1.);
+  TGraph * refGraph_T2_HT_13=getRefXsecGraph(h_limit_T2_HT,"T2",1./3);
+  TGraph * refGraph_T2_HT_3=getRefXsecGraph(h_limit_T2_HT,"T2",3.);
+
+  refGraph_T2_HT_1->SetLineStyle(1);
+  refGraph_T2_HT_13->SetLineStyle(2);
+  refGraph_T2_HT_3->SetLineStyle(3);
+
+  refGraph_T2_HT_1->Draw("L same");
+  refGraph_T2_HT_13->Draw("L same");
+  refGraph_T2_HT_3->Draw("L same");
+
+  TLegend* this_leg = new TLegend(0.2,0.65,0.4,0.73);
+  this_leg->SetFillColor(0);
+  this_leg->SetBorderSize(0);
+  this_leg->SetTextSize(0.035);
+  this_leg->AddEntry(refGraph_T2_HT_1,"#sigma^{prod} = #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T2_HT_3,"#sigma^{prod} = 3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T2_HT_13,"#sigma^{prod} = 1/3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->Draw();
+
+  TPad *pad = gPad;
+  //  TCanvas* tc->Copy(gPad);
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  temp->SaveAs("RESULT/limit_T2_HT.eps");
+  temp->SaveAs("RESULT/limit_T2_HT.pdf");
+  temp->SaveAs("RESULT/limit_T2_HT.png");
+
+  delete temp;
+
+  ////
+
+  cPlot1->cd(5);
+  h_acc_T2_MHT->SetTitle("");
+  h_acc_T2_MHT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_acc_T2_MHT->SetYTitle("m_{LSP} (GeV)");
+  h_acc_T2_MHT->SetZTitle("A #times #varepsilon");
+  h_acc_T2_MHT->SetMaximum(1);
+  h_acc_T2_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_acc_T2_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_acc_T2_MHT->Draw("colz");
+  
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "A #times #varepsilon");
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_acc_T2_MHT->SetName("h_acc_T2_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_acc_T2_MHT->Write();
+  f.Close();
+
+  gPad->SaveAs("RESULT/acc_T2_MHT.eps");
+  gPad->SaveAs("RESULT/acc_T2_MHT.pdf");
+  gPad->SaveAs("RESULT/acc_T2_MHT.png");
+
+  cPlot1->cd(6);
+  h_exp_T2_MHT->SetTitle("");
+  h_exp_T2_MHT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_exp_T2_MHT->SetZTitle(exp);
+  h_exp_T2_MHT->SetMaximum(0.20);
+  h_exp_T2_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_exp_T2_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_exp_T2_MHT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  //  latexLabel.DrawLatex(0.2, 0.75, exp);
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_exp_T2_MHT->SetName("h_expUnc_T2_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_exp_T2_MHT->Write();
+  f.Close();
+
+  gPad->SaveAs("RESULT/exp_T2_MHT.eps");
+  gPad->SaveAs("RESULT/exp_T2_MHT.pdf");
+  gPad->SaveAs("RESULT/exp_T2_MHT.png");
+
+  cPlot1->cd(7);
+  h_teo_T2_MHT->SetTitle("");
+  h_teo_T2_MHT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_teo_T2_MHT->SetZTitle(teo);
+  h_teo_T2_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_teo_T2_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+  h_teo_T2_MHT->Draw("colz");
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, teo);
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_teo_T2_MHT->SetName("h_teoUnc_T2_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_teo_T2_MHT->Write();
+  f.Close();
+
+  gPad->SaveAs("RESULT/teo_T2_MHT.eps");
+  gPad->SaveAs("RESULT/teo_T2_MHT.pdf");
+  gPad->SaveAs("RESULT/teo_T2_MHT.png");
+
+  //  gPad->SaveAs("RESULT/limit_T1_HT.eps");
+
+  cPlot1->cd(8);
+  gPad->SetLogz(1);
+
+  // TGraph * g3=getRefXsecGraph(h_limit_T2_MHT,"T2");
+
+  //  h_limit_T2_MHT->SetMaximum(100);
+  h_limit_T2_MHT->SetMaximum(50);
+  h_limit_T2_MHT->SetMinimum(0.1);
+  h_limit_T2_MHT->SetTitle("");
+  h_limit_T2_MHT->SetXTitle("m_{#tilde{Q}} (GeV)");
+  h_limit_T2_MHT->SetYTitle("m_{LSP} (GeV)");
+  h_limit_T2_MHT->SetZTitle("95% CL upper limit on #sigma (pb)");
+  h_limit_T2_MHT->Draw("colz");
+
+  //  TGraph refxSec=getRefXsecGraph(h_limit_T1_MHT,"T1");
+  //  refxSec->SetLineColor(1);
+  //  refxSec->Draw("same");
+
+  h_limit_T2_MHT->GetXaxis()->SetRangeUser(375.,975.);
+  h_limit_T2_MHT->GetYaxis()->SetRangeUser(100.,1000.);
+
+  latexLabel.DrawLatex(0.2, 0.85, "CMS Preliminary #sqrt{s} = 7 TeV L=36 pb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.8, leg);
+  //  latexLabel.DrawLatex(0.2, 0.75, "95% CL upper limit on #sigma");
+  latexLabel.DrawLatex(0.2, 0.75, selectionMHT);
+
+  h_limit_T2_MHT->SetName("h_limit_T2_MHT");
+  
+  TFile f("RA2_SMS_results.root","UPDATE");
+  h_limit_T2_MHT->Write();
+  f.Close();
+
+  TGraph * refGraph_T2_MHT_1=getRefXsecGraph(h_limit_T2_MHT,"T2",1.);
+  TGraph * refGraph_T2_MHT_13=getRefXsecGraph(h_limit_T2_MHT,"T2",1./3);
+  TGraph * refGraph_T2_MHT_3=getRefXsecGraph(h_limit_T2_MHT,"T2",3.);
+
+  refGraph_T2_MHT_1->SetLineStyle(1);
+  refGraph_T2_MHT_13->SetLineStyle(2);
+  refGraph_T2_MHT_3->SetLineStyle(3);
+
+  refGraph_T2_MHT_1->Draw("L same");
+  refGraph_T2_MHT_13->Draw("L same");
+  refGraph_T2_MHT_3->Draw("L same");
+
+  TLegend* this_leg = new TLegend(0.2,0.65,0.4,0.73);
+  this_leg->SetFillColor(0);
+  this_leg->SetBorderSize(0);
+  this_leg->SetTextSize(0.035);
+  this_leg->AddEntry(refGraph_T2_MHT_1,"#sigma^{prod} = #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T2_MHT_3,"#sigma^{prod} = 3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_T2_MHT_13,"#sigma^{prod} = 1/3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->Draw();
+
+
+  TPad *pad = gPad;
+  //  TCanvas* tc->Copy(gPad);
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  temp->SaveAs("RESULT/limit_T2_MHT.eps");
+  temp->SaveAs("RESULT/limit_T2_MHT.pdf");
+  temp->SaveAs("RESULT/limit_T2_MHT.png");
+
+  delete temp;
+
+  cPlot1->SaveAs("T2.C");
+
+  /////
+
+  return;
+
+  //  MSUGRA_Scan("T2");
+
+}
+
+TH1F restyleHisto(TH1 *h, bool doLimit,bool doError) {
+  
+  if(doLimit)  h->SetMaximum(50);
+  if(doLimit)  h->SetMinimum(0.01);
+  if(!doLimit && doError)  h->SetMaximum(0.5);
+  if(!doLimit && doError)  h->SetMinimum(0);
+  if(!doLimit && !doError)  h->SetMaximum(0.20);
+  if(!doLimit && !doError)  h->SetMinimum(0);
+  h->SetTitle("");
+  h->SetXTitle("m_{#tilde{G}} (GeV)");
+  h->SetYTitle("m_{LSP} (GeV)");
+  if(doLimit) h->SetZTitle("95% CL upper limit on #sigma (pb)");
+  if(!doLimit && doError) h->SetZTitle("Error(A #times #varepsilon)/(A #times #varepsilon)");
+  if(!doLimit && !doError) h->SetZTitle("A #times #varepsilon");
+  h->GetXaxis()->SetRangeUser(50.,1200.);
+  h->GetYaxis()->SetRangeUser(50.,1200.);
+  h->GetZaxis()->SetTitleOffset(1.3);
+
+  return h;
+
+}
+
+void labelling(TPad *pad, TH2F *histo,char * selection,char * leg, char * topology, bool doLimit){
+
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  latexLabel.SetNDC();
+
+  latexLabel.DrawLatex(0.2, 0.85," CMS Preliminary");
+  if((topology=="T1") || (topology=="T2")) latexLabel.DrawLatex(0.2, 0.8, "#sqrt{s} = 7 TeV L=0.98 fb^{-1} ");
+  if((topology=="T1lnu")) latexLabel.DrawLatex(0.2, 0.8, "#sqrt{s} = 7 TeV L=0.98 fb^{-1} ");
+  if((topology=="T5zz")) latexLabel.DrawLatex(0.2, 0.8, "#sqrt{s} = 7 TeV L=0.191 fb^{-1} ");
+  latexLabel.DrawLatex(0.2, 0.75, leg);
+  latexLabel.DrawLatex(0.2, 0.7, selection);
+
+  if(!doLimit) return;
+
+  TGraph * refGraph_histo_1=getRefXsecGraph(histo,topology,1.);
+  TGraph * refGraph_histo_13=getRefXsecGraph(histo,topology,1./3);
+  TGraph * refGraph_histo_3=getRefXsecGraph(histo,topology,3.);
+
+  refGraph_histo_1->SetLineStyle(1);
+  refGraph_histo_13->SetLineStyle(2);
+  refGraph_histo_3->SetLineStyle(3);
+
+  refGraph_histo_1->SetLineWidth(3);
+  refGraph_histo_13->SetLineWidth(3);
+  refGraph_histo_3->SetLineWidth(3);
+
+  refGraph_histo_1->Draw("L same");
+  refGraph_histo_13->Draw("L same");
+  refGraph_histo_3->Draw("L same");
+
+  TLegend* this_leg = new TLegend(0.2,0.65,0.4,0.73);
+  this_leg->SetFillColor(0);
+  this_leg->SetBorderSize(0);
+  this_leg->SetTextSize(0.035);
+  this_leg->AddEntry(refGraph_histo_1,"#sigma^{prod} = #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_histo_3,"#sigma^{prod} = 3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->AddEntry(refGraph_histo_13,"#sigma^{prod} = 1/3 #times #sigma^{NLO-QCD}" , "l");
+  this_leg->Draw();
+
+  return;
+
+}
+
+void SMS() {
+
+
+  //TH2F *computeEfficiencyError(const TH2F *hEff, const TH1F *denom){
+
+  gStyle->SetTitleYOffset(1.7);
+  gStyle->SetTitleXOffset(1.1);
+  //  gStyle->SetTitleZOffset(1);
+
+  // for limit: 
+  //  bool doLimit=true; bool doLogy=true; bool doError=false;
+
+  // for Efficiency: 
+  //  bool doLimit=false; bool doLogy=true; bool doError=false;
+ 
+  // for Efficiency Error: 
+  bool doLimit=false; bool doLogy=false; bool doError=true;
+
+
+  // OS Niklas
+  TFile *_file_T1lnu_OS_HT = TFile::Open("OSNiklas/SimplifiedOSHighHT_Simplified.root");
+  TFile *_file_T1lnu_OS_MET = TFile::Open("OSNiklas/SimplifiedOSHighMET_Simplified.root");
+
+  TH2F * h_T1lnu_OS_2010_HT;
+  if(doLimit) h_T1lnu_OS_2010_HT = (TH2F*) _file_T1lnu_OS_HT->Get("limit_SimplifiedOSHighHT");
+  if(!doLimit) h_T1lnu_OS_2010_HT = (TH2F*) _file_T1lnu_OS_HT->Get("efficiency_SimplifiedOSHighHT");
+  h_T1lnu_OS_2010_HT=restyleHisto(h_T1lnu_OS_2010_HT,doLimit,doError);
+  h_T1lnu_OS_2010_HT->SetName("h_T1lnu_OS_2010_HT");
+  if(!doLimit && doError) h_T1lnu_OS_2010_HT=computeEfficiencyError(h_T1lnu_OS_2010_HT, 10000);
+
+  TH2F * h_T1lnu_OS_2010_MET;
+  if(doLimit) h_T1lnu_OS_2010_MET = (TH2F*) _file_T1lnu_OS_MET->Get("limit_SimplifiedOSHighMET");
+  if(!doLimit) h_T1lnu_OS_2010_MET = (TH2F*) _file_T1lnu_OS_MET->Get("efficiency_SimplifiedOSHighMET");
+  h_T1lnu_OS_2010_MET=restyleHisto(h_T1lnu_OS_2010_MET,doLimit,doError);
+  h_T1lnu_OS_2010_MET->SetName("h_T1lnu_OS_2010_MET");
+  if(!doLimit && doError) h_T1lnu_OS_2010_MET=computeEfficiencyError(h_T1lnu_OS_2010_MET, 10000);
+
+  // SS-Ronny
+  TFile *_file_T1lnu_SS_2010_HTmet = TFile::Open("SSRonny/SMSResults_T1lnu_highPt_400_120.root");
+  TFile *_file_T1lnu_SS_2010_HT = TFile::Open("SSRonny/SMSResults_T1lnu_highPt_400_50.root");
+  TFile *_file_T1lnu_SS_2010_met = TFile::Open("SSRonny/SMSResults_T1lnu_highPt_200_120.root");
+
+  TH2F * h_T1lnu_SS_2010_HTmet;
+  if(doLimit) h_T1lnu_SS_2010_HTmet = (TH2F*) _file_T1lnu_SS_2010_HTmet->Get("limit_T1lnu");
+  if(!doLimit) h_T1lnu_SS_2010_HTmet = (TH2F*) _file_T1lnu_SS_2010_HTmet->Get("efficiency_T1lnu");
+  h_T1lnu_SS_2010_HTmet=restyleHisto(h_T1lnu_SS_2010_HTmet,doLimit,doError);
+  h_T1lnu_SS_2010_HTmet->SetName("h_T1lnu_SS_2010_HTmet");
+  if(!doLimit && doError) h_T1lnu_SS_2010_HTmet=computeEfficiencyError(h_T1lnu_SS_2010_HTmet, 10000);
+
+  TH2F * h_T1lnu_SS_2010_HT;
+  if(doLimit) h_T1lnu_SS_2010_HT = (TH2F*) _file_T1lnu_SS_2010_HT->Get("limit_T1lnu");
+  if(!doLimit) h_T1lnu_SS_2010_HT = (TH2F*) _file_T1lnu_SS_2010_HT->Get("efficiency_T1lnu");
+  h_T1lnu_SS_2010_HT=restyleHisto(h_T1lnu_SS_2010_HT,doLimit,doError);
+  h_T1lnu_SS_2010_HT->SetName("h_T1lnu_SS_2010_HT");
+  if(!doLimit && doError) h_T1lnu_SS_2010_HT=computeEfficiencyError(h_T1lnu_SS_2010_HT, 10000);
+
+  TH2F * h_T1lnu_SS_2010_met;
+  if(doLimit) h_T1lnu_SS_2010_met = (TH2F*) _file_T1lnu_SS_2010_met->Get("limit_T1lnu");
+  if(!doLimit) h_T1lnu_SS_2010_met = (TH2F*) _file_T1lnu_SS_2010_met->Get("efficiency_T1lnu");
+  h_T1lnu_SS_2010_met=restyleHisto(h_T1lnu_SS_2010_met,doLimit,doError);
+  h_T1lnu_SS_2010_met->SetName("h_T1lnu_SS_2010_met");
+  if(!doLimit && doError) h_T1lnu_SS_2010_met=computeEfficiencyError(h_T1lnu_SS_2010_met, 10000);
+
+  TFile *_file_T1lnu_SS_lowPt_HTmet = TFile::Open("SSRonny/SMSResults_T1lnu_lowPt_400_120.root");
+  TFile *_file_T1lnu_SS_lowPt_HT = TFile::Open("SSRonny/SMSResults_T1lnu_lowPt_400_50.root");
+  TFile *_file_T1lnu_SS_lowPt_met = TFile::Open("SSRonny/SMSResults_T1lnu_lowPt_200_120.root");
+
+  TH2F * h_T1lnu_SS_lowPt_HTmet;
+  if(doLimit) h_T1lnu_SS_lowPt_HTmet = (TH2F*) _file_T1lnu_SS_lowPt_HTmet->Get("limit_T1lnu");
+  if(!doLimit) h_T1lnu_SS_lowPt_HTmet = (TH2F*) _file_T1lnu_SS_lowPt_HTmet->Get("efficiency_T1lnu");
+  h_T1lnu_SS_lowPt_HTmet=restyleHisto(h_T1lnu_SS_lowPt_HTmet,doLimit,doError);
+  h_T1lnu_SS_lowPt_HTmet->SetName("h_T1lnu_SS_lowPt_HTmet");
+  if(!doLimit && doError) h_T1lnu_SS_lowPt_HTmet=computeEfficiencyError(h_T1lnu_SS_lowPt_HTmet, 10000);
+
+  TH2F * h_T1lnu_SS_lowPt_HT;
+  if(doLimit) h_T1lnu_SS_lowPt_HT = (TH2F*) _file_T1lnu_SS_2010_HT->Get("limit_T1lnu");
+  if(!doLimit) h_T1lnu_SS_lowPt_HT = (TH2F*) _file_T1lnu_SS_2010_HT->Get("efficiency_T1lnu");
+  h_T1lnu_SS_lowPt_HT=restyleHisto(h_T1lnu_SS_lowPt_HT,doLimit,doError);
+  h_T1lnu_SS_lowPt_HT->SetName("h_T1lnu_SS_lowPt_HT");
+  if(!doLimit && doError) h_T1lnu_SS_lowPt_HT=computeEfficiencyError(h_T1lnu_SS_lowPt_HT, 10000);
+
+  TH2F * h_T1lnu_SS_lowPt_met;
+  if(doLimit)  h_T1lnu_SS_lowPt_met= (TH2F*) _file_T1lnu_SS_lowPt_met->Get("limit_T1lnu");
+  if(!doLimit)  h_T1lnu_SS_lowPt_met= (TH2F*) _file_T1lnu_SS_lowPt_met->Get("efficiency_T1lnu");
+  h_T1lnu_SS_lowPt_met=restyleHisto(h_T1lnu_SS_lowPt_met,doLimit,doError);
+  h_T1lnu_SS_lowPt_met->SetName("h_T1lnu_SS_lowPt_met");
+  if(!doLimit && doError) h_T1lnu_SS_lowPt_met=computeEfficiencyError(h_T1lnu_SS_lowPt_met, 10000);
+
+  //JZB-Pablo 
+  TFile *_file_T5zz_JZB = TFile::Open("JZBpablo/jzblimits.root");
+
+  TH2F * h_T5zz_jzbdiff50;
+
+  if(doLimit) h_T5zz_jzbdiff50= (TH2F*) _file_T5zz_JZB->Get("limit_jzbdiff50");
+  if(!doLimit) h_T5zz_jzbdiff50= (TH2F*) _file_T5zz_JZB->Get("efficiency_jzbdiff50");
+  h_T5zz_jzbdiff50=restyleHisto(h_T5zz_jzbdiff50,doLimit,doError);
+  h_T5zz_jzbdiff50->SetName("h_T5zz_jzbdiff50");
+  if(!doLimit && doError) h_T5zz_jzbdiff50=computeEfficiencyError(h_T5zz_jzbdiff50, 20000);
+  if(doLimit) h_T5zz_jzbdiff50->Scale(1./0.19);
+
+  TH2F * h_T5zz_jzbdiff100;
+  if(doLimit) h_T5zz_jzbdiff100 = (TH2F*) _file_T5zz_JZB->Get("limit_jzbdiff100");
+  if(!doLimit) h_T5zz_jzbdiff100 = (TH2F*) _file_T5zz_JZB->Get("efficiency_jzbdiff100");
+  h_T5zz_jzbdiff100=restyleHisto(h_T5zz_jzbdiff100,doLimit,doError);
+  h_T5zz_jzbdiff100->SetName("h_T5zz_jzbdiff100");
+  if(!doLimit && doError) h_T5zz_jzbdiff100=computeEfficiencyError(h_T5zz_jzbdiff100, 20000);
+  if(doLimit) h_T5zz_jzbdiff100->Scale(1./0.19);
+
+  //$$$$$$$
+  //$$$$$$$
+  //$$$$$$$
+  
+  //  char * leg="GL GL -> 4jets + LSPs";
+  char * leg="#tilde{G} #tilde{G} #rightarrow 4jets + 2 lept + 2 #nu + LSPs";
+  char * legT5zz="#tilde{G} #tilde{G} #rightarrow 4jets + 2 Z + LSPs";
+
+  //  char * exp="Experimental uncertainty A #times #varepsilon";
+  //  char * teo="Theoretical uncertainty A #times #varepsilon";
+  char * selectionHTOS="OS: High H_{T} selection";
+  char * selectionMHTOS="OS: High #slash{E}_{T} selection";
+  char * selectionHTmetOS="OS: High #slash{E}_{T} High H_{T} selection";
+
+  char * selectionHTSS="SS: High H_{T} selection";
+  char * selectionMHTSS="SS: High #slash{E}_{T} selection";
+  char * selectionHTmetSS="SS: High #slash{E}_{T} High H_{T} selection";
+
+  char * selectionHTSS_lowPt="SS lowPt: High H_{T} selection";
+  char * selectionmetSS_lowPt="SS lowPt : High #slash{E}_{T} selection";
+  char * selectionHTmetSS_lowPt="SS lowPt : High #slash{E}_{T} High H_{T} selection";
+
+  char * selectionJZB50="LowJZB selection";  
+  char * selectionJZB100="HighJZB selection";  
+
+  //$$$$$$
+  //$$$$$$
+  //$$$$$$
+
+  //////
+  //$$$$$$
+  //$$$$$$
+  //$$$$$$
+
+  TCanvas *cPlot = new TCanvas("cPlot","cPlot",0,0,1000,500);
+  cPlot->Divide(4,3);
+
+  //////
+  cPlot->cd(1);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_OS_2010_HT->Draw("colz");
+  labelling(gPad,h_T1lnu_OS_2010_HT,selectionHTOS,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_OS_2010_HT.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_OS_2010_HT.png");
+  
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_OS_2010_HT.eps");
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_OS_2010_HT.png");
+
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_OS_2010_HT.eps");
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_OS_2010_HT.png");
+  
+  delete temp;
+
+  /////
+
+  //////
+  cPlot->cd(2);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_OS_2010_MET->Draw("colz");
+  labelling(gPad,h_T1lnu_OS_2010_MET,selectionMHTOS,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+
+  TPad *pad = gPad;
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_OS_2010_met.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_OS_2010_met.png");
+
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_OS_2010_met.eps");
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_OS_2010_met.png");
+
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_OS_2010_met.eps");
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_OS_2010_met.png");
+
+  delete temp;
+
+  //////
+  cPlot->cd(5);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_2010_HT->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_2010_HT,selectionHTSS,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_HT.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_HT.png");
+
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_HT.eps");
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_HT.png");
+
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_HT.eps");
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_HT.png");
+
+  delete temp;
+
+  /////
+
+
+  //////
+  cPlot->cd(6);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_2010_met->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_2010_met,selectionMHTSS,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  temp->cd();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit)    temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_met.eps");
+  if(doLimit)    temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_met.png");
+
+  if(!doLimit && !doError)   temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_met.eps");
+  if(!doLimit && !doError)   temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_met.png");
+
+  if(!doLimit && doError)   temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_met.eps");
+  if(!doLimit && doError)   temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_met.png");
+
+  delete temp;
+
+  /////
+
+
+  //////
+  cPlot->cd(7);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_2010_HTmet->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_2010_HTmet,selectionHTmetSS,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_HTmet.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_2010_HTmet.png");
+
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_HTmet.eps");
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_2010_HTmet.png");
+
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_HTmet.eps");
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_2010_HTmet.png");
+
+  delete temp;
+
+
+  //////
+  cPlot->cd(9);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_lowPt_HTmet->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_lowPt_HTmet,selectionHTmetSS_lowPt,leg,"T1lnu",doLimit);
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_HTmet.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_HTmet.png");
+
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_HTmet.eps");
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_HTmet.png");
+
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_HTmet.eps");
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_HTmet.png");
+
+  delete temp;
+
+
+  cPlot->cd(10);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_lowPt_HT->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_lowPt_HT,selectionHTSS_lowPt,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_HT.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_HT.png");
+
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_HT.eps");
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_HT.png");
+
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_HT.eps");
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_HT.png");
+
+  delete temp;
+
+
+  cPlot->cd(11);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T1lnu_SS_lowPt_met->Draw("colz");
+  labelling(gPad,h_T1lnu_SS_lowPt_met,selectionmetSS_lowPt,leg,"T1lnu",doLimit);
+
+  //  TFile f("RA2_SMS_results.root","UPDATE");
+  //  h_limit_T2_MHT->Write();
+  //  f.Close();
+
+  TPad *pad = gPad;
+
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_met.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T1lnu_SS_lowPt_met.png");
+
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_met.eps");
+  if(!doLimit && !doError)  temp->SaveAs("RESULT/h_eff_T1lnu_SS_lowPt_met.png");
+
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_met.eps");
+  if(!doLimit && doError)  temp->SaveAs("RESULT/h_effStatErr_T1lnu_SS_lowPt_met.png");
+
+  delete temp;
+
+  /////
+
+
+  cPlot->SaveAs("T1lnu.C");
+
+
+  /////
+
+  TCanvas *cPlot2 = new TCanvas("cPlot","cPlot",0,0,500,250);
+  cPlot2->Divide(2,1);
+
+  cPlot2->cd(1);
+
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T5zz_jzbdiff50->Draw("colz");
+  labelling(gPad,h_T5zz_jzbdiff50,selectionJZB50,legT5zz,"T5zz",doLimit);
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T5zz_JZB_50.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T5zz_JZB_50.png");
+
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T5zz_JZB_50.eps");
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T5zz_JZB_50.png");
+
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T5zz_JZB_50.eps");
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T5zz_JZB_50.png");
+
+  delete temp;
+
+  //////
+  cPlot2->cd(1);
+  if(doLogy)  gPad->SetLogz(1);
+
+  h_T5zz_jzbdiff100->Draw("colz");
+  labelling(gPad,h_T5zz_jzbdiff100,selectionJZB100,legT5zz,"T5zz",doLimit);
+
+  TPad *pad = gPad;
+
+  TCanvas *temp = new TCanvas();
+  TPad *clone = (TPad*)pad->DrawClone();
+  clone->SetPad(0,0,1,1);
+
+  gStyle->SetCanvasDefH(400);
+  gStyle->SetCanvasDefW(400);
+
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T5zz_JZB_100.eps");
+  if(doLimit) temp->SaveAs("RESULT/h_limit_T5zz_JZB_100.png");
+
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T5zz_JZB_100.eps");
+  if(!doLimit && !doError) temp->SaveAs("RESULT/h_eff_T5zz_JZB_100.png");
+
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T5zz_JZB_100.eps");
+  if(!doLimit && doError) temp->SaveAs("RESULT/h_effStatErr_T5zz_JZB_100.png");
+
+  delete temp;
+
+  cPlot2->SaveAs("T5zz.C");
+
+  return;
+
+
+
+}

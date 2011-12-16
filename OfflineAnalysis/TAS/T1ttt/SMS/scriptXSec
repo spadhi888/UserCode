@@ -1,0 +1,40 @@
+#!/bin/bash
+
+MSQ=$(cat ~/qg_xsections.dat | awk '{print $7}') > listSQ.txt
+MGL=$(cat ~/qg_xsections.dat | awk '{print $8}') > listGL.txt
+xSec=$(cat ~/qg_xsections.dat | awk '{print $12}') > listxSec.txt
+
+
+counteri=0
+counterj=0
+counterk=0
+
+for i in ${MSQ[@]}; do
+
+counteri=$[$counteri+1]
+
+for j in ${MGL[@]}; do
+
+counterj=$[$counterj+1]
+
+for k in ${xSec[@]}; do
+
+counterk=$[$counterk+1]
+
+if [ "$counteri" = "$counterj" ]; then
+
+if [ "$counteri" = "$counterk" ]; then
+
+   echo 'MSQ='$i' MGL='$j' xSec='$k
+
+fi
+
+fi
+
+done
+
+done
+
+done
+
+

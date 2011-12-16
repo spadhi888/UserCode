@@ -1,0 +1,31 @@
+#!/bin/bash
+
+mass=$(cat stop_xsections.dat | awk '{print $7}')
+xSec=$(cat stop_xsections.dat | awk '{print $10}')
+xSec2=$(cat stop_xsections.dat | awk '{print $12}')
+
+
+count=$(cat stop_xsections.dat | awk '{print $7}' | wc)
+
+for i in ${mass[@]}; do
+
+echo '   ' $i,
+
+done
+
+
+for i in ${xSec[@]}; do
+
+echo  '   ' $i,
+
+done
+
+
+for i in ${xSec2[@]}; do
+
+echo  '   ' $i,
+
+done
+
+echo $count
+

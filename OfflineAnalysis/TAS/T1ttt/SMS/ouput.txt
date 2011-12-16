@@ -1,0 +1,128 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version  5.27/06b   5 November 2010   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.27/06b (branches/v5-27-06-patches@36515, Nov 05 2010, 15:46:56 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+Loading CMS TDR style... done.
+
+Processing SMS.C+...
+getting Name h_T1lh_OS_2010_HT
+h_T1lh_OS_2010_HT_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+getting Name h_T1lh_OS_2010_MET
+h_T1lh_OS_2010_MET_cloned A_{0}=0, tan #beta = 10, sgn #mu = +1, m_{Top} = 172.5 GeV, L=976.0 pb^{-1}
+getting Name h_T1lnu_SS_2010_HTmet
+h_T1lnu_SS_2010_HTmet_cloned #sigma limit T1lnu
+getting Name h_T1lnu_SS_2010_HT
+h_T1lnu_SS_2010_HT_cloned #sigma limit T1lnu
+getting Name h_T1lnu_SS_2010_met
+h_T1lnu_SS_2010_met_cloned #sigma limit T1lnu
+getting Name h_T1lnu_SS_lowPt_HTmet
+h_T1lnu_SS_lowPt_HTmet_cloned #sigma limit T1lnu
+getting Name h_T1lnu_SS_lowPt_HT
+h_T1lnu_SS_lowPt_HT_cloned #sigma limit T1lnu
+getting Name h_T1lnu_SS_lowPt_met
+h_T1lnu_SS_lowPt_met_cloned #sigma limit T1lnu
+getting Name h_T1_ted
+h_T1_ted_cloned 
+getting Name h_T2_ted
+h_T2_ted_cloned 
+getting Name h_T5zz_warren_200
+h_T5zz_warren_200_cloned Scan xsection UL
+getting Name h_T5zz_warren_100
+h_T5zz_warren_100_cloned Scan xsection UL
+getting Name h_T5zz_jzbdiff50
+h_T5zz_jzbdiff50_cloned 
+getting Name h_T5zz_jzbdiff100
+h_T5zz_jzbdiff100_cloned 
+getting Name h_RA2b_T1bbbb_ge2bTight
+h_RA2b_T1bbbb_ge2bTight_cloned 
+getting Name h_RA2b_T1bbbb_ge2bLoose
+h_RA2b_T1bbbb_ge2bLoose_cloned 
+getting Name h_RA2b_T1bbbb_ge1bTight
+h_RA2b_T1bbbb_ge1bTight_cloned 
+getting Name h_RA2b_T1bbbb_ge1bLoose
+h_RA2b_T1bbbb_ge1bLoose_cloned 
+getting Name h_MT2blow_T1bbbb
+h_MT2blow_T1bbbb_cloned 
+getting Name h_MT2bhigh_T1
+h_MT2bhigh_T1_cloned 
+name h_T5zz_warren_200_cloned
+before here 
+refMult 1 type T5zz
+filename /afs/cern.ch/user/d/dalfonso/public/reference_xSec.root histoName gluino dirName 0 lumi 1
+==> x = 162.5 y = 62.5
+==> x = 187.5 y = 62.5
+==> x = 212.5 y = 62.5
+==> x = 237.5 y = 62.5
+==> x = 262.5 y = 62.5
+==> x = 287.5 y = 62.5
+==> x = 312.5 y = 62.5
+==> x = 337.5 y = 62.5
+==> x = 362.5 y = 62.5
+==> x = 387.5 y = 62.5
+==> x = 412.5 y = 62.5
+==> x = 437.5 y = 62.5
+==> x = 462.5 y = 62.5
+==> x = 487.5 y = 62.5
+==> x = 512.5 y = 62.5
+==> x = 512.5 y = 287.5
+==> x = 512.5 y = 412.5
+==> x = 537.5 y = 62.5
+==> x = 537.5 y = 287.5
+==> x = 562.5 y = 62.5
+==> x = 562.5 y = 287.5
+==> x = 587.5 y = 62.5
+==> x = 587.5 y = 287.5
+==> x = 612.5 y = 62.5
+==> x = 612.5 y = 287.5
+==> x = 637.5 y = 62.5
+==> x = 637.5 y = 287.5
+==> x = 662.5 y = 62.5
+==> x = 662.5 y = 262.5
+==> x = 687.5 y = 62.5
+==> x = 687.5 y = 212.5
+@@@@ x = 287.5 y = 62.5
+@@@@ x = 62.5 y = 62.5
+@@@@ x = 287.5 y = 62.5
+@@@@ x = 62.5 y = 62.5
+@@@@ x = 262.5 y = 62.5
+@@@@ x = 62.5 y = 62.5
+@@@@ x = 212.5 y = 62.5
+@@@@ x = 50 y = 62.5
+@@@@ x = 362.5 y = 62.5
+@@@@ x = 387.5 y = 62.5
+@@@@ x = 412.5 y = 62.5
+@@@@ x = 437.5 y = 62.5
+@@@@ x = 462.5 y = 62.5
+@@@@ x = 487.5 y = 62.5
+@@@@ x = 512.5 y = 62.5
+@@@@ x = 512.5 y = 287.5
+@@@@ x = 512.5 y = 412.5
+@@@@ x = 537.5 y = 62.5
+@@@@ x = 537.5 y = 287.5
+@@@@ x = 562.5 y = 62.5
+@@@@ x = 562.5 y = 287.5
+@@@@ x = 587.5 y = 62.5
+@@@@ x = 587.5 y = 287.5
+@@@@ x = 612.5 y = 62.5
+@@@@ x = 612.5 y = 287.5
+@@@@ x = 637.5 y = 62.5
+@@@@ x = 637.5 y = 287.5
+@@@@ x = 662.5 y = 62.5
+@@@@ x = 662.5 y = 262.5
+@@@@ x = 687.5 y = 62.5
+@@@@ x = 687.5 y = 212.5
+@@@@ x = 687.5 y = 50
+HERE graph_h_T5zz_warren_200_cloned_1.000000
+before return
