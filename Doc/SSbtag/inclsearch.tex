@@ -57,67 +57,113 @@ because the photon is generally isolated. In practice, this background is comple
 
 {\it Need to update the tables to include the remaining MC bkg as the MC becomes available !!!}
 
-%\vspace{6 mm}
-\begin{table}[htb]
+\newcommand{\ttdilS}{\ensuremath{\ttbar\to\ell\ell X}}
+\newcommand{\ttslbS}{\ensuremath{\ttbar\to\ell(b\to\ell) X}}
+\newcommand{\ttsloS}{\ensuremath{\ttbar\to\ell(b\!\!\!/\to\ell) X}}
+\newcommand{\SFnn}{\ensuremath{N^{\rm Wj,raw}_{nn}}}
+
+\begin{table}[h]
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Sample & $e^{\pm}e^{\pm}$    & $\mu^{\pm}\mu^{\pm}$ & $e^{\pm}\mu^{\pm}$      & total \\ \hline
-% all the MCs
-\hline
-\ttbar  & 0.15 $\pm$ 0.09 & 0.25 $\pm$ 0.11 & 0.25 $\pm$ 0.11 & 0.65 $\pm$ 0.18 \\ 
-Single top  & 0.02 $\pm$ 0.02 & 0.02 $\pm$ 0.02 & 0.02 $\pm$ 0.01 & 0.06 $\pm$ 0.03 \\ 
-wjets  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-DY  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-VV  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-\hline
-Total MC  & 0.17 $\pm$ 0.09 & 0.27 $\pm$ 0.11 & 0.27 $\pm$ 0.11 & 0.71 $\pm$ 0.18 \\
-\hline\hline
-data  (349 pb$^{-1}$)     & 1  &  1  & 0  & 2      \\ \hline
-fake rate prediction & & & & \\ \hline
-single fake   & 0.38 $\pm$ 0.38 & 0.52 $\pm$ 0.37 & 0.00 $\pm$ 0.00 & 0.90 $\pm$ 0.52 (3 evts) \\
-double fake   & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.31 (0 evts) \\
-fake prediction & 0.38 $\pm$ 0.38 & 0.52 $\pm$ 0.37 & 0.00 $\pm$ 0.00 & 0.90 $\pm$ 0.60 \\
-\hline\hline
-flip rate prediction & $0.05 \pm 0.01$ & 0 & $0.06\pm 0.02$ & $0.11\pm 0.03$ \\ \hline
-total fake rate prediction & $0.38 \pm 0.43$ & $0.52\pm 0.45$ & $0.00 \pm 0.00$ & $0.90 \pm 0.69$ \\ \hline
-total bkg prediction & $0.43\pm 0.43$ & $0.52 \pm 0.45$ & $0.06 \pm 0.2$ & $1.01\pm 0.75$ \\\hline
-\end{tabular}
-\caption{\protect Data and Monte Carlo yields for the same-sign high-$p_T$ dileptons with $H_T > 80$ GeV and \met $> 30$ GeV. Uncertainties in 
-the lower three rows also include the systematic uncertanities on the method used.\label{tab:ssyields1} }
+\include{yields/btag_baseline}
 \end{center}
+\caption{\label{tab:yieldBase_hpt}Observed event yields in baseline 
+(\met $>$ 30 GeV, and at least 2 jets with pT $>$ 40 GeV) high-\pt\ (pT $>$ 20/10) dileptons
+compared to expectations from simulation alone, and from the data-driven methods.
+The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
+pairs (WZ, ZZ, leptons from same-sign W from single-parton, double-parton, and $t\bar{t}W$ production, etc.), 
+as well as electrons from converted photons in $V\gamma$ production.
+Entries with zero contributing events are reported with an uncertainty corresponding to one event.
+This uncertainty is not added to the total MC contribution.
+Systematic uncertainties (the second uncertainty if present)
+ are displayed only for the final combined type of background, no systematic
+uncertainty is added for estimates with zero entries.
+Systematic uncertainties are 100\% correlated among the channels.
+}
 \end{table}
 
-%\vspace{6 mm}
-\begin{table}[htb]
+\clearpage
+
+\begin{table}[hbt]
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Sample & $e^{\pm}e^{\pm}$    & $\mu^{\pm}\mu^{\pm}$ & $e^{\pm}\mu^{\pm}$      & total \\ \hline
-% all the MCs
-\hline
-\ttbar  & 0.15 $\pm$ 0.09 & 0.25 $\pm$ 0.11 & 0.30 $\pm$ 0.19 & 0.70 $\pm$ 0.19 \\ 
-Single top  & 0.02 $\pm$ 0.02 & 0.02 $\pm$ 0.02 & 0.02 $\pm$ 0.01 & 0.06 $\pm$ 0.03 \\ 
-wjets  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-DY  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-VV  & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\ 
-\hline
-Total MC  & 0.17 $\pm$ 0.09 & 0.27 $\pm$ 0.11 & 0.32 $\pm$ 0.19 & 0.76 $\pm$ 0.19 \\
-\hline\hline
-data  (349 pb$^{-1}$)     & 0  &  1  & 0  & 1      \\ \hline
-fake rate prediction & & & & \\ \hline
-single fake   & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.56 (0 evts) \\
-double fake   & 0.00 $\pm$ 0.00 & 0.51 $\pm$ 0.30 & 0.00 $\pm$ 0.00 & 0.51 $\pm$ 0.30 (3 evts) \\
-fake prediction & 0.00 $\pm$ 0.00 & 0.51 $\pm$ 0.30 & 0.00 $\pm$ 0.00 & 0.51 $\pm$ 0.63 \\
-\hline\hline
-flip rate prediction & $0.01 \pm 0.004$ & 0 & $0.02\pm 0.006$ & $0.03\pm 0.01$ \\ \hline
-total fake rate prediction & $0.00 \pm 0.00$ & $0.51\pm 0.68$ & $0.00 \pm 0.00$ & $0.51 \pm 0.68$ \\ \hline
-total bkg prediction & $0.01\pm 0.004$ & $0.51 \pm 0.68$ & $0.02 \pm 0.006$ & $0.54 \pm 0.68$ \\\hline
-\end{tabular}
-\caption{\protect Data and Monte Carlo yields for the same-sign low-$p_T$ dileptons with $H_T > 200$ GeV and \met $> 30$ GeV. Uncertainties in 
-the lower three rows also include the systematic uncertanities on the method used.\label{tab:ssyields2} }
+\include{yields/btag_low_m0}
 \end{center}
+\caption{\label{tab:yieldlom0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+passing the {\em low-$m_0$} signal selections ($H_T > $ 320 GeV, \met $>$ 50 GeV)
+compared to expectations from simulation alone, and from the data-driven methods.
+The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
+pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production, etc.), 
+as well as electrons from converted photons in $V\gamma$ production.
+Entries with zero contributing events are reported with an uncertainty corresponding to one event.
+This uncertainty is not added to the total MC contribution.
+Systematic uncertainties (the second uncertainty if present)
+ are displayed only for the final combined type of background, no systematic
+uncertainty is added for estimates with zero entries.
+Systematic uncertainties are 100\% correlated among the channels.
+}
 \end{table}
+\clearpage
+
+\begin{table}[hbt]
+\begin{center}
+\include{yields/btag_high_m0}
+\end{center}
+\caption{\label{tab:yieldhim0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+passing the {\em high-$m_0$} signal selections ($H_T > 440$ GeV, \met $>$ 50 GeV)
+compared to expectations from simulation alone, and from the data-driven methods.
+The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
+pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production, etc.), 
+as well as electrons from converted photons in $V\gamma$ production.
+Entries with zero contributing events are reported with an uncertainty corresponding to one event.
+This uncertainty is not added to the total MC contribution.
+Systematic uncertainties (the second uncertainty if present)
+ are displayed only for the final combined type of background, no systematic
+uncertainty is added for estimates with zero entries.
+Systematic uncertainties are 100\% correlated among the channels.
+}
+\end{table}
+\clearpage
+
+\begin{table}[hbt]
+\begin{center}
+\include{yields/btag_simplified_model}
+\end{center}
+\caption{\label{tab:yieldsimple_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+passing the {\em simplified model} signal selections ($H_T > 200$ GeV, \met $>$ 120 GeV)
+compared to expectations from simulation alone, and from the data-driven methods.
+The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
+pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production, etc.), 
+as well as electrons from converted photons in $V\gamma$ production.
+Entries with zero contributing events are reported with an uncertainty corresponding to one event.
+This uncertainty is not added to the total MC contribution.
+Systematic uncertainties (the second uncertainty if present)
+ are displayed only for the final combined type of background, no systematic
+uncertainty is added for estimates with zero entries.
+Systematic uncertainties are 100\% correlated among the channels.
+}
+\end{table}
+
+\clearpage
+
+\begin{table}[hbt]
+\begin{center}
+\include{yields/btag_pmssm}
+\end{center}
+\caption{\label{tab:yieldsnu_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+passing the {\em pMSSW/sneutrino} signal selections ($H_T > 320$ GeV, \met $>$ 120 GeV)
+compared to expectations from simulation alone, and from the data-driven methods.
+The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
+pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production, etc.), 
+as well as electrons from converted photons in $V\gamma$ production.
+Entries with zero contributing events are reported with an uncertainty corresponding to one event.
+This uncertainty is not added to the total MC contribution.
+Systematic uncertainties (the second uncertainty if present)
+ are displayed only for the final combined type of background, no systematic
+uncertainty is added for estimates with zero entries.
+Systematic uncertainties are 100\% correlated among the channels.
+}
+\end{table}
+
+\clearpage
 
 The estimation
 is in a good agreement with the observation. We also note that the backgrounds with respect to the inclusive same-sign
