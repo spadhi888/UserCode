@@ -1,14 +1,15 @@
 \section{Search for same-sign dileptons with $b$ jets}
 \label{sec:searchbtag}
 
-This analysis is based on the same-sign dilepton search documented in AN-2011/258~\cite{ssnote2011} and corresponds to an
+This analysis is based on the same-sign dilepton search documented in AN-2011/468~\cite{ssnote2011} and corresponds to an
 integrated luminosity of \intLumi. In that study we searched for events with two isolated same-sign leptons
-in association with 2 additional jets and \met. Here we re-use most of the baseline event selection~\footnote{The additional 
-$Z$ veto is not applied in this study} as summarized in Section~\ref{sec:eventsel} below. 
-In addition, we require at least 2 b-tagged jets using Track Counting High Efficiency 
-Medium (TCHEM) working point tagger~\cite{BTVPAS2011}. We refer to TCHEM with the requirement that three of the tracks have $IP$ 
-significance $ > 3.3$. For this tagger the expected b-tagging efficiency is 62\% with a roughly 20\% systematic uncertainty.
-The acceptance of light flavor jets is $\sim 2$\%~\cite{BTVPAS2011}.
+in association with 2 additional jets and \met. Here we re-use most of the baseline event selection as summarized in Section~\ref{sec:eventsel} below. 
+In addition, we require at least 2 b-tagged jets using Simple Secondary Vertex High Efficiency 
+Medium (SSVHEM) working point tagger~\cite{BTVPAS2011}. 
+{\bf ADD BRIEF DESCRIPTION OF SSVHEM}
+%We refer to SSVHEM with the requirement that three of the tracks have $IP$ 
+%significance $ > 3.3$. For this tagger the expected b-tagging efficiency is 62\% with a roughly 20\% systematic uncertainty.
+%The acceptance of light flavor jets is $\sim 2$\%~\cite{BTVPAS2011}.
 
 \subsection{Event Selection}
 \label{sec:eventsel}
@@ -26,6 +27,7 @@ corrected with L1FastL2L3 corrections.
 \item The selected jets must be separated from the leptons by $\Delta R > 0.4$.
 \item \met $> 30$ GeV.
 \item We remove dilepton events with invariant mass $M_{ll} < 8$ GeV.
+\item We veto events if a third lepton in the event passing loosened identification and isolation requirements makes an opposite-sign same-flavor pair with either of the hypothesis leptons such that the pair has a mass within 15 GeV of the $Z$ mass.
 %{\it switched to tighter mll cut because we can.}
 \end{itemize}
 
@@ -45,10 +47,9 @@ Both of these techniques are described in more detail in~\cite{ssnote2011}.
 Systematic errors on these two estimates are 50\% and 25\% respectively.
 
 In addition, we use MC to estimate contributions from the following additional SM production processes.
-All of these are quite small.
 
 \begin{itemize}
-\item $qqW^\pm W^\pm, WWW, t\bar{t}W$, and double parton $W^\pm W^\pm$ with two real leptons in the final state.
+\item $qqW^\pm W^\pm, WWW, WWZ, WZZ, ZZZ, WW\gamma, t\bar{t}W, t\bar{t}Z, t\bar{t}\gamma$ and double parton $W^\pm W^\pm$ with two real leptons in the final state.
 \item $WZ$ and $ZZ$ with two real leptons in the final state.
 \item $W\gamma$ with one real lepton and a photon conversion. This background is a priori not estimated by the fake rate method
 because the photon is generally isolated. In practice, this background is completely negligible.
@@ -66,7 +67,7 @@ because the photon is generally isolated. In practice, this background is comple
 \include{yields/btag_baseline}
 \end{center}
 \caption{\label{tab:yieldBase_hpt}Observed event yields in baseline 
-(\met $>$ 30 GeV, and at least 2 jets with pT $>$ 40 GeV) high-\pt\ (pT $>$ 20/10) dileptons
+(\met $>$ 30 GeV, at least 2 jets with pT $>$ 40 GeV, and at least two of these jets b-tagged using SSVHEM) high-\pt\ (pT $>$ 20/20) dileptons
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
 pairs (WZ, ZZ, leptons from same-sign W from single-parton, double-parton, and $t\bar{t}W$ production, etc.), 
@@ -86,7 +87,7 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields/btag_low_m0}
 \end{center}
-\caption{\label{tab:yieldlom0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+\caption{\label{tab:yieldlom0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/20) dileptons
 passing the {\em low-$m_0$} signal selections ($H_T > $ 320 GeV, \met $>$ 50 GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
@@ -106,7 +107,7 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields/btag_high_m0}
 \end{center}
-\caption{\label{tab:yieldhim0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+\caption{\label{tab:yieldhim0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/20) dileptons
 passing the {\em high-$m_0$} signal selections ($H_T > 440$ GeV, \met $>$ 50 GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
@@ -126,7 +127,7 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields/btag_simplified_model}
 \end{center}
-\caption{\label{tab:yieldsimple_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+\caption{\label{tab:yieldsimple_hpt}Observed event yields in high-\pt\ (pT $>$ 20/20) dileptons
 passing the {\em simplified model} signal selections ($H_T > 200$ GeV, \met $>$ 120 GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
@@ -147,7 +148,7 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields/btag_pmssm}
 \end{center}
-\caption{\label{tab:yieldsnu_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
+\caption{\label{tab:yieldsnu_hpt}Observed event yields in high-\pt\ (pT $>$ 20/20) dileptons
 passing the {\em pMSSW/sneutrino} signal selections ($H_T > 320$ GeV, \met $>$ 120 GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
@@ -175,17 +176,19 @@ We have visually scanned all the events in data and provide details in Section~\
 \subsection{Discussion of Background Expectation From MC}
 \label{sec:bkgdiscussion}
 
+{\bf THIS SECTION NEEDS TO BE UPDATED}
+
 Three MC studies are presented. First, we show the origin of fake leptons in MC.
 Second, we 
 show explicitly the degree to which the fake rate method
-accurately predicts the fake lepton background in \ttbar MC, 
+accurately predicts the fake lepton background in \ttbar\ MC, 
 and third, we present evidence for our assertion that a b-quark can not simultaneously provide a b-tag and produce a fake lepton.
 
-We use a large \ttbar sample~\footnote{The POWHEG sample TTToLNu2Q2B\_7TeV-powheg-pythia6\_Spring11-PU\_S1\_START311\_V1G1-v1 } 
+We use a large \ttbar\ sample~\footnote{The POWHEG sample TTToLNu2Q2B\_7TeV-powheg-pythia6\_Spring11-PU\_S1\_START311\_V1G1-v1 } 
 normalized to 1~fb$^{-1}$ for these studies. 
 The fake rates were obtained from QCD MC as described in detail in~\cite{ssnote2011}.
 
-We classify \ttbar background events based on truth matching to their ``parent parton''
+We classify \ttbar\ background events based on truth matching to their ``parent parton''
 as either ``Heavy Flavor" or ``Light Flavor". Charm quarks from W decay are classified as heavy flavor.
 It is thus possible to have three heavy quarks in the same event, one of which provides the isolated lepton,
 the two others the b-tags.
@@ -205,7 +208,7 @@ $\mu\mu$ & 0.26$\pm$0.06 & 0.22$\pm$0.05 & 0.04$\pm$0.04 \\
 $e\mu$ & 0.57$\pm$0.09 & 0.37$\pm$0.07 & 0.21$\pm$0.05 \\
 total & 1.15$\pm$0.13 & 0.70$\pm$0.10 & 0.45$\pm$ 0.08 \\ \hline
 \end{tabular}
-\caption{ Expected number of \ttbar events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin1}}
+\caption{ Expected number of \ttbar\ events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin1}}
 \end{center}
 \end{table}
 
@@ -224,7 +227,7 @@ $\mu\mu$ & 0.36$\pm$0.03 & 0.30$\pm$0.03 & 0.06$\pm$0.01 \\
 $e\mu$ & 0.76$\pm$0.05 & 0.54$\pm$0.04 & 0.22$\pm$0.03 \\
 total & 1.51$\pm$0.06 & 1.04$\pm$0.05 & 0.47$\pm$0.04  \\ \hline
 \end{tabular}
-\caption{ Predicted number of \ttbar events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin2}}
+\caption{ Predicted number of \ttbar\ events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin2}}
 \end{center}
 \end{table}
 
