@@ -22,8 +22,9 @@ A fake rate function is measured in an independent data sample of multijet event
 This fake rate function is measured in bins of lepton $\pt$ and $|\eta |$,
 separately for electrons and muons. 
 
-The numerator selections are detailed in Section~\ref{sec:eventSel}. 
-The denominator selections are described below, specifying only looser selections.
+The numerator selections are detailed in Section~\ref{sec:eventsel}. 
+The denominator selections are exactly the same as in the inclusive analysis~\cite{ssnote2011}.
+They are listed below for completeness.
 
 Muon denominator definition is to relax the following muon requirements from
 Section~\ref{sec:eventSel}:
@@ -40,57 +41,42 @@ Section~\ref{sec:eventSel}:
 \item the impact parameter cut is removed (was $<$ 200 $\mu$m);
 \item $Iso$ is set to be $Iso < 0.6$ (was $<0.10$).
 \end{itemize}
-This is analogous to the V3 denominator in~\cite{frmethod} used for our previous analysis.
 
 We thus use an extrapolation  in isolation (and impact parameter) to estimate the fake lepton backgrounds 
 in both electrons and muons.
-This choice is driven by the expectation that the selected events with fake leptons are dominated by
+This choice of the denominator is designed to be safe determining contributions
+from all types of fake lepton candidates arising from jets.
+It has already been extensively tested in the inclusive (pre-tagged) same-sign dilepton analysis~\cite{ssnote2011},
+where the fake-isolated leptons are expected to be dominated by
 heavy flavor jets, in which the lepton candidate is predominantly a real lepton from b/c-quark semileptonic decays.
-Relaxed isolation and impact parameter selections are then expected to roughly keep the same sample
-composition in events with denominator leptons.
+In this analysis, as discussed in detail below, we find that isolated lepton candidates
+not arising from heavy flavor decays have a much larger fraction (dominant for electrons) of all fake leptons.
+Closure tests performed on \ttbar\ simulation (still expected to be the dominant source of fakes)
+confirm this choice of denominator definition works here as well.
 
 Samples of multijet (inclusive QCD) events in data are selected among events with a single lepton trigger present.
-The samples and the triggers used in this measurement are listed in Section~\ref{sec:datasets}.
-Since essentially all of the dilepton analysis events are collected on dilepton-triggered events, the
-most appropriate choice for the FR measurement is to use  triggers based on the same (or almost the same) 
-single-object triggers as the signal selection dilepton triggers.
-The single-lepton triggered events are required to have an electron or a muon passing the denominator
-requirements described above.
-These events are further pruned of the contamination from the electroweak processes with W or Z production.
-The W events are suppressed by a requirement that \met is below 20~GeV and the transverse mass $M_T < 25$~GeV.
-The Z events are initially suppressed
-by removing dielectron and dimuon events with another lepton matching 
-the fakeable object and forming a pair with an invariant mass within the 71 to 111~GeV range
-(events are removed only with  dileptons with both $\pt>20$~GeV and the other lepton
- passing a looser ID and isolation selection of the early $t\bar{t}$ analysis~\cite{frmethod}).
-Further stringent suppression of remaining Z events is achieved by vetoing events satisfying the following conditions,
-\begin{itemize}
-\item for electrons:
-\begin{itemize}
-  \item other fakeable objects with $\pt>10~\GeV$ are present;
-  \item there is a GSF track making a pair with the fakeable object and an invariant mass of 76 -- 106~GeV;
-  \item the away jet has an EM-fraction higher than 0.8. 
-\end{itemize}
-\item for muons:
-\begin{itemize}
-  \item other fakeable objects with $\pt>10~\GeV$ are present;
-  \item there is another muon (no ID requirement) with $\pt>10~\GeV$ making a pair with the fakeable object with an invariant mass of 76 -- 106~GeV;
-  \item there is another muon (no ID requirement) with $\pt>10~\GeV$ making a pair with the fakeable object with an invariant
-  mass between 8 and 12~GeV to additionally suppress Upsilon production contribution.
-\end{itemize}
-\end{itemize}
+The same requirements are applied to select the multijet-dominated events as in the inclusive analysis~\cite{ssnote2011}.
 
-We repeat all the studies performed with 2010 data, as documented in~\cite{frmethod}.
+We repeat all relevant studies performed with 2011 data, as documented in Ref.~\cite{ssnote2011}.
 These include 
 \begin{itemize}
 \item extraction of the fake rates in simulation and data;
-\item closure tests on W+jet, \ttbar, and double-fake QCD events;
 \item measurement of the fake-rate dependence on the {\em opposite-side} jet \pt,
-	as a measure of the dependence on the progenitor parton momentum;
+	as a measure of the dependence on the progenitor parton momentum in data;
+\item closure tests on \ttbar\ after the baseline and search region selections.
+\end{itemize}
+Results of other tests performed in Refs.~\cite{ssnote2011,frmethod} apply here in part,
+with the main caveat that they are the most relevant for fakes not from 
+the heavy flavor as well:
+\begin{itemize}
+\item closure tests in W+jets and double-fake in QCD MC samples 
+	(even though none of these are expected to contribute significantly even at the baseline
+	selection level);
 \item estimates of the residual W+jet and Z contamination in the sample;
 \item comparison with the fake rate measured in events with enhanced heavy flavor
 	contribution using b-tagging (the variation observed here is up to about 20\% for electrons and
-	muons in both simulation and data).
+	muons in both simulation and data and are fractionally much less important
+	here).
 \end{itemize}
 We arrive to essentially the same conclusions on the performance of the fake-rate method
 as we did in the past.
@@ -103,26 +89,13 @@ The nominal fake rates are measured requiring an "opposite side" jet with $\pt>4
 separated by $\Delta R > 1.0$ from the FO.
 The electron fake rates are measured separately for triggers with an isolation requirement and
 for triggers without any isolation requirement on the electron.
-Results of the measurement are summarized in Tables~\ref{tab:frelectronTCaloIso},~\ref{tab:frelectronTNoIso} and ~\ref{tab:frelectronTCaloIsoTrkIso}
-for the case with calorimeter, without, and with calorimeter and tracker isolation requirements, respectively.
-The muon fake rates are measured using all single-muon triggers described in Section~\ref{sec:datasets}.
+Results of the measurement are summarized in Table~\ref{tab:frelectronTCaloIso} for triggers
+with calorimeter isolation (as used for $e\mu$ events), and in Table~\ref{tab:frelectronTCaloIsoTrkIso} 
+for triggers with both the calorimeter and tracker isolation requirements (as used for $ee$ events).
+Results for electron triggers without an isolation requirement are provided in Table~\ref{tab:frelectronTNoIso}
+as a reference.
+The muon fake rates are measured using all single-muon triggers described in Ref.~\ref{ssnote2011}.
 The measurement is summarized in Table~\ref{tab:frmuon}.
-
-
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{c|ccccc}
-\hline
-\backslashbox{$|\eta|$}{$p_T$} & 10.000 -- 15.000 & 15.000 -- 20.000 & 20.000 -- 25.000 & 25.000 -- 35.000 & 35.000 -- 55.000 \\ \hline\hline
-0.000 -- 1.000 & 0.1985 $\pm$ 0.0141 & 0.1535 $\pm$ 0.0177 & 0.1260 $\pm$ 0.0212 & 0.1567 $\pm$ 0.0247 & 0.2198 $\pm$ 0.0434 \\ \hline
-1.000 -- 1.479 & 0.1951 $\pm$ 0.0253 & 0.1867 $\pm$ 0.0318 & 0.1870 $\pm$ 0.0352 & 0.1800 $\pm$ 0.0384 & 0.3333 $\pm$ 0.0624 \\ \hline
-1.479 -- 2.000 & 0.1880 $\pm$ 0.0339 & 0.1696 $\pm$ 0.0355 & 0.1481 $\pm$ 0.0279 & 0.1548 $\pm$ 0.0279 & 0.2596 $\pm$ 0.0430 \\ \hline
-2.000 -- 2.500 & 0.2583 $\pm$ 0.0356 & 0.3084 $\pm$ 0.0446 & 0.1797 $\pm$ 0.0339 & 0.2836 $\pm$ 0.0389 & 0.3191 $\pm$ 0.0481 \\ \hline
-\end{tabular}
-\caption{\label{tab:frelectronTNoIso}Electron fake rate measured in bins of the electron candidate \pt\ and $\eta$
-for electrons collected using triggers without isolation requirements.}
-\end{center}
-\end{table}
 
 \begin{table}[htb]
 \begin{center}
@@ -151,6 +124,21 @@ for electrons collected using triggers with a calorimeter isolation requirement.
 \end{tabular}
 \caption{\label{tab:frelectronTCaloIsoTrkIso}Electron fake rate measured in bins of the electron candidate \pt\ and $\eta$
 for electrons collected using triggers with calorimeter and tracker isolation requirements.}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|ccccc}
+\hline
+\backslashbox{$|\eta|$}{$p_T$} & 10.000 -- 15.000 & 15.000 -- 20.000 & 20.000 -- 25.000 & 25.000 -- 35.000 & 35.000 -- 55.000 \\ \hline\hline
+0.000 -- 1.000 & 0.1985 $\pm$ 0.0141 & 0.1535 $\pm$ 0.0177 & 0.1260 $\pm$ 0.0212 & 0.1567 $\pm$ 0.0247 & 0.2198 $\pm$ 0.0434 \\ \hline
+1.000 -- 1.479 & 0.1951 $\pm$ 0.0253 & 0.1867 $\pm$ 0.0318 & 0.1870 $\pm$ 0.0352 & 0.1800 $\pm$ 0.0384 & 0.3333 $\pm$ 0.0624 \\ \hline
+1.479 -- 2.000 & 0.1880 $\pm$ 0.0339 & 0.1696 $\pm$ 0.0355 & 0.1481 $\pm$ 0.0279 & 0.1548 $\pm$ 0.0279 & 0.2596 $\pm$ 0.0430 \\ \hline
+2.000 -- 2.500 & 0.2583 $\pm$ 0.0356 & 0.3084 $\pm$ 0.0446 & 0.1797 $\pm$ 0.0339 & 0.2836 $\pm$ 0.0389 & 0.3191 $\pm$ 0.0481 \\ \hline
+\end{tabular}
+\caption{\label{tab:frelectronTNoIso}Electron fake rate measured in bins of the electron candidate \pt\ and $\eta$
+for electrons collected using triggers without isolation requirements.}
 \end{center}
 \end{table}
 
@@ -197,7 +185,8 @@ to be above 20~\GeV\ (red circles), 40~\GeV\ (black circles), and 60~\GeV\ (blue
 \includegraphics[width=0.48\linewidth]{figs/eleFRnoIso_data_ptProj}
 \includegraphics[width=0.48\linewidth]{figs/eleFRnoIso_data_etaProj}
 \caption{\label{fig:frelectron}Electron fake rate projected on $\pt$ (left) and $|\eta|$ (right)
-for electrons collected by the triggers with calorimeter and tracker isolation requirements (top), with a calorimeter isolation requirement (middle) and without an isolation requirement (bottom).
+for electrons collected by the triggers with calorimeter and tracker isolation requirements (top), 
+with a calorimeter isolation requirement (middle) and without an isolation requirement (bottom).
 The fake rates are shown separately for measurements  with a requirement for an away jet \pt\ 
 to be above 20~\GeV\ (red filled circles), 40~\GeV\ (black up triangles), and 60~\GeV\ (blue open circles).
 }
@@ -206,42 +195,14 @@ to be above 20~\GeV\ (red filled circles), 40~\GeV\ (black up triangles), and 60
 
 \clearpage
 
-%Similar to the choice made in 2010 data analysis, we restrict the measurement of the fake rate
-%to 35~\GeV\ (55~\GeV) for muons (electrons) in order to avoid the residual contribution from the W+jets
-%and Z events.
-%We find that the contribution from the W/Z production is small for electrons up to about 55~\GeV,
-%as illustrated in Fig.~\ref{fig:freleptWZ} for data (left) and simulation (right), respectively.
-%There is no significant contribution from the W events in the MC, which is supported by only marginal increase
-%in the fake rate in data after the W suppression requirements are removed.
-%For muons, since the selection did not change significantly, we refer to the corresponding figure 
-%in~\cite{frmethod}.
-%
-%
-%\begin{figure}[h]
-%\begin{center}
-%%\includegraphics[width=0.48\linewidth]{figs/}
-%%\includegraphics[width=0.48\linewidth]{figs/}
-%\caption{\label{fig:freleptWZ}Electron fake rate as a function of the electron $\pt$ measured
-%for a range of selection enhancing the contribution from the W/Z events.
-%The fake rate measured in data (left) is shown for the nominal measurement (circles) and for 
-%a measurement without additional W suppression (squares) using triggers with a calorimeter isolation requirement.
-%The electron fake rate measured in MC (right) is shown for the nominal measurement using 
-%only QCD samples (circles), and that with the W sample included (up triangles),
-%as well as for the selection without the W suppression measured in the QCD sample alone (squares)
-%and that with the W sample included (down triangles).
-%}
-%\end{center}
-%\end{figure}
-%
-%The following assumptions are made prior to applying the measured fake rates to the dilepton events.
-%\begin{itemize}
-%\item The fake rate per lepton is independent for the two leptons, e.g. 
-%	to predict the fake contribution to an $e\mu$ final state we consider electron and muon fakes
-%          separately, and add them up, assuming no correlations between the two estimates.
-%\item We assume the lepton fake rate measurement in an inclusive QCD sample as 
-%	described in~\cite{frmethod} represents the lepton fake rate  in the dilepton sample. 
-%\end{itemize}
+The application of the fake-rate method to predict this background is exactly the same as in 
+the inclusive analysis~\cite{ssnote2011}.
+As in the inclusive same-sign analysis, the measured fake rates are restricted to $\pt<55 (35)~\GeV$
+for electrons (muons), where we find the contamination from electroweak sources (W/Z production) to be negligible.
+The values for the highest measured \pt\ range apply for all leptons with larger momenta.
+Measurements for lepton $\pt<20~\GeV$ are given for completeness, they are not used in the analysis.
 
+{\bf THE REST IS NOT UPDATED YET}
 We test that the fake rates measured in QCD are applicable to the dilepton samples by performing closure
 tests on simulated W+jets, \ttbar, and QCD samples.
 The tests done on W+jets and \ttbar\ samples are done as follows

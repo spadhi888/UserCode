@@ -129,7 +129,7 @@
 %\end{table}
 
 
-\subsection{Data - Monte Carlo Scale Factor}
+\subsection{Data - Monte Carlo Scale Factor for Leptons}
 \label{sec:tnp}
 
 The efficiencies of the lepton isolation and identification requirements (including all quality requirements) 
@@ -177,7 +177,6 @@ Based on simulation alone, the combined selection efficiency, measured with resp
 differs from the product of the components by approximately 1\% or less depending on the momentum range.
 All of these effects combined give a systematic uncertainty on the total data-to-MC scale factor
 in the lepton selection efficiencies of 2.5\% for $\pt>20~\GeV$.
-
 
 \begin{table}[h]
 \begin{center}
@@ -261,11 +260,25 @@ The uncertainties are statistical only.}
 \end{center}
 \end{table}
 
-The tag\&probe results in Tables~\ref{tab:eleEffs} and~\ref{tab:muEffs} show for both electrons
-and muons the ID part of the selection is reproduced well by simulation.
-The isolation efficiency in data is measured lower than in simulation with a scale factor still fairly close to 1.
-As discussed in~\cite{ssnote2011} we assign a systematic uncertainty of 5\% 
+The tag\&probe results in Tables~\ref{tab:eleEffs} and~\ref{tab:muEffs}
+show that for leptons with $\pt>20~\GeV$ used in this analysis both the ID part and the isolation parts
+ of the lepton selection are reproduced well by simulation, already within the systematic uncertainties
+quoted above.
+Application of this measurement based on Z events to the signal events incurs
+an additional uncertainty due to potential mismodeling of the isolation requirement.
+In agreement with Ref.~\cite{ssnote2011}, we assign a systematic uncertainty of 5\% 
 due to modeling of the isolation efficiency for signal events.
-This uncertainty is expected to cover the remaining discrepancy in the isolation efficiency measured
-using the tag\&probe method.
-Using these arguments we choose to not apply the data-to-simulation scale factors.
+Considering the small size of the difference between data and simulation reported in 
+Tables~\ref{tab:eleEffs} and~\ref{tab:muEffs}, compared to the systematic uncertainty
+applicable to the analysis,
+we approximate the scale factor to be 1.0 for both simulated signal and backgrounds
+and propagate the uncertainty described above to the relevant part of the analysis
+(signal selections) described in Section~\ref{sec:systematic}.
+
+\subsection{Data - Monte Carlo Scale Factor for b-jets}
+\label{sec:bjetSF}
+We apply an average scale factor of 0.96 measured using \ttbar\ events
+for the SSVHEM tagger~\cite{BTV11003}.
+The uncertainty on the scale factor is 5 (15)\% for jets with $\pt<240 (>240)~\GeV$,
+as recommended by the b-tagging POG~\cite{btvSyst} and apply
+it to the analysis as described in Section~\ref{sec:systematic}.
