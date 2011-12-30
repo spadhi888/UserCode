@@ -22,7 +22,8 @@ Systematic errors on these two estimates are 50\% and 25\% respectively.
 \include{yields/btag_baseline}
 \end{center}
 \caption{\label{tab:yieldBase_hpt}Observed event yields in baseline 
-(\met $>$ 30 GeV, at least 2 jets with pT $>$ 40 GeV, and at least two of these jets b-tagged using SSVHEM) high-\pt\ (pT $>$ 20/20) dileptons
+(\met $>$ 30 GeV, at least 2 jets with pT $>$ 40 GeV, and at least two of these jets b-tagged using SSVHEM) 
+high-\pt\ (pT $>$ 20/20) dileptons
 compared to expectations from simulation alone, and from the data-driven methods.
 The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
 pairs (WZ, ZZ, leptons from same-sign W from single-parton, double-parton, and $t\bar{t}W$ production, etc.), 
@@ -121,83 +122,34 @@ Systematic uncertainties are 100\% correlated among the channels.
 \clearpage
 
 The estimation
-is in a good agreement with the observation. We also note that the backgrounds with respect to the inclusive same-sign
+is in a good agreement with the observation. 
+We also note that the backgrounds with respect to the inclusive same-sign
 dilepton search is suppressed by an order of magnitude due to the b-tag requirements.
-
-We have visually scanned all the events in data and provide details in Section~\ref{sec:inclresults}.
-
-
-\subsection{Discussion of Background Expectation From MC}
-\label{sec:bkgdiscussion}
-
-{\bf THIS SECTION NEEDS TO BE UPDATED}
-
-Three MC studies are presented. First, we show the origin of fake leptons in MC.
-Second, we 
-show explicitly the degree to which the fake rate method
-accurately predicts the fake lepton background in \ttbar\ MC, 
-and third, we present evidence for our assertion that a b-quark can not simultaneously provide a b-tag and produce a fake lepton.
-
-We use a large \ttbar\ sample~\footnote{The POWHEG sample TTToLNu2Q2B\_7TeV-powheg-pythia6\_Spring11-PU\_S1\_START311\_V1G1-v1 } 
-normalized to 1~fb$^{-1}$ for these studies. 
-The fake rates were obtained from QCD MC as described in detail in~\cite{ssnote2011}.
-
-We classify \ttbar\ background events based on truth matching to their ``parent parton''
-as either ``Heavy Flavor" or ``Light Flavor". Charm quarks from W decay are classified as heavy flavor.
-It is thus possible to have three heavy quarks in the same event, one of which provides the isolated lepton,
-the two others the b-tags.
-
-As is shown in Table~\ref{tab:fakeOrigin1}  about 60\% (40\%) of the fake leptons are from heavy (light) flavor.
-
-%{\it\bf Need to sort out how much of the HF contribution is in events with W to charm decays !!! I.e. where %does the remaining
-%heavy flavor bkg come from?} 
-
-\begin{table}[hbt]
-\begin{center}
-\begin{tabular}{|l|c|c|c|}\hline
-Same Sign Leptons & Total  & Heavy Flavor & Light Flavor  \\ \hline
-
-$ee$ & 0.31$\pm$0.07 &  0.11$\pm$0.04 & 0.21$\pm$0.05  \\
-$\mu\mu$ & 0.26$\pm$0.06 & 0.22$\pm$0.05 & 0.04$\pm$0.04 \\
-$e\mu$ & 0.57$\pm$0.09 & 0.37$\pm$0.07 & 0.21$\pm$0.05 \\
-total & 1.15$\pm$0.13 & 0.70$\pm$0.10 & 0.45$\pm$ 0.08 \\ \hline
-\end{tabular}
-\caption{ Expected number of \ttbar\ events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin1}}
-\end{center}
-\end{table}
-
-Table~\ref{tab:fakeOrigin2} shows the same breakdown for the fake rate prediction.
-Here we use an MC sample where one of the W's is forced to decay leptonically while the other is not allowed to decay
-leptonically.
-We use this sample as it has x10 the luminosity equivalent than the standard \ttbar\ sample, thus providing higher statistics for 
-this test. We observe an overprediction of 30\% which appears to be primarily due to overpredicting the fakes from heavy flavor.
-
-\begin{table}[hbt]
-\begin{center}
-\begin{tabular}{|l|c|c|c|}\hline
-Same Sign Leptons & Total &  Heavy Flavor & Light Flavor\\ \hline
-$ee$ & 0.39$\pm$0.03 & 0.20$\pm$0.02 & 0.19$\pm$0.03 \\
-$\mu\mu$ & 0.36$\pm$0.03 & 0.30$\pm$0.03 & 0.06$\pm$0.01 \\
-$e\mu$ & 0.76$\pm$0.05 & 0.54$\pm$0.04 & 0.22$\pm$0.03 \\
-total & 1.51$\pm$0.06 & 1.04$\pm$0.05 & 0.47$\pm$0.04  \\ \hline
-\end{tabular}
-\caption{ Predicted number of \ttbar\ events in 1 fb$^{-1}$ of integrated luminosity. Uncertainties are from MC statistics.\label{tab:fakeOrigin2}}
-\end{center}
-\end{table}
-
-Finally, Figure~\ref{fig:ttbar_residual} shows the minimum $\Delta R$ between one of the two b-tagged jets and 
-the fake lepton in the MC after 
-relaxing the jet veto cone around the lepton. 
-The black line indicates the jet veto cone size. Clearly, a b-quark can not simultaneously provide a b-tag and an isolated lepton.
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=0.6\linewidth, height=0.4\linewidth]{figs/bjetlepton.pdf}
-\caption{ Minimum $\Delta R$ between the lepton and the b-tag jet in \ttbar\ decays.\label{fig:ttbar_residual}}
-\end{center}
-\end{figure}
+As seen in the yield tables above, the contribution from fake leptons from $b$-quark decays in \ttbar,
+which is the dominant in the pre-tagged sample analysis~\cite{ssnote2011},
+is now suppressed and is no longer a dominant one.
+This confirms our initial expectation from requiring two b-tagged jets.
 
 
+
+
+%%Finally, Figure~\ref{fig:ttbar_residual} shows the minimum $\Delta R$ between one of the two b-tagged jets and 
+%%the fake lepton in the MC after 
+%%relaxing the jet veto cone around the lepton. 
+%%The black line indicates the jet veto cone size. Clearly, a b-quark can not simultaneously provide a b-tag and an isolated lepton.
+%%
+%%\begin{figure}[htb]
+%%\begin{center}
+%%\includegraphics[width=0.6\linewidth, height=0.4\linewidth]{figs/bjetlepton.pdf}
+%%\caption{ Minimum $\Delta R$ between the lepton and the b-tag jet in \ttbar\ decays.\label{fig:ttbar_residual}}
+%%\end{center}
+%%\end{figure}
+
+{\bf This section is missing two things. 
+First, we will add a \met\ vs $H_T$ plot that shows the data and
+one of the models overlayed. 
+Second, we will add a summary of the events we see. 
+}
 
 
  
