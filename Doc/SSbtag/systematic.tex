@@ -10,7 +10,7 @@ describe the uncertanities due to the b-tagging requirement.
 The only new source of systematics in this analysis is from the uncertainty on the
 b-jet tagging efficiency.
 As already mentioned in Section~\ref{sec:bjetSF}, this uncertainty
-is 5 (15)\% for jets with $\pt<240 (>240)~\GeV$.
+is 4 (14)\% for jets with $\pt<240 (>240)~\GeV$.
 As an illustration of the b-jet momentum distribution,
 we compare them in Fig.~\ref{fig:lm9ttbar} for  \ttbar\ events (before the same-sign requirement)
 and for the LM9 cMSSM SUSY benchmark point.\footnote{
@@ -22,7 +22,7 @@ While most of the b-jets from \ttbar\ are below 240~\GeV, those from LM9
 have a large contribution from higher momenta.
 Our target searches include final states with two or more b-quark jets.
 This means the efficiency to select two b-jets, as well as its uncertainty
-varies substantially among the signal final states considered
+varies among the signal final states considered
 \begin{itemize}
 \item same-sign top pair production, as from $Z^\prime$ exchange,
 	is similar in topology to that of the opposite-sign \ttbar\ production
@@ -34,14 +34,13 @@ varies substantially among the signal final states considered
 	The b-tagging efficiency scale factor is still 0.922, but its uncertainty
 	varies among the signal model points from as low as 10\%
 	to as high as 30\%.
-	This uncertainty is evaluated point-by-point in the limit setting procedure.
+	This uncertainty is evaluated event-by-event and then point-by-point in the limit setting procedure.
 \item gluino pair production with stops in the final states considered
 	here all have four b-jets in the final state.
 	Now the efficiency scale factor changes as well
 	depending on the number of b-jets in the acceptance.
-	This is evaluated point-by point in the limit setting procedure.
+	This is evaluated event-by-event and point-by point in the limit setting procedure.
 \end{itemize}
-
 
 
 \begin{figure}[htb]
@@ -76,3 +75,79 @@ Total 					& 17\%	 	& 17\%	 		& 16\% 		& 16\% \\
 \end{tabular}
 \end{center}
 \end{table}
+
+\subsection{Event-by-Event B-tagging scale factor and associated systematic uncertainty}
+We evaluate an event-by-event btagging scale factor ($SF_{\rm event}$) as follows:
+
+\begin{itemize}
+\item for each MC event passing the event selection we start
+from the scale factors $SF_i$ associated with the two or more
+tagged jets.  Note that $SF_i$ can in principle be a function 
+of jet $\eta$, $P_T$, etc.  Following the btag group recommendations,
+for now it is taken as a constant: $SF=0.96$.
+
+\item For events with two btagged jets: $SF_{\rm event}=SF^2$.
+
+\item For events with three btagged jets: $SF_{\rm event}=SF^3 + 3SF^2(1-SF)$.
+
+\item For events with four btagged jets: $SF_{\rm event}=SF^4 + 4SF^3(1-SF) + 6SF^2(1-SF)^2$.
+\end{itemize}
+
+Note that the procedure above would not work if $SF>1$, but this is not an issue
+since $SF=0.96$.
+It also implicitely assumes that all btags are from b-quarks.  For the models under 
+consideration, we have verified that the MC contribution to the acceptance from 
+events that need at least one tag from $udsgc$ in order to pass the $\ge$ 2 tags 
+requirements is small.  For example, in the $Z'$ model, this contribution is
+only $\approx$ 4\%.  Note that the bias in $SF_{\rm event}$ due to the improper traeatment
+these events is 4\% times some quantity proportional to the difference in scale 
+factors between $b$-jets and $usdgc$ jets.  Therefore, it is $<<$ 4\% and we think
+can be ignored.  
+
+In order to calculate the uncertainty ($\delta SF$) on the event-by-event $SF_{\rm total}$,
+we also need the single jet btagging efficiency ($\epsilon$).  
+We do not need a very precise value for $\epsilon$, since the uncertainty $\delta SF$ is 
+only weakly dependent on it.  We take $\epsilon = 0.643$, independent of $P_T$
+and $\eta$ for jets of $|\eta| < 2.5$.  The uncertainty on $\epsilon$ is 
+the same as that on the scale factors, $\delta \epsilon = 4\% (14\%)$ (relative)
+for $P_T < 240$ GeV ($>xs 240$ GeV).
+The procedure is the following:
+\begin{itemize}
+
+\item For each event passing the requirements at RECO level, we look at the status=3 information
+and we calculate the total probability ($p$) of tagging two or more jets, and 
+its uncertainty ($\delta p$).
+
+\item The calculation of $p$ and $\delta p$ is based on the number of status=3 b-quarks
+of $P_T > 40$ GeV and $|\eta| < 2.5$.  
+
+\item An event with two reconstructed btags can have $<$ 2 such status=3 b-quarks.  This 
+is rare and happens for example when a 39 GeV b-quark is reconstructed as a 41 GeV
+b-jet.  In these cases we calculate $p$ and $\delta p$ assuming that there are 
+two 40 GeV b-quarks at status=3.
+
+\item The uncertainty associated with the event is then $(\frac{|\delta p|}{p}) SF_{\rm event}$.
+
+\end{itemize}
+
+The probabilities $p$ are calculated as follows ($N$ here is the number of status=3 b-quarks
+and we write the equations without the assumtion that $\epsilon$ is constant):
+
+\begin{itemize}
+
+\item $N=2$:~~~~$p = \epsilon_1 \epsilon_2$.
+
+\item $N=3$:~~~~$p = \epsilon_1 \epsilon_2 + \epsilon_1 \epsilon_3 + \epsilon_2 \epsilon_3 -
+2\epsilon_1 \epsilon_2 \epsilon_3$.
+
+\item $N=4$:~~~~$$p = \prod{\epsilon_i}~~~+~~~\sum_j{(1-\epsilon_j)\prod_{i \ne j}{\epsilon_i}}
+~~~+~~~\sum_{j<k}{(1-\epsilon_j)(1-\epsilon_k)\prod_{i \ne j,k}{\epsilon_i}}$$
+
+
+
+\end{itemize}
+
+The uncertainties $\delta p$ are calculated from the equations above assuming full 
+correlation between jets, {\em e.g.}, for $N=2$ we have 
+$\delta p$ = $\delta \epsilon_1 \cdot \epsilon_2 + \delta \epsilon_2 \cdot \epsilon_1$, etc.
+
