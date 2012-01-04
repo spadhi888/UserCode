@@ -9,7 +9,7 @@ Here we re-use most of the baseline event selection as summarized below.
 In addition, we require at least 2 b-tagged jets using Simple Secondary Vertex High Efficiency 
 Medium (SSVHEM) working point tagger.
 This tagger relies on reconstructed secondary vertices
-with at least two tracks and an IP significance of at least 3.3 and provides a b-jet tagging 
+with at least two tracks and an IP significance of at least 1.74 and provides a b-jet tagging 
 efficiency of about 60\% with a roughly 5\% (15\%) systematic uncertainty for jet $p_T<240 (>240)~\GeV$ 
 and a tagging rate of light flavor jets in the 2--5\% range, increasing with the jet momentum~\cite{BTVPAS2011}. 
 
@@ -24,18 +24,20 @@ For more details, we refer to~\cite{ssnote2011}.
 	\item We tighten the isolation cut on the leptons to 0.1.
 	\item At least two particle flow jets tagged using SSVHEM tagger with $p_T > 40$ GeV and $|\eta| < 2.4$
 		corrected with L1FastL2L3 corrections.
-	\item The selected jets must be separated from the leptons by $\Delta R > 0.4$.
+	\item The selected jets must be separated from the leptons by $\Delta R > 0.4$ (any lepton with $\pt>20~\GeV$ 
+		passing the ID and isolation selections).
 	\item \met $> 30$ GeV.
 	\item We remove dilepton events with invariant mass $M_{ll} < 8$ GeV.
 	\item We veto events if a third lepton is satisfying the following:
 	\begin{itemize}
+		\item has $\pt>10~\GeV$;
 		\item (an electron)  passes  $|\eta|<2.5$, and a loosened identification, 
-			similar to WP90 ID-only and the {\tt CaloIdT\_TrkIdVL} trigger requirements: 
-			$h/e< 0.1 (0.075)$, $|\delta \eta_{\rm in}|<0.007 (0.009)$, $|\delta\phi_{\rm in}|< 0.15 (0.10)$, and $\sigma_{i_\eta i_\eta}<0.01 (0.03)$
-			in EB (EE);
-		\item (for a muon) passes all identification requirements of the signal selection except for the calorimeter veto requirements;
+			as the WP95 ID-only without any cut on $h/e$ in the endcaps;
+		\item (for a muon) passes all identification requirements of the signal selection except 
+			for the calorimeter veto requirements;
 		\item has relative isolation $<0.2$; 
-		\item makes an opposite-sign same-flavor pair with either of the hypothesis leptons such that the pair has a mass within 15 GeV of the $Z$ mass.
+		\item makes an opposite-sign same-flavor pair with either of the hypothesis leptons such 
+			that the pair has a mass within 15 GeV of the $Z$ mass.
 	\end{itemize}
 \end{itemize}
 
