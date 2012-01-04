@@ -2,54 +2,304 @@
 \label{sec:stampCollecting}
 
 Our signature, two isolated same-sign leptons plus, at least two b-tagged jets, and \met, 
-is common to many different new physics scenarios, as well as standard model $t\bar{t}W$ production.
-
+is common to many different new physics scenarios.
 Here we refine our analysis to define dedicated signal regions for a few of these scenarios,
 and provide 95\% C.L. upper limits on their respective model parameter space.
 
-{\it We expect to explore the following models for the final paper:}
 
+\subsection{Same sign top production due a $Z'$}
+\label{sec:sstops}
+
+This is an extension of the 2010 CMS published CMS analysis\cite{sstop}.
+The main difference is that here in order to improve the signal-to-noise
+we require two b-tagged jets.  This would not have made sense in 2010, since 
+at the time the integrated luminosity was low enough that the analysis was almost
+background free without requiring b-tags.
+
+\subsubsection{Theoretical Discussion, $Z'$ model}
+
+Recent measurements of the inclusive forward-backward $t\bar{t}$ production 
+asymmetry ($A_{FB}$) from the 
+Tevatron experiments show deviations from the standard model 
+(SM) expectations~\cite{d0:fwtop, cdf:fwtop1, cdf:fwtop2}.
+% The largest (3$\sigma$) deviation~\cite{cdf:fwtop2} is found 
+% to be in the region of high invariant mass with $M_{t\bar{t}} >  450$ GeV. 
+Several attempts have been made to explain this asymmetry~\cite{berger, Buckley, Gresham, zoltan}. 
+One of the most natural ways to induce such an asymmetry would be through
+Flavor Changing Neutral Currents (FCNC) in the top quark sector. 
+The forward-backward asymmetry in $u\bar{u} \to t\bar{t}$ would then be generated
+by t-channel exchange of a new massive $Z'$ boson that couples chirally to
+$u$ and $t$ at the same vertex, as shown in Fig.~\ref{fig:ttbar}~\cite{berger}.
+The same type of interaction would also give rise to same-sign top pair production, 
+as illustrated in Fig.~\ref{fig:tchannel} and Fig.~\ref{fig:schannel}. 
+In this case, the initial state involves two $u-$quarks and 
+thus the cross section at the LHC is enhanced due 
+to the large valence quark parton density of the proton. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.35\linewidth, height=0.25\linewidth]{figs/ttbar_Z.pdf}
+\caption{ Diagram for $t\bar{t}$ production induced by $Z'$ exchange which
+can generate a forward-backward asymmetry. \label{fig:ttbar}}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\linewidth, height=0.2\linewidth]{figs/sstop1.pdf}
+\caption{ Diagrams for $tt$ pair production induced by $Z'$ exchange in the t-channel. 
+\label{fig:tchannel}}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\linewidth, height=0.25\linewidth]{figs/sstop2.pdf}
+\caption{ Diagrams for $tt\bar{u}$ production induced by $Z'$ exchange in the s-channel 
+\label{fig:schannel}}
+\end{center}
+\end{figure}
+
+
+We consider the model of Reference~\cite{berger}.  
+The relevant $u-t-Z'$ interaction term in the Lagrangian is:
+
+\begin{equation}
+\label{eqn:L_berger}
+  \mathcal{L} = g_W \bar{u} \gamma^\mu (f_L P_L + f_R P_R)tZ'_\mu + h.c
+\end{equation}
+
+where $g_W$ is the weak coupling strength. The left-handed coupling is set to $f_L = 0$, due 
+to the $B_d-\bar{B_d}$ mixing constraint~\cite{Cao}. 
+The right-handed coupling $f_R$ and the $Z'$ mass are free parameters in the model.
+Within this model there is a narrow range of parameter space
+consistent with the TeVatron measurements of $\sigma(p\bar{p} \to t\bar{t})$ 
+and $A_{FB}$, which is not excluded by direct searches for same sign tops.
+This region is illustrated in Fig.~\ref{fig:berger_limit}.
+
+% Fig.~\ref{fig:tchannel} shows the t-channel exchange diagrams that can lead to the same-sign $tt$ final state. 
+% As expected the coupling appears twice in the Feynman diagrams, thus the predicated rate is proportional to $f_R^4$. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.4\linewidth]{figs/berger_limit.pdf}
+\caption{\protect From Reference~\cite{berger}; the shaded area covers the parameter
+space consistent with the $A_{FB}$ and $\sigma(t\bar{t})$ from the Tevatron;
+The line indicated by the arrow shows the Tevatron limit inferred by the authors
+from same sign top searches at the Tevatron; the remaining lines represent the
+expectations of Reference~\cite{berger}
+for LHC searches in 1 fb$^{-1}$. \label{fig:berger_limit}}
+\end{center}
+\end{figure}
+
+Monte Carlo events were generated using Madgraph in the same way as 
+for the 2010 analysis (see Reference~\cite{ttAN}).
+
+
+
+\subsubsection{Signal region definition for same sign top from $Z'$}
+\label{sec:sstopsigdefinition}
+In this study we search for same-sign dileptons originating from $tt$ 
+or $ttj$ pair production as described above.  At the LHC $uu \to tt$ 
+dominates over $\bar{u}\bar{u} \to \bar{t}\bar{t}$, thus we concentrate
+on same-sign positive leptons.  The \met and $H_T$ cuts are typical 
+of a dilepton top analysis: two or more jets of $P_T>40$ GeV, 
+$\met > 30$ GeV and $H_T > 80$ GeV.  This corresponds to Table XX:
+5 events observed and 4.65 $\pm$ 0.61 $\pm$ 1.0 expected from background.
+
+\subsubsection{Limits on the $Z'$ model}
+\label{sec:sstopslimits}
+Using the results from Section~\ref{sec:sstopsigdefinition}, we set 
+a limit at 95\% CL of 7.8 events.  The expected limit is $7.8^{+3.6}_{-3.1}$ events.
+In the MC we find $Acc \times Eff \times BR = 0.00233$, independent of $Z'$ mass. 
+This results in an upper limit on the cross-section of 0.71 pb.
+The limit includes uncertainty
+on JES (8\%), btagging (10\%), lepton efficiencies (11\%), luminosity (4.5\%),
+and PDF (3\%).
+
+The cross-section limit is turned into an exclusion limit in the $m(Z')$ vs $f_R$
+plane using the LO calculation of the $pp \to tt$ cross-section in this model.
+This is shown in Figure~\ref{fig:sstopexclusion}, together with the corresponding
+plot from the 2010 analysis.
+
+
+For $M_{Z'} >> M_{\rm top}$ the Lagrangian of equation 1 is 
+equivalent to 
+$\mathcal{L} = -\frac{1}{2}\frac{C_{RR}}{\Lambda^2}
+ [\bar{u} \gamma^\mu t][\bar{u} \gamma_{\mu} t] + h.c.$~\cite{cdfth2},
+with $\frac{C_{RR}}{\Lambda^2} = \frac{2 g_W^2 f_R^2}{M_{Z'}^2}$.
+ Our limit on $f_R$, calculated for $M_{Z'}=2$ TeV, 
+would then correspond to $\frac{C_{RR}}{\Lambda^2} < 0.6$ TeV$^{-2}$ at 
+95\% confidence.  This is more stringent than the limit recently reported
+by CDF: $\frac{C_{RR}}{\Lambda^2} < 3.7$ TeV$^{-2}$~\cite{cdflimit}.
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{figs/zprime_exclusion.pdf}
+\includegraphics[width=0.45\linewidth]{figs/sscomb.pdf}
+\caption{Exclusion regions from the 2011 analysis (left) and the 2010 analysis (right).
+\label{fig:sstopexclusion}}
+\end{center}
+\end{figure}
+
+\subsubsection{What is still missing for the $Z'$ model}
 \begin{itemize}
-\item Top pair production via t-channel $Z^\prime$ exchange
-as proposed by~\cite{berger} and searched for by CMS with 2010 data~\cite{sstop}. This is in some ways a minimal 
-model for our purposes, as it produces nothing other than same sign dileptons, two b-jets, and moderate \met\ typical
-for two leptonic W decays.
-\item A simplified model for same-sing top pair production as suggested in~\cite{simplifiedModel}. 
-The production mechanisms here range from t-channel uu-scattering to $tt$, as in the previous example, to
-$tt\bar{u}\bar{u}$. The main difference to the previous model is different kinematics of the top quarks
-due to an intermeditate resonance $\eta^0\to t \bar{u}$ decay. The mass of the $\eta^0$ is the main parameter
-in the simplified model.
-\item Standard model $t\bar{t}W$ production. Here the final state is same sign dileptons, two neutrinos, 
-i.e. moderate \met, plus one top quark that decays generically.
-\item $T_{5/3}$ fermion from Little Higgs models as suggested in~\cite{littlehiggs} lead to a $t\bar{t}W^+W^-$ final state, thus providing one additional W over the previous example.
-\item SUSY gluino pair production with the gluino decaying to top and stop as suggested in~\cite{susyssbtags}\cite{susyssbtags2}. Depending on stop mass, this leads to a final state of either 
-$t\bar{t}t\bar{t}$ plus \met , or $tt\bar{Q}\bar{Q}$ 
-plus \met\ with $Q$ being charm or beauty, and charge conjugates, as sources for the same sign dilepton plus 
-two btags plus \met. Independent of stop mass, final states with same sign dileptons plus four heavy flavor quarks
-plus \met\ are produced.
+\item Fix reference to Table XX
+\item The numbers for the limit may not exactly corresponds to what is in Table XX since
+the limits were done before we had finished the full synchronization of the tables.
+\item Rescale everything to take into account that the leptonic BR in MG is not quite right
+\item Change Bayesean to CLs
+\item Signal Contamination effects (should be tiny)
+\item Double check calculation of $\frac{C_{RR}}{\Lambda^2}$
+\item Prettify the exclusion plot.
 \end{itemize}
 
-{\it We will fill this in as we generate the samples, and figure out what minor changes to our baseline cuts each model
-requires to be sort of moderately optimized. In general, we expect changes in lepton $p_T$, \met, $H_T$, and possibly
-jet $p_T$ requirements, but no object selection changes.}
 
-{\it Below are some other ideas being tossed around for other analyses, that we might be competitive with in
-some parts of the parameter space.}
+\clearpage
 
+
+\subsection{Maximally Flavor Violation Model (MXFV)}
+\label{sec:mxfv}
+
+\subsubsection{Theoretical discussion of MXFV}
+\label{sec:mxfvtheory}
+
+This is a model~\cite{mxflv1,mxflv2,mxflv3} with a new scalar 
+SU(2) doublet field $\Phi_{FV} = (\eta^0,\eta^+)$ that couples the first and third 
+generation quarks ($q_1,q_3$) via a Lagrangian term 
+$\mathcal{L}_{FV} = \xi_{13} \Phi_{FV} q_1 q_3$.  Remarkably, it appears that this
+model is largely consistent with constraints from flavor physics.
+
+The model results in same sign top pairs in the final state as foolows
 \begin{itemize}
-\item Pair production of heavy flavored squarks and their anti-squarks~\cite{toro1}. In its simplest form, this just gives 
-$t\bar{t}$ plus \met, $t\bar{b}$ plus \met, or $b\bar{b}$ plus \met, and is thus not relevant for us. It's being looked at
-in the context of the \met\ plus jets analyses. 
-However, there is a variant for which the stop decay proceeds through an intermediate neutralino that decays to W plus
-chargino, with the chargino being close to degenerate in mass with the neutralino LSP. In this case,
-the stop anti-stop production mechanism results in a $t\bar{t}W^+W^-$ plus \met\ final state. This is thus the same 
-final state as the $T_{5/3}$ pair production mentioned above, except with two additional LSPs. 
-There may be parts of the parameter space for which the LSP is very light, thus not providing enough \met\ for the 
-\met\ plus jets analyses to see it, or the opposite extreme, where the LSP is so massive, that the Q value of the decays
-leads to LSPs at rest in the labframe, and thus little \met . Not sure to what extend these corners of phase space are
-big enough to pursue.
-\item Pair production of color octet neutral scalars that each decay to $t\bar{}t$~\cite{toro2}, thus leading to a final state
-similar as the the SUSY gluino pair production, except with no additional \met\ beyond the neutrinos from leptonic
-W decay. This might thus be possibly missed by the usual \met\ plus jets analyses because it doesn't have enough \met .
-It might be a target for us more than them.
+
+\item Single $\eta^0$ production: $ug \to t\eta^0 \to tt\bar{u}, t\bar{t}u$
+
+\item $\eta^0$ pair production: $u \bar{u} \to \eta^0 \eta^0 \to tt\bar{u}\bar{u},
+uu\bar{t}\bar{t}, t\bar{t}u\bar{u}$
+
+\item $\eta^0$ $t$-channel exchange: $uu \to tt$, $\bar{u}\bar{u} \to \bar{t}\bar{t}$
 \end{itemize}
+
+Monte Carlo events were generated using LHE files\cite{simplifiedModel} interfaced 
+with Madgraph.  Madgraph was used to decay the top quarks in order to preserve 
+spin-correlations.  The cross-sections at LO for same sign $tt$ pairs for the three
+processes in the MXFV model is shown in Figure~\ref{fig:mxvxsec}.  The $t$-channel
+process is the most important.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.65\linewidth]{figs/mxvxsec.pdf}
+\caption{Cross section for the $tt$ final state in the three MXFV modes.
+\label{fig:mxvxsec}}
+\end{center}
+\end{figure}
+
+\subsubsection{Signal region definition for the MXFV model}
+\label{sec:mxfvdefinition}
+The properties of the final state in this model are basically the same as in the $Z'$ model.
+Thus, we use the same signal region definition (see Section \ref{sec:sstopsigdefinition}).
+
+
+\subsubsection{Limits for the MXFV model}
+\label{sec:mxfvlimits}
+Our limits in the $\xi$-Mass($\chi^0$) plane are shown in Figure~\ref{fig:MxVExcl}.
+They are calculated using the LO cross-section for this model.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{figs/MxVExcl.pdf}
+\includegraphics[width=0.45\linewidth]{figs/CDFlimit.png}
+\caption{Limits in the $\xi$-Mass($\chi^0$) plane.  Left: CMS.  Right: CDF
+\label{fig:MxVExcl}}
+\end{center}
+\end{figure}
+
+\subsubsection{What is still missing for the MXFV model}
+\begin{itemize}
+\item The limit needs to be remade with the final background estimate.
+\item Need to include the $tt\bar{u}$ final state
+\item Rescale everything to take into account that the leptonic BR in MG is not quite right
+\item Change Bayesean to CLs
+\item Signal Contamination effects (should be tiny)
+\item Prettify the exclusion plot, put CDF on same plot perhaps
+\end{itemize}
+
+
+
+\subsection{$\widetilde{g} \to t\widetilde{t}$ Model}
+\label{firststopmodel}
+
+\subsubsection{Theoretical discussion of the $\widetilde{g} \to t\widetilde{t}$ Model}
+\label{sec:firststopmodeltheory}
+
+This is an interesting model for stop pair production through gluino 
+decays\cite{susybtags}\cite{susybtags2}\cite{wacker}\cite{naturalness4}.
+It is a ``realistic'' and well-motivated 
+model in the sense that it applies to the situation 
+where all the squarks except the stop are very heavy.  A ``light'' stop is of course
+generally favored in SUSY, and LHC results are pointing to ``heavy'' superpartners.
+Then if the stop
+is light enough the gluino would decay with 100\% BR as $\widetilde{g} \to t\widetilde{t}$
+and then the stop would decay as $\widetilde{t} \to t \chi_1^0$, if kinematically 
+accessible.
+The parameters of the model are $M(\widetilde{g})$, $M(\widetilde{t})$, $M(\chi_1^0)$.
+
+The final state after gluino pair production is then $tt\bar{t}\bar{t}\chi_1^0\chi_1^0$.
+It is the same final state as the {\tt T1ttt} {\bf (need a reference here)}
+simplified model, except that 
+it proceeds through an intermediate stop.  This final state is rich in leptons,
+and has four b-quarks.  The same sign dilepton $+$ btags $+$ \met signature is a 
+particularly good way to go after it.
+
+
+\subsubsection{Signal region definition for the $\widetilde{g} \to t\widetilde{t}$ Model}
+\label{sec:firststopdefinition}
+For each point in parameter space we will use the signal region that gives
+the best expected limit.
+
+\subsubsection{Limits for the $\widetilde{g} \to t\widetilde{t}$ Model}
+\label{sec:firststoplimits}
+Nothing yet.
+
+\subsubsection{What is missing for the $\widetilde{g} \to t\widetilde{t}$ Model}
+\begin{itemize}
+\item Everything in Sections\ref{sec:firststopdefinition} and \ref{sec:firststoplimits}
+\item Perhaps more details to the MC signal generation
+\item Need a reference for the {\tt T1ttt} model
+\end{itemize}
+
+\subsection{{\tt T1tttt} Model}
+\label{t1ttmodel}
+
+\subsubsection{Theoretical discussion of the {\tt T1tttt} Model}
+\label{sec:t1tttheory}
+The {\tt T1tttt} {\bf (need a reference)} simplified model is very similar to the model of 
+Section~\ref{sec:firststopmodel}.  In this model it is assumed that all squarks 
+are very heavy, but the stop is somewhat lighter than the other 
+quarks\cite{stopVirtual}\cite{stopVirtualPRD}.
+Then the gluino would decay as $\widetilde{g} \to t\bar{t}\chi_1^0$ through virtual stops.
+Other gluino decay modes would be suppressed because the stop is the lightest squark.
+The final state after gluino pair production is $tt\bar{t}\bar{t}\chi_1^0\chi_1^0$.
+The model parameters are $M(\widetilde{g})$ and $M(\chi_1^0)$.
+
+
+
+\subsubsection{Signal region definition for the {\tt T1tttt} Model}
+\label{sec:t1ttttdefinition}
+For each point in parameter space we will use the signal region that gives
+the best expected limit.
+
+\subsubsection{Limits for the {\tt T1tttt} Model}
+\label{sec:t1ttttlimits}
+Nothing yet.
+
+\subsubsection{What is missing for the {\tt T1tttt} Model}
+\begin{itemize}
+\item Everything in Sections\ref{sec:t1ttttdefinition} and \ref{sec:t1ttttlimits}
+\item Need a reference for the {\tt T1ttt} model
+\end{itemize}
+
+
+
