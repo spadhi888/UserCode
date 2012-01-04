@@ -45,7 +45,7 @@ varies among the signal final states considered
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.48\linewidth, height=0.36\linewidth]{figs/lm9.pdf}
+%%\includegraphics[width=0.48\linewidth, height=0.36\linewidth]{figs/lm9.pdf}
 \includegraphics[width=0.6\linewidth, height=0.36\linewidth]{figs/bjetleading.pdf}
 \caption{ Differential distributions of leading b-tag jet $p_T$ for the 
 LM9 benchmark point and \ttbar\ simulations.
@@ -83,7 +83,7 @@ We evaluate an event-by-event btagging scale factor ($SF_{\rm event}$) as follow
 \item for each MC event passing the event selection we start
 from the scale factors $SF_i$ associated with the two or more
 tagged jets.  Note that $SF_i$ can in principle be a function 
-of jet $\eta$, $P_T$, etc.  Following the btag group recommendations,
+of jet $\eta$, $\pt$, etc.  Following the btag group recommendations,
 for now it is taken as a constant: $SF=0.96$.
 
 \item For events with two btagged jets: $SF_{\rm event}=SF^2$.
@@ -107,10 +107,10 @@ can be ignored.
 In order to calculate the uncertainty ($\delta SF$) on the event-by-event $SF_{\rm total}$,
 we also need the single jet btagging efficiency ($\epsilon$).  
 We do not need a very precise value for $\epsilon$, since the uncertainty $\delta SF$ is 
-only weakly dependent on it.  We take $\epsilon = 0.643$, independent of $P_T$
+only weakly dependent on it.  We take $\epsilon = 0.643$, independent of $\pt$
 and $\eta$ for jets of $|\eta| < 2.5$.  The uncertainty on $\epsilon$ is 
 the same as that on the scale factors, $\delta \epsilon = 4\% (14\%)$ (relative)
-for $P_T < 240$ GeV ($>xs 240$ GeV).
+for $\pt < 240$ GeV ($> 240$ GeV).
 The procedure is the following:
 \begin{itemize}
 
@@ -119,7 +119,7 @@ and we calculate the total probability ($p$) of tagging two or more jets, and
 its uncertainty ($\delta p$).
 
 \item The calculation of $p$ and $\delta p$ is based on the number of status=3 b-quarks
-of $P_T > 40$ GeV and $|\eta| < 2.5$.  
+of $\pt > 40$ GeV and $|\eta| < 2.5$.  
 
 \item An event with two reconstructed btags can have $<$ 2 such status=3 b-quarks.  This 
 is rare and happens for example when a 39 GeV b-quark is reconstructed as a 41 GeV
