@@ -1,69 +1,36 @@
 \section{Results - Exclusive Yields}
 \label{sec:yields_exclusive}
 
+The tighter \Ht\ and \met\ search regions used for the SUSY production scenarios
+and defined in Section~\ref{sec:regions} can be defined exclusively and cover the same
+phase space without an overlap between regions:
+\begin{enumerate}
+     \item Exclusive low-\Ht\ low-\met\ region: $200< \Ht < 320~\GeV, 50 < \met < 120~\GeV$.
+     \item Exclusive low-\Ht\ high-\met\ region: $200 < \Ht < 320~\GeV, \met>120~\GeV$.
+     \item Exclusive high-\Ht\ low-\met\ region: $\Ht>320~\GeV, 50 < \met < 120~\GeV$.
+     \item Exclusive high-\Ht\ high-\met\ region: $\Ht>320~\GeV, \met>120~\GeV$.
+\end{enumerate}
+The exclusive high-\Ht\ high-\met\ region is the same as its inclusive version.
 
-In the following we report yields of events observed in data and compare them to the predictions
-from the data-driven methods as well as from simulation.
-These results are reported for {\em high-\pt} and {\em low-\pt} dilepton selections
-with \Ht\ and \met\ selected as defined in the baseline selection described in Section~\ref{sec:eventSel},
-as well as for the signal regions defined in Section~\ref{sec:sigregion}.
-As anticipated, the MC predicts that $t\bar{t}$ is the largest background in all cases.
-The data yield is in good agreement with the prediction from both MC as well as the data driven prediction.
-The procedure for arriving at these data driven predictions is detailed in Section~\ref{sec:datadriven}.
-These data-driven predictions supersede all the MC estimates of the contributions
-from events with fake leptons or with leptons with misreconstructed charge.
-The remaining MC contribution in the final estimates of background events are those with real leptons:
-$WZ\to lll\nu$, $ZZ\to llll$; same-sign W from single-parton (sp$WW$), double-parton (dp$WW$), and $t\bar{t}W$ production.
-%%We ignore contributions from the rare SM processes with genuine same-sign lepton pairs,
-%%such as the same-sign W production and \ttbar+W.
-%%Cross sections for these rare processes are given in Table~\ref{tab:MCDsets}.
-Note that we have also included a  contribution from W/Z+$\gamma$ background events
-where the asymmetric conversion of the photon can give rise to an electron of the same sign as a lepton from W or Z.
-This background is not predicted by the fake lepton prediction method.
-%%Based on the estimates of the 2010 data analysis, we expect less than 0.3 events passing the nominal selections
-%%in 1~\fbin\ data sample, which is substantially smaller than other backgrounds.
-Results of background estimates in simulation and data are compared with the number of observed events in data 
-in the tables below.
-The SUSY LM2 point yield based on the LO cross section is provided as a reference.
-The NLO/LO k-factor for LM2 is 1.33~\cite{ref:susyMCtwiki}.
-
-
-%%\begin{table}[htb]
-%%\begin{center}
-%%\caption{\label{tab:truesamesign} Sources of true same sign dileptons that we consider negligible.
-%%These cross sections do not include branching fractions into dilepton final states.}
-%%\begin{tabular}{|c|c|}
-%%\hline
-%%process & cross section \\
-%%\hline
-%%qq$W^+W^+$ & 0.2 pb \\
-%%qq$W^-W^-$ & 0.06 pb \\
-%%double parton $W^\pm W^\pm$ & 0.2 pb \\
-%%$t\bar{t} W$ & 0.6pb \\ %0.017pb \\
-%%WWW & 0.01pb \\
-%%\hline
-%%\end{tabular}
-%%\end{center}
-%%\end{table}
-
-
-
-%\newcommand{\ttdilS}{\ensuremath{\ttbar\to\ell\ell X}}
-%\newcommand{\ttslbS}{\ensuremath{\ttbar\to\ell(b\to\ell) X}}
-%\newcommand{\ttsloS}{\ensuremath{\ttbar\to\ell(b\!\!\!/\to\ell) X}}
-%\newcommand{\SFnn}{\ensuremath{N^{\rm Wj,raw}_{nn}}}
+In the following we report exclusive breakdown of the expected and observed events
+in the \Ht-\met\ SUSY search regions.
+These are reported in Tables~\ref{tab:yield_excl_ht200met120} to~\ref{tab:yield_excl_ht320met50}.
+The formatting of these tables is the same as in Section~\ref{sec:yields}.
+Results for the exclusive high-\Ht\ high-\met\ region are not repeated and can be found in Table~\ref{tab:yield_ht320met120}.
 
 
 \begin{table}[hbt]
 \begin{center}
 \include{yields_exclusive/btag_ht200met120}
 \end{center}
-\caption{\label{tab:yieldlom0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
-passing the {\em low-$m_0$} signal selections (320 $< H_T <$ 440 GeV, 50 $< \met <$ 120 GeV)
+\caption{\label{tab:yield_excl_ht200met120}Observed event yields in the exclusive low-\Ht\ high-\met\ region
+($200< \Ht < $ 320 GeV, \met $>$ 120 GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
-The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
-pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production), 
-as well as electrons from converted photons in $V\gamma$ production.
+The upper part of the table is based on simulation only and is used only as a reference.
+The lower part is the main result of the analysis.
+The SF (DF) contributions are for events with one (two) fake leptons.
+The {\em MC Pred} contribution includes contributions from genuine  same-sign lepton
+pairs (a sum of the rows from $V\gamma$ down to $ZZZ$).
 Entries with zero contributing events are reported with an uncertainty corresponding to one event.
 This uncertainty is not added to the total MC contribution.
 Systematic uncertainties (the second uncertainty if present)
@@ -78,12 +45,14 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields_exclusive/btag_ht200met50}
 \end{center}
-\caption{\label{tab:yieldhim0_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
-passing the {\em high-$m_0$} signal selections ($H_T > 440$ GeV, $\met >$ 50 GeV)
+\caption{\label{tab:yield_excl_ht200met50}Observed event yields in the exclusive low-\Ht\ low-\met\ region
+($200< \Ht < 320$ GeV, $50 < \met < 120$ GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
-The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
-pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production), 
-as well as electrons from converted photons in $V\gamma$ production.
+The upper part of the table is based on simulation only and is used only as a reference.
+The lower part is the main result of the analysis.
+The SF (DF) contributions are for events with one (two) fake leptons.
+The {\em MC Pred} contribution includes contributions from genuine  same-sign lepton
+pairs (a sum of the rows from $V\gamma$ down to $ZZZ$).
 Entries with zero contributing events are reported with an uncertainty corresponding to one event.
 This uncertainty is not added to the total MC contribution.
 Systematic uncertainties (the second uncertainty if present)
@@ -98,12 +67,14 @@ Systematic uncertainties are 100\% correlated among the channels.
 \begin{center}
 \include{yields_exclusive/btag_ht320met50}
 \end{center}
-\caption{\label{tab:yieldsimple_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
-passing the {\em simplified model} signal selections (200 $< H_T < 320$ GeV, \met $>$ 120 GeV)
+\caption{\label{tab:yield_excl_ht320met50}Observed event yields in the exclusive high-\Ht\ low-\met\ region
+($\Ht > 320$ GeV, $50 < \met < 120 $ GeV)
 compared to expectations from simulation alone, and from the data-driven methods.
-The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
-pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production), 
-as well as electrons from converted photons in $V\gamma$ production.
+The upper part of the table is based on simulation only and is used only as a reference.
+The lower part is the main result of the analysis.
+The SF (DF) contributions are for events with one (two) fake leptons.
+The {\em MC Pred} contribution includes contributions from genuine  same-sign lepton
+pairs (a sum of the rows from $V\gamma$ down to $ZZZ$).
 Entries with zero contributing events are reported with an uncertainty corresponding to one event.
 This uncertainty is not added to the total MC contribution.
 Systematic uncertainties (the second uncertainty if present)
@@ -113,23 +84,3 @@ Systematic uncertainties are 100\% correlated among the channels.
 }
 \end{table}
 
-\clearpage
-
-\begin{table}[hbt]
-\begin{center}
-\include{yields_exclusive/btag_ht320met120}
-\end{center}
-\caption{\label{tab:yieldsnu_hpt}Observed event yields in high-\pt\ (pT $>$ 20/10) dileptons
-passing the {\em pMSSW/sneutrino} signal selections ($H_T >$ 320 GeV, \met $>$ 120 GeV)
-compared to expectations from simulation alone, and from the data-driven methods.
-The {\em simulated backgrounds} contribution includes contributions from genuine  same-sign lepton
-pairs (WZ, ZZ, leptons from same-sign W from single-, double-parton, and $t\bar{t}W$ production), 
-as well as electrons from converted photons in $V\gamma$ production.
-Entries with zero contributing events are reported with an uncertainty corresponding to one event.
-This uncertainty is not added to the total MC contribution.
-Systematic uncertainties (the second uncertainty if present)
- are displayed only for the final combined type of background, no systematic
-uncertainty is added for estimates with zero entries.
-Systematic uncertainties are 100\% correlated among the channels.
-}
-\end{table}
