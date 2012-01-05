@@ -1,132 +1,154 @@
 \section{Selection Efficiency}
 \label{sec:seleff}
-%We would like to quote our results as a cross section, or cross section limit, that is as
-%model independent as possible. 
-%What we mean by this is that we carefully define the acceptance, and provide enough
-%details about the selection efficiency within that acceptance that anybody can use their favorite Monte Carlo
-%generator of new physics, define an acceptance at the hard scatter level (status = 3 in Pythia), and correctly estimate
-%the efficiency for this new physics model to within 50\% or so.
+We would like to quote our results as a cross section, or cross section limit, that is as
+model independent as possible. 
+For this we carefully define the acceptance, and provide enough
+details about the selection efficiency within that acceptance that anybody can use their favorite Monte Carlo
+generator of new physics, define an acceptance at the hard scatter level (status = 3 in Pythia), and correctly estimate
+the efficiency for this new physics model to within 50\% or so.
+The same steps are done here as in the pre-tagged sample analysis~\cite{ssnote2011}
+with appropriate modifications considering differences in selections of leptons
+and an addition of the b-tagged jet requirements.
+
+The event selection efficiency is a combination of 
+\begin{itemize}
+\item the lepton identification and isolation efficiency;
+\item the efficiency of the \met\ requirement;
+\item the efficiency of the \Ht\ requirement;
+\item the efficiency of the b-jet tagging requirement.
+\end{itemize}
+We derive efficiency functions for every component using a sample of simulated events
+for LM6 SUSY model point.\footnote{The LM6 cMSSM model point 
+is defined by the model parameters as $m_0 = 85~\GeV$, $m_{1/2} = 400~\GeV$, $\tan\beta = 10$, $\mu>0$,
+and $A_0 = 0~\GeV$.}
+Applicable simulation-to-data corrections (scale factors) are also evaluated based on 
+available comparisons of these effiencies in data and simulation.
+As described below, the description of the lepton selections
+does not require an additional scale factor,
+and the correction for b-tagged jets is small with a scale factor of 0.96.
+
+\subsection{Definition of Acceptance}
+\label{sec:acceptance}
 %
-%In the present section we provide the necessary {\em correction factors} that one needs to estimate the efficiency.
-%There are three effects. 
-%First, our lepton selection efficiencies vary significantly as a function of both $\pt$ and $|\eta |$,
-%especially for electrons. 
-%Second, both \met and $\Ht$ have {\em turn-on} curves due to finite resolution effects.
-%Third, there is a potentialy significant $\pt$ dependent data/Monte Carlo scale factor that we obtain from 
-%Z to dilepton events using  the tag \& probe technique.\footnote{The results of the tag \& probe measurements
-%using current data and simulation suggest the difference is small and no data/MC scale factor is applied.}
-%Even though the scale factors are described last, we include them in the lepton efficiency parameterization presented below
-%in Section~\ref{sec:lepeff}.
-%
-%
-%\subsection{Definition of Acceptance}
-%\label{sec:acceptance}
-%
-%Lepton acceptance is defined for both leptons with $|\eta|<2.4$
-%and with momenta either $\pt>10~\GeV$\ ($5~\GeV$) for electrons (muons) and the {\em low-\pt} dilepton selections,
-%or with one lepton with $\pt > 10$\ GeV and the other with $\pt > 20$\ GeV for the {\em high-\pt} selections
-%described in Section~\ref{sec:eventSel}.
-%$\Ht^{\rm gen}$\ is comprised of the sum $\pt$ of all colored particles at the hard scatter level that have $\pt > 40$ GeV
-%and $|\eta |<2.5$. 
-%$\met^{\rm~gen}$ is defined as the absolute value of the vector sum of the transverse 
-%momentum of all non-interacting particles, e.g. neutrinos and LSP.
-%
-%
-%\subsection{Lepton Efficiencies}
-%\label{sec:lepeff}
-%
-%These curves are to be taken directly from simulation, they are primarily relevant
-%for the outside-CMS theorists to be able to use our results.
-%A similar set of curves has been provided in~\cite{ref:sus10004}.
-%Lepton selection efficiencies, including the MC-to-data scale factors,
-%are illustrated in Fig.~\ref{fig:lepeffLM6}.
-%
-%\begin{figure}[h]
-%\begin{center}
-%\includegraphics[width=0.7\linewidth]{figures/leptonEfficiency_lm6}
-%\caption{\label{fig:lepeffLM6}
-%Lepton selection efficiency as a function of \pt,
-%displayed for electrons and muons.
-%}
-%\end{center}
-%\end{figure}
-%
-%The efficiency dependence can be parameterzied as a function of \pt\ as 
-%
-%\begin{eqnarray}
-%\epsilon = \epsilon_{\rm \infty} {\rm erf}\left ( \frac{\pt - C}{\sigma} \right)
-%	+ \epsilon_C \left( 1.- {\rm erf}\left ( \frac{\pt - C}{\sigma} \right) \right),
-%\label{eq:lepeffFitF}
-%\end{eqnarray}
-%where $\epsilon_{\rm \infty}$ gives the value of efficiency plateau at high momenta,
-%$C$ is equal to 5 (10) for muons (electrons),
-%$\epsilon_C$ gives the value of the efficiency at $\pt=C$,
-%and $\sigma$ describes how fast the transition region is.
-%The results of the fit for electrons and muons are summarized in Table~\ref{tab:lepeffLM6fit}.
-%
-%\begin{table}[h]
-%\begin{center}
-%\caption{\label{tab:lepeffLM6fit} Results of the fit of the dependence in Fig.~\ref{fig:lepeffLM6}
-%to the function specified in Eq.~\ref{eq:lepeffFitF}.}
-%\begin{tabular}{l|cc}\hline\hline
-%Parameter		& Electrons		& Muons			\\ \hline
-%$C$			& 10			& 5			\\
-%$\epsilon_{\infty}$	& $0.721\pm0.006$	& $0.786\pm0.005$	\\
-%$\epsilon_{C}$		& $0.219\pm0.017$	& $0.412\pm0.018$	\\
-%$\sigma$		& $22.5\pm1.4$		& $19.5\pm1.4$		\\
-%\hline\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
+Lepton acceptance is defined for both leptons with $|\eta|<2.4$ and $\pt > 20~\GeV$.
+The generator-level equivalent of the \Ht, $\Ht^{\rm gen}$, is comprised of the sum $\pt$ of all colored particles 
+at the hard scatter level that have $\pt > 40$ GeV and $|\eta |<2.5$. 
+A generator-level \met\ equivalent, $\met^{\rm~gen}$, is defined as the absolute value of the vector sum of the transverse 
+momentum of all non-interacting particles, e.g. neutrinos and LSP.
 %
 %
+\subsection{Lepton Efficiencies}
+\label{sec:lepeff}
 %
-%\subsection{MET and $\Ht$ efficiency turn-on}
-%\label{sec:turnon}
-%Our selections on reconstructed jets begin with a requirement of at least two jets with $\pt>40~\GeV$.
-%Two such jets are present in approximately 95\% of the events in LM1 and LM6 with $\Ht^{\rm gen}>200~\GeV$ prior
-%to any additional requirement on colored partons at the generator level beyond the sum of \pt.
-%This represents the fraction of acceptance to two jets.
-%In the following we proceed with determining $\Ht$ amd \met\ requirement with respect to 
-%events that have generator-level requirements on the leptons and colored particles as described in Section~\ref{sec:acceptance}.
+The electon and muon selection efficiency dependence as a function of the lepton \pt
+is shown in Fig.~\ref{fig:lepeffLM6}.
+It is derived using the LM6 events passing the baseline selections applied to jets and \met.
+Compared to the pre-tagged sample analysis~\cite{ssnote2011}, we obtain a slightly
+lower efficiency, consistent with the tighter requirement on isolation.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.7\linewidth]{figs/leptonEfficiency_lm6}
+\caption{\label{fig:lepeffLM6}
+Lepton selection efficiency as a function of \pt,
+displayed for electrons and muons.
+}
+\end{center}
+\end{figure}
+
 %
-%The efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold is shown in Fig.~\ref{fig:htmetThresh}
-%as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$) in events passing $\Ht^{\rm gen}>200~\GeV$ ($\met^{\rm~gen}>30~\GeV$).
-%Due to rather small fraction of events in LM6 simulation having low \Ht\ activity, the \Ht\ curves are made with LM1.
-%Results of the fits of these curves to $0.5 \epsilon_{\infty} \{{\rm erf}[(x - x_{1/2})/\sigma] + 1\}$ are summarized
-%in Table~\ref{tab:htmetThresh}.
-%Neither the \met\ nor \Ht\ curves show a significant bias in the position of the point with half the plateau efficiency ($x_{1/2}$).
-%The inefficiency at the plateau is essentially negligible.
-%The width of the threshold $\sigma$ increases with the value of the cut.
+The efficiency dependence can be parameterzied as a function of \pt\ as 
 %
-%\begin{figure}[h]
-%\begin{center}
-%\includegraphics[width=0.48\linewidth]{figures/HTturnOnCurve_lm1}
-%\includegraphics[width=0.48\linewidth]{figures/metTurnOnCurve_lm6}
-%\caption{\label{fig:htmetThresh}
-%Efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold 
-%as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$).
-%The curves are shown for \met\ thresholds of 50, and 120~\GeV;
-%the thresholds for \Ht\ are 200, and 450~\GeV.
-%}
-%\end{center}
-%\end{figure}
+\begin{eqnarray}
+\epsilon = \epsilon_{\rm \infty} {\rm erf}\left ( \frac{\pt - C}{\sigma} \right)
+	+ \epsilon_C \left( 1.- {\rm erf}\left ( \frac{\pt - C}{\sigma} \right) \right),
+\label{eq:lepeffFitF}
+\end{eqnarray}
+where $\epsilon_{\rm \infty}$ gives the value of efficiency plateau at high momenta,
+$C$ is equal to 20~\GeV,
+$\epsilon_C$ gives the value of the efficiency at $\pt=C$,
+and $\sigma$ describes how fast the transition region is.
+The results of the fit for electrons and muons are summarized in Table~\ref{tab:lepeffLM6fit}.
+%
+\begin{table}[h]
+\begin{center}
+\caption{\label{tab:lepeffLM6fit} Results of the fit of the dependence in Fig.~\ref{fig:lepeffLM6}
+to the function specified in Eq.~\ref{eq:lepeffFitF}.}
+\begin{tabular}{l|cc}\hline\hline
+Parameter		& Electrons		& Muons			\\ \hline
+$\epsilon_{\infty}$	& $0.718\pm0.008$	& $0.757\pm0.006$	\\
+$\epsilon_{C}$		& $0.498\pm0.021$	& $0.614\pm0.026$	\\
+$\sigma$		& $25.8\pm4.0$		& $12.9\pm2.5$		\\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 %
 %
-%\begin{table}[h]
-%\begin{center}
-%\caption{\label{tab:htmetThresh} Results of the fit of the dependence in Fig.~\ref{fig:htmetThresh}
-%to $0.5 \epsilon_{\infty} \{{\rm erf}[(x - x_{1/2})/\sigma] + 1\}$.}
-%\begin{tabular}{l|cc|cc}\hline\hline
-%Parameter		& \multicolumn{2}{|c}{\Ht}			& \multicolumn{2}{|c}{\met}			\\ 
-%			&	$>200~\GeV$	& $> 450~\GeV$		& $>50~\GeV$		& $>120~\GeV$	\\ \hline
-%$\epsilon_{\infty}$	& $0.997\pm0.001$	& $0.992\pm0.001$	& $0.999\pm0.001$	& $0.999\pm0.001$ \\
-%$x_{1/2}$		& $185.4\pm 4.0$	& $440.6\pm1.8$		& $43.0\pm1.1$		& $123.3\pm 0.5$  \\
-%$\sigma$		& $99.2\pm6.0$		& $120.3\pm3.4$		& $38.9\pm1.6$		& $36.6\pm0.9$	\\
-%\hline\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
+\subsection{\met\ and $\Ht$ efficiency turn-on}
+\label{sec:turnon}
+Our selections on reconstructed jets begin with a requirement of at least two jets with $\pt>40~\GeV$.
+Two such jets are present in approximately 95\% of the events in LM1 and LM6 with $\Ht^{\rm gen}>200~\GeV$ prior
+to any additional requirement on colored partons at the generator level beyond the sum of \pt.
+This represents the fraction of acceptance to two jets.
+In the following we proceed with determining $\Ht$ amd \met\ requirement with respect to 
+events that have generator-level requirements on the leptons and colored particles as described in Section~\ref{sec:acceptance}.
+%
+The efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold is shown in Fig.~\ref{fig:htmetThresh}
+as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$) in events passing $\Ht^{\rm gen}>200~\GeV$ ($\met^{\rm~gen}>30~\GeV$).
+Due to rather small fraction of events in LM6 simulation having low \Ht\ activity, the \Ht\ curves are made with LM1.
+Results of the fits of these curves to $0.5 \epsilon_{\infty} \{{\rm erf}[(x - x_{1/2})/\sigma] + 1\}$ are summarized
+in Table~\ref{tab:htmetThresh}.
+Neither the \met\ nor \Ht\ curves show a significant bias in the position of the point with half the plateau efficiency ($x_{1/2}$).
+The inefficiency at the plateau is essentially negligible.
+The width of the threshold $\sigma$ increases with the value of the cut.
+%
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.48\linewidth]{figs/HTturnOnCurve_lm1}
+\includegraphics[width=0.48\linewidth]{figs/metTurnOnCurve_lm6}
+\caption{\label{fig:htmetThresh}
+Efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold 
+as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$).
+The curves are shown for \met\ thresholds of 30, 50, and 120~\GeV;
+the thresholds for \Ht\ are 200, 320, and 440~\GeV.
+}
+\end{center}
+\end{figure}
+%
+%
+\begin{table}[h]
+\begin{center}
+\caption{\label{tab:htmetThresh} Results of the fit of the dependence in Fig.~\ref{fig:htmetThresh}
+to $0.5 \epsilon_{\infty} \{{\rm erf}[(x - x_{1/2})/\sigma] + 1\}$.}
+\begin{tabular}{l|ccc|ccc}\hline\hline
+Parameter		& \multicolumn{3}{|c}{\Ht}			& \multicolumn{3}{|c}{\met}			\\ 
+			&	$>200~\GeV$	&	$>320~\GeV$	& $> 440~\GeV$		& $>30~\GeV$		& $>50~\GeV$		& $>120~\GeV$	\\ \hline
+$\epsilon_{\infty}$	& $0.990\pm0.002$	& $0.992\pm0.003$	& $0.986\pm0.005$	& $0.999\pm0.001$	& $0.999\pm0.001$	& $0.999\pm0.001$ \\
+$x_{1/2}$,~\GeV		& $187.8\pm 5.5$	& $308.4\pm 3.3$	& $428.8\pm3.2$		& $13.1\pm2.4$		& $43.0\pm1.1$		& $123.3\pm 0.5$  \\
+$\sigma$,~\GeV		& $88.3\pm9.8$		& $102.0\pm6.2$		& $120.3\pm6.1$		& $44.0\pm2.8$		& $38.9\pm1.6$		& $36.6\pm0.9$	\\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\subsection{Jet b-tagging efficiency}
+\label{sec:btagEff}
+The b-jet tagging efficiency is defined for b-quarks passing $|\eta|< 2.5$ and matching to a reconstructed jet.
+A fraction of these b-quark that match to a b-tagged jet is the b-jet tagging efficiency.
+It shown in Fig.~\ref{fig:btagEff} as a function of the b-quark \pt.
+{\bf\Large Need to add a decent parameterization.}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.48\linewidth]{figs/lm6_btagEff}
+\caption{\label{fig:btagEff}
+B-jet tagging efficiency as a function of the matching b-quark \pt.
+}
+\end{center}
+\end{figure}
 
 
 \subsection{Data - Monte Carlo Scale Factor for Leptons}
