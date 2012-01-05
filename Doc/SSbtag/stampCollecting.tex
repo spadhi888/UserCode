@@ -92,7 +92,7 @@ for LHC searches in 1 fb$^{-1}$. \label{fig:berger_limit}}
 \end{center}
 \end{figure}
 
-Monte Carlo events were generated using Madgraph in the same way as 
+Monte Carlo events for this model were generated using Madgraph in the same way as 
 for the 2010 analysis (see Reference~\cite{ttAN}).
 
 
@@ -102,10 +102,10 @@ for the 2010 analysis (see Reference~\cite{ttAN}).
 In this study we search for same-sign dileptons originating from $tt$ 
 or $ttj$ pair production as described above.  At the LHC $uu \to tt$ 
 dominates over $\bar{u}\bar{u} \to \bar{t}\bar{t}$, thus we concentrate
-on same-sign positive leptons.  The \met and $H_T$ cuts are typical 
+on same-sign positive leptons.  The \met~~and $H_T$ cuts are typical 
 of a dilepton top analysis: two or more jets of $P_T>40$ GeV, 
-$\met > 30$ GeV and $H_T > 80$ GeV.  This corresponds to Table XX:
-5 events observed and 4.65 $\pm$ 0.61 $\pm$ 1.0 expected from background.
+$\met > 30$ GeV and $H_T > 80$ GeV.  This corresponds to Table~\ref{tab:yieldBase_pp}:
+5 events observed and 4.42 $\pm$ 0.80 $\pm$ 1.39 expected from background.
 
 \subsubsection{Limits on the $Z'$ model}
 \label{sec:sstopslimits}
@@ -139,15 +139,16 @@ by CDF: $\frac{C_{RR}}{\Lambda^2} < 3.7$ TeV$^{-2}$~\cite{cdflimit}.
 \includegraphics[width=0.45\linewidth]{figs/zprime_exclusion.pdf}
 \includegraphics[width=0.45\linewidth]{figs/sscomb.pdf}
 \caption{Exclusion regions from the 2011 analysis (left) and the 2010 analysis (right).
+The exclusions are obtained using the LO cross-section for $tt$ production.  
+Note that the cross-section is proportional to $f_R^4$.
 \label{fig:sstopexclusion}}
 \end{center}
 \end{figure}
 
 \subsubsection{What is still missing for the $Z'$ model}
 \begin{itemize}
-\item Fix reference to Table XX
-\item The numbers for the limit may not exactly corresponds to what is in Table XX since
-the limits were done before we had finished the full synchronization of the tables.
+\item The limits were calculated using 4.65 $\pm$ 0.61 $\pm$ 1.0 for the 
+BG, which is an old number.
 \item Rescale everything to take into account that the leptonic BR in MG is not quite right
 \item Change Bayesean to CLs
 \item Signal Contamination effects (should be tiny)
@@ -204,7 +205,7 @@ Thus, we use the same signal region definition (see Section \ref{sec:sstopsigdef
 
 \subsubsection{Limits for the MXFV model}
 \label{sec:mxfvlimits}
-Our limits in the $\xi$-Mass($\chi^0$) plane are shown in Figure~\ref{fig:MxVExcl}.
+Our limits in the $\xi$-M($\eta^0$) plane are shown in Figure~\ref{fig:MxVExcl}.
 They are calculated using the LO cross-section for this model.
 
 \begin{figure}[htb]
@@ -218,7 +219,8 @@ They are calculated using the LO cross-section for this model.
 
 \subsubsection{What is still missing for the MXFV model}
 \begin{itemize}
-\item The limit needs to be remade with the final background estimate.
+\item The limits were calculated using 4.65 $\pm$ 0.61 $\pm$ 1.0 for the 
+BG, which is an old number.
 \item Need to include the $tt\bar{u}$ final state
 \item Rescale everything to take into account that the leptonic BR in MG is not quite right
 \item Change Bayesean to CLs
@@ -229,13 +231,13 @@ They are calculated using the LO cross-section for this model.
 
 
 \subsection{$\widetilde{g} \to t\widetilde{t}$ Model}
-\label{firststopmodel}
+\label{sec:firststopmodel}
 
 \subsubsection{Theoretical discussion of the $\widetilde{g} \to t\widetilde{t}$ Model}
 \label{sec:firststopmodeltheory}
 
 This is an interesting model for stop pair production through gluino 
-decays\cite{susybtags}\cite{susybtags2}\cite{wacker}\cite{naturalness4}.
+decays\cite{susyssbtags}\cite{susyssbtags2}\cite{wacker}\cite{naturalness4}.
 It is a ``realistic'' and well-motivated 
 model in the sense that it applies to the situation 
 where all the squarks except the stop are very heavy.  A ``light'' stop is of course
@@ -261,12 +263,13 @@ the best expected limit.
 
 \subsubsection{Limits for the $\widetilde{g} \to t\widetilde{t}$ Model}
 \label{sec:firststoplimits}
-Nothing yet.
+Nothing yet.  The money plot will be an exclusion in the 2D plot of 
+stop mass vs gluino mass for a few LSP masses.
 
 \subsubsection{What is missing for the $\widetilde{g} \to t\widetilde{t}$ Model}
 \begin{itemize}
-\item Everything in Sections\ref{sec:firststopdefinition} and \ref{sec:firststoplimits}
-\item Perhaps more details to the MC signal generation
+\item Everything in Sections~\ref{sec:firststopdefinition} and \ref{sec:firststoplimits}
+\item Perhaps more details on the MC signal generation
 \item Need a reference for the {\tt T1ttt} model
 \end{itemize}
 
@@ -281,7 +284,8 @@ are very heavy, but the stop is somewhat lighter than the other
 quarks\cite{stopVirtual}\cite{stopVirtualPRD}.
 Then the gluino would decay as $\widetilde{g} \to t\bar{t}\chi_1^0$ through virtual stops.
 Other gluino decay modes would be suppressed because the stop is the lightest squark.
-The final state after gluino pair production is $tt\bar{t}\bar{t}\chi_1^0\chi_1^0$.
+The final state after gluino pair production is $tt\bar{t}\bar{t}\chi_1^0\chi_1^0$,
+just as in Section~\ref{sec:firststopmodel}.
 The model parameters are $M(\widetilde{g})$ and $M(\chi_1^0)$.
 
 
@@ -293,13 +297,69 @@ the best expected limit.
 
 \subsubsection{Limits for the {\tt T1tttt} Model}
 \label{sec:t1ttttlimits}
-Nothing yet.
+Nothing yet.   The money plot will be an exclusion region in the
+2D plot of LSP mass vs gluino mass.
 
 \subsubsection{What is missing for the {\tt T1tttt} Model}
 \begin{itemize}
-\item Everything in Sections\ref{sec:t1ttttdefinition} and \ref{sec:t1ttttlimits}
+\item Everything in Sections~\ref{sec:t1ttttdefinition} and \ref{sec:t1ttttlimits}
 \item Need a reference for the {\tt T1ttt} model
 \end{itemize}
 
 
+\subsection{Sbottom pair production Model}
+\label{sec:sbottompair}
+In this model we have $pp \to \tilde{b}\tilde{b}$.  The sbottom decays 
+as $\tilde{b} \to t\chi^{-}$ followed by $\chi^{-} \to W^- \chi_1^0$. 
+The final state is $t\bar{t}W^+W^- \chi_1^0 \chi_1^0$. 
+The model parameters are $M(\widetilde{b})$, $M(\chi_1^0)$, and $M(\chi^{\pm})$.
+For simplicity we only consider mass parameters such that the $\chi^{-}$ is on shell.
+
+\subsubsection{Signal region definition for the sbottom pair production model}
+\label{sec:sbottompairdefinition}
+For each point in parameter space we will use the signal region that gives
+the best expected limit.
+
+\subsubsection{Limits for the sbottom pair production model}
+\label{sec:sbottompairlimits}
+Nothing yet.  The money plot will be exclusion lines in the
+2D plot of sbottom mass vs. LSP mass for a few choices of the $\chi^{\pm}$ mass.
+
+\subsubsection{What is missing for the sbottom pair production model}
+\begin{itemize}
+\item Everything in Sections~\ref{sec:sbottompairdefinition} and \ref{sec:sbottompairlimits}
+\item It would be nice to have a reference.  I am not sure that the referenes that
+we have on our twiki are appropriate. 
+\item Perhaps more details on the MC signal generation
+\end{itemize}
+
+
+\subsection{$\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
+\label{sec:gbb}
+This model is gluino pair production followed by 
+$\widetilde{g} \to \widetilde{b}\bar{b}$, $\widetilde{b} \to t \chi^{-}$ and
+$\chi^{-} \to W^- \chi_1^0$. 
+The final state is $t\bar{t}b\bar{b}W^+W^- \chi_1^0 \chi_1^0$. 
+The model parameters are $M(\widetilde{g})$
+$M(\widetilde{b})$, $M(\chi_1^0)$, and $M(\chi^{\pm})$.
+For simplicity we only consider mass parameters such that the $\chi^{-}$ is on shell.
+
+\subsubsection{Signal region definition for the $\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
+\label{sec:gbbdefinition}
+For each point in parameter space we will use the signal region that gives
+the best expected limit.
+
+\subsubsection{Limits for the $\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
+\label{sec:gbblimits}
+Nothing yet.  The money plot will be exclusion lines in the
+2D plot of gluino mass vs. sbottom mass for a few choices of 
+the $\chi^{\pm}$ and $\chi_1^0$ masses.
+
+\subsubsection{What is missing for the $\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
+\begin{itemize}
+\item Everything in Sections~\ref{sec:gbbdefinition} and \ref{sec:gbblimits}
+\item It would be nice to have a reference.  I am not sure that the referenes that
+we have on our twiki are appropriate. 
+\item Perhaps more details on the MC signal generation
+\end{itemize}
 
