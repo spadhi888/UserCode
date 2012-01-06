@@ -2,6 +2,8 @@
 \label{sec:systematic}
 Systematic uncertainties on signal event selections arise from uncertainties on event selections expected in simulation 
 compared to the actual performance of  the detector. 
+The uncertainties associated with the data - Monte Carlo scale factors 
+are discussed in Section~\ref{sec:SF}
 As this search is in many ways similar to the inclusive same-sign dilepton search~\cite{ssnote2011}, 
 our treatment of efficiency systematics parallels the one in that analysis.
 In this section, we briefly summarize those results, and
@@ -10,7 +12,7 @@ describe the uncertanities due to the b-tagging requirement.
 The only new source of systematics in this analysis is from the uncertainty on the
 b-jet tagging efficiency.
 As already mentioned in Section~\ref{sec:bjetSF}, this uncertainty
-is 4 (15)\% for jets with $\pt<240 (>240)~\GeV$.
+is 4 (14.4)\% for jets with $\pt<240 (>240)~\GeV$.
 As an illustration of the b-jet momentum distribution,
 we compare them in Fig.~\ref{fig:lm9ttbar} for  \ttbar\ events (before the same-sign requirement)
 and for the LM9 cMSSM SUSY benchmark point.\footnote{
@@ -27,13 +29,13 @@ varies among the signal final states considered
 \item same-sign top pair production, as from $Z^\prime$ exchange,
 	is similar in topology to that of the opposite-sign \ttbar\ production
 	and has only two b-jets in the final state with most of them with $\pt<240~\GeV$.
-	The b-tagging efficiency is then approximately 10\%
-	and the corresponding per-event scale factor is $0.922 \pm 0.092$.
+	The b-tagging uncertainty is then approximately 8\%
+	and the corresponding per-event scale factor is $0.922 \pm 0.073$.
 \item direct sbottom pair production has two b-jets in the final state
 	with a large fraction of b-jets with $\pt>240~\GeV$.
 	The b-tagging efficiency scale factor is still 0.922, but its uncertainty
-	varies among the signal model points from as low as 10\%
-	to as high as 30\%.
+	varies among the signal model points from as low as 8\%
+	to as high as 29\%.
 	This uncertainty is evaluated event-by-event and then point-by-point in the limit setting procedure.
 \item gluino pair production with stops in the final states considered
 	here all have four b-jets in the final state.
@@ -85,8 +87,9 @@ We evaluate an event-by-event btagging scale factor ($SF_{\rm event}$) as follow
 \item for each MC event passing the event selection we start
 from the scale factors $SF_i$ associated with the two or more
 tagged jets.  Note that $SF_i$ can in principle be a function 
-of jet $\eta$, $\pt$, etc.  Following the btag group recommendations,
-for now it is taken as a constant: $SF=0.96$.
+of jet $\eta$, $\pt$, etc.  Following the btag group 
+recommendations
+it is taken as a constant: $SF=0.96$\cite{BTVPAS2011,btvSyst}.
 
 \item For events with two btagged jets: $SF_{\rm event}=SF^2$.
 
@@ -111,7 +114,7 @@ we also need the single jet btagging efficiency ($\epsilon$).
 We do not need a very precise value for $\epsilon$, since the uncertainty $\delta SF$ is 
 only weakly dependent on it.  We take $\epsilon = 0.643$, independent of $\pt$
 and $\eta$ for jets of $|\eta| < 2.5$.  The uncertainty on $\epsilon$ is 
-the same as that on the scale factors, $\delta \epsilon = 4\% (14\%)$ (relative)
+the same as that on the scale factors, $\delta \epsilon = 4\% (14.4\%)$ (relative)
 for $\pt < 240$ GeV ($> 240$ GeV).
 The procedure is the following:
 \begin{itemize}

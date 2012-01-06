@@ -14,14 +14,36 @@ used for comparisons with data and setting constraints on various models.
 These include the predictions for the fake-lepton and charge misidentification
 bacgrounds derived as descibed in Section~\ref{sec:datadriven}.
 
+To reiterate and make it absolutely clear.  The total background
+prediction in a given signal region
+is the sum of three distinct components:
+\begin{enumerate}
+
+\item The data-driven charge misid prediction (row ``Charge Flips'' in
+Tables~\ref{tab:yield_baseline} to~\ref{tab:yield_ht320met120}).
+
+\item The data-driven sum of single fakes (SF) and double fakes
+(DF) predictions (row ``SF$+$DF''
+in Tables~\ref{tab:yield_baseline} to~\ref{tab:yield_ht320met120}).
+
+\item The total MC prediction for processes that naturally give isolated
+same sign dileptons, see Section~\ref{sec:bkgds} (row ``MC Pred'' in
+Tables~\ref{tab:yield_baseline} to~\ref{tab:yield_ht320met120};
+this is the sum of the rows starting from ``$V\gamma$'' down to 
+and including the tribosons -- although in practice only $ttW$ and 
+$ttZ$ matter).
+
+\end{enumerate}
+
 Details on the systematics of the background predictions are given in the corresponding sections.
 The final estimates on these uncertainties are rather simple:
-\begin{itemize}
-  \item the simulated backgrounds (from $V\gamma$ down to and including the tribosons) have a total
-    uncertainty of 50\%;
-  \item the predicted number of fakes has a 50\% systematics in all modes;
-  \item the charge flip contribution has a 20\% systematics.
-\end{itemize}
+\begin{enumerate}
+\item The charge flip contribution has a 20\% systematics.
+  \item The predicted number of fakes has a 50\% systematics in all modes.
+  \item The MC prediction for ``real'' same sign isolated dileptons
+    has an uncertainty of 50\%.
+  
+\end{enumerate}
 
 \newcommand{\ttdilS}{\ensuremath{\ttbar\to\ell\ell X}}
 \newcommand{\ttslbS}{\ensuremath{\ttbar\to\ell(b\to\ell) X}}
