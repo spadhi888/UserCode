@@ -140,13 +140,24 @@ $\sigma$,~\GeV		& $88.3\pm9.8$		& $102.0\pm6.2$		& $120.3\pm6.1$		& $44.0\pm2.8$
 The b-jet tagging efficiency is defined for b-quarks passing $|\eta|< 2.5$ and matching to a reconstructed jet.
 A fraction of these b-quark that match to a b-tagged jet is the b-jet tagging efficiency.
 It shown in Fig.~\ref{fig:btagEff} as a function of the b-quark \pt.
-{\bf\Large Need to add a decent parameterization.}
+For b-quarks of $|\eta| < 2.5$, the b-jet tagging efficiency as a function of \pt
+can be parametrized as 
+\begin{itemize}
+\item \pt $<$ 90 GeV:~~~~~~~~~~~~~~~~$\epsilon = SF \cdot [p0 \cdot (p_t-90~{\rm GeV}) + p1]$
+\item 90 GeV $<$ \pt $<$ 170 GeV:~~~~$\epsilon = SF \cdot p1$
+\item \pt $>$ 170 GeV:~~~~~~~~~~~~~~$\epsilon = SF \cdot [p2 \cdot (p_t-170~{\rm GeV}) + p1]$
+\end{itemize}
+
+\noindent where the parameters $p0$, $p1$, and $p2$ are given in Figure~\ref{fig:btagEff}
+and $SF$ is the data-Monte Carlo scale factor: $SF$ = 0.96 with a 
+4 (15)\% uncertainty for jets with $\pt<240 (>240)~\GeV$ (see 
+Section~\ref{sec:bjetSF}). {\bf Make sure that the parametrization is correct.}
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=0.48\linewidth]{figs/lm6_btagEff}
+\includegraphics[width=0.48\linewidth]{figs/lm6_btagEffWithCurve.png}
 \caption{\label{fig:btagEff}
-B-jet tagging efficiency as a function of the matching b-quark \pt.
+B-jet tagging efficiency as a function of the matching b-quark \pt in LM6 SUSY MC.
 }
 \end{center}
 \end{figure}
