@@ -138,7 +138,7 @@ by CDF: $\frac{C_{RR}}{\Lambda^2} < 3.7$ TeV$^{-2}$~\cite{cdflimit}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.45\linewidth]{figs/zprime_exclusion.pdf}
+\includegraphics[width=0.45\linewidth]{figs/zprimecombined.pdf}
 \includegraphics[width=0.45\linewidth]{figs/sscomb.pdf}
 \caption{Exclusion regions from the 2011 analysis (left) and the 2010 analysis (right).
 The exclusions are obtained using the LO cross-section for $tt$ production.  
@@ -149,10 +149,8 @@ Note that the cross-section is proportional to $f_R^4$.
 
 \subsubsection{What is still missing for the $Z'$ model}
 \begin{itemize}
-\item Rescale everything to take into account that the leptonic BR in MG is not quite right
-\item Signal Contamination effects (should be tiny)
 \item Double check calculation of $\frac{C_{RR}}{\Lambda^2}$
-\item Prettify the exclusion plot.
+\item Double check acceptance numbers
 \end{itemize}
 
 
@@ -190,7 +188,7 @@ process is the most important.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/mxvxsec.pdf}
+\includegraphics[width=0.55\linewidth]{figs/mxvxsec.pdf}
 \caption{Cross section at LO for the $tt$ final state in the three MXFV modes
 as a function of $\eta^0$ mass for $\xi = 1$.
 \label{fig:mxvxsec}}
@@ -256,23 +254,52 @@ particularly good way to go after it.
 
 \subsubsection{Signal region definition for the $\widetilde{g} \to t\widetilde{t}$ Model}
 \label{sec:firststopdefinition}
-For each point in parameter space we will use the signal region that gives
-the best expected limit. Using $\met > 50$ GeV and $H_T > 200$ GeV, which corresponds 
-to Table~\ref{tab:yield_ht200met50}: 5 events observed and 3.723 $\pm$ 0.787 $\pm$ 1.23 expected from backgrounds,
-we set a limit at 95\% CL of 7.65 events with the  CL$_{\rm S}$ method. The expected limit is 6.13. 
-
-\subsubsection{Limits for the $\widetilde{g} \to t\widetilde{t}$ Model}
-\label{sec:firststoplimits}
-%Nothing yet.  The money plot will be an exclusion in the 2D plot of 
-%stop mass vs gluino mass for a few LSP masses.
-
-Fig.~\ref{fig:mglinoStop} shows $Acc \times Eff \times BR$ in $\tilde{g}$ Vs $\tilde{t_{1}}$ mass plane for LSP mass of 50 GeV.
-The limit using NLO+NLL provides the most stringent limit to date on the mass of $\tilde{t_{1}}$ as a function of $\tilde{g}$ mass (VERY PRELIMINARY).
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/gluino_stopefflimit.pdf}
-\caption{$Acc \times Eff \times BR$ in $\tilde{g}$ Vs $\tilde{t_{1}}$ mass plane for LSP mass of 50 GeV. The exclusion region using NLO+NLL is also shown as the solid line (VERY PRELIMINARY).
+\includegraphics[width=0.65\linewidth]{figs/gluinostopsigreg.pdf}
+\caption{The signal region with the best expected limit as a function of 
+$m(\widetilde{g}$ vs. $m(\widetilde{t})$ plane for $m(\chi^0_1)$=50 GeV.
+The coding is: 1=(200-50), 2=(200-150), 3=(320-50), and 4=(320-120), where
+the first (second) number is the $H_T$ (\met) threshold in GeV.
+\label{fig:gluinostoptimize}}
+\end{center}
+\end{figure}
+
+
+For each point in parameter space we use the signal region that gives
+the best expected limit.  Limits are calculated using all experimental
+uncertainties; the JES and btag uncertainties are calculated point-by-point.
+An example of this optimization is shown in Figure~\ref{fig:gluinostoptimize},
+where we show the choice of signal region that gives the best expected limit
+in the $m(\widetilde{g}$ vs. $m(\widetilde{t})$ plane for the choice
+$m(\chi^0_1)$=50 GeV.
+
+
+
+%Using $\met > 50$ GeV and $H_T > 200$ GeV, which corresponds 
+%to Table~\ref{tab:yield_ht200met50}: 5 events observed and 3.723 $\pm$ 0.787 $\pm$ 1.23 expected from backgrounds,
+%we set a limit at 95\% CL of 7.65 events with the  CL$_{\rm S}$ method. The expected limit is 6.13. 
+
+\subsubsection{Limits for the $\widetilde{g} \to t\widetilde{t}$ Model}
+\label{sec:firststoplimits}
+
+
+
+The limits on the production cross-section in this model in the 
+gluino mass vs. stop mass plane for two choices of the 
+LSP mass are shown in Figure~\ref{fig:mglinoStop}
+Using the 
+NLO$+$NLL cross-section for gluino pair production, we als place a limit
+on the mass parameters of this model.
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.47\linewidth]{figs/gluinostop50.pdf}
+\includegraphics[width=0.47\linewidth]{figs/gluinostop150.pdf}
+\caption{Cross section limits in the $m(\widetilde{g})$ vs. $m(\widetilde{t})$ plane
+for $m(\chi_1^0)$ = 50 GeV (left) and 150 GeV (right).
 \label{fig:mglinoStop}}
 \end{center}
 \end{figure}
@@ -280,9 +307,9 @@ The limit using NLO+NLL provides the most stringent limit to date on the mass of
 
 \subsubsection{What is missing for the $\widetilde{g} \to t\widetilde{t}$ Model}
 \begin{itemize}
-\item Everything in Sections~\ref{sec:firststopdefinition} and \ref{sec:firststoplimits}
-\item Perhaps more details on the MC signal generation
+\item Perhaps more details on the MC signal generation???
 \item Need a reference for the {\tt T1tttt} model
+\item Maybe also a plot for LSP mass = 100 GeV? 
 \end{itemize}
 
 \subsection{{\tt T1tttt} Model}
@@ -304,17 +331,31 @@ The model parameters are $M(\widetilde{g})$ and $M(\chi_1^0)$.
 
 \subsubsection{Signal region definition for the {\tt T1tttt} Model}
 \label{sec:t1ttttdefinition}
-For each point in parameter space we will use the signal region that gives
-the best expected limit.
+For each point in parameter space we use the signal region that gives
+the best expected limit.  The limits include all experimental 
+uncertainties.   The JES and btag uncertainties are calculated point-by-point.
+
 
 \subsubsection{Limits for the {\tt T1tttt} Model}
 \label{sec:t1ttttlimits}
-Nothing yet.   The money plot will be an exclusion region in the
-2D plot of LSP mass vs gluino mass.
+The limit on the production cross-section in this model in the 
+gluino mass vs. LSP mass plane shown in Figure~\ref{fig:T1ttttLimit}.  
+Using the 
+NLO$+$NLL cross-section for gluino pair production, we place a limit
+on the mass parameters as shown in Figure~\ref{fig:T1ttttLimit}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.65\linewidth]{figs/T1tttt.pdf}
+\caption{Cross section limits in the $m(\widetilde{g})$ vs. $m(\chi_1^0)$ plane for the
+{\tt T1tttt} model.  
+\label{fig:T1ttttLimit}}
+\end{center}
+\end{figure}
 
 \subsubsection{What is missing for the {\tt T1tttt} Model}
 \begin{itemize}
-\item Everything in Sections~\ref{sec:t1ttttdefinition} and \ref{sec:t1ttttlimits}
+\item Need at least a sentence to say something which signal region contributes.  Or a plot.
 \item Need a reference for the {\tt T1tttt} model
 \end{itemize}
 
