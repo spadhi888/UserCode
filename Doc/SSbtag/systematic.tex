@@ -80,7 +80,10 @@ Total 					& 17\%	 	& 17\%	 		& 17\% 		& 17\% 	\\
 \end{center}
 \end{table}
 
-\subsection{Event-by-Event B-tagging scale factor and associated systematic uncertainty}
+\subsection{Event-by-Event B-tagging scale factor and 
+associated systematic uncertainty for signal regions wih $\geq$ 2 btags}
+\label{sec:SF2btag}
+
 We evaluate an event-by-event btagging scale factor ($SF_{\rm event}$) as follows:
 
 \begin{itemize}
@@ -156,3 +159,36 @@ The uncertainties $\delta p$ are calculated from the equations above assuming fu
 correlation between jets, {\em e.g.}, for $N=2$ we have 
 $\delta p$ = $\delta \epsilon_1 \cdot \epsilon_2 + \delta \epsilon_2 \cdot \epsilon_1$, etc.
 
+
+\subsection{Event-by-Event B-tagging scale factor and 
+associated systematic uncertainty for signal regions with $\geq$ 3 btags}
+\label{sec:SF3btag}
+The treatment of Section~\ref{sec:SF2btag} for $\geq 2$ btags
+is extended here to the case of $\geq 3$ btags.  
+The event-by-event btagging scale factor ($SF_{\rm event}$) is evaluted
+as follows:
+
+\begin{itemize}
+\item For events with 3 btagged jets $SF_{\rm event}=SF^3$.
+
+\item For events with 4 btagged jets 
+$SF_{\rm event}=SF^4 + 4SF^3(1-SF)$.
+
+\end{itemize}
+
+The uncertainty is calculated starting from the probability $p$ 
+of having $\geq$ 3 btagged jets in events with at least $N=3$ $b$-quarks
+at status=3.  This probability is
+
+\begin{itemize}
+
+\item $N = 3$:~~~~$p = \epsilon_1 \epsilon_2 \epsilon_3$.
+
+\item $N = 4$:~~~~$$p = \prod{\epsilon_i}~~~+~~~\sum_j{(1-\epsilon_j)\prod_{i \ne j}{\epsilon_i}}$$
+
+\end{itemize}
+
+\noindent where $\epsilon_i$ is the probability of tagging the $i$-th $b$-quark.
+The uncertainties $\delta p$ are calculated from the equations above assuming full 
+correlation between jets, {\em e.g.}, for $N=3$ we have 
+$\delta p = \sum_{i} \delta \epsilon_i \prod_{i \neq j} \epsilon_j$, etc.
