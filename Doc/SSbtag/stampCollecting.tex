@@ -7,7 +7,7 @@ Here we refine our analysis to define dedicated signal regions for a few of thes
 and provide 95\% C.L. upper limits on their respective model parameter space.
 
 
-\subsection{Same sign top production due a $Z'$}
+\subsection{Same sign top production due to a $Z'$}
 \label{sec:sstops}
 
 This is an extension of the 2010 CMS published CMS analysis\cite{sstop}.
@@ -29,7 +29,7 @@ One of the most natural ways to induce such an asymmetry would be through
 Flavor Changing Neutral Currents (FCNC) in the top quark sector. 
 The forward-backward asymmetry in $u\bar{u} \to t\bar{t}$ would then be generated
 by t-channel exchange of a new massive $Z'$ boson that couples chirally to
-$u$ and $t$ at the same vertex, as shown in Fig.~\ref{fig:ttbar}~\cite{fcnczprime}.
+$u$ and $t$ at the same vertex, as shown in Fig.~\ref{fig:ttbaras}~\cite{fcnczprime}.
 The same type of interaction would also give rise to same-sign top pair production, 
 as illustrated in Fig.~\ref{fig:tchannel} and Fig.~\ref{fig:schannel}. 
 In this case, the initial state involves two $u-$quarks and 
@@ -40,7 +40,7 @@ to the large valence quark parton density of the proton.
 \begin{center}
 \includegraphics[width=0.35\linewidth, height=0.25\linewidth]{figs/ttbar_Z.pdf}
 \caption{ Diagram for $t\bar{t}$ production induced by $Z'$ exchange which
-can generate a forward-backward asymmetry. \label{fig:ttbar}}
+can generate a forward-backward asymmetry. \label{fig:ttbaras}}
 \end{center}
 \end{figure}
 
@@ -122,7 +122,8 @@ and PDF (3\%).
 The cross-section limit is turned into an exclusion limit in the $m(Z')$ vs $f_R$
 plane using the LO calculation of the $pp \to tt$ cross-section in this model.
 This is shown in Figure~\ref{fig:sstopexclusion}, together with the corresponding
-plot from the 2010 analysis.
+plot from the 2010 analysis.  The region of parameter space favored consistent 
+with the Tevatron measurements of $A_{FB}$ is excluded.
 
 
 For $M_{Z'} >> M_{\rm top}$ the Lagrangian of equation 1 is 
@@ -184,7 +185,9 @@ Monte Carlo events were generated using LHE files\cite{simplifiedModel} interfac
 with Madgraph.  Madgraph was used to decay the top quarks in order to preserve 
 spin-correlations.  The cross-sections at LO for same sign $tt$ pairs for the three
 processes in the MXFV model is shown in Figure~\ref{fig:mxvxsec}.  The $t$-channel
-process is the most important.
+process is the dominant for $\xi = 1$.  At smaller values of $\xi$, 
+$ug \to \eta^0 \to tt\bar{u}$ becomes more important, since its cross-section 
+varies as $\xi^2$, while in the $t$-channel case it goes as $\xi^4$.
 
 \begin{figure}[htb]
 \begin{center}
@@ -247,7 +250,7 @@ The parameters of the model are $M(\widetilde{g})$, $M(\widetilde{t})$, $M(\chi_
 The final state after gluino pair production is then $tt\bar{t}\bar{t}\chi_1^0\chi_1^0$.
 It is the same final state as the {\tt T1tttt} 
 simplified model\cite{T1tttt}, except that 
-it proceeds through an intermediate stop.  This final state is rich in leptons,
+it proceeds through an intermediate on-shell stop.  This final state is rich in leptons,
 and has four b-quarks.  The same sign dilepton $+$ btags $+$ 
 \met~~signature is a 
 particularly good way to go after it.
@@ -295,15 +298,23 @@ gluino mass vs. stop mass plane for two choices of the
 LSP mass are shown in Figure~\ref{fig:mglinoStop}
 Using the 
 NLO$+$NLL cross-section for gluino pair production, we also place a limit
-on the mass parameters of this model.
+on the mass parameters of this model.  We basicaly can exclude 
+$m(\widetilde{g})$ up to about 800 GeV for all kinematically allowed
+values of the stop mass: 
+$m(t)+m(\chi^0_1)~<~m(\widetilde{t})~<~m(\widetilde{g})-m(t)$. 
+
 
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.47\linewidth]{figs/gluinostop50.pdf}
 \includegraphics[width=0.47\linewidth]{figs/gluinostop150.pdf}
+\includegraphics[width=0.47\linewidth]{figs/gluinostop50_zoom.pdf}
+\includegraphics[width=0.47\linewidth]{figs/gluinostop150_zoom.pdf}
 \caption{Cross section limits in the $m(\widetilde{g})$ vs. $m(\widetilde{t})$ plane
-for $m(\chi_1^0)$ = 50 GeV (left) and 150 GeV (right).
+for $m(\chi_1^0)$ = 50 GeV (left) and 150 GeV (right).  
+The bottom plots are versions of the top plots ``zoomed'' into the region
+of interest.
 \label{fig:mglinoStop}}
 \end{center}
 \end{figure}
@@ -315,6 +326,10 @@ for $m(\chi_1^0)$ = 50 GeV (left) and 150 GeV (right).
 %\item Need a reference for the {\tt T1tttt} model
 %\item Maybe also a plot for LSP mass = 100 GeV? 
 %\end{itemize}
+
+
+\clearpage
+
 
 \subsection{{\tt T1tttt} Model}
 \label{t1ttmodel}
@@ -344,9 +359,9 @@ uncertainties.   The JES and btag uncertainties are calculated point-by-point.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/t1ttttsigreg.pdf}
+\includegraphics[width=0.4\linewidth]{figs/t1ttttsigreg.pdf}
 \caption{The signal region with the best expected limit as a function of 
-$m(\widetilde{g}$ vs. $m(\widetilde{t})$ plane for $m(\chi^0_1)$=50 GeV.
+$m(\widetilde{g})$ vs. $m(\widetilde{t})$ plane for $m(\chi^0_1)$=50 GeV.
 The coding is: 1=(200-50), 2=(200-150), 3=(320-50), and 4=(320-120), where
 the first (second) number is the $H_T$ (\met) threshold in GeV. The number
 of requested btags is 2 or more.
@@ -362,10 +377,13 @@ gluino mass vs. LSP mass plane shown in Figure~\ref{fig:T1ttttLimit}.
 Using the 
 NLO$+$NLL cross-section for gluino pair production, we place a limit
 on the mass parameters as shown in Figure~\ref{fig:T1ttttLimit}.
+Basically we exclude 
+$m(\widetilde{g})$ up to about 800 GeV with a small dependence on 
+$m(\chi_1^0)$.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/T1tttt.pdf}
+\includegraphics[width=0.48\linewidth]{figs/T1tttt.pdf}
 \caption{Cross section limits in the $m(\widetilde{g})$ vs. $m(\chi_1^0)$ plane for the
 {\tt T1tttt} model.  
 \label{fig:T1ttttLimit}}
@@ -378,6 +396,8 @@ on the mass parameters as shown in Figure~\ref{fig:T1ttttLimit}.
 %\item Need a reference for the {\tt T1tttt} model
 %\end{itemize}
 
+
+\clearpage
 
 \subsection{Sbottom pair production model}
 \label{sec:sbottompair}
@@ -398,10 +418,9 @@ uncertainties.   The JES and btag uncertainties are calculated point-by-point.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/sbottom_regions.pdf}
+\includegraphics[width=0.5\linewidth]{figs/sbottom_regions.pdf}
 \caption{The signal region with the best expected limit as a function of 
-$m(\chi^{\pm}))$ vs. $m(\widetilde{b})$ plane for $m(\chi^0_1)$=XX GeV.
-{\bf What is the LSP mass???}
+$m(\chi^{\pm}))$ vs. $m(\widetilde{b})$ plane for $m(\chi^0_1)$=50 GeV.
 The coding is: 1=(80,30),
 2=(200-50), 3=(200-150), 4=(320-50), and 5=(320-120), where
 the first (second) number is the $H_T$ (\met) threshold in GeV. The number
@@ -415,17 +434,23 @@ of requested btags is 2 or more.
 \label{sec:sbottompairlimits}
 The limit on the production cross-section in this model in the 
 sbottom mass vs. $\chi^{\pm}$ mass plane shown in 
-Figure~\ref{fig:sbottomLimit}.  {\bf For what alue of LSP mass?}
+Figure~\ref{fig:sbottomLimit} for 
+$m(\chi^0_1)$=50 GeV. 
 Using the 
 NLO$+$NLL cross-section for gluino pair production, we place a limit
 on the mass parameters as shown in Figure~\ref{fig:sbottomLimit}.
+We exclude $m(\widetilde{b})$ up to about 450 GeV for all
+kinematically allowed values of the chargino mass:
+$m(\chi^{\pm})~<~m(\widetilde{b})-m(t)$.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/sbottom_limit.pdf}
+\includegraphics[width=0.48\linewidth]{figs/sbottom_limit.pdf}
+\includegraphics[width=0.48\linewidth]{figs/sbottom_limit_zoom.pdf}
 \caption{Cross section limits in the $m(\widetilde{b})$ vs. $m(\chi^{\pm})$ 
-plane for the sbottom pair production model. {\bf What is the LSP mass?}
-\label{fig:sbottomLimit}}
+plane for the sbottom pair production model with 
+$m(\chi^0_1)$=50 GeV.  The rigth plot is a ``zoomed'' in version 
+of the left plot.\label{fig:sbottomLimit}}
 \end{center}
 \end{figure}
 
@@ -441,6 +466,7 @@ plane for the sbottom pair production model. {\bf What is the LSP mass?}
 %\item Perhaps more details on the MC signal generation
 %\end{itemize}
 
+\clearpage
 
 \subsection{$\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
 \label{sec:gbb}
@@ -464,7 +490,7 @@ For simplicity we only consider mass parameters such that the $\chi^{-}$ is on s
 \includegraphics[width=0.65\linewidth]{figs/gl_sb_300_50_regions.pdf}
 \caption{The signal region with the best expected limit as a function of 
 $m(\widetilde{g}$ vs. $m(\widetilde{b})$ for $m(\chi^0_1)$=50 GeV
-and $m(\chi^{\pm})$=200 GeV. {\bf Are these parameters right?}
+and $m(\chi^{\pm})$=200 GeV. 
 The coding is: 1=(200-50), 2=(200-150), 3=(320-50), and 4=(320-120), where
 the first (second) number is the $H_T$ (\met) threshold in GeV. The number
 of requested btags is 2 or more.
@@ -482,7 +508,9 @@ An example of this optimization is shown in Figure~\ref{fig:gluinosboptimize},
 where we show the choice of signal region that gives the best expected limit
 in the $m(\widetilde{g})$ vs. $m(\widetilde{b})$ plane for the choice
 $m(\chi^0_1)$=50 GeV and $m(\chi^{\pm})$=200 GeV. 
-{\bf Are these parameters right?}
+Roughly speaking we we exclude gluino masses below about 750 GeV for 
+all sbottom masses kinematically accessible, {\it i.e.}, 
+$m(t)+m(\chi^{\pm})~<~m(\widetilde{b}~<~m(\widetilde{g})$.
 
 
 
@@ -502,10 +530,13 @@ on the mass parameters of this model.
 \begin{center}
 \includegraphics[width=0.47\linewidth]{figs/gl_sb_300_50.pdf}
 \includegraphics[width=0.47\linewidth]{figs/gl_sb_200_50.pdf}
+\includegraphics[width=0.47\linewidth]{figs/gl_sb_300_50_zoom.pdf}
+\includegraphics[width=0.47\linewidth]{figs/gl_sb_200_50_zoom.pdf}
 \caption{Cross section limits in the $m(\widetilde{g})$ vs. 
 $m(\widetilde{b})$ plane
 for $m(\chi_1^0)$ = 50 GeV and 
 $m(\chi^{\pm})$ = 300 GeV (left) and 200 GeV (right). 
+The bottom plots are ``zoomed'' in versions of the top plots.
 \label{fig:mglinoSbottom}}
 \end{center}
 \end{figure}
@@ -519,3 +550,4 @@ $m(\chi^{\pm})$ = 300 GeV (left) and 200 GeV (right).
 %\item Perhaps more details on the MC signal generation
 %\end{itemize}
 
+\clearpage
