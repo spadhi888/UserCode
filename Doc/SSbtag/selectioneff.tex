@@ -1,4 +1,4 @@
-\section{Selection Efficiency}
+\section{Selection Efficiency and Outreach Information}
 \label{sec:seleff}
 We would like to quote our results as a cross section, or cross section limit, that is as
 model independent as possible. 
@@ -12,14 +12,16 @@ with appropriate modifications considering differences in selections of leptons
 and an addition of the b-tagged jet requirements.
 
 The event selection efficiency is a combination of 
-\begin{itemize}
+\begin{enumerate}
+\item the kinematical requirements on leptons and jets
 \item the lepton identification and isolation efficiency;
 \item the efficiency of the \met\ requirement;
 \item the efficiency of the \Ht\ requirement;
 \item the efficiency of the b-jet tagging requirement.
-\end{itemize}
-We derive efficiency functions for every component using a sample of simulated events
-for LM6 SUSY model point.\footnote{The LM6 cMSSM model point 
+\end{enumerate}
+We derive efficiency functions for 
+components 2 to 5 using a sample of simulated events
+for the LM6 SUSY model point.\footnote{The LM6 cMSSM model point 
 is defined by the model parameters as $m_0 = 85~\GeV$, $m_{1/2} = 400~\GeV$, $\tan\beta = 10$, $\mu>0$,
 and $A_0 = 0~\GeV$.}
 Applicable simulation-to-data corrections (scale factors) are also evaluated based on 
@@ -33,7 +35,9 @@ and the correction for b-tagged jets is small with a scale factor of 0.96.
 %
 Lepton acceptance is defined for both leptons with $|\eta|<2.4$ and $\pt > 20~\GeV$.
 The generator-level equivalent of the \Ht, $\Ht^{\rm gen}$, is comprised of the sum $\pt$ of all colored particles 
-at the hard scatter level that have $\pt > 40$ GeV and $|\eta |<2.5$. 
+at the hard scatter level that have $\pt > 40$ GeV and $|\eta |<2.5$.
+The number of such colored particles defines the number of jets at generator
+level. 
 A generator-level \met\ equivalent, $\met^{\rm~gen}$, is defined as the absolute value of the vector sum of the transverse 
 momentum of all non-interacting particles, e.g. neutrinos and LSP.
 %
@@ -87,12 +91,23 @@ $\sigma$		& $25.8\pm4.0$		& $12.9\pm2.5$		\\
 
 %
 %
+\subsection{Trigger Efficiency}
+\label{sec:trg}
+As discussed in Section~\ref{sec:eventsel}, this analysis uses dilepton
+triggers; the lepton $P_T$ thresholds are high enough that we do 
+no need the dilepton$+ H_T$ triggers.  The trigger efficiency is 
+discussed in Reference~\cite{ssnote2011}.  It is $99 \pm 1\%$ 
+($96 \pm 3\%$) per electron (muon).
+
+
 \subsection{\met\ and $\Ht$ efficiency turn-on}
 \label{sec:turnon}
 Our selections on reconstructed jets begin with a requirement of at least two jets with $\pt>40~\GeV$.
-Two such jets are present in approximately 95\% of the events in LM1 and LM6 with $\Ht^{\rm gen}>200~\GeV$ prior
-to any additional requirement on colored partons at the generator level beyond the sum of \pt.
-This represents the fraction of acceptance to two jets.
+%Two such jets are present in approximately 95\% 
+% of the events in LM1 and LM6 with $\Ht^{\rm gen}>200~\GeV$ prior
+%to any additional requirement on colored partons at the generator 
+% level beyond the sum of \pt.
+%This represents the fraction of acceptance to two jets.
 In the following we proceed with determining $\Ht$ and \met\ requirement with respect to 
 events that have generator-level requirements on the leptons and colored particles as described in Section~\ref{sec:acceptance}.
 %
@@ -140,8 +155,8 @@ $\sigma$,~\GeV		& $88.3\pm9.8$		& $102.0\pm6.2$		& $120.3\pm6.1$		& $44.0\pm2.8$
 The b-jet tagging efficiency is defined for b-quarks passing $|\eta|< 2.5$ and matching to a reconstructed jet.
 A fraction of these b-quark that match to a b-tagged jet is the b-jet tagging efficiency.
 It shown in Fig.~\ref{fig:btagEff} as a function of the b-quark \pt.
-For b-quarks of $|\eta| < 2.5$, the b-jet tagging efficiency as a function of \pt
-can be parametrized as 
+For b-quarks of $|\eta| < 2.5$, the b-jet tagging efficiency as a function 
+of \pt~can be parametrized as 
 \begin{itemize}
 \item \pt $<$ 90 GeV:~~~~~~~~~~~~~~~~$\epsilon = SF \cdot [p0 \cdot (p_t-90~{\rm GeV}) + p1]$
 \item 90 GeV $<$ \pt $<$ 170 GeV:~~~~$\epsilon = SF \cdot p1$
@@ -163,10 +178,10 @@ B-jet tagging efficiency as a function of the matching b-quark \pt in LM6 SUSY M
 \end{center}
 \end{figure}
 
-\section{Data - Monte Carlo Scale Factors and their Uncertainties}
+\subsection{Data - Monte Carlo Scale Factors and their Uncertainties}
 \label{sec:SF}
 
-\subsection{Data - Monte Carlo Scale Factor for Leptons}
+\subsubsection{Data - Monte Carlo Scale Factor for Leptons}
 \label{sec:tnp}
 
 The efficiencies of the lepton isolation and identification requirements (including all quality requirements) 
@@ -312,10 +327,10 @@ we approximate the scale factor to be 1.0 for both simulated signal and backgrou
 and propagate the uncertainty described above to the relevant part of the analysis
 (signal selections) described in Section~\ref{sec:systematic}.
 
-\subsection{Data - Monte Carlo Scale Factor for b-jets}
+\subsubsection{Data - Monte Carlo Scale Factor for b-jets}
 \label{sec:bjetSF}
 We apply an average scale factor of 0.96 measured using \ttbar\ events
 for the SSVHEM tagger~\cite{BTV11003}.
 The uncertainty on the scale factor is 4 (15)\% for jets with $\pt<240 (>240)~\GeV$,
-as recommended by the b-tagging POG~\cite{btvSyst} and apply
+as recommended by the b-tagging POG~\cite{btvSyst}. We apply
 it to the analysis as described in Section~\ref{sec:systematic}.
