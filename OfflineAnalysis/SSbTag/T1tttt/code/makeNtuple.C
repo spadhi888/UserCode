@@ -17,6 +17,11 @@
 // sort T1tttt_landsOUT_SR6.txt > SR6_sorted.txt
 // sort T1tttt_landsOUT_SR7.txt > SR7_sorted.txt
 //
+// Also reads in the gluino xsection txt file.  
+// Assumes that the gluino mass increases monotonycally
+// from oe line to the next
+//
+//
 //  Usage: 
 //  root> .L makeNtuple()
 //  root> makeNtuple()
@@ -27,10 +32,56 @@
 
 void makeNtuple(){
 
+  //-----------------------------------------------
   // The name of the file with the output ntuple
+  //-----------------------------------------------
   char* ntFile = "ntuple.root";
 
-  // The variables in the file
+
+  //-----------------------------------------------
+  // Raed in the gluino pair production xsection  
+  //-----------------------------------------------
+  float xsec_mass[2000];
+  float xsec[2000];
+  float xsecup[2000];
+  float xsecdwn[2000];
+  int nxsec=0;
+  ifstream fromfile("gluino_xsec.txt");
+  if ( !fromfile.good() ) {
+    cout << "gluino xsec file does not exist" << endl ;
+    return;
+  }
+  cout << "Reading gluino xsection" << endl;
+  int xs=0;
+  while (!fromfile.eof()) {
+    TString d1, d2, d3, d4;
+    fromfile >> d1 >> xsec_mass[xs] >> d2 >> xsec[xs] >> d3 
+	     >> xsecup[xs] >> d4 >> xsecdwn[xs];
+    xs++;
+    nxsec++;
+  }
+  fromfile.close();
+  nxsec = nxsec-1;  //last line is junk
+
+  for (int i=0; i<nxsec; i++) {
+    cout<<xsec_mass[i]<<" "<<xsec[i]<<" "<<xsecup[i]<<" "<< xsecdwn[i]<< endl;
+  }
+
+  //--------------------------------------------------------
+  // Check that the gluino mass in the xsection file increases monotonically
+  //---------------------------------------------------------
+  float previous = xsec_mass[0];
+  for (int i=1; i<nxsec; i++) {
+    if (xsec_mass[i] < previous) {
+      cout << "Mass in xsection file does not increase monotonically..Abort"<<endl;
+      return;
+    }
+    previous = xsec_mass[i];
+  }
+
+  //-----------------------------------------------
+  // Define the variables in the txt files
+  //-----------------------------------------------
   float glmass[7][1000];
   float lspmass[7][1000];
   float eff[7][1000];
@@ -40,7 +91,9 @@ void makeNtuple(){
   bool  usedflag[7][1000];  // a flag to be used later
   int nentries[7];          // number of entries in the file
   
-  // The file names,... ordered by signal region...
+  //-----------------------------------------------
+  // The file names, ordered by signal region...
+  //-----------------------------------------------
   vector<TString> filenames;
   filenames.push_back("SR1_sorted.txt");
   filenames.push_back("SR2_sorted.txt");
@@ -50,7 +103,9 @@ void makeNtuple(){
   filenames.push_back("SR6_sorted.txt");
   filenames.push_back("SR7_sorted.txt");
 
+  //-----------------------------------------------
   // Loop over signal regions and load the arrays from the txt files
+  //-----------------------------------------------
   for (int ireg=0; ireg<7; ireg++) {
     nentries[ireg] = 0;
     ifstream fromfile(filenames.at(ireg));
@@ -116,7 +171,7 @@ void makeNtuple(){
 
   //-----------------------------------------------------
   // Now the content of the files is loaded in arrays
-  // We are goint to stick everything in an ntuple
+  // We are going to stick everything in an ntuple
   //-----------------------------------------------------
   TFile* babyFile_ = TFile::Open(Form("%s", ntFile), "RECREATE");
   babyFile_->cd();
@@ -126,6 +181,9 @@ void makeNtuple(){
   // define the variables
   float glmass_;
   float lspmass_;
+  float xsec_;
+  float xsecup_;
+  float xsecdwn_;
   int   bestsr_ = 0;   // best signal region
 
   float effsr1_ = -1.;
@@ -168,7 +226,10 @@ void makeNtuple(){
   // put the branches in the tree
   babyTree_->Branch("glmass",  &glmass_);
   babyTree_->Branch("lspmass", &lspmass_);
-  babyTree_->Branch("bestsr", &bestsr_);
+  babyTree_->Branch("xsec",    &xsec_);
+  babyTree_->Branch("xsecup",  &xsecup_);
+  babyTree_->Branch("xsecdwn", &xsecdwn_);
+  babyTree_->Branch("bestsr",  &bestsr_);
 
 
   babyTree_->Branch("effsr1", &effsr1_);
@@ -211,9 +272,9 @@ void makeNtuple(){
   // Note: the best region is the one with the smallest
   // ratio of expected limit and efficiency
   cout << "Filling an ntuple with " << numbLines << " entries" << endl;
-  float best = 999999.;
-  int ibest = -1;
   for (int il=0; il<numbLines; il++) {
+    float best = 999999.;
+    int ibest = -1;
     if (nentries[0] != 0) {
       glmass_  = glmass[0][il];
       lspmass_ = lspmass[0][il];
@@ -306,10 +367,35 @@ void makeNtuple(){
       }
     }
     bestsr_ = ibest;
-    effsrb_ = eff[ibest][il];
-    errsrb_ = eff[ibest][il];
-    obslimsrb_ = obslim[ibest][il];
-    explimsrb_ = explim[ibest][il];
+    effsrb_ = eff[ibest-1][il];
+    errsrb_ = eff[ibest-1][il];
+    obslimsrb_ = obslim[ibest-1][il];
+    explimsrb_ = explim[ibest-1][il];
+
+    // Fill the cross-section
+    bool done = false;
+    for (int xs=0; xs<nxsec-1; xs++) {
+      if ( (glmass_ >= xsec_mass[xs] && glmass_ < xsec_mass[xs+1]) ||
+           (glmass_ <  xsec_mass[xs] && xs==0) ) {
+
+	float dd1 = glmass_ - xsec_mass[xs];
+	float dd2 = xsec_mass[xs+1] - xsec_mass[xs];
+	xsec_     = xsec[xs]    + (xsec[xs+1]    - xsec[xs])   *(dd1/dd2);
+        xsecup_   = xsecup[xs]  + (xsecup[xs+1]  - xsecup[xs]) *(dd1/dd2);
+        xsecdwn_  = xsecdwn[xs] + (xsecdwn[xs+1] - xsecdwn[xs])*(dd1/dd2);
+	done = true;
+	break;
+      }
+    }
+    if (!done) {
+      int xs = nxsec - 1; 
+      float dd1 = glmass_ - xsec_mass[xs];
+      float dd2 = xsec_mass[xs] - xsec_mass[xs-1];
+      xsec_     = xsec[xs]    + (xsec[xs]    - xsec[xs-1])   *(dd1/dd2);
+      xsecup_   = xsecup[xs]  + (xsecup[xs]  - xsecup[xs-1]) *(dd1/dd2);
+      xsecdwn_  = xsecdwn[xs] + (xsecdwn[xs] - xsecdwn[xs-1])*(dd1/dd2);
+    }
+
 
     // Now fill the ntuple
     babyTree_->Fill(); 
