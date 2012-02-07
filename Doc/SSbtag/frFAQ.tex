@@ -16,6 +16,8 @@ about?
 
 \item Why do you take 50\% as an uncertainty?
 
+\item What about signal contamination?
+
 \item If you have an over-prediction in the $t\bar{t}$ 
 closure test, why don't you correct for that?
 
@@ -208,6 +210,50 @@ this methodology as far back as 2008, we have developed a sense
 of how much we can trust the method.  It is not perfect:
 50\% is perhaps conservative but we feel is a  
 realistic estimate.  Finally, 50\% is a nice round number.
+
+\subsection{What about signal contamination?}
+\label{sec:sigcont}
+
+The signal can have fake leptons.  These are subtracted
+off by the fake rate procedure. To be consistent, in signal 
+MC we only count leptons that are truth matched to EWK sources, 
+{\em i.e.}, decays of $W$, $Z$, chargino, etc.
+
+The second effect is that in a SUSY event a lepton from EWK
+sources can fail the full lepton ID selection but pass the 
+looser fakeable object (FO) selection.  These events would then 
+increase the count of FO failing the full selection and therefore
+increase the background prediction.  To account for this effect
+in signal MC, we count the number of such events, we weight
+them by their corresonding fake rate factors, and we then 
+subtract them off from the acceptance.
+
+Here is a back of the envelope estimate of the size of the effect.
+The probability for a lepton to fail the isolation cuts is of the 
+order 20\%, see Figure~\ref{fig:lepeffLM6}.  For events with two 
+such leptons, the probability that a signal event contaminates
+the FO sideband is then $\approx$ 40\%.  These events are then 
+weighted by a FR, which is of order 10\%, see 
+Figures~\ref{fig:frmuon} and~\ref{fig:frelectron}.  Therefore
+the size of the effect that we correct for is of order 4\%.
+
+This last effect can in principle be taken into account ``ab-initio''
+in the formulation of the FR method, see for example the discussion
+of the parameter $p$ in Reference~\cite{eth}.  However this
+causes significant mathematical complications.  To minimize
+these complications,  
+in applying this method to the generic SS analysis the authors of
+Reference~\cite{eth} took a constant FR, independent of $P_T$
+and $\eta$.  In addition, there is the question of what exactly
+to take for $p$, which is the probability for a signal
+lepton to pass the loose cuts but fail the tight cuts.  This
+probability is in general a function of the signal itself, {\em
+e.g.}, leptons in signals with more hadronic activity will have 
+higher probabilities of failing the isolation cut.
+To avoid these complications we have decided to leave this 
+$p$ factor out, and then apply a correction at the end.
+
+
 
 \subsection{Why not correct for the over prediction in $t\bar{t}$ MC?}
 \label{sec:frcorrect}

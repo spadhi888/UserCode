@@ -12,7 +12,10 @@ The second method is used to estimate the number of genuine leptons reconstructe
 We predict the background from fake leptons using the technique previously implemented in the 2010 data analysis
 and documented in~\cite{frmethod} and currently used in the pre-tagged sample analysis~\cite{ssnote2011}.
 The idea is to count the number of events for which one lepton passes all final selections and a second lepton
-fails the nominal requirements but passes a looser set of requirements. 
+fails the nominal requirements but passes a looser set of requirements\footnote{Events must also
+pass all requirements on number of jets, \met, number of btagged jets, and $H_T$.
+All jet quantities are calculated after lepton-jet disambiguation, {\it i.e.}, requiring 
+that the counted jets be separated by $\Delta R > 0.4$ from the two leptons.}. 
 We refer to the former lepton as a "numerator" lepton ($n$),
 and the latter a "non-numerator" (denominator and not numerator, or $\bar{n}$).
 The denominator objects are also referred to as fakeable objects (FO).
