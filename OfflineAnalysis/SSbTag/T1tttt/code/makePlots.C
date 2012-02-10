@@ -25,10 +25,13 @@
   // map of best region
   TH2F* ulbest = new TH2F("ulbest","ulbest",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
-  // cross section maps
+  // cross limit section maps
   TH2F* hxsec = new TH2F("hxsec","hxsec",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
   TH2F* hxsecup = new TH2F("hxsecup","hxsec",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
   TH2F* hxsecdwn = new TH2F("hxsecdwn","hxsec",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
+
+  // acceptance map
+  TH2F* acc = new TH2F("acc","acc",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
   //an empty histogram
   TH2F* empyt = new TH2F("empty","empty",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
@@ -36,6 +39,7 @@
 
   tree->Draw("lspmass:glmass>>ul","explimsrb/(4680.*effsrb)");
   tree->Draw("lspmass:glmass>>ulbest","bestsr");
+  tree->Draw("lspmass:glmass>>acc","100.*effsrb");
   tree->Draw("lspmass:glmass>>excl","explimsrb/(4680.*effsrb)<xsec");
   tree->Draw("lspmass:glmass>>exclup","explimsrb/(4680.*effsrb)<xsecup");
   tree->Draw("lspmass:glmass>>excldwn","explimsrb/(4680.*effsrb)<xsecdwn");
@@ -123,23 +127,38 @@
   gdwn->SetLineStyle(2);
 
   // This line is the kinematical limit
-  float mtop = 175.;
+  float mtop = 180.;
   TLine kinlim = TLine(2.*mtop+ymin, ymin, xmax, xmax-2*mtop);
 
   // Axis labels, a bit primitive for now
   excl->GetYaxis()->SetTitle("LSP Mass (GeV)");
   excl->GetXaxis()->SetTitle("Gluino Mass (GeV)");
-  excl->SetTitle("T1tttt model...Excluded points in red");
+  excl->SetTitle("T1tttt model  Excluded points in red");
   ul->GetYaxis()->SetTitle("LSP Mass (GeV)");
   ul->GetXaxis()->SetTitle("Gluino Mass (GeV)");
-  ul->SetTitle("T1tttt model...Cross Section Upper Limits (pb)");
+  ul->SetTitle("T1tttt model  Cross-section upper limits (pb)");
   empty->GetYaxis()->SetTitle("LSP Mass (GeV)");
   empty->GetXaxis()->SetTitle("Gluino Mass (GeV)");
   empty->SetTitle("T1tttt model");
+  ulbest->GetYaxis()->SetTitle("LSP Mass (GeV)");
+  ulbest->GetXaxis()->SetTitle("Gluino Mass (GeV)");
+  ulbest->SetTitle("T1tttt model  Best region based on exp. limit");
+  acc->GetYaxis()->SetTitle("LSP Mass (GeV)");
+  acc->GetXaxis()->SetTitle("Gluino Mass (GeV)");
+  acc->SetTitle("T1tttt model  Acc*Eff*BR for best signal region in percent");
+
+
+
+
 
   // Some text
   TLatex gg;
   TLatex gg2;
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  char * selection ="Same Sign with btag selection";
+  gg.SetTextSize(0.035);
+  gg2.SetTextSize(0.035);
   TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.175*(ymax-ymin), xmin+0.14*(xmax-xmin), 
                    ymax-0.175*(ymax-ymin));
   l1.SetLineColor(4);
@@ -159,6 +178,9 @@
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
   gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion (NLO+NLL xsection #pm 1 #sigma)");
   l2.Draw();
@@ -172,6 +194,9 @@
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
   gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion (NLO+NLL xsection #pm 1 #sigma)");
   l2.Draw();
@@ -184,10 +209,26 @@
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
   gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion (NLO+NLL xsection #pm 1 #sigma)");
   l2.Draw();
   l1.Draw();
    
+  //Draw the best region and nothing else
+  TCanvas* c14 = new TCanvas();
+  ulbest->Draw("text");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
 
+  //Draw the best region and nothing else
+  TCanvas* c15 = new TCanvas();
+  acc->Draw("colz");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  kinlim.Draw();
 }
