@@ -6,12 +6,12 @@
   gStyle->SetOptStat(0);
 
   // This binning insures that the bins are nicely centered
-  Double_t xbinsize = 25.;
-  Double_t ybinsize = 25.;
-  Double_t xmin    = 400. - xbinsize/2.;
-  Double_t xmax    = 1100 + xbinsize/2.;
-  Double_t ymin    = 50. - ybinsize/2;
-  Double_t ymax    = 800. + ybinsize/2.;
+  Double_t xbinsize = 10.;
+  Double_t ybinsize = 10.;
+  Double_t xmin    = 250. - xbinsize/2.;
+  Double_t xmax    = 450. + xbinsize/2.;
+  Double_t ymin    = 100. - ybinsize/2;
+  Double_t ymax    = 300. + ybinsize/2.;
   Int_t nx = (xmax-xmin)/xbinsize;
   Int_t ny = (ymax-ymin)/ybinsize;
 
@@ -49,20 +49,6 @@
   tree->Draw("lspmass:glmass>>hxsecdwn","xsecdwn");
 
 
-
-  // There is a vertical slice of missing points.  Fill the acceptance and 
-  // cross-section limits by interpolation
-  for (int iy=1; iy<=ny; iy++) {
-    for (int ix=2; ix<ny; ix++) {
-      if (hxsec->GetBinContent(ix,iy) == 0 && hxsec->GetBinContent(ix-1,iy) > 0) {
-	float x = xmin + (ix-0.5)*xbinsize;
-	float y = ymin + (iy-0.5)*xbinsize;
-	cout << "Interpolating at x,y = " << x << " " << y << endl;
-	acc->Fill(x,y,0.5*(acc->GetBinContent(ix-1,iy) + acc->GetBinContent(ix+1,iy)));
-	ul->Fill(x,y,0.5*(ul->GetBinContent(ix-1,iy) + ul->GetBinContent(ix+1,iy)));
-      }
-    }
-  }
 
   // now scan the upper limit histogram and interpolate the points for the limit
   // - scan in X as a function of Y
@@ -144,27 +130,27 @@
 
   // This line is the kinematical limit
   float mtop = 175.;
-  TLine kinlim = TLine(2.*mtop+ymin, ymin, xmax, xmax-2*mtop);
+  TLine kinlim = TLine(ymin+mtop, ymin, xmax, xmax-mtop);
   kinlim->SetLineWidth(3);
 
   // Axis labels, a bit primitive for now
-  char* glmass = "m(#tilde{g}) GeV";
-  char* lspmass = "m(#chi^{0}) GeV";
+  char* glmass = "m(#tilde{b}) GeV";
+  char* lspmass = "m(#chi^{+}) GeV";
   excl->GetYaxis()->SetTitle(lspmass);
   excl->GetXaxis()->SetTitle(glmass);
-  excl->SetTitle("T1 model  Excluded points in red");
+  excl->SetTitle("B1 model  Excluded points in red");
   ul->GetYaxis()->SetTitle(lspmass);
   ul->GetXaxis()->SetTitle(glmass);
-  ul->SetTitle("T1 model  Cross-section upper limits (pb)");
+  ul->SetTitle("B1 model  Cross-section upper limits (pb)");
   empty->GetYaxis()->SetTitle(lspmass);
   empty->GetXaxis()->SetTitle(glmass);
-  empty->SetTitle("T1 model");
+  empty->SetTitle("B1 model");
   ulbest->GetYaxis()->SetTitle(lspmass);
   ulbest->GetXaxis()->SetTitle(glmass);
-  ulbest->SetTitle("T1 model  Best region based on exp. limit");
+  ulbest->SetTitle("B1 model  Best region based on exp. limit");
   acc->GetYaxis()->SetTitle(lspmass);
   acc->GetXaxis()->SetTitle(glmass);
-  acc->SetTitle("T1 model  Acc*Eff*BR for best signal region in percent");
+  acc->SetTitle("B1 model  Acc*Eff*BR for best signal region in percent");
 
 
 
@@ -189,72 +175,84 @@
   l2.SetLineStyle(2);
 
 
-
+  //---------------------
+  // For this model the sbottom cross-section uncertainty is negligible
+  // Also, the interpolated lines are meaningless.
+  // We just take a constant at 370
+  //----------------------
+  float sbottomLimit=370;
+  TLine constLimit(sbottomLimit, ymin, sbottomLimit, sbottomLimit-mtop);
+  constLimit.SetLineColor(4);
+  constLimit.SetLineWidth(3);
 
   // Draw the exclusion map and the limit lines to make sure that they make sense
   TCanvas* c11 = new TCanvas();
   excl->Draw("col");
-  g->Draw("samePC");
-  gup->Draw("samePC");
-  gdwn->Draw("samePC");
+  //g->Draw("samePC");
+  //gup->Draw("samePC");
+  //gdwn->Draw("samePC");
   kinlim.Draw();
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-  l2.Draw();
+  //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  //l2.Draw();
   l1.Draw();
-  c11->Print("T1tttt_ExcludedRegionMap.pdf");
+  constLimit.Draw();
+  c11->Print("B1_ExcludedRegionMap.pdf");
 
 
   // Draw the limit lines on top of the temperature plot
   TCanvas* c12 = new TCanvas();
   ul->Draw("colz");
-  g->Draw("samePC");
-  gup->Draw("samePC");
-  gdwn->Draw("samePC");
+  //g->Draw("samePC");
+  //gup->Draw("samePC");
+  //gdwn->Draw("samePC");
   kinlim.Draw();
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
   //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-  l2.Draw();
+  //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  //l2.Draw();
   l1.Draw();
-  c12->Print("T1tttt_LimitsOnCarpet.pdf");
+  constLimit.Draw();
+  c12->Print("B1_LimitsOnCarpet.pdf");
 
   //Draw the limit lines and nothing else
   TCanvas* c13 = new TCanvas();
   empty->Draw();
-  g->Draw("samePC");
-  gup->Draw("samePC");
-  gdwn->Draw("samePC");
+  //g->Draw("samePC");
+  //gup->Draw("samePC");
+  //gdwn->Draw("samePC");
   kinlim.Draw();
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
   gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-  l2.Draw();
+  //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  //l2.Draw();
   l1.Draw();
-  c13->Print("T1tttt_LimitsOnWhite.pdf");
+  constLimit.Draw();
+  c13->Print("B1_LimitsOnWhite.pdf");
    
   //Draw the best region and nothing else
   TCanvas* c14 = new TCanvas();
   ulbest->Draw("textcol");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-  c14->Print("T1tttt_BestSignalRegion.pdf");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
+
+  c14->Print("B1_BestSignalRegion.pdf");
 
   //Draw the acceptance carpet
   TCanvas* c15 = new TCanvas();
   acc->Draw("colz");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
   kinlim.Draw();
-  c15->Print("T1tttt_AcceptanceCarpet.pdf");
+  c15->Print("B1_AcceptanceCarpet.pdf");
 }
