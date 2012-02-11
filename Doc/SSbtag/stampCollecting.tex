@@ -356,19 +356,15 @@ The model parameters are $M(\widetilde{g})$ and $M(\chi_1^0)$.
 \label{sec:t1ttttdefinition}
 For each point in parameter space we use the signal region that gives
 the best expected limit, see Figure~\ref{fig:t1tttoptimize}.
-{\bf (Note: so far the region with 3 btags has not been used).}
 The limits include all experimental 
 uncertainties.   The JES and btag uncertainties are calculated point-by-point.
 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.4\linewidth]{figs/t1ttttsigreg.pdf}
+\includegraphics[width=0.4\linewidth]{figs/T1tttt_BestSignalRegion.pdf}
 \caption{The signal region with the best expected limit as a function of 
 $m(\widetilde{g})$ vs. $m(\widetilde{t})$ plane for $m(\chi^0_1)$=50 GeV.
-The coding is: 1=(200-50), 2=(200-150), 3=(320-50), and 4=(320-120), where
-the first (second) number is the $H_T$ (\met) threshold in GeV. The number
-of requested btags is 2 or more.
 \label{fig:t1tttoptimize}}
 \end{center}
 \end{figure}
@@ -382,14 +378,18 @@ Using the
 NLO$+$NLL cross-section for gluino pair production, we place a limit
 on the mass parameters as shown in Figure~\ref{fig:T1ttttLimit}.
 Basically we exclude 
-$m(\widetilde{g})$ up to about 800 GeV with a small dependence on 
+$m(\widetilde{g})$ up to about 820 GeV with a small dependence on 
 $m(\chi_1^0)$.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.48\linewidth]{figs/T1tttt.pdf}
-\caption{Cross section limits in the $m(\widetilde{g})$ vs. $m(\chi_1^0)$ plane for the
-{\tt T1tttt} model.  
+\includegraphics[width=0.48\linewidth]{figs/T1tttt_LimitsOnCarpet.pdf}
+\includegraphics[width=0.48\linewidth]{figs/T1tttt_ExcludedRegionMap.pdf}
+\caption{
+Left plot: Cross section limits in pb for the $m(\widetilde{g})$ vs. 
+$m(\chi_1^0)$ plane for the
+{\tt T1tttt} model.  Right plot: a map of the MC points excluded by this
+analysis, using the central value for the production cross-section.
 \label{fig:T1ttttLimit}}
 \end{center}
 \end{figure}
@@ -415,20 +415,15 @@ For simplicity we only consider mass parameters such that the $\chi^{-}$ is on s
 \label{sec:sbottompairdefinition}
 For each point in parameter space we use the signal region that gives
 the best expected limit, see Figure~\ref{fig:sbottomoptimize}.
-{\bf (Note: so far the region with 3 btags has not been used).}
 The limits include all experimental 
 uncertainties.   The JES and btag uncertainties are calculated point-by-point.
 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.5\linewidth]{figs/sbottom_regions.pdf}
+\includegraphics[width=0.5\linewidth]{figs/B1_BestSignalRegion.pdf}
 \caption{The signal region with the best expected limit as a function of 
 $m(\chi^{\pm}))$ vs. $m(\widetilde{b})$ plane for $m(\chi^0_1)$=50 GeV.
-The coding is: 1=(80,30),
-2=(200-50), 3=(200-150), 4=(320-50), and 5=(320-120), where
-the first (second) number is the $H_T$ (\met) threshold in GeV. The number
-of requested btags is 2 or more.
 \label{fig:sbottomoptimize}}
 \end{center}
 \end{figure}
@@ -437,13 +432,20 @@ of requested btags is 2 or more.
 \subsubsection{Limits for the sbottom pair production model}
 \label{sec:sbottompairlimits}
 The limit on the production cross-section in this model in the 
-sbottom mass vs. $\chi^{\pm}$ mass plane shown in 
+sbottom mass vs. $\chi^{\pm}$ mass plane is shown in 
 Figure~\ref{fig:sbottomLimit} for 
-$m(\chi^0_1)$=50 GeV. 
-Using the 
-NLO$+$NLL cross-section for gluino pair production, we place a limit
-on the mass parameters as shown in Figures~\ref{fig:sbottomLimit}
-and~\ref{fig:sbottomLimit1d}.
+$m(\chi^0_1)$=50 GeV. We exclude sbottoms of mass below $\approx$ 
+370 GeV.  Note that $m(\widetilde{b}) = 370$ GeV is approximately where 
+the best SR changes from SR1 to SR4, see Figure~\ref{fig:sbottomoptimize}.
+This unfortunately enhances statistical fluctuations around 
+the limit curve in Figure~\ref{fig:sbottomLimit}.  We also note that 
+at $m(\widetilde{b}) = 370$ GeV the cross-section uncertainty
+is only 6\%, which would be unnoticeable on the plot.
+
+%Using the 
+%NLO$+$NLL cross-section for gluino pair production, we place a limit
+%on the mass parameters as shown in Figures~\ref{fig:sbottomLimit}
+%and~\ref{fig:sbottomLimit1d}.
 % We have little sensitivity to the model parameters.
 % exclude $m(\widetilde{b})$ up to about 450 GeV for all
 % kinematically allowed values of the chargino mass:
@@ -451,13 +453,13 @@ and~\ref{fig:sbottomLimit1d}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.48\linewidth]{figs/sbottom_limit.pdf}
-\includegraphics[width=0.48\linewidth]{figs/sbottom_limit_zoom.pdf}
-\caption{Cross section limits in the $m(\widetilde{b})$ vs. $m(\chi^{\pm})$ 
+\includegraphics[width=0.48\linewidth]{figs/B1_LimitsOnCarpet.pdf}
+\includegraphics[width=0.48\linewidth]{figs/B1_ExcludedRegionMap.pdf}
+\caption{Left plot: Cross section limits in the $m(\widetilde{b})$ vs. $m(\chi^{\pm})$ 
 plane for the sbottom pair production model with 
-$m(\chi^0_1)$=50 GeV.  The rigth plot is a ``zoomed'' in version 
-of the left plot.  This plot will be remade and zoomed in even 
-further with more model points near the limit curve.\label{fig:sbottomLimit}}
+$m(\chi^0_1)$=50 GeV.  Right plot: a map of the MC points excluded by this
+analysis, using the central value for the production cross-section.
+\label{fig:sbottomLimit}}
 \end{center}
 \end{figure}
 
@@ -582,6 +584,22 @@ lines to get more meaningful plots.}
 In this Section we collect additional SUSY plots.  These are 
 candidate plots for the public {\tt twiki} page and/or the 
 journal publication.
+
+Figure~\ref{acceptance-maps} shows the acceptance map
+for the {\tt T1tttt} and sbottom models.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figs/T1tttt_AcceptanceCarpet.pdf}
+\includegraphics[width=0.49\linewidth]{figs/B1_AcceptanceCarpet.pdf}
+\caption{Acceptances for the {\tt T1tttt} (left) and 
+sbottom pair (right) models; these acceptances
+are calculated for the best signal region at each point
+in parameter space.
+\label{fig:acceptance-maps}}
+\end{center}
+\end{figure}
+
 
 Figure~\ref{fig:gluinoLimit1d} shows the gluino mass limits
 in the models with gluino-pair production considered here.
