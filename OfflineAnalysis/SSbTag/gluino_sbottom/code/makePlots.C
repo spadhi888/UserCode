@@ -1,5 +1,5 @@
 {
-  float mchi=150;
+  float mchi=150.;
   float mtop = 175.;
   float mb   = 5.;
 
@@ -17,8 +17,18 @@
   Double_t xmax    = 1000 + xbinsize/2.;
   Double_t ymin    = 350. - ybinsize/2;
   Double_t ymax    = 1000. + ybinsize/2.;
+  if (mchi > 151.) {
+    xbinsize = 50.;
+    ybinsize = 25.;
+    xmin    = 300. - xbinsize/2.;
+    xmax    = 1000 + xbinsize/2.;
+    ymin    = 350. - ybinsize/2;
+    ymax    = 1000. + ybinsize/2.;
+  }
+  if (mchi > 201.) ymin = 475.- ybinsize/2;
   Int_t nx = (xmax-xmin)/xbinsize;
   Int_t ny = (ymax-ymin)/ybinsize;
+  
 
   // Upper limit as a function of gluino and lsp mass
   TH2F* ul = new TH2F("ul","ul",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
@@ -145,7 +155,7 @@
   ul->SetTitle("Gluino Sbottom model Cross-section upper limits (pb)");
   empty->GetYaxis()->SetTitle(lspmass);
   empty->GetXaxis()->SetTitle(glmass);
-  empty->SetTitle("T1 model");
+  empty->SetTitle("Gluino Sbottom model");
   ulbest->GetYaxis()->SetTitle(lspmass);
   ulbest->GetXaxis()->SetTitle(glmass);
   ulbest->SetTitle("Gluino Sbottom model  Best region based on exp. limit");
@@ -242,7 +252,7 @@
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),masses);
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.20*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-  c14->Print("T1tttt_BestSignalRegion.pdf");
+  c14->Print(Form("B2_BestSignalRegion_%i.pdf",(int) mchi));
 
   //Draw the acceptance carpet
   TCanvas* c15 = new TCanvas();

@@ -96,13 +96,13 @@ void makeNtuple(){
   // The file names, ordered by signal region...
   //-----------------------------------------------
   vector<TString> filenames;
-  filenames.push_back("../txt/SR1_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR2_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR3_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR4_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR5_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR6_mchi150_sorted.txt");
-  filenames.push_back("../txt/SR7_mchi150_sorted.txt");
+  filenames.push_back("../txt/SR1_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR2_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR3_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR4_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR5_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR6_mchi300_sorted.txt");
+  filenames.push_back("../txt/SR7_mchi300_sorted.txt");
 
   //-----------------------------------------------
   // Loop over signal regions and load the arrays from the txt files
