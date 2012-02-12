@@ -362,7 +362,7 @@ uncertainties.   The JES and btag uncertainties are calculated point-by-point.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.4\linewidth]{figs/T1tttt_BestSignalRegion.pdf}
+\includegraphics[width=0.5\linewidth]{figs/T1tttt_BestSignalRegion.pdf}
 \caption{The signal region with the best expected limit as a function of 
 $m(\widetilde{g})$ vs. $m(\widetilde{t})$ plane for $m(\chi^0_1)$=50 GeV.
 \label{fig:t1tttoptimize}}
@@ -390,7 +390,7 @@ Left plot: Cross section limits in pb for the $m(\widetilde{g})$ vs.
 $m(\chi_1^0)$ plane for the
 {\tt T1tttt} model.  Right plot: a map of the MC points excluded by this
 analysis, using the central value for the production cross-section.
-\label{fig:T1ttttLimit}}
+The limit lines have not been smoothed.\label{fig:T1ttttLimit}}
 \end{center}
 \end{figure}
 
@@ -435,12 +435,21 @@ The limit on the production cross-section in this model in the
 sbottom mass vs. $\chi^{\pm}$ mass plane is shown in 
 Figure~\ref{fig:sbottomLimit} for 
 $m(\chi^0_1)$=50 GeV. We exclude sbottoms of mass below $\approx$ 
-370 GeV.  Note that $m(\widetilde{b}) = 370$ GeV is approximately where 
+370 GeV.  Note that the bulk of the exclusion comes 
+from SR1 (see~\ref{fig:sbottomoptimize}), which
+has a very modest \met $> 30$ GeV requirement.  Thus, we do not
+expect this limit to depend strongly on the LSP mass.
+
+
+The region near $m(\widetilde{b}) = 370$ GeV is approximately where 
 the best SR changes from SR1 to SR4, see Figure~\ref{fig:sbottomoptimize}.
 This unfortunately enhances statistical fluctuations around 
-the limit curve in Figure~\ref{fig:sbottomLimit}.  We also note that 
+the limit curve in Figure~\ref{fig:sbottomLimit}.  This is why 
+we smoothed smoothed the limit line into a vertical line.
+Note also that
 at $m(\widetilde{b}) = 370$ GeV the cross-section uncertainty
-is only 6\%, which would be unnoticeable on the plot.
+is only 6\%, which is unnoticeable on the limit plot.
+
 
 %Using the 
 %NLO$+$NLL cross-section for gluino pair production, we place a limit
@@ -459,6 +468,7 @@ is only 6\%, which would be unnoticeable on the plot.
 plane for the sbottom pair production model with 
 $m(\chi^0_1)$=50 GeV.  Right plot: a map of the MC points excluded by this
 analysis, using the central value for the production cross-section.
+The limit curve has been smoothed.
 \label{fig:sbottomLimit}}
 \end{center}
 \end{figure}
@@ -469,7 +479,11 @@ analysis, using the central value for the production cross-section.
 \includegraphics[width=0.48\linewidth]{figs/sbottom_1d.pdf}
 \caption{Cross section limits as a function of sbottom mass
 in the sbottom pair production model, compared with the 
-sbottom pair-production coss-section.\label{fig:sbottomLimit1d}}
+sbottom pair-production coss-section.
+{\bf I think this figure should be removed.  I see no
+statistically significant difference in cross-section
+limits for different values of chargino mass.}
+\label{fig:sbottomLimit1d}}
 
 \end{center}
 \end{figure}
@@ -500,20 +514,18 @@ in which case the final state is
 $tb\bar{b}W^+W^- \chi_1^0 \chi_1^0$ $(+ c.c.)$. 
 The model parameters are $M(\widetilde{g})$
 $M(\widetilde{b})$, $M(\chi_1^0)$, and $M(\chi^{\pm})$.
-For simplicity we only consider mass parameters such that the $\chi^{-}$ is on shell.
+For simplicity we only consider mass parameters such that the 
+$\chi^{-}$ is on shell. 
 
 \subsubsection{Signal region definition for the $\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
 \label{sec:gbbdefinition}
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.65\linewidth]{figs/gl_sb_300_50_regions.pdf}
+\includegraphics[width=0.49\linewidth]{figs/B2_BestSignalRegion_150.pdf}
 \caption{The signal region with the best expected limit as a function of 
 $m(\widetilde{g})$ vs. $m(\widetilde{b})$ for $m(\chi^0_1)$=50 GeV
-and $m(\chi^{\pm})$=200 GeV. 
-The coding is: 1=(200-50), 2=(200-150), 3=(320-50), and 4=(320-120), where
-the first (second) number is the $H_T$ (\met) threshold in GeV. The number
-of requested btags is 2 or more.
+and $m(\chi^{\pm})$=150 GeV, in the gluino to sbottom decay model.
 \label{fig:gluinosboptimize}}
 \end{center}
 \end{figure}
@@ -521,45 +533,91 @@ of requested btags is 2 or more.
 
 For each point in parameter space we use the signal region that gives
 the best expected limit.  
-{\bf (Note: so far the region with 3 btags has not been used).}
 Limits are calculated using all experimental
 uncertainties; the JES and btag uncertainties are calculated point-by-point.
 An example of this optimization is shown in Figure~\ref{fig:gluinosboptimize},
 where we show the choice of signal region that gives the best expected limit
 in the $m(\widetilde{g})$ vs. $m(\widetilde{b})$ plane for the choice
-$m(\chi^0_1)$=50 GeV and $m(\chi^{\pm})$=200 GeV. 
-Roughly speaking we we exclude gluino masses below about 750 GeV for 
-all sbottom masses kinematically accessible, {\it i.e.}, 
-$m(t)+m(\chi^{\pm})~<~m(\widetilde{b})~<~m(\widetilde{g})$.
+$m(\chi^0_1)$=50 GeV and $m(\chi^{\pm})$=150 GeV. 
+%Roughly speaking we we exclude gluino masses below about 750 GeV for 
+%all sbottom masses kinematically accessible, {\it i.e.}, 
+%$m(t)+m(\chi^{\pm})~<~m(\widetilde{b})~<~m(\widetilde{g})$.
 
 
 
 \subsubsection{Limits for the $\widetilde{g} \to \widetilde{b}b$ Model}
 \label{sec:gbblimits}
 
-The limits on the production cross-section in this model in the 
-gluino mass vs. sbottom mass plane for two choices of the 
-chargino mass and an LSP mass of 50 GeV 
-are shown in Figure~\ref{fig:mglinoSbottom}
-Using the 
-NLO$+$NLL cross-section for gluino pair production, we also place a limit
-on the mass parameters of this model.
+We choose to present the limits as a function of gluino mass and
+sbottom mass.  This is because the gluino mass is the parameter
+that drives the production cross-section, and the sbottom mass
+is a particularly interesting parameter.
+
+Figure~\ref{fig:mglinoSbottom} shows the limits in 
+the $m(\widetilde{g})$ vs. 
+$m(\widetilde{b})$ plane
+for $m(\chi_1^0)$ = 50 GeV and 
+$m(\chi^{\pm})$ = 150 GeV. 
+
 
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.47\linewidth]{figs/gl_sb_300_50.pdf}
-\includegraphics[width=0.47\linewidth]{figs/gl_sb_200_50.pdf}
-\includegraphics[width=0.47\linewidth]{figs/gl_sb_300_50_zoom.pdf}
-\includegraphics[width=0.47\linewidth]{figs/gl_sb_200_50_zoom.pdf}
-\caption{Cross section limits in the $m(\widetilde{g})$ vs. 
+\includegraphics[width=0.49\linewidth]{figs/B2_LimitsOnCarpet_150.pdf}
+\includegraphics[width=0.49\linewidth]{figs/B2_ExcludedRegionMap_150.pdf}
+\caption{Left plot: Cross section limits in pb in the $m(\widetilde{g})$ vs. 
 $m(\widetilde{b})$ plane
 for $m(\chi_1^0)$ = 50 GeV and 
-$m(\chi^{\pm})$ = 300 GeV (left) and 200 GeV (right). 
-The bottom plots are ``zoomed'' in versions of the top plots.
+$m(\chi^{\pm})$ = 150 GeV.
+Right: a map of the MC points excluded by this analysis.
+The limit curves have not been smoothed.
 \label{fig:mglinoSbottom}}
 \end{center}
 \end{figure}
+
+To test the sensitivity of the limits to the chargino mass, 
+we perform a more limited scan in the neighborhood of 
+$m(\widetilde{g})$ = 800 GeV for $m(\chi^{\pm})$ = 200 and 
+300 GeV.  The results are shown in Figure~\ref{fig:mglinoSbottom2}.
+Finally, in Figure~\ref{fig:sbottom_cheese} we show exclusion
+regions for the extreme values of 
+$m(\chi^{\pm})$ = 150 and 300 GeV on the same plot.
+
+In summary, in this model 
+we exclude gluino masses below about 800 GeV and 
+sbottom masses up to their kinematical limit,
+with little sensitivity on the chargino mass.
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figs/B2_LimitsOnCarpet_200.pdf}
+\includegraphics[width=0.49\linewidth]{figs/B2_LimitsOnCarpet_300.pdf}
+\caption{Cross section limits in pb in the $m(\widetilde{g})$ vs. 
+$m(\widetilde{b})$ plane
+for $m(\chi_1^0)$ = 50 GeV and 
+$m(\chi^{\pm})$ = 200 and 300 GeV.
+The limit curves have not been smoothed.
+\label{fig:mglinoSbottom2}}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.49\linewidth]{figs/B2_CheeseWedge.pdf}
+\caption{Exclusion lines in the $m(\widetilde{g})$ vs. 
+$m(\widetilde{b})$ plane
+for $m(\chi_1^0)$ = 50 GeV and 
+$m(\chi^{\pm})$ = 150 and 300 GeV.  The width of the lines
+reflects the cross-section uncertainty.  The kinematical boundaries
+of this model are also shown.
+The limit curves have been smoothed.
+\label{fig:sbottom_cheese}}
+\end{center}
+\end{figure}
+
+
+
 
 %\subsubsection{What is missing for the $\widetilde{g} \to \widetilde{b}\bar{b}$ Model}
 %\begin{itemize}
@@ -575,25 +633,21 @@ The bottom plots are ``zoomed'' in versions of the top plots.
 \subsection{Additional SUSY plots}
 \label{sec:moreSUSYplos}
 
-{\bf Impotant: Many of the plots here and in the previous Sections
-need to be prettified.  Also: in some cases we are in the
-process of adding scan points with parameters near the limit 
-lines to get more meaningful plots.}
-
-
-In this Section we collect additional SUSY plots.  These are 
+In this Section we collect a few additional SUSY plots.  These are 
 candidate plots for the public {\tt twiki} page and/or the 
 journal publication.
 
-Figure~\ref{acceptance-maps} shows the acceptance map
+Figure~\ref{fig:acceptance-maps} shows the acceptance map
 for the {\tt T1tttt} and sbottom models.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.49\linewidth]{figs/T1tttt_AcceptanceCarpet.pdf}
 \includegraphics[width=0.49\linewidth]{figs/B1_AcceptanceCarpet.pdf}
-\caption{Acceptances for the {\tt T1tttt} (left) and 
-sbottom pair (right) models; these acceptances
+\includegraphics[width=0.49\linewidth]{figs/B2_AcceptanceCarpet_150.pdf}
+\caption{Acceptances for the {\tt T1tttt} (top left), 
+sbottom pair (top right), and gluino sbottom (bottom) models; 
+these acceptances
 are calculated for the best signal region at each point
 in parameter space.
 \label{fig:acceptance-maps}}
@@ -608,11 +662,11 @@ we find that the gluino mass limit is fairly insensitive
 to the details of the decay chain, since the limit
 is driven by the gluino cross-section.
 
-Figure~\ref{fig:stoppaper} is a candidate Figure for inclusion
-in a publication to summarize the limits on models 
-with real or vitual stops.
-Similarly, Figure~\ref{fig:sbottompaper} is a candidate Figure for inclusion
-in a publication to summarize the sbottom limits.
+%Figure~\ref{fig:stoppaper} is a candidate Figure for inclusion
+%in a publication to summarize the limits on models 
+%with real or vitual stops.
+%Similarly, Figure~\ref{fig:sbottompaper} is a candidate Figure for inclusion
+%in a publication to summarize the sbottom limits.
 
 
 
@@ -622,6 +676,7 @@ in a publication to summarize the sbottom limits.
 \caption{Gluino pair-production cross-section
 as a function of gluino mass compared with limits
 on the cross-section from the models considered here.
+{\bf Nice figure, but needs to be remade.}
 \label{fig:gluinoLimit1d}}
 \end{center}
 \end{figure}
@@ -630,44 +685,44 @@ on the cross-section from the models considered here.
 
 
 
-\begin{figure}[bht]
-\begin{center}
-\includegraphics[width=0.49\linewidth]{figs/T1tttt.pdf}
-\includegraphics[width=0.49\linewidth]{figs/gluinoStop_fkw}
-\caption{Left plot: exclusion contour (95 \% C.L.) in the 
-$m(\chi^0_1)-m(\widetilde{g})$ 
-plane for model with gluino decay via virtual stop quarks.
-Right: exclusion contours (95 \% C.L.) in the 
-$m(\widetilde{t})-m(\widetilde{g})$
-plane for model wih gluino decay to on-shell top squarks)
-for different choices of the LSP mass.  
-{\bf We need to get rid of the temperature for the
-right plot.  For the left plot, 
-we need to generate more MC points in the relevant kinematical
-region because at the moment we have not enough resolution to 
-draw the lines with the required precision.}
-\label{fig:stoppaper}}
-\end{center}
-\end{figure}
+%\begin{figure}[bht]
+%\begin{center}
+%\includegraphics[width=0.49\linewidth]{figs/T1tttt.pdf}
+%\includegraphics[width=0.49\linewidth]{figs/gluinoStop_fkw}
+%\caption{Left plot: exclusion contour (95 \% C.L.) in the 
+%$m(\chi^0_1)-m(\widetilde{g})$ 
+%plane for model with gluino decay via virtual stop quarks.
+%Right: exclusion contours (95 \% C.L.) in the 
+%$m(\widetilde{t})-m(\widetilde{g})$
+%plane for model wih gluino decay to on-shell top squarks)
+%for different choices of the LSP mass.  
+%{\bf We need to get rid of the temperature for the
+%right plot.  For the left plot, 
+%we need to generate more MC points in the relevant kinematical
+%region because at the moment we have not enough resolution to 
+%draw the lines with the required precision.}
+%\label{fig:stoppaper}}
+%\end{center}
+%\end{figure}
 
 
-\begin{figure}[thb]
-\begin{center}
-\includegraphics[width=0.49\linewidth]{figs/sbottom_fkw.pdf}
-\includegraphics[width=0.49\linewidth]{figs/gluinoSbottom_fkw.pdf}
-\caption{(a) 
-Exclusion contour (95 \% C.L.) in the 
-$m(\chi^{-})-m(\widetilde{b})$ 
-plane for the sbottom pair production model; 
-(b) Exclusion contours (95 \% C.L.) in the $m(\widetilde{b})-m(\widetilde{g})$
-plane for model with sbottom production from gluino decay).
-{\bf Plots need work.  Of course, labels, etc. But the main thing 
-is that we need to generate more MC points in the relevant kinematical
-region because at the moment we have not enough resolution to 
-draw the lines with the required precision.}
-\label{fig:sbottompaper}}
-\end{center}
-\end{figure}
+%\begin{figure}[thb]
+%\begin{center}
+%\includegraphics[width=0.49\linewidth]{figs/sbottom_fkw.pdf}
+%\includegraphics[width=0.49\linewidth]{figs/gluinoSbottom_fkw.pdf}
+%\caption{(a) 
+%Exclusion contour (95 \% C.L.) in the 
+%$m(\chi^{-})-m(\widetilde{b})$ 
+%plane for the sbottom pair production model; 
+%(b) Exclusion contours (95 \% C.L.) in the $m(\widetilde{b})-m(\widetilde{g})$
+%plane for model with sbottom production from gluino decay).
+%{\bf Plots need work.  Of course, labels, etc. But the main thing 
+%is that we need to generate more MC points in the relevant kinematical
+%region because at the moment we have not enough resolution to 
+%draw the lines with the required precision.}
+%\label{fig:sbottompaper}}
+%\end{center}
+%\end{figure}
 
 
 
