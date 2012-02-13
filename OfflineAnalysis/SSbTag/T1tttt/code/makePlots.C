@@ -265,11 +265,20 @@
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-  l2.Draw();
-  l1.Draw();
+    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.20*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  
 
+  // A polyline for the legend
+  TPolyLine *lg = new TPolyLine();
+  lg->SetLineColor(kBlue);
+  lg->SetFillStyle(3244);
+  lg->SetFillColor(kBlue);
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.20*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.20*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.175*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.175*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.20*(ymax-ymin));
+  lg->Draw("fl");
 
  // A polyline with the smoothed limit
   TPolyLine *psm = new TPolyLine();
