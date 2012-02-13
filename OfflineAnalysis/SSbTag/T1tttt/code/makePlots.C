@@ -257,4 +257,41 @@
   latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
   kinlim.Draw();
   c15->Print("T1tttt_AcceptanceCarpet.pdf");
+
+  //Draw the smoothed limit lines and nothing else
+  TCanvas* c16 = new TCanvas();
+  empty->Draw();
+  kinlim.Draw();
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  l2.Draw();
+  l1.Draw();
+
+
+ // A polyline with the smoothed limit
+  TPolyLine *psm = new TPolyLine();
+  psm->SetLineColor(kBlue);
+  psm->SetFillStyle(3244);
+  psm->SetFillColor(kBlue);
+  psm->SetNextPoint(800.,ymin);
+  psm->SetNextPoint(800.,50.);
+  psm->SetNextPoint(790.,180.);
+  psm->SetNextPoint(775.,250.);
+  psm->SetNextPoint(730.,730.-2*mtop);
+  psm->SetNextPoint(760.,760.-2*mtop);
+  psm->SetNextPoint(810.,300.);
+  psm->SetNextPoint(830.,200.);
+  psm->SetNextPoint(850.,50.);
+  psm->SetNextPoint(850.,ymin);
+  psm->SetNextPoint(800.,ymin);
+  psm->Draw("fl");
+  c16->Print("T1tttt_SmoothLimitsOnWhite.pdf");
+
+
+
+
+
 }
