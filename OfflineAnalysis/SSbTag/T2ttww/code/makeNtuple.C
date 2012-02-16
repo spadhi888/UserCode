@@ -46,7 +46,7 @@ void makeNtuple(){
   float xsecup[2000];
   float xsecdwn[2000];
   int nxsec=0;
-  ifstream fromfile("../../xsec/gluino_xsec.txt");
+  ifstream fromfile("../../xsec/sbottom_xsec.txt");
   if ( !fromfile.good() ) {
     cout << "gluino xsec file does not exist" << endl ;
     return;
