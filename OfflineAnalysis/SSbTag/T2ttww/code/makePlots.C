@@ -8,10 +8,14 @@
     // This binning insures that the bins are nicely centered
     Double_t xbinsize = 25.;
     Double_t ybinsize = 25.;
+    // Double_t xmin    = 350. - xbinsize/2.;
+    // Double_t xmax    = 1200 + xbinsize/2.;
+    // Double_t ymin    = 0. - ybinsize/2;
+    // Double_t ymax    = 1025. + ybinsize/2.;
     Double_t xmin    = 350. - xbinsize/2.;
-    Double_t xmax    = 1200 + xbinsize/2.;
+    Double_t xmax    = 450 + xbinsize/2.;
     Double_t ymin    = 0. - ybinsize/2;
-    Double_t ymax    = 850. + ybinsize/2.;
+    Double_t ymax    = 150. + ybinsize/2.;
     Int_t nx = (xmax-xmin)/xbinsize;
     Int_t ny = (ymax-ymin)/ybinsize;
 
@@ -116,18 +120,34 @@
     }
 
     // Add points by hand to make it go down to the bottom
-    float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
-    float xx = xvec.at(xvec.size()-1) + 0.5*(xvec.at(xvec.size()-1) - xvec.at(xvec.size()-2));
-    xvec.push_back(xx);
-    yvec.push_back(yy);
-    yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
-    xx = xvecup.at(xvecup.size()-1) + 0.5*(xvecup.at(xvecup.size()-1) - xvecup.at(xvecup.size()-2));
-    xvecup.push_back(xx);
-    yvecup.push_back(yy);
-    yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
-    xx = xvecdwn.at(xvecdwn.size()-1) + 0.5*(xvecdwn.at(xvecdwn.size()-1) - xvecdwn.at(xvecdwn.size()-2));
-    xvecup.push_back(xx);
-    yvecup.push_back(yy);
+    if (xvec.size() > 2 && xvecdwn.size() > 2 && xvecup.size() > 2) {
+        float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
+        float xx = xvec.at(xvec.size()-1) + 0.5*(xvec.at(xvec.size()-1) - xvec.at(xvec.size()-2));
+        xvec.push_back(xx);
+        yvec.push_back(yy);
+        yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
+        xx = xvecup.at(xvecup.size()-1) + 0.5*(xvecup.at(xvecup.size()-1) - xvecup.at(xvecup.size()-2));
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);
+        yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
+        xx = xvecdwn.at(xvecdwn.size()-1) + 0.5*(xvecdwn.at(xvecdwn.size()-1) - xvecdwn.at(xvecdwn.size()-2));
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);
+    }
+    else {
+        float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
+        float xx = xvec.at(xvec.size()-1) + xbinsize/2.;
+        xvec.push_back(xx);
+        yvec.push_back(yy);
+        yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
+        xx = xvecup.at(xvecup.size()-1) + xbinsize/2.;
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);
+        yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
+        xx = xvecdwn.at(xvecdwn.size()-1) + xbinsize/2.;
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);        
+    }
 
     // The points are stored in a TGraph
     TGraph* g    = new TGraph(xvec.size(),   &xvec[0],   &yvec[0]);

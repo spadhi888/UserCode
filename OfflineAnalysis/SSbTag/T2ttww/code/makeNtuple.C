@@ -181,6 +181,7 @@ void makeNtuple(){
   // define the variables
   float glmass_;
   float lspmass_;
+  float chimass_;
   float xsec_;
   float xsecup_;
   float xsecdwn_;
@@ -226,6 +227,7 @@ void makeNtuple(){
   // put the branches in the tree
   babyTree_->Branch("glmass",  &glmass_);
   babyTree_->Branch("lspmass", &lspmass_);
+  babyTree_->Branch("chimass", &chimass_);
   babyTree_->Branch("xsec",    &xsec_);
   babyTree_->Branch("xsecup",  &xsecup_);
   babyTree_->Branch("xsecdwn", &xsecdwn_);
@@ -278,6 +280,7 @@ void makeNtuple(){
     if (nentries[0] != 0) {
       glmass_  = glmass[0][il];
       lspmass_ = lspmass[0][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr1_ = eff[0][il];
       errsr1_ = eff[0][il];
       obslimsr1_ = obslim[0][il];
@@ -291,6 +294,7 @@ void makeNtuple(){
     if (nentries[1] != 0) {
       glmass_  = glmass[1][il];
       lspmass_ = lspmass[1][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr2_ = eff[1][il];
       errsr2_ = eff[1][il];
       obslimsr2_ = obslim[1][il];
@@ -317,6 +321,7 @@ void makeNtuple(){
     if (nentries[3] != 0) {
       glmass_  = glmass[3][il];
       lspmass_ = lspmass[3][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr4_ = eff[3][il];
       errsr4_ = eff[3][il];
       obslimsr4_ = obslim[3][il];
@@ -330,6 +335,7 @@ void makeNtuple(){
     if (nentries[4] != 0) {
       glmass_  = glmass[4][il];
       lspmass_ = lspmass[4][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr5_ = eff[4][il];
       errsr5_ = eff[4][il];
       obslimsr5_ = obslim[4][il];
@@ -343,6 +349,7 @@ void makeNtuple(){
     if (nentries[5] != 0) {
       glmass_  = glmass[5][il];
       lspmass_ = lspmass[5][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr6_ = eff[5][il];
       errsr6_ = eff[5][il];
       obslimsr6_ = obslim[5][il];
@@ -356,6 +363,7 @@ void makeNtuple(){
     if (nentries[6] != 0) {
       glmass_  = glmass[6][il];
       lspmass_ = lspmass[6][il];
+      chimass_ = 0.5*glmass_ + 0.5*lspmass_;
       effsr7_ = eff[6][il];
       errsr7_ = eff[6][il];
       obslimsr7_ = obslim[6][il];
