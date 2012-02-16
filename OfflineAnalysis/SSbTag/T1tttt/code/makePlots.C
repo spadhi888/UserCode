@@ -1,6 +1,6 @@
 {
   // Makes basic histograms from the root tree
-  
+
   gStyle->SetPadRightMargin(0.12);   // default 0.1
   gStyle->SetTitleOffset(1.20, "Y");  // default 1
   gStyle->SetOptStat(0);
@@ -149,7 +149,7 @@
 
   // Axis labels, a bit primitive for now
   char* glmass = "m(#tilde{g}) GeV";
-  char* lspmass = "m(#chi^{0}) GeV";
+  char* lspmass = "m(#tilde{#chi_{1}^{0}}) GeV";
   excl->GetYaxis()->SetTitle(lspmass);
   excl->GetXaxis()->SetTitle(glmass);
   excl->SetTitle("T1 model  Excluded points in red");
@@ -175,34 +175,49 @@
   TLatex gg2;
   TLatex latexLabel;
   latexLabel.SetTextSize(0.035);
-  char * selection ="Same Sign with btag selection";
+  char * selection ="Same Sign dileptons with btag selection";
   gg.SetTextSize(0.035);
   gg2.SetTextSize(0.035);
-  TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.175*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                   ymax-0.175*(ymax-ymin));
+  //  TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.175*(ymax-ymin), xmin+0.14*(xmax-xmin), 
+  TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.14*(xmax-xmin), 
+                   ymax-0.30*(ymax-ymin));
   l1.SetLineColor(4);
   l1.SetLineWidth(3);
-  TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.225*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                   ymax-0.225*(ymax-ymin));
+  TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.38*(ymax-ymin), xmin+0.14*(xmax-xmin), 
+		   //  TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.225*(ymax-ymin), xmin+0.14*(xmax-xmin), 
+                   ymax-0.38*(ymax-ymin));
   l2.SetLineColor(4);
   l2.SetLineWidth(3);
   l2.SetLineStyle(2);
 
 
-
+  gStyle->SetOptTitle(0);
+  gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
+  gStyle->SetPadTickY(1);
+// setTDRStyle();
 
   // Draw the exclusion map and the limit lines to make sure that they make sense
   TCanvas* c11 = new TCanvas();
+
+  c11->SetFillColor(0);
+  c11->GetPad(0)->SetRightMargin(0.07);
+  c11->SetFillColor(0);
+  c11->SetBorderMode(0);
+  c11->GetPad(0)->SetBorderSize(2);
+  c11->GetPad(0)->SetLeftMargin(0.1407035);
+  c11->GetPad(0)->SetTopMargin(0.08);
+  c11->GetPad(0)->SetBottomMargin(0.13);
+
   excl->Draw("col");
   g->Draw("samePC");
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV,  L=4.7 fb^{-1} ");
+  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
   l2.Draw();
   l1.Draw();
   c11->Print("T1tttt_ExcludedRegionMap.pdf");
@@ -210,17 +225,27 @@
 
   // Draw the limit lines on top of the temperature plot
   TCanvas* c12 = new TCanvas();
+
+  c12->SetFillColor(0);
+
+  c12->SetFillColor(0);
+  c12->SetBorderMode(0);
+  c12->GetPad(0)->SetBorderSize(2);
+  c12->GetPad(0)->SetLeftMargin(0.1407035);
+  c12->GetPad(0)->SetTopMargin(0.08);
+  c12->GetPad(0)->SetBottomMargin(0.13);
+
   ul->Draw("colz");
   g->Draw("samePC");
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
   //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
-  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
   l2.Draw();
   l1.Draw();
   c12->Print("T1tttt_LimitsOnCarpet.pdf");
@@ -228,44 +253,76 @@
   //Draw the limit lines and nothing else
   TCanvas* c13 = new TCanvas();
   empty->Draw();
+  c13->SetFillColor(0);
+  c13->GetPad(0)->SetRightMargin(0.07);
+  c13->SetFillColor(0);
+  c13->SetBorderMode(0);
+  c13->GetPad(0)->SetBorderSize(2);
+  c13->GetPad(0)->SetLeftMargin(0.1407035);
+  c13->GetPad(0)->SetTopMargin(0.08);
+  c13->GetPad(0)->SetBottomMargin(0.13);
   g->Draw("samePC");
   gup->Draw("samePC");
   gdwn->Draw("samePC");
   kinlim.Draw();
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
+  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+  gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
   l2.Draw();
   l1.Draw();
   c13->Print("T1tttt_LimitsOnWhite.pdf");
    
   //Draw the best region and nothing else
   TCanvas* c14 = new TCanvas();
+  c14->SetFillColor(0);
+  c14->GetPad(0)->SetRightMargin(0.07);
+  c14->SetFillColor(0);
+  c14->SetBorderMode(0);
+  c14->GetPad(0)->SetBorderSize(2);
+  c14->GetPad(0)->SetLeftMargin(0.1407035);
+  c14->GetPad(0)->SetTopMargin(0.08);
+  c14->GetPad(0)->SetBottomMargin(0.13);
   ulbest->Draw("textcol");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
   c14->Print("T1tttt_BestSignalRegion.pdf");
 
   //Draw the acceptance carpet
   TCanvas* c15 = new TCanvas();
+  c15->SetFillColor(0);
+  c15->SetFillColor(0);
+  c15->SetBorderMode(0);
+  c15->GetPad(0)->SetBorderSize(2);
+  c15->GetPad(0)->SetLeftMargin(0.1407035);
+  c15->GetPad(0)->SetTopMargin(0.08);
+  c15->GetPad(0)->SetBottomMargin(0.13);
+
   acc->Draw("colz");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
   kinlim.Draw();
   c15->Print("T1tttt_AcceptanceCarpet.pdf");
 
   //Draw the smoothed limit lines and nothing else
   TCanvas* c16 = new TCanvas();
+  c16->SetFillColor(0);
+  c16->GetPad(0)->SetRightMargin(0.07);
+  c16->SetFillColor(0);
+  c16->SetBorderMode(0);
+  c16->GetPad(0)->SetBorderSize(2);
+  c16->GetPad(0)->SetLeftMargin(0.1407035);
+  c16->GetPad(0)->SetTopMargin(0.08);
+  c16->GetPad(0)->SetBottomMargin(0.13);
   empty->Draw();
   kinlim.Draw();
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} ");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.20*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
+  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
+    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
   
 
   // A polyline for the legend
@@ -273,11 +330,11 @@
   lg->SetLineColor(kBlue);
   lg->SetFillStyle(3244);
   lg->SetFillColor(kBlue);
-  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.20*(ymax-ymin));
-  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.20*(ymax-ymin));
-  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.175*(ymax-ymin));
-  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.175*(ymax-ymin));
-  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.20*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.32*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.29*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.29*(ymax-ymin));
+  lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
   lg->Draw("fl");
 
  // A polyline with the smoothed limit
