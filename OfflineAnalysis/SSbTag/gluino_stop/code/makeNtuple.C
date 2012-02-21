@@ -35,7 +35,7 @@ void makeNtuple(){
   //-----------------------------------------------
   // The name of the file with the output ntuple
   //-----------------------------------------------
-  char* ntFile = "ntuple_50.root";
+  char* ntFile = "ntuple_250.root";
 
 
   //-----------------------------------------------
@@ -95,13 +95,13 @@ void makeNtuple(){
   // The file names, ordered by signal region...
   //-----------------------------------------------
   vector<TString> filenames;
-  filenames.push_back("../txt/SR1_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR2_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR3_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR4_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR5_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR6_50_landsOUT_sorted.txt");
-  filenames.push_back("../txt/SR7_50_landsOUT_sorted.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr1.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr2.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr3.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr4.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr5.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr6.txt");
+  filenames.push_back("../txt/gstop_mlsp250_sr7.txt");
 
   //-----------------------------------------------
   // Loop over signal regions and load the arrays from the txt files

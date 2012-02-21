@@ -221,6 +221,15 @@
     c11->GetPad(0)->SetTopMargin(0.08);
     c11->GetPad(0)->SetBottomMargin(0.13);
 
+    // need to fix the double fillling that's going on
+    for (unsigned int idx = 1; idx < excl->GetXaxis()->GetNbins()+1; idx++) {
+        for (unsigned int idy = 1; idy < excl->GetYaxis()->GetNbins()+1; idy++) {
+
+            if (excl->GetBinContent(idx, idy) > 1)
+                excl->SetBinContent(idx, idy, 1);
+        }
+    }
+
     excl->Draw("col");
     g->Draw("samePC");
     gup->Draw("samePC");
@@ -228,17 +237,17 @@
     kinlim.Draw();
     // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),"CMS Preliminary");
     // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),selection);
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.20*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.20*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
     // gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
     // gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.30*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
     gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
     gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     l2.Draw();
     l1.Draw();
-    c11->Print("GlStop_50_ExcludedRegionMap.pdf");
+    c11->Print("GlStop_150_ExcludedRegionMap.pdf");
 
 
     // Draw the limit lines on top of the temperature plot
@@ -250,6 +259,14 @@
     c12->GetPad(0)->SetLeftMargin(0.1407035);
     c12->GetPad(0)->SetTopMargin(0.08);
     c12->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double fillling that's going on
+    for (unsigned int idx = 0; idx < 3; idx++) {
+        int bin = ul->FindBin(750. + 50. * idx, 350.);
+        float binc = ul->GetBinContent(bin);
+        ul->SetBinContent(bin, binc * 0.5);
+    }
+
     ul->Draw("colz");
     g->Draw("samePC");
     gup->Draw("samePC");
@@ -257,13 +274,13 @@
     kinlim.Draw();
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
     //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
     gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
     gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     l2.Draw();
     l1.Draw();
-    c12->Print("GlStop_50_LimitsOnCarpet.pdf");
+    c12->Print("GlStop_150_LimitsOnCarpet.pdf");
 
     //Draw the limit lines and nothing else
     TCanvas* c13 = new TCanvas();
@@ -282,12 +299,12 @@
     kinlim.Draw();
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
     gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
     gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     l2.Draw();
     l1.Draw();
-    c13->Print("GlStop_50_LimitsOnWhite.pdf");
+    c13->Print("GlStop_150_LimitsOnWhite.pdf");
    
     //Draw the best region and nothing else
     TCanvas* c14 = new TCanvas();
@@ -299,11 +316,21 @@
     c14->GetPad(0)->SetLeftMargin(0.1407035);
     c14->GetPad(0)->SetTopMargin(0.08);
     c14->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double fillling that's going on
+    for (unsigned int idx = 1; idx < ulbest->GetXaxis()->GetNbins()+1; idx++) {
+        for (unsigned int idy = 1; idy < ulbest->GetYaxis()->GetNbins()+1; idy++) {
+
+            if (ulbest->GetBinContent(idx, idy) > 7)
+                ulbest->SetBinContent(idx, idy, 6);
+        }
+    }
+
     ulbest->Draw("textcol");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    c14->Print("GlStop_50_BestSignalRegion.pdf");
+    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
+    c14->Print("GlStop_150_BestSignalRegion.pdf");
 
     //Draw the acceptance carpet
     TCanvas* c15 = new TCanvas();
@@ -314,10 +341,17 @@
     c15->GetPad(0)->SetLeftMargin(0.1407035);
     c15->GetPad(0)->SetTopMargin(0.08);
     c15->GetPad(0)->SetBottomMargin(0.13);
+
+    for (unsigned int idx = 0; idx < 3; idx++) {
+        int bin = acc->FindBin(750. + 50. * idx, 350.);
+        float binc = acc->GetBinContent(bin);
+        acc->SetBinContent(bin, binc * 0.5);
+    }
+
     acc->Draw("colz");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 150 GeV");
     kinlim.Draw();
-    c15->Print("GlStop_50_AcceptanceCarpet.pdf");
+    c15->Print("GlStop_150_AcceptanceCarpet.pdf");
 }
