@@ -9,7 +9,22 @@
 // 176929 171 264222933 2  -11 -13 24.8385 43.6281 3 (2) 230.402 100.221 
 {
 
-  gStyle->SetOptTitle(kFALSE);
+  gStyle->SetOptTitle(0);
+  gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
+  gStyle->SetPadTickY(1);
+
+  TCanvas *c1 = new TCanvas();
+  c1->SetFillColor(0);
+  c1->GetPad(0)->SetRightMargin(0.07);
+  c1->SetFillColor(0);
+  c1->SetBorderMode(0);
+  c1->GetPad(0)->SetBorderSize(2);
+  c1->GetPad(0)->SetLeftMargin(0.1407035);
+  c1->GetPad(0)->SetTopMargin(0.08);
+  c1->GetPad(0)->SetBottomMargin(0.13);
+
+  TLatex latexText;
+  latexText.SetTextSize(0.04);
 
   // fill the 2D histograms of MET vs HT
   TH2F* hee = new TH2F("hee","Met vs HT",600,0.,600.,200,0.,200.);
@@ -52,6 +67,9 @@
   b1.Draw();
   b2.Draw();
 
+  latexText.DrawLatex(370, 180, "CMS Preliminary");
+  latexText.DrawLatex(370, 160, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
+  // latexText.DrawLatex(340, 170, "Same Sign dileptons with btag selection");
 
   //============================================
 
@@ -63,6 +81,14 @@
   //-------------------------------------------------------
   // HT first
   TCanvas* cht = new TCanvas();
+  cht->SetFillColor(0);
+  cht->GetPad(0)->SetRightMargin(0.07);
+  cht->SetFillColor(0);
+  cht->SetBorderMode(0);
+  cht->GetPad(0)->SetBorderSize(2);
+  cht->GetPad(0)->SetLeftMargin(0.1407035);
+  cht->GetPad(0)->SetTopMargin(0.08);
+  cht->GetPad(0)->SetBottomMargin(0.13);
   int nht = 3;
   float ht[4]   = {80., 200., 320., 600.}; // the bins
   float htbg[3] = {2.224, 2.742, 2.630};   // the bg
@@ -113,13 +139,24 @@
   htbghist->Draw("E2");
   htdummy->Draw("same");
   htdatahist->Draw("esamex0");
-  tx1 = TText(400,ytext,"MET>30 GeV");
-  tx1.Draw();
+  // tx1 = TText(400,ytext,"MET>30 GeV");
+  latexText.DrawLatex(400, 0.55, "CMS Preliminary");
+  latexText.DrawLatex(400, 0.49, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
+  latexText.DrawLatex(400, 0.43, "MET > 30 GeV");
+  // tx1.Draw();
 
 
   //-------------------------------------------------------
   // MET second
   TCanvas* cmet = new TCanvas();
+  cmet->SetFillColor(0);
+  cmet->GetPad(0)->SetRightMargin(0.07);
+  cmet->SetFillColor(0);
+  cmet->SetBorderMode(0);
+  cmet->GetPad(0)->SetBorderSize(2);
+  cmet->GetPad(0)->SetLeftMargin(0.1407035);
+  cmet->GetPad(0)->SetTopMargin(0.08);
+  cmet->GetPad(0)->SetBottomMargin(0.13);
   int nmet = 3;
   float met[4]   = {30., 50., 120., 200.}; // the bins
   float metbg[3] = {2.589, 4.102, 1.033};   // the bg
@@ -170,11 +207,11 @@
   metbghist->Draw("E2");
   metdummy->Draw("same");
   metdatahist->Draw("esamex0");
-  tx2 = TText(140,ytext2,"HT>80 GeV");
-  tx2.Draw();
-
-
-
+  // tx2 = TText(140,ytext2,"HT>80 GeV");
+  // tx2.Draw();
+  latexText.DrawLatex(140, 1.8, "CMS Preliminary");
+  latexText.DrawLatex(140, 1.6, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
+  latexText.DrawLatex(140, 1.4, "HT > 80 GeV");
 
 
 }
