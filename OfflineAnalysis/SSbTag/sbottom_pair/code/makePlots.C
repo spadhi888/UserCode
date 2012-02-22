@@ -119,12 +119,12 @@
     TGraph* g    = new TGraph(xvec.size(),   &xvec[0],   &yvec[0]);
     TGraph* gup  = new TGraph(xvecup.size(), &xvecup[0], &yvecup[0]);
     TGraph* gdwn = new TGraph(xvecdwn.size(),&xvecdwn[0],&yvecdwn[0]);
-    g->SetLineColor(4);
+    g->SetLineColor(1);
     g->SetLineWidth(3);
-    gup->SetLineColor(4);
+    gup->SetLineColor(1);
     gup->SetLineWidth(3);
     gup->SetLineStyle(2);
-    gdwn->SetLineColor(4);
+    gdwn->SetLineColor(1);
     gdwn->SetLineWidth(3);
     gdwn->SetLineStyle(2);
 
@@ -166,11 +166,11 @@
     gg2.SetTextSize(0.035);
     TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.14*(xmax-xmin), 
                      ymax-0.30*(ymax-ymin));
-    l1.SetLineColor(4);
+    l1.SetLineColor(1);
     l1.SetLineWidth(3);
     TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.38*(ymax-ymin), xmin+0.14*(xmax-xmin), 
                      ymax-0.38*(ymax-ymin));
-    l2.SetLineColor(4);
+    l2.SetLineColor(1);
     l2.SetLineWidth(3);
     l2.SetLineStyle(2);
 
@@ -184,9 +184,18 @@
     // We just take a constant at 370
     //----------------------
     float sbottomLimit=370;
+    const float half_width = 4.;
     TLine constLimit(sbottomLimit, ymin, sbottomLimit, sbottomLimit-mtop);
-    constLimit.SetLineColor(4);
+    TLine constLimitDwn(sbottomLimit-half_width, ymin, sbottomLimit-half_width, sbottomLimit-mtop-half_width);    
+    TLine constLimitUp(sbottomLimit+half_width, ymin, sbottomLimit+half_width, sbottomLimit-mtop+half_width);
+    constLimit.SetLineColor(1);
     constLimit.SetLineWidth(3);
+    constLimitDwn.SetLineColor(1);
+    constLimitDwn.SetLineWidth(3);
+    constLimitDwn.SetLineStyle(2);
+    constLimitUp.SetLineColor(1);
+    constLimitUp.SetLineWidth(3);
+    constLimitUp.SetLineStyle(2);
 
     // Draw the exclusion map and the limit lines to make sure that they make sense
     TCanvas* c11 = new TCanvas();
@@ -217,9 +226,13 @@
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
     gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
 
     l1.Draw();
+    l2.Draw();
     constLimit.Draw();
+    constLimitDwn.Draw("same");
+    constLimitUp.Draw("same");
     c11->Print("B1_ExcludedRegionMap.pdf");
 
 
@@ -242,10 +255,14 @@
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
     //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
     gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     //l2.Draw();
     l1.Draw();
+    l2.Draw();
     constLimit.Draw();
+    constLimitDwn.Draw("same");
+    constLimitUp.Draw("same");
     c12->Print("B1_LimitsOnCarpet.pdf");
 
     //Draw the limit lines and nothing else
@@ -263,19 +280,42 @@
     //gup->Draw("samePC");
     //gdwn->Draw("samePC");
     kinlim.Draw();
-    gg.SetTextSize(0.04);
-    latexLabel.SetTextSize(0.04);
+    // gg.SetTextSize(0.04);
+    // latexLabel.SetTextSize(0.04);
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
     latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+    // gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
+    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
     //l2.Draw();
-    l1.Draw();
-    constLimit.Draw();
+    // l1.Draw();
+    // constLimit.Draw();
+    // TLine constLimit(sbottomLimit, ymin, sbottomLimit, sbottomLimit-mtop);
+    TPolyLine *pline = new TPolyLine();
+    pline->SetLineColor(kBlue);
+    pline->SetFillStyle(3244);
+    pline->SetFillColor(kBlue);
+    pline->SetNextPoint(sbottomLimit+half_width, ymin);
+    pline->SetNextPoint(sbottomLimit+half_width, sbottomLimit-mtop+half_width);
+    pline->SetNextPoint(sbottomLimit-half_width, sbottomLimit-mtop-half_width);
+    pline->SetNextPoint(sbottomLimit-half_width, ymin);
+    pline->Draw("fl");
+
+    TPolyLine *lg = new TPolyLine();
+    lg->SetLineColor(kBlue);
+    lg->SetFillStyle(3244);
+    lg->SetFillColor(kBlue);
+    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.32*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.29*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.29*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
+    lg->Draw("fl");
+
     c13->Print("B1_LimitsOnWhite.pdf");
-    gg.SetTextSize(0.035);
-    latexLabel.SetTextSize(0.035);
+    // gg.SetTextSize(0.035);
+    // latexLabel.SetTextSize(0.035);
    
     //Draw the best region and nothing else
     TCanvas* c14 = new TCanvas();
