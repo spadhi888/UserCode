@@ -1,6 +1,6 @@
 \section{Selection Efficiency and Outreach Information}
 \label{sec:seleff}
-We would like to quote our results as a cross section, or cross section limit, that is as
+We would like to quote our results as a cross-section, or cross-section limit, that is as
 model independent as possible. 
 For this we carefully define the acceptance, and provide enough
 details about the selection efficiency within that acceptance that anybody can use their favorite Monte Carlo
@@ -9,7 +9,7 @@ the efficiency for this new physics model to within 50\% or so (the so-called
 ``outreach'' program).
 The same steps are done here as in the pre-tagged sample analysis~\cite{ssnote2011}
 with appropriate modifications considering differences in selections of leptons
-and an addition of the b-tagged jet requirements.
+and an addition of the $b$-tagged jet requirements.
 
 The event selection efficiency is a combination of 
 \begin{enumerate}
@@ -17,7 +17,7 @@ The event selection efficiency is a combination of
 \item the lepton identification and isolation efficiency;
 \item the efficiency of the \met\ requirement;
 \item the efficiency of the \Ht\ requirement;
-\item the efficiency of the b-jet tagging requirement.
+\item the efficiency of the $b$-jet tagging requirement.
 \end{enumerate}
 We derive efficiency functions for 
 components 2 to 5 using a sample of simulated events
@@ -28,7 +28,7 @@ Applicable simulation-to-data corrections (scale factors) are also evaluated bas
 available comparisons of these effiencies in data and simulation.
 As described below, the description of the lepton selections
 does not require an additional scale factor,
-and the correction for b-tagged jets is small with a scale factor of 0.96.
+and the correction for $b$-tagged jets is small with a scale factor of 0.96.
 
 \subsection{Definition of Acceptance}
 \label{sec:acceptance}
@@ -47,7 +47,7 @@ momentum of all non-interacting particles, e.g. neutrinos and LSP.
 %
 The electon and muon selection efficiency dependence as a function of the lepton \pt\
 is shown in Fig.~\ref{fig:lepeffLM6}.
-It is derived using the LM6 events passing the baseline selections applied to jets and \met.
+It is derived using LM6 events passing the baseline selections applied to jets and \met.
 Compared to the pre-tagged sample analysis~\cite{ssnote2011}, we obtain a slightly
 lower efficiency, consistent with the tighter requirement on isolation.
 
@@ -94,9 +94,9 @@ $\sigma$		& $25.8\pm4.0$		& $12.9\pm2.5$		\\
 \subsection{Trigger Efficiency}
 \label{sec:trg}
 As discussed in Section~\ref{sec:eventsel}, this analysis uses dilepton
-triggers; the lepton $P_T$ thresholds are high enough that we do 
-no need the dilepton$+ H_T$ triggers.  The trigger efficiency is 
-discussed in Reference~\cite{ssnote2011}.  It is $99 \pm 1\%$ 
+triggers; the lepton $p_{T}$ thresholds are high enough that we do 
+not need the dilepton$+ H_T$ triggers.  The trigger efficiency, as 
+discussed in Reference~\cite{ssnote2011}, is $99 \pm 1\%$ 
 ($96 \pm 3\%$) per electron (muon).
 
 
@@ -108,12 +108,14 @@ Our selections on reconstructed jets begin with a requirement of at least two je
 %to any additional requirement on colored partons at the generator 
 % level beyond the sum of \pt.
 %This represents the fraction of acceptance to two jets.
-In the following we proceed with determining $\Ht$ and \met\ requirement with respect to 
+In the following we proceed with determining $\Ht$ and \met\ requirements with respect to 
 events that have generator-level requirements on the leptons and colored particles as described in Section~\ref{sec:acceptance}.
 %
 The efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold is shown in Fig.~\ref{fig:htmetThresh}
 as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$) in events passing $\Ht^{\rm gen}>200~\GeV$ ($\met^{\rm~gen}>30~\GeV$).
-Due to the rather small fraction of events in LM6 simulation having low \Ht\ activity, the \Ht\ curves are made with LM1.
+Due to the rather small fraction of events in LM6 simulation having low \Ht\ activity, the \Ht\ curves are made with LM1.\footnote{The LM1 cMSSM model point 
+is defined by the model parameters as $m_0 = 60~\GeV$, $m_{1/2} = 250~\GeV$, $\tan\beta = 10$, $\mu>0$,
+and $A_0 = 0~\GeV$.}
 Results of the fits of these curves to $0.5 \epsilon_{\infty} \{{\rm erf}[(x - x_{1/2})/\sigma] + 1\}$ are summarized
 in Table~\ref{tab:htmetThresh}.
 Neither the \met\ nor \Ht\ curves show a significant bias in the position of the point with half the plateau efficiency ($x_{1/2}$).
@@ -128,7 +130,7 @@ The width of the threshold $\sigma$ increases with the value of the cut.
 Efficiency for an event to pass a given reconstructed \met\ ($\Ht$) threshold 
 as a function of $\met^{\rm~gen}$ ($\Ht^{\rm gen}$).
 The curves are shown for \met\ thresholds of 30, 50, and 120~\GeV;
-the thresholds for \Ht\ are 200, 320, and 440~\GeV.
+the thresholds for \Ht\ are 200, 320~\GeV.
 }
 \end{center}
 \end{figure}
@@ -150,20 +152,30 @@ $\sigma$,~\GeV		& $88.3\pm9.8$		& $102.0\pm6.2$		& $120.3\pm6.1$		& $44.0\pm2.8$
 \end{table}
 
 
-\subsection{Jet b-tagging efficiency}
+\subsection{Jet $b$-tagging efficiency}
 \label{sec:btagEff}
-The b-jet tagging efficiency is defined for b-quarks passing $|\eta|< 2.5$ and matching to a reconstructed jet.
+The $b$-jet tagging efficiency is defined for b-quarks passing $|\eta|< 2.5$ and matching to a reconstructed jet.
 A fraction of these b-quark that match to a b-tagged jet is the b-jet tagging efficiency.
 It shown in Fig.~\ref{fig:btagEff} as a function of the b-quark \pt.
 For b-quarks of $|\eta| < 2.5$, the b-jet tagging efficiency as a function 
 of \pt~can be parametrized as 
-\begin{itemize}
-\item \pt $<$ 90 GeV:~~~~~~~~~~~~~~~~$\epsilon = SF \cdot [p0 \cdot (p_t-90~{\rm GeV}) + p1]$
-\item 90 GeV $<$ \pt $<$ 170 GeV:~~~~$\epsilon = SF \cdot p1$
-\item \pt $>$ 170 GeV:~~~~~~~~~~~~~~$\epsilon = SF \cdot [p2 \cdot (p_t-170~{\rm GeV}) + p1]$
-\end{itemize}
+%\begin{itemize}
+%\item \pt~ $<$~ 90 GeV:~~~~~~~~~~~~~~~~$\epsilon = SF \cdot [p0 \cdot (p_t-90~{\rm GeV}) + p1]$
+%\item 90 GeV $<$~ \pt$~ <$ 170 GeV:~~~~$\epsilon = SF \cdot p1$
+%\item \pt~ $>$ 170 GeV:~~~~~~~~~~~~~~$\epsilon = SF \cdot [p2 \cdot (p_t-170~{\rm GeV}) + p1]$
+%\end{itemize}
 
-\noindent where the parameters $p0$, $p1$, and $p2$ are given in Figure~\ref{fig:btagEff}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{@{\textbullet}ll}
+	~~$p_{T } >$ 90 GeV &  $\epsilon = SF \cdot [p_{0} \cdot (p_{T} - 90~{\rm GeV}) + p_{1}]$ \\
+	~~90 GeV $< p_{T} <$ 170 GeV & $\epsilon = SF \cdot p_{1}$ \\
+	~~$p_{T} >$ 170 GeV & $\epsilon = SF \cdot [p_{2} \cdot (p_{T} - 170~{\rm GeV}) + p_{1}]$ \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\noindent where the parameters $p_{0}$, $p_{1}$, and $p_{2}$ are given in Figure~\ref{fig:btagEff}
 and $SF$ is the data-Monte Carlo scale factor: $SF$ = 0.96 with a 
 4 (15)\% uncertainty for jets with $\pt<240 (>240)~\GeV$ (see 
 Section~\ref{sec:bjetSF}). 
@@ -173,7 +185,7 @@ Section~\ref{sec:bjetSF}).
 \begin{center}
 \includegraphics[width=0.48\linewidth]{figs/btagEfficiency_lm6.pdf}
 \caption{\label{fig:btagEff}
-B-jet tagging efficiency as a function of the matching b-quark \pt in LM6 SUSY MC.
+$B$-jet tagging efficiency as a function of the matching b-quark \pt~ in LM6 SUSY MC.
 }
 \end{center}
 \end{figure}
@@ -191,7 +203,7 @@ The efficiency of the identification requirements is a property of the lepton it
 The efficiency of the isolation requirement, however, is a strong function of all other (mainly hadronic)
 activity in the event.
 The following results are based on measurements using the full dataset and compared 
-to simulation that is re-weighed to have a pile-up distribution comparable to that observed in data.
+to simulation that is re-weighted to have a pile-up distribution comparable to that observed in data.
 
 The electron selection efficiencies are measured in events passing 
 the \verb=Ele17..._SC8_Mass30= and \\\verb=Ele17.._Ele8_Mass30= triggers,
@@ -203,14 +215,13 @@ In the tag\&probe analysis the electron tag is required to match to the well-ide
 from the trigger and also to pass all the electron requirements described in~\cite{ssnote2011}.
 The probe electron is required to have
 \begin{itemize}
-\item $\pt>20~\GeV$, $|\eta|<2.4$, excluding the superclusters with $1.4442<|\eta|<1.566$.
+\item $\pt>20~\GeV$, $|\eta|<2.4$, excluding the super-clusters with $1.4442<|\eta|<1.566$.
 \end{itemize}
-The isolation efficiency is measured with the probes passing all electron selections , except for the 
+The isolation efficiency is measured with the probes passing all electron selections, except for the 
 trigger requirement and the isolation itself.
 The identification efficiency is measured with probes passing the isolation requirement.
 Results of the measurement are summarized in Table~\ref{tab:eleEffs}.
-The contribution from the Z events is based on simple counting in the mass range of 86--96~\GeVc,
-the MC contribution includes Wjet events to match the expected residual backgrounds in this mass window.
+The contribution from the Z events is based on simple counting in the mass range of 86--96~\GeVc.  The MC contribution includes W+jets events to match the expected residual backgrounds in this mass window.
 The following sources of systematic uncertainty are attributed to this measurement:
 background contribution, selection of dielectron events, factorization of the isolation and ID parts.
 The size of the background contribution can be estimated using MC alone
@@ -332,5 +343,5 @@ and propagate the uncertainty described above to the relevant part of the analys
 We apply an average scale factor of 0.96 measured using \ttbar\ events
 for the SSVHEM tagger~\cite{BTV11003}.
 The uncertainty on the scale factor is 4 (15)\% for jets with $\pt<240 (>240)~\GeV$,
-as recommended by the b-tagging POG~\cite{btvSyst}. We apply
+as recommended by the $b$-tagging POG~\cite{btvSyst}. We apply
 it to the analysis as described in Section~\ref{sec:systematic}.

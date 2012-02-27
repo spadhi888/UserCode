@@ -19,9 +19,9 @@ We predict the background from fake leptons using the technique previously imple
 and documented in~\cite{frmethod} and currently used in the pre-tagged sample analysis~\cite{ssnote2011}.
 The idea is to count the number of events for which one lepton passes all final selections and a second lepton
 fails the nominal requirements but passes a looser set of requirements\footnote{Events must also
-pass all requirements on number of jets, \met, number of btagged jets, and $H_T$.
+pass all requirements on number of jets, \met, number of $b$-tagged jets, and $H_T$.
 All jet quantities are calculated after lepton-jet disambiguation, {\it i.e.}, requiring 
-that the counted jets be separated by $\Delta R > 0.4$ from the two leptons.}. 
+that the counted jets be separated by $\Delta R > 0.4$ from the leptons.}. 
 We refer to the former lepton as a "numerator" lepton ($n$),
 and the latter a "non-numerator" (denominator and not numerator, or $\bar{n}$).
 The denominator objects are also referred to as fakeable objects (FO).
@@ -41,6 +41,7 @@ Section~\ref{sec:eventsel}:
 \item $\chi^2$/ndof of global fit $<$ 50 (was $<$ 10);
 \item transverse impact parameter with respect to the selected vertex is
 $<$ 2 mm (was $<$ 200 $\mu$m);
+\item the MIP-like requirement on deposits in the ECAL (HCAL) is removed [was ECAL (HCAL) $<$ 4 (6) GeV];
 \item $Iso$ is set to be $Iso < 0.4$  (was $<$ 0.1).
 \end{itemize}
 
@@ -87,7 +88,7 @@ the heavy flavor as well:
 	muons in both simulation and data and are fractionally much less important
 	here).
 \end{itemize}
-We arrive to essentially the same conclusions on the performance of the fake-rate method
+We arrive to essentially the same conclusions on the performance of the fake rate method
 as we did in the past.
 In particular, we find that the method works reasonably well, still with a systematic
 uncertainty of about 50\%.
@@ -203,7 +204,7 @@ to be above 20~\GeV\ (red filled circles), 40~\GeV\ (black up triangles), and 60
 
 \clearpage
 
-The application of the fake-rate method to predict this background is exactly the same as in 
+The application of the fake rate method to predict this background is exactly the same as in 
 the inclusive analysis~\cite{ssnote2011}.
 As in the inclusive same-sign analysis, the measured fake rates are restricted to $\pt<55 (35)~\GeV$
 for electrons (muons), where we find negligible 
@@ -270,7 +271,7 @@ The systematic uncertainty of $\pm 50\%$ per fake lepton is estimated for the fa
 This value is dominated by the results of the closure tests.
 Our understanding of these results is that the main underlying cause is 
 the dependence of the fake rate on parent parton momentum.
-The momentum spectrum of partons from ISR/FSR differs from that of the b-jets
+The momentum spectrum of partons from ISR/FSR differs from that of the $b$-jets
 or light-flavor-quark jets ($W\to q\bar{q}^\prime$) arising from the $t\to W b$ decays.
 The mix of the spectra varies, but the range of the fake rate variation
 can be tested in data QCD events used to measure the fake rate
@@ -307,12 +308,12 @@ we apply the requirement for electrons that all three charge measurements for a 
 This dramatically reduces the rate of charge mismeasurement for electrons to
 the point that this background is only $\approx$ 10\% of the total.  Note 
 that, while small, this is a much larger fraction than in
-the untagged analysis, were ``fake'' lepton backgrounds are
-dominant~\cite{sspaper2010,ssnote2011,sspaper2011}.
+the pre-tagged analysis sample, were ``fake'' lepton backgrounds are
+dominant~\cite{sspaper2010,sspaper201,ssnote2011}.
 Even though this background is small, it is not necessarily 
 well-reproduced in simulation.
 We apply the data-driven method used in the previous 
-analysis\cite{sspaper2010,ssnote2011,sspaper2011}
+analysis\cite{sspaper2010,sspaper2011,ssnote2011}
 here
 as well.
 
@@ -326,7 +327,7 @@ The following steps are done:
 	\begin{enumerate}
 		\item Use a Z sample in data to control this probability.
 			The sample is selected from dielectron events with $76$\ GeV $ < m_{ll} < 106$\ GeV,  
-			\met $ < 20$\ GeV, and transverse mass $< 25$ GeV.
+			\met $~ < 20$\ GeV, and transverse mass $< 25$ GeV.
 			Here transverse mass is calculated based on whichever lepton has higher $\pt$. 
 		\item Apply this probability to the opposite sign events in this control sample
 			to obtain a predicted number of same-sign Z candidates.
@@ -335,8 +336,8 @@ The following steps are done:
 		\item If the expected and observed yields agree reasonably well in the previous step, continue using
 			the probability measured in the first step and include the discrepancy as a systematic uncertainty.
 	\end{enumerate}
-	\item Apply this (calibrated) probability to all the electrons in opposite sign dilepton events that pass the selection. 
-		This produces the data driven charge flip  prediction shown in the tables in Section~\ref{sec:yields}. 
+	\item Apply this (calibrated) probability to all the electrons in opposite-sign dilepton events that pass the selection. 
+		This produces the data-driven charge flip  prediction shown in the tables in Section~\ref{sec:yields}. 
 	\item The $p_T$ distribution of leptons from top is slightly harder than that for leptons from Z. 
 		The calibration step above thus does not fully sample the lepton spectrum for our background sample. 
 		We assign an additional systematics of 20\% to account for this effect.
@@ -346,8 +347,8 @@ In the calibration step we find 390 events with same-sign electron pairs in data
 This needs to be compared with the sum of the expected same-sign events as estimated from
 opposite-sign dielectrons, $360\pm4$, plus a contribution from fakes, $11\pm 6$.
 These comparisons are consistent within statistics and no additional data-driven correction
-is necessary for the simulated charge misid probabilities.
-The number of events expected directly from simulation is  $369\pm 11$, also in a good agreement with the numbers above.
+is necessary for the simulated charge misidentification probabilities.
+The number of events expected directly from simulation is  $393\pm 12$, also in a good agreement with the numbers above.
 The same-sign dielectron mass distribution observed in data is compared to the expectation from
 simulation in Fig.~\ref{fig:flipZee}.
 The total systematic uncertainty on the charge flip prediction is 20\%,
@@ -359,8 +360,8 @@ spectra in Drell-Yan events and in the background \ttbar\ events.
 \begin{center}
 \includegraphics[width=0.8\linewidth]{figs/qflip_data_mc_comp}
 \caption{\label{fig:flipZee}
-Same sign $ee$ invariant mass distribution compared with $Z \to ee$ Monte Carlo expectations.
-Cuts on missing transverse energy $<$ 20 GeV and transverse mass
+Same-sign $ee$ invariant mass distribution compared with $Z \to ee$ Monte Carlo expectations.
+Cuts on \met~ $<$ 20 GeV and transverse mass
 $<$ 25 GeV have been applied to reduce backgrounds from $W +$ jets.
 The highest $\pt$ lepton has been used in the calculation of the transverse  mass.}
 \end{center}
