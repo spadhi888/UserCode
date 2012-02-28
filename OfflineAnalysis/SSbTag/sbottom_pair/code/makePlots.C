@@ -1,6 +1,27 @@
-{
-    // Makes basic histograms from the root tree
-  
+#include "TGraph.h"
+#include "TH2F.h"
+#include "TFile.h"
+#include "TStyle.h"
+#include <vector>
+#include "TLatex.h"
+#include "TLine.h"
+#include <iostream>
+#include "TTree.h"
+#include "TDirectory.h"
+#include "TCanvas.h"
+#include "TPolyLine.h"
+
+using namespace std;
+
+void makePlots () {
+
+    TCanvas *c1 = new TCanvas();
+
+    TFile *file = TFile::Open("ntuple_50.root");
+    file->cd();
+    TTree *tree = (TTree*)gDirectory->Get("tree");
+
+    // Makes basic histograms from the root tree  
     gStyle->SetPadRightMargin(0.12);   // default 0.1
     gStyle->SetTitleOffset(1.20, "Y");  // default 1
     gStyle->SetOptStat(0);
@@ -8,12 +29,12 @@
     // This binning insures that the bins are nicely centered
     Double_t xbinsize = 10.;
     Double_t ybinsize = 10.;
-    Double_t xmin    = 250. - xbinsize/2.;
-    Double_t xmax    = 450. + xbinsize/2.;
-    Double_t ymin    = 100. - ybinsize/2;
-    Double_t ymax    = 300. + ybinsize/2.;
-    Int_t nx = (xmax-xmin)/xbinsize;
-    Int_t ny = (ymax-ymin)/ybinsize;
+    Double_t xmin     = 250. - xbinsize/2.;
+    Double_t xmax     = 450. + xbinsize/2.;
+    Double_t ymin     = 100. - ybinsize/2;
+    Double_t ymax     = 300. + ybinsize/2.;
+    Int_t nx          = (xmax-xmin)/xbinsize;
+    Int_t ny          = (ymax-ymin)/ybinsize;
 
     // Upper limit as a function of gluino and lsp mass
     TH2F* ul = new TH2F("ul","ul",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
@@ -35,20 +56,19 @@
     TH2F* acc = new TH2F("acc","acc",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
     //an empty histogram
-    TH2F* empyt = new TH2F("empty","empty",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
+    TH2F* empty = new TH2F("empty","empty",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
 
-    tree->Draw("lspmass:glmass>>ul","explimsrb/(4680.*effsrb)");
-    tree->Draw("lspmass:glmass>>ulbest","bestsr");
-    tree->Draw("lspmass:glmass>>acc","100.*effsrb");
-    tree->Draw("lspmass:glmass>>excl","explimsrb/(4680.*effsrb)<xsec");
-    tree->Draw("lspmass:glmass>>exclup","explimsrb/(4680.*effsrb)<xsecup");
-    tree->Draw("lspmass:glmass>>excldwn","explimsrb/(4680.*effsrb)<xsecdwn");
-    tree->Draw("lspmass:glmass>>hxsec",   "xsec");
-    tree->Draw("lspmass:glmass>>hxsecup", "xsecup");
-    tree->Draw("lspmass:glmass>>hxsecdwn","xsecdwn");
-
-
+    tree->Draw("lspmass:glmass>>ulbest"   ,"bestsr"                           );
+    tree->Draw("lspmass:glmass>>acc"      ,"100.*effsrb"                      );
+    tree->Draw("lspmass:glmass>>excl"     ,"explimsrb/(5000.*effsrb)<xsec"    );
+    tree->Draw("lspmass:glmass>>exclup"   ,"explimsrb/(5000.*effsrb)<xsecup"  );
+    tree->Draw("lspmass:glmass>>excldwn"  ,"explimsrb/(5000.*effsrb)<xsecdwn" );
+    tree->Draw("lspmass:glmass>>hxsec"    ,   "xsec"                          );
+    tree->Draw("lspmass:glmass>>hxsecup"  , "xsecup"                          );
+    tree->Draw("lspmass:glmass>>hxsecdwn" ,"xsecdwn"                          );
+    tree->Draw("lspmass:glmass>>ul"       ,"explimsrb/(5000.*effsrb)"         );
+    c1->Print("ul.root");
 
     // now scan the upper limit histogram and interpolate the points for the limit
     // - scan in X as a function of Y
@@ -100,19 +120,50 @@
             }
         }
     }
+
+    cout << "xvec.size(), yvec.size(): " << xvec.size() << ", " << yvec.size() << endl;
+
     // Add points by hand to make it go down to the bottom
-    float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
-    float xx = xvec.at(xvec.size()-1) + 0.5*(xvec.at(xvec.size()-1) - xvec.at(xvec.size()-2));
-    xvec.push_back(xx);
-    yvec.push_back(yy);
-    yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
-    xx = xvecup.at(xvecup.size()-1) + 0.5*(xvecup.at(xvecup.size()-1) - xvecup.at(xvecup.size()-2));
-    xvecup.push_back(xx);
-    yvecup.push_back(yy);
-    yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
-    xx = xvecdwn.at(xvecdwn.size()-1) + 0.5*(xvecdwn.at(xvecdwn.size()-1) - xvecdwn.at(xvecdwn.size()-2));
-    xvecup.push_back(xx);
-    yvecup.push_back(yy);
+    if (xvec.size() > 2 && xvecdwn.size() > 2 && xvecup.size() > 2) {
+        float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
+        float xx = xvec.at(xvec.size()-1) + 0.5*(xvec.at(xvec.size()-1) - xvec.at(xvec.size()-2));
+        xvec.push_back(xx);
+        yvec.push_back(yy);
+        yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
+        xx = xvecup.at(xvecup.size()-1) + 0.5*(xvecup.at(xvecup.size()-1) - xvecup.at(xvecup.size()-2));
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);
+        yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
+        xx = xvecdwn.at(xvecdwn.size()-1) + 0.5*(xvecdwn.at(xvecdwn.size()-1) - xvecdwn.at(xvecdwn.size()-2));
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);        
+    }
+    else {
+        float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
+        float xx = xvec.at(xvec.size()-1) + xbinsize/2.;
+        xvec.push_back(xx);
+        yvec.push_back(yy);
+        yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
+        xx = xvecup.at(xvecup.size()-1) + xbinsize/2.;
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);
+        yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
+        xx = xvecdwn.at(xvecdwn.size()-1) + xbinsize/2.;
+        xvecup.push_back(xx);
+        yvecup.push_back(yy);        
+    }
+    // float yy = yvec.at(yvec.size()-1) - ybinsize/2.;
+    // float xx = xvec.at(xvec.size()-1) + 0.5*(xvec.at(xvec.size()-1) - xvec.at(xvec.size()-2));
+    // xvec.push_back(xx);
+    // yvec.push_back(yy);
+    // yy = yvecup.at(yvecup.size()-1) - ybinsize/2.;
+    // xx = xvecup.at(xvecup.size()-1) + 0.5*(xvecup.at(xvecup.size()-1) - xvecup.at(xvecup.size()-2));
+    // xvecup.push_back(xx);
+    // yvecup.push_back(yy);
+    // yy = yvecdwn.at(yvecdwn.size()-1) - ybinsize/2.;
+    // xx = xvecdwn.at(xvecdwn.size()-1) + 0.5*(xvecdwn.at(xvecdwn.size()-1) - xvecdwn.at(xvecdwn.size()-2));
+    // xvecup.push_back(xx);
+    // yvecup.push_back(yy);
 
 
     // The points are stored in a TGraph
@@ -131,11 +182,11 @@
     // This line is the kinematical limit
     float mtop = 175.;
     TLine kinlim = TLine(ymin+mtop, ymin, xmax, xmax-mtop);
-    kinlim->SetLineWidth(3);
+    kinlim.SetLineWidth(3);
 
     // Axis labels, a bit primitive for now
-    char* glmass = "m(#tilde{b}) GeV";
-    char* lspmass = "m(#tilde{#chi_{1}^{+}}) GeV";
+    char* glmass = "m(#tilde{b}_{1}) GeV";
+    char* lspmass = "m(#tilde{#chi}_{1}^{+}) GeV";
     excl->GetYaxis()->SetTitle(lspmass);
     excl->GetXaxis()->SetTitle(glmass);
     excl->SetTitle("B1 model  Excluded points in red");
@@ -152,24 +203,26 @@
     acc->GetXaxis()->SetTitle(glmass);
     acc->SetTitle("B1 model  Acc*Eff*BR for best signal region in percent");
 
-
-
-
-
     // Some text
     TLatex gg;
+    gg.SetTextSize(0.035);
+
     TLatex gg2;
+    gg2.SetTextSize(0.035);
+
     TLatex latexLabel;
     latexLabel.SetTextSize(0.035);
-    char * selection ="Same Sign dileptons with btag selection";
-    gg.SetTextSize(0.035);
-    gg2.SetTextSize(0.035);
-    TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                     ymax-0.30*(ymax-ymin));
+
+    const char *selection       = "Same Sign dileptons with btag selection";
+    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
+    const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
+
+    TLine l1 = TLine(xmin+0.1*(xmax-xmin), ymax-0.22*(ymax-ymin), xmin+0.2*(xmax-xmin), ymax-0.22*(ymax-ymin));
     l1.SetLineColor(1);
     l1.SetLineWidth(3);
-    TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.38*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                     ymax-0.38*(ymax-ymin));
+
+    TLine l2 = TLine(xmin+0.1*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.2*(xmax-xmin), ymax-0.30*(ymax-ymin));
     l2.SetLineColor(1);
     l2.SetLineWidth(3);
     l2.SetLineStyle(2);
@@ -184,7 +237,7 @@
     // We just take a constant at 370
     //----------------------
     float sbottomLimit=370;
-    const float half_width = 4.;
+    const float half_width = 3.5;
     TLine constLimit(sbottomLimit, ymin, sbottomLimit, sbottomLimit-mtop);
     TLine constLimitDwn(sbottomLimit-half_width, ymin, sbottomLimit-half_width, sbottomLimit-mtop-half_width);    
     TLine constLimitUp(sbottomLimit+half_width, ymin, sbottomLimit+half_width, sbottomLimit-mtop+half_width);
@@ -199,7 +252,6 @@
 
     // Draw the exclusion map and the limit lines to make sure that they make sense
     TCanvas* c11 = new TCanvas();
-
     c11->SetFillColor(0);
     c11->GetPad(0)->SetRightMargin(0.07);
     c11->SetFillColor(0);
@@ -209,25 +261,14 @@
     c11->GetPad(0)->SetTopMargin(0.08);
     c11->GetPad(0)->SetBottomMargin(0.13);
 
-
     excl->Draw("col");
-    //g->Draw("samePC");
-    //gup->Draw("samePC");
-    //gdwn->Draw("samePC");
     kinlim.Draw();
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.05*(ymax-ymin),"CMS Preliminary");
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),selection);
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1}   m(#chi^{0}) = 50 GeV");
-    // gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    //l2.Draw();
 
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
+    gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
     l1.Draw();
     l2.Draw();
     constLimit.Draw();
@@ -245,19 +286,14 @@
     c12->GetPad(0)->SetLeftMargin(0.1407035);
     c12->GetPad(0)->SetTopMargin(0.08);
     c12->GetPad(0)->SetBottomMargin(0.13);
+
     ul->Draw("colz");
-    //g->Draw("samePC");
-    //gup->Draw("samePC");
-    //gdwn->Draw("samePC");
     kinlim.Draw();
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.2*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    //l2.Draw();
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
+    gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
     l1.Draw();
     l2.Draw();
     constLimit.Draw();
@@ -276,22 +312,14 @@
     c13->GetPad(0)->SetLeftMargin(0.1407035);
     c13->GetPad(0)->SetTopMargin(0.08);
     c13->GetPad(0)->SetBottomMargin(0.13);
-    //g->Draw("samePC");
-    //gup->Draw("samePC");
-    //gdwn->Draw("samePC");
+
     kinlim.Draw();
-    // gg.SetTextSize(0.04);
-    // latexLabel.SetTextSize(0.04);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    // gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    //gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    //l2.Draw();
-    // l1.Draw();
-    // constLimit.Draw();
-    // TLine constLimit(sbottomLimit, ymin, sbottomLimit, sbottomLimit-mtop);
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
+
     TPolyLine *pline = new TPolyLine();
     pline->SetLineColor(kBlue);
     pline->SetFillStyle(3244);
@@ -306,16 +334,14 @@
     lg->SetLineColor(kBlue);
     lg->SetFillStyle(3244);
     lg->SetFillColor(kBlue);
-    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
-    lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.32*(ymax-ymin));
-    lg->SetNextPoint(xmin+0.14*(xmax-xmin),ymax-0.29*(ymax-ymin));
-    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.29*(ymax-ymin));
-    lg->SetNextPoint(xmin+0.05*(xmax-xmin),ymax-0.32*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.1*(xmax-xmin),ymax-0.24*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.2*(xmax-xmin),ymax-0.24*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.2*(xmax-xmin),ymax-0.21*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.1*(xmax-xmin),ymax-0.21*(ymax-ymin));
+    lg->SetNextPoint(xmin+0.1*(xmax-xmin),ymax-0.24*(ymax-ymin));
     lg->Draw("fl");
 
     c13->Print("B1_LimitsOnWhite.pdf");
-    // gg.SetTextSize(0.035);
-    // latexLabel.SetTextSize(0.035);
    
     //Draw the best region and nothing else
     TCanvas* c14 = new TCanvas();
@@ -327,11 +353,13 @@
     c14->GetPad(0)->SetLeftMargin(0.1407035);
     c14->GetPad(0)->SetTopMargin(0.08);
     c14->GetPad(0)->SetBottomMargin(0.13);
-    ulbest->Draw("textcol");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
 
+    ulbest->Draw("textcol");
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
+    kinlim.Draw();
     c14->Print("B1_BestSignalRegion.pdf");
 
     //Draw the acceptance carpet
@@ -343,10 +371,12 @@
     c15->GetPad(0)->SetLeftMargin(0.1407035);
     c15->GetPad(0)->SetTopMargin(0.08);
     c15->GetPad(0)->SetBottomMargin(0.13);
+
     acc->Draw("colz");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1}   m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
     kinlim.Draw();
     c15->Print("B1_AcceptanceCarpet.pdf");
 }
