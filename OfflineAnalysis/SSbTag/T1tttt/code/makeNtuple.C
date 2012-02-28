@@ -46,7 +46,7 @@ void makeNtuple(){
   float xsecup[2000];
   float xsecdwn[2000];
   int nxsec=0;
-  ifstream fromfile("gluino_xsec.txt");
+  ifstream fromfile("../../xsec/gluino_xsec.txt");
   if ( !fromfile.good() ) {
     cout << "gluino xsec file does not exist" << endl ;
     return;
@@ -95,13 +95,13 @@ void makeNtuple(){
   // The file names, ordered by signal region...
   //-----------------------------------------------
   vector<TString> filenames;
-  filenames.push_back("SR1_sorted.txt");
-  filenames.push_back("SR2_sorted.txt");
-  filenames.push_back("SR3_sorted.txt");
-  filenames.push_back("SR4_sorted.txt");
-  filenames.push_back("SR5_sorted.txt");
-  filenames.push_back("SR6_sorted.txt");
-  filenames.push_back("SR7_sorted.txt");
+  filenames.push_back("../txt/t1tttt_sr1.txt");
+  filenames.push_back("../txt/t1tttt_sr2.txt");
+  filenames.push_back("../txt/t1tttt_sr3.txt");
+  filenames.push_back("../txt/t1tttt_sr4.txt");
+  filenames.push_back("../txt/t1tttt_sr5.txt");
+  filenames.push_back("../txt/t1tttt_sr6.txt");
+  filenames.push_back("../txt/t1tttt_sr7.txt");
 
   //-----------------------------------------------
   // Loop over signal regions and load the arrays from the txt files

@@ -30,12 +30,12 @@
 //
 //
 
-void makeNtuple(){
+void makeNtuple(int lsp_mass){
 
   //-----------------------------------------------
   // The name of the file with the output ntuple
   //-----------------------------------------------
-  char* ntFile = "ntuple_250.root";
+    char* ntFile = Form("ntuple_%d.root", lsp_mass);
 
 
   //-----------------------------------------------
@@ -95,13 +95,13 @@ void makeNtuple(){
   // The file names, ordered by signal region...
   //-----------------------------------------------
   vector<TString> filenames;
-  filenames.push_back("../txt/gstop_mlsp250_sr1.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr2.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr3.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr4.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr5.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr6.txt");
-  filenames.push_back("../txt/gstop_mlsp250_sr7.txt");
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr1.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr2.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr3.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr4.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr5.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr6.txt", lsp_mass));
+  filenames.push_back(Form("../txt/gstop_mlsp%d_sr7.txt", lsp_mass));
 
   //-----------------------------------------------
   // Loop over signal regions and load the arrays from the txt files

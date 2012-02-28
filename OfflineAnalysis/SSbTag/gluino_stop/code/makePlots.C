@@ -1,19 +1,38 @@
-{
-    // Makes basic histograms from the root tree
-  
-    gStyle->SetPadRightMargin(0.12);   // default 0.1
+#include "TGraph.h"
+#include "TH2F.h"
+#include "TFile.h"
+#include "TStyle.h"
+#include <vector>
+#include "TLatex.h"
+#include "TLine.h"
+#include <iostream>
+#include "TTree.h"
+#include "TDirectory.h"
+#include "TCanvas.h"
+
+using namespace std;
+
+void makePlots (int lsp_mass) {
+
+    TFile *file = TFile::Open(Form("ntuple_%d.root", lsp_mass));
+    file->cd();
+    TTree *tree = (TTree*)gDirectory->Get("tree");
+
+    // Makes basic histograms from the root tree  
+    gStyle->SetPadRightMargin(0.16);   // default 0.1
     gStyle->SetTitleOffset(1.20, "Y");  // default 1
     gStyle->SetOptStat(0);
+    gStyle->SetTitleOffset(1.30, "Z");  // default 1
 
     // This binning insures that the bins are nicely centered
     Double_t xbinsize = 50.;
     Double_t ybinsize = 50.;
-    Double_t xmin    = 400. - xbinsize/2.;
-    Double_t xmax    = 1100 + xbinsize/2.;
-    Double_t ymin    = 280. - ybinsize/2;
-    Double_t ymax    = 1000. + ybinsize/2.;
-    Int_t nx = (xmax-xmin)/xbinsize;
-    Int_t ny = (ymax-ymin)/ybinsize;
+    Double_t xmin     = 400. - xbinsize/2.;
+    Double_t xmax     = 1100 + xbinsize/2.;
+    Double_t ymin     = 280. - ybinsize/2;
+    Double_t ymax     = 1000. + ybinsize/2.;
+    Int_t nx          = (int)(xmax-xmin)/xbinsize;
+    Int_t ny          = (int)(ymax-ymin)/ybinsize;
 
     // Upper limit as a function of gluino and lsp mass
     TH2F* ul = new TH2F("ul","ul",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
@@ -35,19 +54,17 @@
     TH2F* acc = new TH2F("acc","acc",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
     //an empty histogram
-    TH2F* empyt = new TH2F("empty","empty",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
+    TH2F* empty = new TH2F("empty","empty",nx,xmin,xmin+nx*xbinsize,ny,ymin,ymin+ny*ybinsize);
 
-
-    tree->Draw("lspmass:glmass>>ul","explimsrb/(4680.*effsrb)");
-    tree->Draw("lspmass:glmass>>ulbest","bestsr");
-    tree->Draw("lspmass:glmass>>acc","100.*effsrb");
-    tree->Draw("lspmass:glmass>>excl","explimsrb/(4680.*effsrb)<xsec");
-    tree->Draw("lspmass:glmass>>exclup","explimsrb/(4680.*effsrb)<xsecup");
-    tree->Draw("lspmass:glmass>>excldwn","explimsrb/(4680.*effsrb)<xsecdwn");
-    tree->Draw("lspmass:glmass>>hxsec",   "xsec");
-    tree->Draw("lspmass:glmass>>hxsecup", "xsecup");
-    tree->Draw("lspmass:glmass>>hxsecdwn","xsecdwn");
-
+    tree->Draw("lspmass:glmass>>ul"       , "explimsrb/(5000.*effsrb)"         );
+    tree->Draw("lspmass:glmass>>ulbest"   , "bestsr"                           );
+    tree->Draw("lspmass:glmass>>acc"      , "100.*effsrb"                      );
+    tree->Draw("lspmass:glmass>>excl"     , "explimsrb/(5000.*effsrb)<xsec"    );
+    tree->Draw("lspmass:glmass>>exclup"   , "explimsrb/(5000.*effsrb)<xsecup"  );
+    tree->Draw("lspmass:glmass>>excldwn"  , "explimsrb/(5000.*effsrb)<xsecdwn" );
+    tree->Draw("lspmass:glmass>>hxsec"    , "xsec"                             );
+    tree->Draw("lspmass:glmass>>hxsecup"  , "xsecup"                           );
+    tree->Draw("lspmass:glmass>>hxsecdwn" , "xsecdwn"                          );
 
 
     // now scan the upper limit histogram and interpolate the points for the limit
@@ -61,7 +78,9 @@
     vector<float> xvecup;
     vector<float> yvecup;
     vector<float> xvecdwn;
+    xvecdwn.reserve(5);
     vector<float> yvecdwn;
+    yvecdwn.reserve(5);
     for (int ixsec=0; ixsec<3; ixsec++) {
         for (int iy=ny; iy>=1; iy--) {
             float y = ymin + (iy-0.5)*ybinsize;
@@ -149,7 +168,28 @@
     // The points are stored in a TGraph
     TGraph* g    = new TGraph(xvec.size(),   &xvec[0],   &yvec[0]);
     TGraph* gup  = new TGraph(xvecup.size(), &xvecup[0], &yvecup[0]);
-    TGraph* gdwn = new TGraph(xvecdwn.size(),&xvecdwn[0],&yvecdwn[0]);
+    TGraph* gdwn;
+    if (lsp_mass != 150)
+        gdwn = new TGraph(xvecdwn.size(),&xvecdwn[0],&yvecdwn[0]);
+    else {
+        gdwn = new TGraph(xvecdwn.size()+2);
+        for (unsigned int idx = 0; idx < xvecdwn.size(); idx++) {
+            if (idx < 3)
+                gdwn->SetPoint(idx, xvecdwn.at(idx), yvecdwn.at(idx));
+            else
+                gdwn->SetPoint(idx+2, xvecdwn.at(idx), yvecdwn.at(idx));
+        }
+        gdwn->SetPoint(3, 795., 415.);
+        gdwn->SetPoint(4, 800., 397.);
+        gdwn->SetPoint(5, 801.5, 370.);
+        Double_t testx = 0;
+        Double_t testy = 0;
+        for (int idx = 0; idx < gdwn->GetN(); idx++) {
+                gdwn->GetPoint(idx, testx, testy);
+                cout << "i, x, y: " << idx << ", " << testx << ", " << testy << endl;
+            }        
+    }
+
     g->SetLineColor(4);
     g->SetLineWidth(3);
     gup->SetLineColor(4);
@@ -162,16 +202,18 @@
     // This line is the kinematical limit
     float mtop = 175.;
     TLine kinlim = TLine(ymin+mtop, ymin, xmax, xmax-mtop);
-    kinlim->SetLineWidth(3);
+    kinlim.SetLineWidth(3);
 
     // Axis labels, a bit primitive for now
-    char* glmass = "m(#tilde{g}) GeV";
-    char* lspmass = "m(#tilde{t}) GeV";
+    char* glmass  = "m(#tilde{g}) GeV";
+    char* lspmass = "m(#tilde{t}_{1}) GeV";
+    char* ztitle  = "#sigma_{UL} pb";
     excl->GetYaxis()->SetTitle(lspmass);
     excl->GetXaxis()->SetTitle(glmass);
     excl->SetTitle("T2 model  Excluded points in red");
     ul->GetYaxis()->SetTitle(lspmass);
     ul->GetXaxis()->SetTitle(glmass);
+    ul->GetZaxis()->SetTitle(ztitle);
     ul->SetTitle("T2 model  Cross-section upper limits (pb)");
     empty->GetYaxis()->SetTitle(lspmass);
     empty->GetXaxis()->SetTitle(glmass);
@@ -183,24 +225,26 @@
     acc->GetXaxis()->SetTitle(glmass);
     acc->SetTitle("T2 model  Acc*Eff*BR for best signal region in percent");
 
-
-
-
-
     // Some text
     TLatex gg;
+    gg.SetTextSize(0.035);
+
     TLatex gg2;
+    gg2.SetTextSize(0.035);
+
     TLatex latexLabel;
     latexLabel.SetTextSize(0.035);
-    char * selection ="Same Sign dileptons with btag selection";
-    gg.SetTextSize(0.035);
-    gg2.SetTextSize(0.035);
-    TLine l1 = TLine(xmin+0.05*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                     ymax-0.30*(ymax-ymin));
+
+    const char *selection       = "Same Sign dileptons with btag selection";
+    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
+    const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
+
+    TLine l1 = TLine(xmin+0.1*(xmax-xmin), ymax-0.22*(ymax-ymin), xmin+0.2*(xmax-xmin), ymax-0.22*(ymax-ymin));
     l1.SetLineColor(4);
     l1.SetLineWidth(3);
-    TLine l2 = TLine(xmin+0.05*(xmax-xmin), ymax-0.38*(ymax-ymin), xmin+0.14*(xmax-xmin), 
-                     ymax-0.38*(ymax-ymin));
+
+    TLine l2 = TLine(xmin+0.1*(xmax-xmin), ymax-0.30*(ymax-ymin), xmin+0.2*(xmax-xmin), ymax-0.30*(ymax-ymin));
     l2.SetLineColor(4);
     l2.SetLineWidth(3);
     l2.SetLineStyle(2);
@@ -211,7 +255,6 @@
 
     // Draw the exclusion map and the limit lines to make sure that they make sense
     TCanvas* c11 = new TCanvas();
-
     c11->SetFillColor(0);
     c11->GetPad(0)->SetRightMargin(0.07);
     c11->SetFillColor(0);
@@ -221,25 +264,132 @@
     c11->GetPad(0)->SetTopMargin(0.08);
     c11->GetPad(0)->SetBottomMargin(0.13);
 
-    excl->Draw("col");
-    g->Draw("samePC");
-    gup->Draw("samePC");
-    gdwn->Draw("samePC");
-    kinlim.Draw();
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.10*(ymax-ymin),"CMS Preliminary");
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.15*(ymax-ymin),selection);
-    // latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.20*(ymax-ymin),"#sqrt{s} = 7 TeV L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    // gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    // gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.30*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    l2.Draw();
-    l1.Draw();
-    c11->Print("GlStop_50_ExcludedRegionMap.pdf");
+    // need to fix the double filling that's going on for mlsp = 150 GeV
+    if (lsp_mass == 150) {
+        for (int idx = 1; idx < excl->GetXaxis()->GetNbins()+1; idx++) {
+            for (int idy = 1; idy < excl->GetYaxis()->GetNbins()+1; idy++) {
+                
+                if (excl->GetBinContent(idx, idy) > 1)
+                    excl->SetBinContent(idx, idy, 1);
+            }
+        }
+    }
 
+    excl->Draw("col");
+    if (lsp_mass == 50) {
+        TGraph cgraph = TGraph(4);
+        cgraph.SetPoint(0, 800, ymin);
+        cgraph.SetPoint(1, 840, 340);
+        cgraph.SetPoint(2, 820, 500);
+        cgraph.SetPoint(3, 805, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 820, ymin);
+        ugraph.SetPoint(1, 860, 340);
+        ugraph.SetPoint(2, 840, 480);
+        ugraph.SetPoint(3, 820, 640);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);
+        TGraph dgraph = TGraph(5);
+        dgraph.SetPoint(0, 780, ymin);
+        dgraph.SetPoint(1, 800, 300);
+        dgraph.SetPoint(2, 820, 340);
+        dgraph.SetPoint(3, 795, 500);
+        dgraph.SetPoint(4, 780, 600);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c11->Print(Form("GlStop_%d_ExcludedRegionMap.pdf", lsp_mass));
+    }
+    else if (lsp_mass == 150) {
+        float mtop = 175.;
+        float mb   = 5;
+        float x150  = 150. + 2. * mtop;
+        float y150c = 150. + mtop;
+        float y150m = xmax - mtop;
+        TGraph cgraph = TGraph(3);
+        cgraph.SetPoint(0, 820, y150c);
+        cgraph.SetPoint(1, 830, 380);
+        cgraph.SetPoint(2, 800, 490);
+        cgraph.SetPoint(3, 800, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph dgraph = TGraph(8);
+        dgraph.SetPoint(0, 765, 590);
+        dgraph.SetPoint(1, 780, 410);
+        dgraph.SetPoint(2, 790, 405);
+        dgraph.SetPoint(3, 795, 402);
+        dgraph.SetPoint(4, 797, 401);
+        dgraph.SetPoint(5, 798, 400);
+        dgraph.SetPoint(6, 799, 398);
+        dgraph.SetPoint(7, 800, y150c);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 845, y150c);
+        ugraph.SetPoint(1, 855, 450);
+        ugraph.SetPoint(2, 830, 540);
+        ugraph.SetPoint(3, 830, 655);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c11->Print(Form("GlStop_%d_ExcludedRegionMap.pdf", lsp_mass));
+    }
+    else {
+        // float mtop = 175.;
+        // float mb   = 5;
+        // float x50  = 50. + 2. * mtop ;
+        // float y50c = 50. + mtop;
+        // float y50m = xmax - mtop;
+        // TLine l1_50 = TLine(x50, y50c, xmax, y50c);
+        // TLine l2_50 = TLine(x50, y50c, xmax, y50m);
+        // float x150  = 150. + 2. * mtop;
+        // float y150c = 150. + mtop;
+        // float y150m = xmax - mtop;
+        // TLine l1_150 = TLine(x150, y150c, xmax, y150c);
+        // TLine l2_150 = TLine(x150, y150c, xmax, y150m);
+        g->Draw("samePC");
+        gup->Draw("samePC");
+        gdwn->Draw("samePC");     
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c11->Print(Form("GlStop_%d_ExcludedRegionMap.pdf", lsp_mass));
+    }
+    // g->Draw("samePC");
+    // gup->Draw("samePC");
+    // gdwn->Draw("samePC");
+    // kinlim.Draw();
 
     // Draw the limit lines on top of the temperature plot
     TCanvas* c12 = new TCanvas();
@@ -250,20 +400,127 @@
     c12->GetPad(0)->SetLeftMargin(0.1407035);
     c12->GetPad(0)->SetTopMargin(0.08);
     c12->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double filling that's going on for mlsp = 150 GeV
+    if (lsp_mass == 150) {
+        for (unsigned int idx = 0; idx < 3; idx++) {
+            int bin = ul->FindBin(750. + 50. * idx, 350.);
+            float binc = ul->GetBinContent(bin);
+            ul->SetBinContent(bin, binc * 0.5);
+        }
+    }
+
     ul->Draw("colz");
-    g->Draw("samePC");
-    gup->Draw("samePC");
-    gdwn->Draw("samePC");
-    kinlim.Draw();
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    //  gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.25*(ymax-ymin), "Exclusion (NLO+NLL xsection)");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    l2.Draw();
-    l1.Draw();
-    c12->Print("GlStop_50_LimitsOnCarpet.pdf");
+    if (lsp_mass == 150) {
+        float mtop = 175.;
+        float mb   = 5;
+        float x150  = 150. + 2. * mtop;
+        float y150c = 150. + mtop;
+        float y150m = xmax - mtop;
+        TGraph cgraph = TGraph(3);
+        cgraph.SetPoint(0, 820, y150c);
+        cgraph.SetPoint(1, 830, 380);
+        cgraph.SetPoint(2, 800, 490);
+        cgraph.SetPoint(3, 800, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph dgraph = TGraph(8);
+        dgraph.SetPoint(0, 765, 590);
+        dgraph.SetPoint(1, 780, 410);
+        dgraph.SetPoint(2, 790, 405);
+        dgraph.SetPoint(3, 795, 402);
+        dgraph.SetPoint(4, 797, 401);
+        dgraph.SetPoint(5, 798, 400);
+        dgraph.SetPoint(6, 799, 398);
+        dgraph.SetPoint(7, 800, y150c);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 845, y150c);
+        ugraph.SetPoint(1, 855, 450);
+        ugraph.SetPoint(2, 830, 540);
+        ugraph.SetPoint(3, 830, 655);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c12->Print(Form("GlStop_%d_LimitsOnCarpet.pdf", lsp_mass));
+    }
+    else if (lsp_mass == 50){
+        TGraph cgraph = TGraph(4);
+        cgraph.SetPoint(0, 800, ymin);
+        cgraph.SetPoint(1, 840, 340);
+        cgraph.SetPoint(2, 820, 500);
+        cgraph.SetPoint(3, 805, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 820, ymin);
+        ugraph.SetPoint(1, 860, 340);
+        ugraph.SetPoint(2, 840, 480);
+        ugraph.SetPoint(3, 820, 640);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);
+        TGraph dgraph = TGraph(5);
+        dgraph.SetPoint(0, 780, ymin);
+        dgraph.SetPoint(1, 800, 300);
+        dgraph.SetPoint(2, 820, 340);
+        dgraph.SetPoint(3, 795, 500);
+        dgraph.SetPoint(4, 780, 600);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c12->Print(Form("GlStop_%d_LimitsOnCarpet.pdf", lsp_mass));        
+    }
+    else {
+        // float mtop = 175.;
+        // float mb   = 5;
+        // float x50  = 50. + 2. * mtop ;
+        // float y50c = 50. + mtop;
+        // float y50m = xmax - mtop;
+        // TLine l1_50 = TLine(x50, y50c, xmax, y50c);
+        // TLine l2_50 = TLine(x50, y50c, xmax, y50m);
+        // float x150  = 150. + 2. * mtop;
+        // float y150c = 150. + mtop;
+        // float y150m = xmax - mtop;
+        // TLine l1_150 = TLine(x150, y150c, xmax, y150c);
+        // TLine l2_150 = TLine(x150, y150c, xmax, y150m);
+        g->Draw("samePC");
+        gup->Draw("samePC");
+        gdwn->Draw("samePC");     
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c12->Print(Form("GlStop_%d_LimitsOnCarpet.pdf", lsp_mass));
+    }
 
     //Draw the limit lines and nothing else
     TCanvas* c13 = new TCanvas();
@@ -276,18 +533,121 @@
     c13->GetPad(0)->SetLeftMargin(0.1407035);
     c13->GetPad(0)->SetTopMargin(0.08);
     c13->GetPad(0)->SetBottomMargin(0.13);
-    g->Draw("samePC");
-    gup->Draw("samePC");
-    gdwn->Draw("samePC");
-    kinlim.Draw();
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    gg.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}");
-    gg2.DrawLatex(xmin+0.15*(xmax-xmin), ymax-0.40*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
-    l2.Draw();
-    l1.Draw();
-    c13->Print("GlStop_50_LimitsOnWhite.pdf");
+
+    if (lsp_mass == 50) {
+        float mtop = 175.;
+        float mb   = 5;
+        float x150  = 150. + 2. * mtop;
+        float y150c = 150. + mtop;
+        float y150m = xmax - mtop;
+        TGraph cgraph = TGraph(3);
+        cgraph.SetPoint(0, 820, y150c);
+        cgraph.SetPoint(1, 830, 380);
+        cgraph.SetPoint(2, 800, 490);
+        cgraph.SetPoint(3, 800, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph dgraph = TGraph(8);
+        dgraph.SetPoint(0, 765, 590);
+        dgraph.SetPoint(1, 780, 410);
+        dgraph.SetPoint(2, 790, 405);
+        dgraph.SetPoint(3, 795, 402);
+        dgraph.SetPoint(4, 797, 401);
+        dgraph.SetPoint(5, 798, 400);
+        dgraph.SetPoint(6, 799, 398);
+        dgraph.SetPoint(7, 800, y150c);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 845, y150c);
+        ugraph.SetPoint(1, 855, 450);
+        ugraph.SetPoint(2, 830, 540);
+        ugraph.SetPoint(3, 830, 655);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c13->Print(Form("GlStop_%d_LimitsOnWhite.pdf", lsp_mass));
+    }
+    else if (lsp_mass == 50) {
+        TGraph cgraph = TGraph(4);
+        cgraph.SetPoint(0, 800, ymin);
+        cgraph.SetPoint(1, 840, 340);
+        cgraph.SetPoint(2, 820, 500);
+        cgraph.SetPoint(3, 805, 625);
+        cgraph.SetLineColor(4);
+        cgraph.SetLineWidth(3);
+        TGraph ugraph = TGraph(4);
+        ugraph.SetPoint(0, 820, ymin);
+        ugraph.SetPoint(1, 860, 340);
+        ugraph.SetPoint(2, 840, 480);
+        ugraph.SetPoint(3, 820, 640);
+        ugraph.SetLineColor(4);
+        ugraph.SetLineWidth(3);
+        ugraph.SetLineStyle(2);
+        TGraph dgraph = TGraph(5);
+        dgraph.SetPoint(0, 780, ymin);
+        dgraph.SetPoint(1, 800, 300);
+        dgraph.SetPoint(2, 820, 340);
+        dgraph.SetPoint(3, 795, 500);
+        dgraph.SetPoint(4, 780, 600);
+        dgraph.SetLineColor(4);
+        dgraph.SetLineWidth(3);
+        dgraph.SetLineStyle(2);    
+        cgraph.Draw("Csame");
+        dgraph.Draw("Csame");
+        ugraph.Draw("Csame");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c13->Print(Form("GlStop_%d_LimitsOnWhite.pdf", lsp_mass));
+    }
+    else {
+        // float mtop = 175.;
+        // float mb   = 5;
+        // float x50  = 50. + 2. * mtop ;
+        // float y50c = 50. + mtop;
+        // float y50m = xmax - mtop;
+        // TLine l1_50 = TLine(x50, y50c, xmax, y50c);
+        // TLine l2_50 = TLine(x50, y50c, xmax, y50m);
+        // float x150  = 150. + 2. * mtop;
+        // float y150c = 150. + mtop;
+        // float y150m = xmax - mtop;
+        // TLine l1_150 = TLine(x150, y150c, xmax, y150c);
+        // TLine l2_150 = TLine(x150, y150c, xmax, y150m);
+        g->Draw("samePC");
+        gup->Draw("samePC");
+        gdwn->Draw("samePC");     
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+        gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.32*(ymax-ymin), bands_text);
+        l2.Draw();
+        l1.Draw();
+        c13->Print(Form("GlStop_%d_LimitsOnWhite.pdf", lsp_mass));
+    }
+    // g->Draw("samePC");
+    // gup->Draw("samePC");
+    // gdwn->Draw("samePC");
+    // kinlim.Draw();
    
     //Draw the best region and nothing else
     TCanvas* c14 = new TCanvas();
@@ -299,11 +659,25 @@
     c14->GetPad(0)->SetLeftMargin(0.1407035);
     c14->GetPad(0)->SetTopMargin(0.08);
     c14->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double filling that's going on for mlsp = 150 GeV
+    if (lsp_mass == 150) {
+        for (int idx = 1; idx < ulbest->GetXaxis()->GetNbins()+1; idx++) {
+            for (int idy = 1; idy < ulbest->GetYaxis()->GetNbins()+1; idy++) {
+                
+                if (ulbest->GetBinContent(idx, idy) > 7)
+                    ulbest->SetBinContent(idx, idy, 6);
+            }
+        }
+    }
+
     ulbest->Draw("textcol");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
-    c14->Print("GlStop_50_BestSignalRegion.pdf");
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+    kinlim.Draw();
+    c14->Print(Form("GlStop_%d_BestSignalRegion.pdf", lsp_mass));
 
     //Draw the acceptance carpet
     TCanvas* c15 = new TCanvas();
@@ -314,10 +688,21 @@
     c15->GetPad(0)->SetLeftMargin(0.1407035);
     c15->GetPad(0)->SetTopMargin(0.08);
     c15->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double filling that's going on for mlsp = 150 GeV
+    if (lsp_mass == 150) {
+        for (unsigned int idx = 0; idx < 3; idx++) {
+            int bin = acc->FindBin(750. + 50. * idx, 350.);
+            float binc = acc->GetBinContent(bin);
+            acc->SetBinContent(bin, binc * 0.5);
+        }
+    }
+
     acc->Draw("colz");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-    latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} m(#tilde{#chi_{1}^{0}}) = 50 GeV");
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
     kinlim.Draw();
-    c15->Print("GlStop_50_AcceptanceCarpet.pdf");
+    c15->Print(Form("GlStop_%d_AcceptanceCarpet.pdf", lsp_mass));
 }

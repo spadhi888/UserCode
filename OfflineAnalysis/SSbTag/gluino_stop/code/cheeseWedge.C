@@ -16,14 +16,18 @@
 
 
   TLatex gg;
-  TLatex gg2;
-  TLatex latexLabel;
-  latexLabel.SetTextSize(0.04);
-  char * selection ="Same Sign dilpetons with btag selection";
-  char * masses = Form("m(#chi_{1}^{0}) = 50 GeV");
-  gg.SetTextSize(0.04);
-  gg2.SetTextSize(0.04);
+  gg.SetTextSize(0.035);
 
+  TLatex gg2;
+  gg2.SetTextSize(0.035);
+
+  TLatex latexLabel;
+  latexLabel.SetTextSize(0.035);
+  const char *selection       = "Same Sign dileptons with btag selection";
+  const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+  const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
+  const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
+  
   gStyle->SetOptTitle(0);
   gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
   gStyle->SetPadTickY(1);
@@ -61,15 +65,18 @@
   p50->SetLineColor(kRed);
   p50->SetFillStyle(3244);
   p50->SetFillColor(kRed);
-  p50->SetNextPoint(820, y50c);
-  p50->SetNextPoint(820, 255);
-  p50->SetNextPoint(850, 380);
+  p50->SetNextPoint(825, y50c);
+  p50->SetNextPoint(850, 320);
+  p50->SetNextPoint(855, 350);
+  p50->SetNextPoint(855, 450);
   p50->SetNextPoint(845, 500);
-  p50->SetNextPoint(820, 640);
-  p50->SetNextPoint(795, 615);
+  p50->SetNextPoint(835, 550);
+  p50->SetNextPoint(840, 660);
+  p50->SetNextPoint(795, 620);
   p50->SetNextPoint(795, 400);
-  p50->SetNextPoint(805, 350);
-  p50->SetNextPoint(805, 325);
+  // p50->SetNextPoint(805, 350);
+  p50->SetNextPoint(810, 335);
+  // p50->SetNextPoint(815, 325);
   p50->SetNextPoint(795, y50c);
 
   // A polyline with the 300 smoothed limit
@@ -78,22 +85,24 @@
   p150->SetFillStyle(3344);
   p150->SetFillColor(kBlue);
   p150->SetNextPoint(845, y150c);
-  p150->SetNextPoint(825, 475);
-  p150->SetNextPoint(825, 560);
-  p150->SetNextPoint(815, 640);
-  p150->SetNextPoint(775, 595);
-  p150->SetNextPoint(785, 400);
-  p150->SetNextPoint(805, y150c);
+  p150->SetNextPoint(845, 470);
+  p150->SetNextPoint(845, 500);
+  p150->SetNextPoint(830, 560);
+  p150->SetNextPoint(830, 650);
+  p150->SetNextPoint(775, 600);
+  p150->SetNextPoint(780, 530);
+  p150->SetNextPoint(790, 430);
+  p150->SetNextPoint(805, 400);
+  p150->SetNextPoint(800, y150c);
 
   p50->Draw("fl");
   p150->Draw("fl");
 
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.08*(ymax-ymin),"CMS Preliminary");
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.16*(ymax-ymin),selection);
-  latexLabel.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.24*(ymax-ymin),"#sqrt{s} = 7 TeV, L=4.7 fb^{-1} ");
-  gg2.DrawLatex(xmin+0.05*(xmax-xmin), ymax-0.32*(ymax-ymin), "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma");
+  latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+  latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+  gg2.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), bands_text);
 
-  latexLabel.DrawLatex(575, 250, "#color[2]{m(#chi_{1}^{0}) = 50 GeV}");
-  latexLabel.DrawLatex(575, 350, "#color[4]{m(#chi_{1}^{0}) = 150 GeV}");
-
+  latexLabel.DrawLatex(575, 250, "#color[2]{m(#tilde{#chi}_{1}^{0}) = 50 GeV}");
+  latexLabel.DrawLatex(575, 350, "#color[4]{m(#tilde{#chi}_{1}^{0}) = 150 GeV}");
+  c1->Print("GlStop_cheeseWedge.pdf");
 }  
