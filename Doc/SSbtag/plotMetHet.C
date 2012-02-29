@@ -1,3 +1,10 @@
+#include "TStyle.h"
+#include "TCanvas.h"
+#include "TH1.h"
+#include "TH2.h"
+#include "TLatex.h"
+#include "TBox.h"
+
 // Stupid macro to make plots of the 7 events (see below)
 // run     ls   event type id1 id2  pt1     pt2    nj(nb)  HT      met 
 // 166888 425 507242758 3  -11 -11 87.9777 62.2746 6 (2) 563.705 83.8312 
@@ -7,7 +14,7 @@
 // 166565 815 726094730 2   11  13 23.916 46.4423 3 (2)  296.215 150.137 
 // 179497 183 229894176 1  -13 -13 231.253 21.1616 2 (2) 252.454 34.5121 
 // 176929 171 264222933 2  -11 -13 24.8385 43.6281 3 (2) 230.402 100.221 
-{
+void plotMetHet (float intLumi) {    
     gStyle->SetOptTitle(0);
     gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
     gStyle->SetPadTickY(1);
@@ -23,7 +30,7 @@
     c1->GetPad(0)->SetBottomMargin(0.13);
 
     TLatex latexText;
-    latexText.SetTextSize(0.04);
+    latexText.SetTextSize(0.035);
 
     // fill the 2D histograms of MET vs HT
     TH2F* hee = new TH2F("hee","Met vs HT",600,0.,600.,200,0.,200.);
@@ -72,12 +79,10 @@
     float ymax = hee->GetYaxis()->GetXmax();
     float x = xmin + 0.1 * (xmax-xmin);
     float y = ymax + 0.025 * ymax;
-    TLatex latexText;
     latexText.SetTextSize(0.035);
-    latexText.DrawLatex(x, y, "CMS Preliminary, #sqrt{s} = 7 TeV, 5.0 fb^{-1}");
-    // latexText.DrawLatex(370, 180, "CMS Preliminary");
-    // latexText.DrawLatex(370, 160, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
-    // latexText.DrawLatex(340, 170, "Same Sign dileptons with btag selection");
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
+    c1->Print("MetVsHt.root");
+    c1->Print("MetVsHt.pdf");
 
     //============================================
 
@@ -124,6 +129,7 @@
         htdatahist->SetBinError(i+1,sqrt(htd[i])*scale[i]);
     }
 
+
     // now plot things
     htbghist->SetLineColor(kBlue);
     htbghist->SetMarkerColor(kBlue);
@@ -146,12 +152,15 @@
     htbghist->Draw("E2");
     htdummy->Draw("same");
     htdatahist->Draw("esamex0");
-    // tx1 = TText(400,ytext,"MET>30 GeV");
-    latexText.DrawLatex(400, 0.55, "CMS Preliminary");
-    latexText.DrawLatex(400, 0.49, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
-    latexText.DrawLatex(400, 0.43, "#slash{E}_{T} > 30 GeV");
-    // tx1.Draw();
-
+    xmin = htbghist->GetXaxis()->GetXmin();
+    xmax = htbghist->GetXaxis()->GetXmax();
+    ymax = htbghist->GetYaxis()->GetXmax();
+    x = xmin + 0.1 * (xmax-xmin);
+    y = 0.62;
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(450, 0.55, "#slash{E}_{T} > 30 GeV");
+    cht->Print("Ht.root");
+    cht->Print("Ht.pdf");
 
     //-------------------------------------------------------
     // MET second
@@ -191,7 +200,6 @@
         metdatahist->SetBinError(i+1,sqrt(metd[i])*scale[i]);
     }
 
-
     // now plot things
     metbghist->SetLineColor(kBlue);
     metbghist->SetMarkerColor(kBlue);
@@ -214,9 +222,13 @@
     metbghist->Draw("E2");
     metdummy->Draw("same");
     metdatahist->Draw("esamex0");
-    // tx2 = TText(140,ytext2,"HT>80 GeV");
-    // tx2.Draw();
-    latexText.DrawLatex(140, 1.8, "CMS Preliminary");
-    latexText.DrawLatex(140, 1.6, "#sqrt{s} = 7 TeV, L = 4.7 fb^{-1}");
-    latexText.DrawLatex(140, 1.4, "H_{T} > 80 GeV");
+    xmin = metbghist->GetXaxis()->GetXmin();
+    xmax = metbghist->GetXaxis()->GetXmax();
+    ymax = metbghist->GetYaxis()->GetXmax();
+    x = xmin + 0.1 * (xmax-xmin);
+    y = 2.05;
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(150, 1.8, "H_{T} > 80 GeV");
+    cmet->Print("Met.root");
+    cmet->Print("Met.pdf");
 }
