@@ -4,6 +4,7 @@
 #include "TH2.h"
 #include "TLatex.h"
 #include "TBox.h"
+#include "TLegend.h"
 
 // Stupid macro to make plots of the 7 events (see below)
 // run     ls   event type id1 id2  pt1     pt2    nj(nb)  HT      met 
@@ -30,7 +31,7 @@ void plotMetHet (float intLumi) {
     c1->GetPad(0)->SetBottomMargin(0.13);
 
     TLatex latexText;
-    latexText.SetTextSize(0.035);
+    latexText.SetTextSize(0.045);
 
     // fill the 2D histograms of MET vs HT
     TH2F* hee = new TH2F("hee","Met vs HT",600,0.,600.,200,0.,200.);
@@ -73,16 +74,24 @@ void plotMetHet (float intLumi) {
     b1.Draw();
     b2.Draw();
 
-
     float xmin = hee->GetXaxis()->GetXmin();
     float xmax = hee->GetXaxis()->GetXmax();
     float ymax = hee->GetYaxis()->GetXmax();
     float x = xmin + 0.1 * (xmax-xmin);
     float y = ymax + 0.025 * ymax;
-    latexText.SetTextSize(0.035);
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
-    c1->Print("MetVsHt.root");
-    c1->Print("MetVsHt.pdf");
+    latexText.SetTextSize(0.045);
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
+
+    TLegend *leg = new TLegend(440, 120, 560, 190, "", "br");
+    leg->SetFillColor(0);
+    leg->SetBorderSize(0);
+    leg->AddEntry(hee, "ee", "P");
+    leg->AddEntry(hem, "e#mu", "P");
+    leg->AddEntry(hmm, "#mu#mu", "P");
+    leg->Draw();
+
+    c1->Print("figs/MetVsHt.root");
+    c1->Print("figs/MetVsHt.pdf");
 
     //============================================
 
@@ -157,10 +166,10 @@ void plotMetHet (float intLumi) {
     ymax = htbghist->GetYaxis()->GetXmax();
     x = xmin + 0.1 * (xmax-xmin);
     y = 0.62;
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
     latexText.DrawLatex(450, 0.55, "#slash{E}_{T} > 30 GeV");
-    cht->Print("Ht.root");
-    cht->Print("Ht.pdf");
+    cht->Print("figs/Ht.root");
+    cht->Print("figs/Ht.pdf");
 
     //-------------------------------------------------------
     // MET second
@@ -227,8 +236,8 @@ void plotMetHet (float intLumi) {
     ymax = metbghist->GetYaxis()->GetXmax();
     x = xmin + 0.1 * (xmax-xmin);
     y = 2.05;
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
     latexText.DrawLatex(150, 1.8, "H_{T} > 80 GeV");
-    cmet->Print("Met.root");
-    cmet->Print("Met.pdf");
+    cmet->Print("figs/Met.root");
+    cmet->Print("figs/Met.pdf");
 }
