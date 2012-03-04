@@ -84,7 +84,8 @@ void plotMetHet (float intLumi) {
 
     TLegend *leg = new TLegend(440, 120, 560, 190, "", "br");
     leg->SetFillColor(0);
-    leg->SetBorderSize(0);
+    leg->SetBorderSize(2);
+    leg->SetShadowColor(0);
     leg->AddEntry(hee, "ee", "P");
     leg->AddEntry(hem, "e#mu", "P");
     leg->AddEntry(hmm, "#mu#mu", "P");
