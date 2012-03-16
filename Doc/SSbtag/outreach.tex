@@ -80,29 +80,90 @@ prediction has only a small impact on the upper limits.}
 \subsection{Testing the efficiency model}
 \label{sec:outreachtest}
 
-The efficiency model is evaluated by applying it to a few scenarios considered in Section~\ref{sec:stampCollecting}.  For each model considered here, points near the exclusion curve are selected and the yield obtained by applying the full analysis selection is compared to that estimated by applying the efficiencies detailed in Section~\ref{sec:seleff} to generator level objects.  Figure~\ref{fig:zprimeefftest} shows the performance of the efficiency model applied to the scenario of same sign top production due to t-channel exchange of a new massive $Z'$ boson.  The comparison was performed using the same signal region considered in Section~\ref{sec:sstops}.  The estimated and actual yields agree to within 20\%.  When the mass of the $Z'$ is large compared to the mass to the top, the mass of the boson only weakly influences the kinematics of the final state so that the performance of the efficiency model is expected to be relatively constant, as observed.
 
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=0.95\linewidth]{figs/zprime_eff_test.pdf}
-\caption{Test of the efficiency model applied to same sign top production due to a $Z'$.  The figure shows the ratio of the yield estimated by applying the efficiency model to generator level objects to the yield obtained by applying the full analysis selection to reconstructed objects.  Estimated and actual yields agree to within 20\%.
-\label{fig:zprimeefftest}}
-\end{center}
-\end{figure}
+The efficiency model is evaluated by applying it to a few 
+scenarios considered in Section~\ref{sec:stampCollecting} as
+well as LM6.   
+For each model, we pick a representative point
+and we compare the
+yield obtained by applying the full analysis selection 
+in the most relevant given signal region 
+to that estimated by applying the efficiencies detailed in 
+Section~\ref{sec:seleff} to generator level objects.  
+The results are givven below.
 
-Several models involving stop or sbottom production were also considered in Section~\ref{sec:stampCollecting}.  As a worst case scenario, the efficiency model was tested for a few relevant points in the parameter phase space for the $\widetilde{g}$ to $t\widetilde{t}$ model.  The results of these tests are recorded in Table~\ref{tab:gluinostopefftest} .  The comparison was performed using the $\Ht > 320$ GeV, $\met > 120$ GeV signal region.  Estimated yields are found to agree with those obtained using the full analysis selection to within 50\%.
+\begin{itemize}
 
-\begin{table}
-\begin{center}
-\begin{tabular}{c | c c c}
-\hline\hline
-$m(\widetilde{g}), m(\widetilde{t})$ (GeV) & Actual Yield &  Estimated Yield & Estimated / Actual \\
-\hline
-800, 280 & 133 & 181 & 1.36 \\
-800, 430 & 125 & 184 & 1.47 \\
-650, 380 & 99 & 146 & 1.48 \\
-\hline\hline
-\end{tabular}
-\caption{\label{tab:gluinostopefftest} Test of the efficiency model applied to the $\widetilde{g}$ to $t\widetilde{t}$ model.  The table shows the ratio of the yield estimated by applying the efficiency model to generator level objects to the yield obtained by applying the full analysis selection to reconstructed objects.  Estimated and actual yields agree to within 50\%}
-\end{center}
-\end{table}
+\item For LM6, we tested SR4.  The parametrization was obtained on
+LM6, so this is a good self-consistency check.  The efficiency
+model under-predicts the acceptance by $\approx 30\%$.  This is because LM6
+does not have many $b$-quarks, so mistags contribute 
+significantly to the acceptance, and these are not modelled. 
+When we require that b-tagged jets in simulation 
+be truth matched to $b$-quarks, the agreement between 
+efficiency model and simulation was at the level of 4\%.
+
+\item For the $Z'$ model we tested SR2.  The efficiency model 
+under-predicts the acceptance by $\approx 30\%$.  This was traced to 
+the fact that the lepton isolation efficiency in $t\bar{t}$ (or $tt$)
+events is higher than in LM6, so this effect is expected.
+
+\item For the $\tilde{g} \to \tilde{t}t$ and {\tt T1tttt} 
+models we tested SR6.
+The chosen parameters where $m(\tilde{g}) = 750$ GeV, 
+$m(\tilde{t}) = 380$ GeV, $m(\chi^0)=$ 50 GeV for  
+$\tilde{g} \to \tilde{t}t$ and $m(\tilde{g}) = 725$ GeV, 
+$m(\chi^0)=$ 75 GeV for {\tt T1tttt}.  The level 
+of agreement between efficiency model and simulation was 
+better than $\approx 10\%$ in both cases.
+
+\item For sbottom pair production we tested SR1 for
+$m(\tilde{b}) = 350$ GeV, $m(\chi^+)=$ 130 GeV and
+$m(\chi^0)=$ 50 GeV.  The agreement was at the $5\%$
+level, but the statistical precision of the test was only 
+about $20\%$.
+
+\item For $\tilde{g} \to \tilde{b}b$ we tested SR4
+for $m(\tilde{g}) = 750$ GeV, 
+$m(\tilde{b}) = 500$ GeV, $m(\chi^+)=$ 150 GeV, and 
+$m(\chi^0)=$ 50 GeV.  Simulation and efficiency model
+agreed at the 10\% level.
+
+\end{itemize}
+
+\noindent We consider this level of agreement to be very satisfactory.
+
+
+
+
+%Figure~\ref{fig:zprimeefftest} shows the performance of the 
+%efficiency model applied to the scenario of same sign top production due to t-channel exchange of a new massive $Z'$ boson.  
+%The comparison was performed using the same signal region 
+%considered in Section~\ref{sec:sstops}.  The estimated and actual yields agree to within 20\%.  When the mass of the $Z'$ is large compared to the mass to the top, the mass of the boson only weakly influences the kinematics of the final state so that the performance of the efficiency model is expected to be relatively constant, as observed.
+
+%The efficiency model is evaluated by applying it to a few scenarios considered in Section~\ref{sec:stampCollecting}.  For each model considered here, points near the exclusion curve are selected and the yield obtained by applying the full analysis selection is compared to that estimated by applying the efficiencies detailed in Section~\ref{sec:seleff} to generator level objects.  Figure~\ref{fig:zprimeefftest} shows the performance of the efficiency model applied to the scenario of same sign top production due to t-channel exchange of a new massive $Z'$ boson.  The comparison was performed using the same signal region considered in Section~\ref{sec:sstops}.  The estimated and actual yields agree to within 20\%.  When the mass of the $Z'$ is large compared to the mass to the top, the mass of the boson only weakly influences the kinematics of the final state so that the performance of the efficiency model is expected to be relatively constant, as observed.
+
+%\begin{figure}[htb]
+%\begin{center}
+%\includegraphics[width=0.95\linewidth]{figs/zprime_eff_test.pdf}
+%\caption{Test of the efficiency model applied to same sign top production due to a $Z'$.  The figure shows the ratio of the yield estimated by applying the efficiency model to generator level objects to the yield obtained by applying the full analysis selection to reconstructed objects.  Estimated and actual yields agree to within 20\%.
+%\label{fig:zprimeefftest}}
+%\end{center}
+%\end{figure}
+
+%Several models involving stop or sbottom production were also considered in Section~\ref{sec:stampCollecting}.  As a worst case scenario, the efficiency model was tested for a few relevant points in the parameter phase space for the $\widetilde{g}$ to $t\widetilde{t}$ model.  The results of these tests are recorded in Table~\ref{tab:gluinostopefftest} .  The comparison was performed using the $\Ht > 320$ GeV, $\met > 120$ GeV signal region.  Estimated yields are found to agree with those obtained using the full analysis selection to within 50\%.
+
+%\begin{table}
+%\begin{center}
+%\begin{tabular}{c | c c c}
+%\hline\hline
+%$m(\widetilde{g}), m(\widetilde{t})$ (GeV) & Actual Yield &  Estimated Yield & Estimated / Actual \\
+%\hline
+%800, 280 & 133 & 181 & 1.36 \\
+%800, 430 & 125 & 184 & 1.47 \\
+%650, 380 & 99 & 146 & 1.48 \\
+%\hline\hline
+%\end{tabular}
+%\caption{\label{tab:gluinostopefftest} Test of the efficiency model applied to the $\widetilde{g}$ to $t\widetilde{t}$ model.  The table shows the ratio of the yield estimated by applying the efficiency model to generator level objects to the yield obtained by applying the full analysis selection to reconstructed objects.  Estimated and actual yields agree to within 50\%}
+%\end{center}
+%\end{table}
