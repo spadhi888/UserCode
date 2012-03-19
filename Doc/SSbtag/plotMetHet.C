@@ -19,6 +19,8 @@ void plotMetHet (float intLumi) {
     gStyle->SetOptTitle(0);
     gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
     gStyle->SetPadTickY(1);
+    gStyle->SetTitleXOffset(1.1);
+    gStyle->SetTitleYOffset(1.1);
 
     TCanvas *c1 = new TCanvas();
     c1->SetFillColor(0);
@@ -27,7 +29,7 @@ void plotMetHet (float intLumi) {
     c1->SetBorderMode(0);
     c1->GetPad(0)->SetBorderSize(2);
     c1->GetPad(0)->SetLeftMargin(0.1407035);
-    c1->GetPad(0)->SetTopMargin(0.08);
+    c1->GetPad(0)->SetTopMargin(0.12);
     c1->GetPad(0)->SetBottomMargin(0.13);
 
     TLatex latexText;
@@ -55,6 +57,7 @@ void plotMetHet (float intLumi) {
     hmm->SetMarkerSize(2);
 
     gStyle->SetOptStat(0);
+    hee->SetTitleSize(0.045, "XY");
     hee->GetXaxis()->SetTitle("H_{T} (GeV)");
     hee->GetYaxis()->SetTitle("#slash{E}_{T} (GeV)");
     hee->Draw();
@@ -78,9 +81,9 @@ void plotMetHet (float intLumi) {
     float xmax = hee->GetXaxis()->GetXmax();
     float ymax = hee->GetYaxis()->GetXmax();
     float x = xmin + 0.1 * (xmax-xmin);
-    float y = ymax + 0.025 * ymax;
+    float y = ymax + 0.045 * ymax;
     latexText.SetTextSize(0.045);
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %3.2f fb^{-1}", intLumi));
 
     TLegend *leg = new TLegend(440, 120, 560, 190, "", "br");
     leg->SetFillColor(0);
@@ -103,6 +106,7 @@ void plotMetHet (float intLumi) {
 
     //-------------------------------------------------------
     // HT first
+    gStyle->SetTitleYOffset(0.8);
     TCanvas* cht = new TCanvas();
     cht->SetFillColor(0);
     cht->GetPad(0)->SetRightMargin(0.07);
@@ -114,8 +118,8 @@ void plotMetHet (float intLumi) {
     cht->GetPad(0)->SetBottomMargin(0.13);
     int nht = 3;
     float ht[4]   = {80., 200., 320., 600.}; // the bins
-    float htbg[3] = {2.224, 2.742, 2.630};   // the bg
-    float hter[3] = {0.899, 1.234, 1.132};   // the bg err
+    float htbg[3] = {2.244, 2.769, 2.679};   // the bg
+    float hter[3] = {0.904, 1.240, 1.147};   // the bg err
     float htd[3]  = {1., 4., 2.};            // the data counts
 
     // the scale factor if we do events-per-10-gev
@@ -146,6 +150,7 @@ void plotMetHet (float intLumi) {
     htbghist->SetFillStyle(3002);
     htbghist->SetFillColor(kBlue); 
     htbghist->SetMinimum(0.);
+    htbghist->SetTitleSize(0.045, "XY");
     htbghist->GetXaxis()->SetTitle("H_{T} (GeV)");
     float ytext;
     if (per10) {
@@ -167,13 +172,14 @@ void plotMetHet (float intLumi) {
     ymax = htbghist->GetYaxis()->GetXmax();
     x = xmin + 0.1 * (xmax-xmin);
     y = 0.62;
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %3.2f fb^{-1}", intLumi));
     latexText.DrawLatex(450, 0.55, "#slash{E}_{T} > 30 GeV");
     cht->Print("figs/Ht.root");
     cht->Print("figs/Ht.pdf");
 
     //-------------------------------------------------------
     // MET second
+    gStyle->SetTitleYOffset(0.8);
     TCanvas* cmet = new TCanvas();
     cmet->SetFillColor(0);
     cmet->GetPad(0)->SetRightMargin(0.07);
@@ -185,8 +191,8 @@ void plotMetHet (float intLumi) {
     cmet->GetPad(0)->SetBottomMargin(0.13);
     int nmet = 3;
     float met[4]   = {30., 50., 120., 200.}; // the bins
-    float metbg[3] = {2.589, 4.102, 1.033};   // the bg
-    float meter[3] = {1.209, 1.465, 0.592};   // the bg err
+    float metbg[3] = {2.601, 4.159, 1.059};   // the bg
+    float meter[3] = {1.211, 1.484, 0.599};   // the bg err
     float metd[3]  = {2., 3., 2.};            // the data counts
 
     // the scale factor if we do events-per-10-gev
@@ -216,6 +222,7 @@ void plotMetHet (float intLumi) {
     metbghist->SetFillStyle(3002);
     metbghist->SetFillColor(kBlue); 
     metbghist->SetMinimum(0.);
+    metbghist->SetTitleSize(0.045, "XY");
     metbghist->GetXaxis()->SetTitle("#slash{E}_{T} (GeV)");
     float ytext2;
     if (per10) {
@@ -236,8 +243,8 @@ void plotMetHet (float intLumi) {
     xmax = metbghist->GetXaxis()->GetXmax();
     ymax = metbghist->GetYaxis()->GetXmax();
     x = xmin + 0.1 * (xmax-xmin);
-    y = 2.05;
-    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %2.1f fb^{-1}", intLumi));
+    y = 2.08;
+    latexText.DrawLatex(x, y, Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %3.2f fb^{-1}", intLumi));
     latexText.DrawLatex(150, 1.8, "H_{T} > 80 GeV");
     cmet->Print("figs/Met.root");
     cmet->Print("figs/Met.pdf");
