@@ -8,13 +8,16 @@
 
 // Stupid macro to make plots of the 7 events (see below)
 // run     ls   event type id1 id2  pt1     pt2    nj(nb)  HT      met 
-// 166888 425 507242758 3  -11 -11 87.9777 62.2746 6 (2) 563.705 83.8312 
-// 175887 86  92144536  2  -11 -13 45.3336 142.789 3 (2) 171.995 31.4517 
-// 180076 233 397121374 3  -11 -11 25.1588 70.3593 3 (2) 227.588 146.563 
-// 166408 105 100231594 1   13  13 24.3261 62.1673 3 (2) 372.221 51.0459 
-// 166565 815 726094730 2   11  13 23.916 46.4423 3 (2)  296.215 150.137 
-// 179497 183 229894176 1  -13 -13 231.253 21.1616 2 (2) 252.454 34.5121 
-// 176929 171 264222933 2  -11 -13 24.8385 43.6281 3 (2) 230.402 100.221 
+// 166888 425 507242758 3 -11 -11 87.9777 62.2746 6 (2) 563.705 83.8312 
+// 173241 97  146659028 2  11  13 56.5245 51.2114 3 (2) 408.44  18.399 
+// 175887 86  92144536  2 -11 -13 45.3336 142.789 3 (2) 171.995 31.4517 
+// 175888 60  61479854  3 -11 -11 36.6693 102.248 2 (2) 162.539 10.0518 
+// 180076 233 397121374 3 -11 -11 25.1588 70.3593 3 (2) 227.588 146.563 
+// 166408 105 100231594 1  13  13 24.3261 62.1673 3 (2) 372.221 51.0459 
+// 166565 815 726094730 2  11  13 23.916  46.4423 3 (2) 296.215 150.137 
+// 179497 183 229894176 1 -13 -13 231.253 21.1616 2 (2) 252.454 34.5121 
+// 172868 132 188277001 2 -11 -13 23.3651 69.0226 2 (2) 197.241 28.6402 
+// 176929 171 264222933 2 -11 -13 24.8385 43.6281 3 (2) 230.402 100.221 
 void plotMetHet (float intLumi) {    
     gStyle->SetOptTitle(0);
     gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
@@ -41,11 +44,14 @@ void plotMetHet (float intLumi) {
     TH2F* hmm = new TH2F("hmm","Met vs HT",600,0.,600.,200,0.,200.);
 
     hee->Fill(563.705, 83.8312);
+    hem->Fill(408.44 , 18.399 );
     hem->Fill(171.995, 31.4517);
+    hee->Fill(162.539, 10.0518);
     hee->Fill(227.588, 146.563);
     hmm->Fill(372.221, 51.0459);
     hem->Fill(296.215, 150.137);
     hmm->Fill(252.454, 34.5121);
+    hem->Fill(197.241, 28.6402);
     hem->Fill(230.402, 100.221);
 
     hee->SetMarkerStyle(20); // circles
@@ -75,7 +81,7 @@ void plotMetHet (float intLumi) {
     b2.SetFillColor(1);
     b2.SetFillStyle(3001);
     b1.Draw();
-    b2.Draw();
+    // b2.Draw();
 
     float xmin = hee->GetXaxis()->GetXmin();
     float xmax = hee->GetXaxis()->GetXmax();
@@ -118,9 +124,9 @@ void plotMetHet (float intLumi) {
     cht->GetPad(0)->SetBottomMargin(0.13);
     int nht = 3;
     float ht[4]   = {80., 200., 320., 600.}; // the bins
-    float htbg[3] = {2.244, 2.769, 2.679};   // the bg
-    float hter[3] = {0.904, 1.240, 1.147};   // the bg err
-    float htd[3]  = {1., 4., 2.};            // the data counts
+    float htbg[3] = {3.332, 3.524, 3.224};   // the bg
+    float hter[3] = {1.194, 1.402, 1.349};   // the bg err
+    float htd[3]  = {3., 4., 3.};            // the data counts
 
     // the scale factor if we do events-per-10-gev
     if (per10) {
@@ -189,11 +195,11 @@ void plotMetHet (float intLumi) {
     cmet->GetPad(0)->SetLeftMargin(0.1407035);
     cmet->GetPad(0)->SetTopMargin(0.08);
     cmet->GetPad(0)->SetBottomMargin(0.13);
-    int nmet = 3;
-    float met[4]   = {30., 50., 120., 200.}; // the bins
-    float metbg[3] = {2.601, 4.159, 1.059};   // the bg
-    float meter[3] = {1.211, 1.484, 0.599};   // the bg err
-    float metd[3]  = {2., 3., 2.};            // the data counts
+    int nmet = 4;
+    float met[5]   = {0., 30., 50., 120., 200.};     // the bins
+    float metbg[4] = {2.269, 2.627, 4.212, 1.073};   // the bg
+    float meter[4] = {1.085, 1.215, 1.501, 0.603};   // the bg err
+    float metd[4]  = {3., 2., 3., 2.};               // the data counts
 
     // the scale factor if we do events-per-10-gev
     if (per10) {
