@@ -1,9 +1,18 @@
-{
+#include "TStyle.h"
+#include "TLatex.h"
+#include "TLine.h"
+#include "TPolyLine.h"
+#include "TCanvas.h"
+#include "TH2.h"
+
+void cheeseWedge (float intLumi) {
     // Makes basic histograms from the root tree
   
     gStyle->SetPadRightMargin(0.12);   // default 0.1
     gStyle->SetTitleOffset(1.20, "Y");  // default 1
     gStyle->SetOptStat(0);
+
+    TCanvas *c1 = new TCanvas();
 
     float xmax = 1000.;
     float xmin = 300.;
@@ -13,17 +22,18 @@
     TH2F* empty = new TH2F("empty","Gluino Sbottom model",100,xmin,xmax,100,ymin,ymax);
     empty->GetYaxis()->SetTitle("m(#tilde{b}_{1}) GeV");
     empty->GetXaxis()->SetTitle("m(#tilde{g}) GeV");
+    empty->SetTitleSize(0.045, "XY");
 
     TLatex gg;
-    gg.SetTextSize(0.035);
+    gg.SetTextSize(0.040);
 
     TLatex gg2;
-    gg2.SetTextSize(0.035);
+    gg2.SetTextSize(0.040);
 
     TLatex latexLabel;
-    latexLabel.SetTextSize(0.035);
+    latexLabel.SetTextSize(0.045);
     const char *selection       = "Same Sign dileptons with btag selection";
-    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *obligatory_text = Form("CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = %3.2f fb^{-1}", intLumi);
     const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
     const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
     char  *masses               = Form("m(#tilde{#chi}^{0}_{1}) = 50 GeV");
@@ -31,6 +41,7 @@
     gStyle->SetOptTitle(0);
     gStyle->SetPadTickX(1);  // To get tick marks on the opposite side of the frame
     gStyle->SetPadTickY(1);
+    c1->UseCurrentStyle();
 
     empty->Draw();
 
@@ -49,14 +60,14 @@
     TLine l1_300 = TLine(x300, y300c, xmax, y300c);
     TLine l2_300 = TLine(x300, y300c, xmax, y300m);
 
-    l1_300->SetLineColor(kBlue);
-    l2_300->SetLineColor(kBlue);
-    l1_150->SetLineColor(kRed);
-    l2_150->SetLineColor(kRed);
-    l1_300->Draw();
-    l2_300->Draw();
-    l1_150->Draw();
-    l2_150->Draw();
+    l1_300.SetLineColor(kBlue);
+    l2_300.SetLineColor(kBlue);
+    l1_150.SetLineColor(kRed);
+    l2_150.SetLineColor(kRed);
+    l1_300.Draw();
+    l2_300.Draw();
+    l1_150.Draw();
+    l2_150.Draw();
 
     // A polyline with the 150 smoothed limit
     TPolyLine *p150 = new TPolyLine();
@@ -99,6 +110,7 @@
     latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), masses);
     gg2.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
 
+    latexLabel.SetTextSize(0.040);
     latexLabel.DrawLatex(500, 345, "#color[2]{m(#tilde{#chi}_{1}^{+}) = 150 GeV}");
     latexLabel.DrawLatex(560, 495, "#color[4]{m(#tilde{#chi}_{1}^{+}) = 300 GeV}");
     c1->Print("B2_CheeseWedge.pdf");
