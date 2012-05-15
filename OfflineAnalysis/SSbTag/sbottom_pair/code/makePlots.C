@@ -60,7 +60,7 @@ void makePlots () {
 
 
     tree->Draw("lspmass:glmass>>ulbest"   ,"bestsr"                           );
-    tree->Draw("lspmass:glmass>>acc"      ,"100.*effsrb"                      );
+    tree->Draw("lspmass:glmass>>acc"      ,"1.*effsrb"                      );
     tree->Draw("lspmass:glmass>>excl"     ,"explimsrb/(5000.*effsrb)<xsec"    );
     tree->Draw("lspmass:glmass>>exclup"   ,"explimsrb/(5000.*effsrb)<xsecup"  );
     tree->Draw("lspmass:glmass>>excldwn"  ,"explimsrb/(5000.*effsrb)<xsecdwn" );
@@ -214,7 +214,7 @@ void makePlots () {
     latexLabel.SetTextSize(0.035);
 
     const char *selection       = "Same Sign dileptons with btag selection";
-    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *obligatory_text = "CMS, #sqrt{s} = 7 TeV, L_{int} = 4.98 fb^{-1}";
     const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
     const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
 
