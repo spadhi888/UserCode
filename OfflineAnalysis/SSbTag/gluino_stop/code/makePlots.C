@@ -31,6 +31,7 @@ void makePlots (int lsp_mass) {
     Double_t xmax     = 1100 + xbinsize/2.;
     Double_t ymin     = 280. - ybinsize/2;
     Double_t ymax     = 1000. + ybinsize/2.;
+    if (lsp_mass == 150) ymin = ymin+50.;
     Int_t nx          = (int)(xmax-xmin)/xbinsize;
     Int_t ny          = (int)(ymax-ymin)/ybinsize;
 
@@ -58,7 +59,7 @@ void makePlots (int lsp_mass) {
 
     tree->Draw("lspmass:glmass>>ul"       , "explimsrb/(5000.*effsrb)"         );
     tree->Draw("lspmass:glmass>>ulbest"   , "bestsr"                           );
-    tree->Draw("lspmass:glmass>>acc"      , "100.*effsrb"                      );
+    tree->Draw("lspmass:glmass>>acc"      , "effsrb"                      );
     tree->Draw("lspmass:glmass>>excl"     , "explimsrb/(5000.*effsrb)<xsec"    );
     tree->Draw("lspmass:glmass>>exclup"   , "explimsrb/(5000.*effsrb)<xsecup"  );
     tree->Draw("lspmass:glmass>>excldwn"  , "explimsrb/(5000.*effsrb)<xsecdwn" );
@@ -184,9 +185,9 @@ void makePlots (int lsp_mass) {
         gdwn->SetPoint(5, 801.5, 370.);
         Double_t testx = 0;
         Double_t testy = 0;
-        for (int idx = 0; idx < gdwn->GetN(); idx++) {
-                gdwn->GetPoint(idx, testx, testy);
-                cout << "i, x, y: " << idx << ", " << testx << ", " << testy << endl;
+        for (int jdx = 0; jdx < gdwn->GetN(); jdx++) {
+                gdwn->GetPoint(jdx, testx, testy);
+                cout << "i, x, y: " << jdx << ", " << testx << ", " << testy << endl;
             }        
     }
 
@@ -236,7 +237,7 @@ void makePlots (int lsp_mass) {
     latexLabel.SetTextSize(0.035);
 
     const char *selection       = "Same Sign dileptons with btag selection";
-    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *obligatory_text = "CMS, #sqrt{s} = 7 TeV, L_{int} = 4.98 fb^{-1}";
     const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
     const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
 
@@ -266,7 +267,7 @@ void makePlots (int lsp_mass) {
 
     // need to fix the double filling that's going on for mlsp = 150 GeV
     if (lsp_mass == 150) {
-        for (int idx = 1; idx < excl->GetXaxis()->GetNbins()+1; idx++) {
+        for (unsigned int idx = 1; idx < excl->GetXaxis()->GetNbins()+1; idx++) {
             for (int idy = 1; idy < excl->GetYaxis()->GetNbins()+1; idy++) {
                 
                 if (excl->GetBinContent(idx, idy) > 1)
@@ -662,7 +663,7 @@ void makePlots (int lsp_mass) {
 
     // need to fix the double filling that's going on for mlsp = 150 GeV
     if (lsp_mass == 150) {
-        for (int idx = 1; idx < ulbest->GetXaxis()->GetNbins()+1; idx++) {
+        for (unsigned int idx = 1; idx < ulbest->GetXaxis()->GetNbins()+1; idx++) {
             for (int idy = 1; idy < ulbest->GetYaxis()->GetNbins()+1; idy++) {
                 
                 if (ulbest->GetBinContent(idx, idy) > 7)
