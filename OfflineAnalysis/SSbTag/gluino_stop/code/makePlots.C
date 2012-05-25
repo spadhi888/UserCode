@@ -224,7 +224,52 @@ void makePlots (int lsp_mass) {
     ulbest->SetTitle("T2  Best region based on exp. limit");
     acc->GetYaxis()->SetTitle(lspmass);
     acc->GetXaxis()->SetTitle(glmass);
-    acc->SetTitle("T2 model  Acc*Eff*BR for best signal region in percent");
+    acc->SetTitle("T2 model  Acc*Eff*BR");
+
+    // A polyline with the 50 smoothed limit
+    float x50  = 50. + 2. * mtop ;
+    float y50c = 50. + mtop;
+    float y50m = xmax - mtop;
+    TPolyLine *p50 = new TPolyLine();
+    p50->SetLineColor(1);
+    p50->SetFillStyle(3307);
+    p50->SetFillColor(1);
+    p50->SetNextPoint(825, ymin);
+    p50->SetNextPoint(850, 320);
+    p50->SetNextPoint(855, 350);
+    p50->SetNextPoint(855, 450);
+    p50->SetNextPoint(845, 500);
+    p50->SetNextPoint(835, 550);
+    p50->SetNextPoint(840, 660);
+    p50->SetNextPoint(795, 620);
+    p50->SetNextPoint(795, 400);
+    // p50->SetNextPoint(805, 350);
+    p50->SetNextPoint(810, 335);
+    // p50->SetNextPoint(815, 325);
+    p50->SetNextPoint(795, ymin);
+
+  // A polyline with the 150 smoothed limit
+    float x150  = 150. + 2. * mtop;
+    float y150c = 150. + mtop;
+    float y150m = xmax - mtop;
+    TPolyLine *p150 = new TPolyLine();
+    p150->SetLineColor(1);
+    p150->SetFillStyle(3307);
+    //    p150->SetFillStyle(3344);
+    p150->SetFillColor(1);
+    p150->SetNextPoint(845, ymin);
+    p150->SetNextPoint(845, y150c);
+    p150->SetNextPoint(845, ymin);
+    p150->SetNextPoint(845, 470);
+    p150->SetNextPoint(845, 500);
+    p150->SetNextPoint(830, 560);
+    p150->SetNextPoint(830, 650);
+    p150->SetNextPoint(775, 600);
+    p150->SetNextPoint(780, 530);
+    p150->SetNextPoint(790, 430);
+    p150->SetNextPoint(805, 400);
+    p150->SetNextPoint(800, y150c);
+    p150->SetNextPoint(800, ymin);
 
     // Some text
     TLatex gg;
@@ -706,4 +751,54 @@ void makePlots (int lsp_mass) {
     latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
     kinlim.Draw();
     c15->Print(Form("GlStop_%d_AcceptanceCarpet.pdf", lsp_mass));
+
+
+    // Draw the limit lines on top of the temperature plot...
+    // but this time use the same limits as the paper
+    TCanvas* c12n = new TCanvas();
+    c12n->SetFillColor(0);
+    c12n->SetFillColor(0);
+    c12n->SetBorderMode(0);
+    c12n->GetPad(0)->SetBorderSize(2);
+    c12n->GetPad(0)->SetLeftMargin(0.1407035);
+    c12n->GetPad(0)->SetTopMargin(0.08);
+    c12n->GetPad(0)->SetBottomMargin(0.13);
+
+    // need to fix the double filling that's going on for mlsp = 150 GeV
+    if (lsp_mass == 150) {
+        for (unsigned int idx = 0; idx < 3; idx++) {
+            int bin = ul->FindBin(750. + 50. * idx, 350.);
+            float binc = ul->GetBinContent(bin);
+            ul->SetBinContent(bin, binc * 0.5);
+        }
+    }
+
+    ul->Draw("colz");
+    if (lsp_mass == 150) {
+      p150->Draw("fl");
+      p150->Draw();
+    } else if (lsp_mass == 50){
+      p50->Draw("fl");
+      p50->Draw();
+    }
+    kinlim.Draw();
+    TPolyLine *blah = new TPolyLine();
+    blah->SetLineColor(1);
+    blah->SetFillStyle(3307);
+    blah->SetFillColor(1);
+    blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+    blah->SetNextPoint(xmin+0.19*(xmax-xmin), ymax-0.25*(ymax-ymin));
+    blah->SetNextPoint(xmin+0.19*(xmax-xmin), ymax-0.20*(ymax-ymin));
+    blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.20*(ymax-ymin));
+    blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+    blah->Draw("fl");
+    blah->Draw();
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.01*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", lsp_mass));
+    // gg.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), central_text);
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
+    c12n->Print(Form("GlStop_%d_LimitsOnCarpetLikePaper.pdf", lsp_mass));
+
 }

@@ -73,7 +73,7 @@ void makePlots (int chi_mass) {
 
     tree->Draw("lspmass:glmass>>ul"       ,"explimsrb/(5000.*effsrb)"         );
     tree->Draw("lspmass:glmass>>ulbest"   ,"bestsr"                           );
-    tree->Draw("lspmass:glmass>>acc"      ,"100.*effsrb"                      );
+    tree->Draw("lspmass:glmass>>acc"      ,"1.*effsrb"                      );
     tree->Draw("lspmass:glmass>>excl"     ,"explimsrb/(5000.*effsrb)<xsec"    );
     tree->Draw("lspmass:glmass>>exclup"   ,"explimsrb/(5000.*effsrb)<xsecup"  );
     tree->Draw("lspmass:glmass>>excldwn"  ,"explimsrb/(5000.*effsrb)<xsecdwn" );
@@ -195,9 +195,18 @@ void makePlots (int chi_mass) {
     acc->GetXaxis()->SetTitle(glmass);
     acc->SetTitle("B2 model  Acc*Eff*BR for best signal region in percent");
 
-    // This line is the kinematical limit
-    TLine kinlim = TLine(xmin, max(xmin-mb,mtop+chi_mass), xmax, max(xmax-mb,mtop+chi_mass-mb-mb-mb));
+    // This line is the kinematical limit....make it exactly as the paper
+    TLine kinlim;
+    if (chi_mass == 150) {
+      kinlim = TLine(150.+mtop+mb, 150.+mtop, xmax, xmax-mb);
+
+    } else if (chi_mass == 300) {
+      kinlim = TLine(300.+mtop+mb, 300.+mtop, xmax, xmax-mb);
+    } else {
+      kinlim = TLine(xmin, max(xmin-mb,mtop+chi_mass), xmax, max(xmax-mb,mtop+chi_mass-mb-mb-mb));
+    }
     kinlim.SetLineWidth(3);
+
 
     // Some text
     TLatex gg;
@@ -210,7 +219,7 @@ void makePlots (int chi_mass) {
     latexLabel.SetTextSize(0.035);
 
     const char *selection       = "Same Sign dileptons with btag selection";
-    const char *obligatory_text = "CMS Preliminary, #sqrt{s} = 7 TeV, L_{int} = 5.0 fb^{-1}";
+    const char *obligatory_text = "CMS, #sqrt{s} = 7 TeV, L_{int} = 4.98 fb^{-1}";
     const char *central_text    = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL}";
     const char *bands_text      = "Exclusion #sigma^{prod} = #sigma^{NLO+NLL} #pm 1 #sigma";
     const char *masses          = Form("m(#tilde{#chi}^{0}_{1}) = 50 GeV and m(#tilde{#chi}^{+}_{1}) = %d GeV", chi_mass);
@@ -540,6 +549,60 @@ void makePlots (int chi_mass) {
         l2.Draw();
         l1.Draw();
         c12->Print(Form("B2_LimitsOnCarpet_%d.pdf", chi_mass));
+
+	// Do it again but using the same limits that we used for the paper
+	float x150   = 150. + mtop + mb;
+	float y150c  = 150. + mtop;
+	float y150m  = xmax - mb;
+	TPolyLine *p150 = new TPolyLine();
+	p150->SetLineColor(1);
+	p150->SetLineWidth(1);
+	p150->SetLineStyle(1);
+	// p150->SetFillStyle(3395);
+	p150->SetFillStyle(3305);
+	p150->SetFillColor(1);
+	p150->SetNextPoint(780.,y150c);
+	p150->SetNextPoint(780.,350.);
+	p150->SetNextPoint(845.,600.);
+	p150->SetNextPoint(850.,700.);
+	p150->SetNextPoint(760.,760.-mb);
+	p150->SetNextPoint(730.,730.-mb);
+	p150->SetNextPoint(795.,600.);
+	p150->SetNextPoint(760.,350.);
+	p150->SetNextPoint(760.,y150c);
+	p150->SetNextPoint(780.,y150c);
+	TPolyLine *blah = new TPolyLine();
+	blah->SetLineColor(1);
+	blah->SetLineWidth(1);
+	blah->SetLineStyle(1);
+	blah->SetFillStyle(3305);
+	blah->SetFillColor(1);
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.20*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.18*(xmax-xmin), ymax-0.20*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.18*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	TCanvas* c12n = new TCanvas();
+	c12n->SetFillColor(0);
+	c12n->SetFillColor(0);
+	c12n->SetBorderMode(0);
+	c12n->GetPad(0)->SetBorderSize(2);
+	c12n->GetPad(0)->SetLeftMargin(0.1407035);
+	c12n->GetPad(0)->SetTopMargin(0.08);
+	c12n->GetPad(0)->SetBottomMargin(0.13);	
+	ul->Draw("colz");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), masses);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
+        //l2.Draw();
+        //l1.Draw();
+	p150->Draw("fl");
+	p150->Draw();
+	blah->Draw("fl");
+	blah->Draw();
+        c12n->Print(Form("B2_LimitsOnCarpet_LikePaper_%d.pdf", chi_mass));
     }
     else if (chi_mass == 200) {
         TGraph cgraph = TGraph(18);
@@ -678,7 +741,60 @@ void makePlots (int chi_mass) {
         l2.Draw();
         l1.Draw();
         c12->Print(Form("B2_LimitsOnCarpet_%d.pdf", chi_mass));
+
+	// Do it again but using the same limits that we used for the paper
+	float x300   = 300. + mtop + mb;
+	float y300c  = 300. + mtop;
+	float y300m  = xmax - mb;
+
+	TPolyLine *p300 = new TPolyLine();
+	p300->SetLineColor(1);
+	p300->SetFillStyle(3305);
+	p300->SetFillColor(kBlue);
+	p300->SetNextPoint(830.,y300c);
+	p300->SetNextPoint(830.,475.);
+	p300->SetNextPoint(850.,550.);
+	p300->SetNextPoint(850.,675.);
+	p300->SetNextPoint(840.,750.);
+	p300->SetNextPoint(780.,780.-mb);
+	p300->SetNextPoint(740.,740.-mb);
+	p300->SetNextPoint(800.,700.);
+	p300->SetNextPoint(800.,475.);
+	p300->SetNextPoint(800.,y300c);
+	TPolyLine *blah = new TPolyLine();
+	blah->SetLineColor(1);
+	blah->SetLineWidth(1);
+	blah->SetLineStyle(1);
+	blah->SetFillStyle(3305);
+	blah->SetFillColor(1);
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.20*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.18*(xmax-xmin), ymax-0.20*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.18*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	blah->SetNextPoint(xmin+0.1*(xmax-xmin), ymax-0.25*(ymax-ymin));
+	TCanvas* c12nn = new TCanvas();
+	c12nn->SetFillColor(0);
+	c12nn->SetFillColor(0);
+	c12nn->SetBorderMode(0);
+	c12nn->GetPad(0)->SetBorderSize(2);
+	c12nn->GetPad(0)->SetLeftMargin(0.1407035);
+	c12nn->GetPad(0)->SetTopMargin(0.08);
+	c12nn->GetPad(0)->SetBottomMargin(0.13);	
+	ul->Draw("colz");
+        kinlim.Draw();
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+        latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), masses);
+        gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
+        //l2.Draw();
+        //l1.Draw();
+	p300->Draw("fl");
+	p300->Draw();
+	blah->Draw("fl");
+	blah->Draw();
+        c12nn->Print(Form("B2_LimitsOnCarpet_LikePaper_%d.pdf", chi_mass));
     }
+
 
     //Draw the limit lines and nothing else
     TCanvas* c13 = new TCanvas();

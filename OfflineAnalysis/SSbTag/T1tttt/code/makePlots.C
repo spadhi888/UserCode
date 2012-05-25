@@ -480,4 +480,44 @@ void makePlots () {
     psm->SetNextPoint(805.,ymin);
     psm->Draw("fl");
     c16->Print("T1tttt_SmoothLimitsOnWhite.pdf");
+
+
+    //Draw the smoothed limit lines with the upper limit carpet
+    TCanvas* c17 = new TCanvas();
+
+    c17->SetFillColor(0);
+    c17->SetFillColor(0);
+    c17->SetBorderMode(0);
+    c17->GetPad(0)->SetBorderSize(2);
+    c17->GetPad(0)->SetLeftMargin(0.1407035);
+    c17->GetPad(0)->SetTopMargin(0.08);
+    c17->GetPad(0)->SetBottomMargin(0.13);
+
+    ul->Draw("colz");
+
+    // empty->Draw();
+    kinlim.Draw();
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.16*(ymax-ymin), bands_text);  
+
+    // A polyline for the legend
+    lg->SetLineColor(1);
+    lg->SetFillStyle(3344);
+    lg->SetFillColor(1);
+    lg->Draw("fl");
+    lg->Draw();
+
+    // A polyline with the smoothed limit
+    psm->SetLineColor(1);
+    psm->SetFillStyle(3244);
+    psm->SetFillColor(1);
+    psm->Draw("fl");
+    psm->Draw();
+
+
+    c17->Print("T1tttt_LimitsOnCarpetLikePaper.pdf");
+
+
 }

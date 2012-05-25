@@ -379,4 +379,43 @@ void makePlots () {
     latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
     kinlim.Draw();
     c15->Print("B1_AcceptanceCarpet.pdf");
+
+    //Draw the limit lines on the carpet 
+    TCanvas* c16 = new TCanvas();
+    empty->Draw();
+    c16->SetFillColor(0);
+    c16->SetFillColor(0);
+    c16->SetBorderMode(0);
+    c16->GetPad(0)->SetBorderSize(2);
+    c16->GetPad(0)->SetLeftMargin(0.1407035);
+    c16->GetPad(0)->SetTopMargin(0.08);
+    c16->GetPad(0)->SetBottomMargin(0.13);
+
+    ul->Draw("colz");
+    kinlim.Draw();
+
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax+0.04*(ymax-ymin), obligatory_text);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.08*(ymax-ymin),selection);
+    latexLabel.DrawLatex(xmin+0.1*(xmax-xmin), ymax-0.16*(ymax-ymin), Form("m(#tilde{#chi}_{1}^{0}) = %d GeV", 50));
+    gg2.DrawLatex(xmin+0.21*(xmax-xmin), ymax-0.24*(ymax-ymin), bands_text);
+
+
+    pline->SetFillColor(1);
+    pline->SetLineColor(1);
+    lg->SetFillColor(1);
+    lg->SetLineColor(1);
+    pline->Draw("fl");
+    lg->Draw("fl");
+    pline->Draw();
+    lg->Draw();
+
+
+    c16->Print("B1_LimitsOnCarpetLikePaper.pdf");
+
+
+
+
+
+
+
 }
