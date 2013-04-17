@@ -9,7 +9,8 @@ Instructions:
 http://red-gridftp11.unl.edu/Snowmass/MinBias13TeV.tar.gz
 http://red-gridftp11.unl.edu/Snowmass/MinBias33TeV.tar.gz
 
-tar -zxf MinBias13TeV.tar.gz 
+tar -zxf MinBias13TeV.tar.gz
+mv MinBias13TeV.pileup MinBias.pileup 
 
 6. One can get the card files from http://cmssw.cvs.cern.ch/cgi-bin/cmssw.cgi/UserCode/spadhi/Snowmass/Cards/
  a) delphes_card_Snowmass_NoPileUp.tcl
