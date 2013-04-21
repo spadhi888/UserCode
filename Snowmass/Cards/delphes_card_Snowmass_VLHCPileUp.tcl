@@ -701,7 +701,7 @@ module TreeWriter TreeWriter {
 #  add Branch Delphes/allParticles Particle GenParticle
   add Branch StatusPid/filteredParticles Particle GenParticle
   add Branch TrackMerger/tracks Track Track
-#  add Branch Calorimeter/towers Tower Tower
+  add Branch Calorimeter/towers Tower Tower
   add Branch ConstituentFilter/eflowTracks EFlowTrack Track
   add Branch ConstituentFilter/eflowTowers EFlowTower Tower
   add Branch ConstituentFilter/muons EFlowMuon Muon
