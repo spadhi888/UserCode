@@ -32,10 +32,12 @@ set ExecutionPath {
   GenJetFinder
   FastJetFinder
   CAJetFinder
+  FastJetbLJet
 
   ConstituentFilter
 
   BTagging
+  BTaggingLoose
   TauTagging
 
   UniqueObjectFinder
@@ -73,7 +75,8 @@ module ParticlePropagator ParticlePropagator {
 ####################################
 
 module StatusPidFilter StatusPid {
-    set InputArray Delphes/stableParticles
+#    set InputArray Delphes/stableParticles
+    set InputArray Delphes/allParticles
     set OutputArray filteredParticles
 
     set PTMin 0.5
@@ -326,7 +329,7 @@ module Isolation PhotonIsolation {
 
   set DeltaRMax 0.3
 
-  set PTMin 0.5
+  set PTMin 1.0
 
   set PTRatioMax 0.1
 }
@@ -342,8 +345,8 @@ module Efficiency ElectronEfficiency {
   # set EfficiencyFormula {efficiency formula as a function of eta and pt}
   # efficiency formula for electrons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
-                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.95) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.85) + \
+                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.98) + \
+                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.90) + \
                          (abs(eta) > 2.5)                                   * (0.00)}
 }
 
@@ -375,8 +378,8 @@ module Efficiency MuonEfficiency {
   # set EfficiencyFormula {efficiency as a function of eta and pt}
   # efficiency formula for muons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
-                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.96) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.4) * (pt > 10.0)  * (0.95) + \
+                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.99) + \
+                         (abs(eta) > 1.5 && abs(eta) <= 2.4) * (pt > 10.0)  * (0.97) + \
                          (abs(eta) > 2.4)                                   * (0.00)}
 
 }
@@ -474,6 +477,33 @@ module FastJetFinder FastJetFinder {
   set JetPTMin 20.0
 }
 
+# FastJetbLJet
+
+module FastJetFinder FastJetbLJet {
+#  set InputArray Calorimeter/towers
+  set InputArray EFlowMerger/eflow
+  
+  set OutputArray jets
+
+  # algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
+  set JetAlgorithm 6
+  set ParameterR 0.7
+  
+  set ConeRadius 0.5
+  set SeedThreshold 1.0
+  set ConeAreaFraction 1.0
+  set AdjacencyCut 2.0
+  set OverlapThreshold 0.75
+
+  set MaxIterations 100
+  set MaxPairSize 2
+  set Iratch 1
+
+  set JetPTMin 20.0
+}
+
+
+
 ############
 # Cambridge-Aachen Jet finder
 ############
@@ -539,9 +569,43 @@ module BTagging BTagging {
   # efficiency formula for b-jets
   add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.7*tanh(pt*0.01317 - 0.062)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.57*tanh(pt*0.0105 - 0.101)) + \
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.6*tanh(pt*0.0105 - 0.101)) + \
                               (abs(eta) > 2.5)                                  * (0.000)}
 }
+
+#### BTaggingLoose ###################
+
+module BTagging BTaggingLoose {
+  set PartonInputArray Delphes/partons
+  set JetInputArray FastJetbLJet/jets
+
+  set DeltaR 0.5
+
+  set PartonPTMin 1.0
+
+  set PartonEtaMax 2.5
+
+  # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
+  # PDG code = the highest PDG code of a quark or gluon inside DeltaR cone around jet axis
+  # gluon's PDG code has the lowest priority
+
+  # https://twiki.cern.ch/twiki/bin/view/CMSPublic/PhysicsResultsBTV
+  # default efficiency formula (misidentification rate)
+  add EfficiencyFormula {0} {0.03}
+
+  # efficiency formula for c-jets (misidentification rate)
+  add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
+                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.29*tanh(pt*0.0183 - 0.2196)) + \
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.29*tanh(pt*0.00997 - 0.143)) + \
+                              (abs(eta) > 2.5)                                  * (0.000)}
+
+  # efficiency formula for b-jets
+  add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
+                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.75*tanh(pt*0.01317 - 0.062)) + \
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.69*tanh(pt*0.0105 - 0.101)) + \
+                              (abs(eta) > 2.5)                                  * (0.000)}
+}
+
 
 module TauTagging TauTagging {
   set ParticleInputArray Delphes/allParticles
@@ -572,6 +636,7 @@ module UniqueObjectFinder UniqueObjectFinder {
   add InputArray PhotonIsolation/photons photons
   add InputArray ElectronIsolation/electrons electrons
   add InputArray FastJetFinder/jets jets
+  add InputArray FastJetbLJet/jets bljets
 }
 
 ##################
@@ -593,6 +658,7 @@ module TreeWriter TreeWriter {
   add Branch UniqueObjectFinder/jets Jet Jet
   add Branch UniqueObjectFinder/electrons Electron Electron
   add Branch UniqueObjectFinder/photons Photon Photon
+  add Branch UniqueObjectFinder/bljets BLJets Jet
   add Branch MuonIsolation/muons Muon Muon
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
