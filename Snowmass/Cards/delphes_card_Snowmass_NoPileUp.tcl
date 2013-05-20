@@ -32,7 +32,6 @@ set ExecutionPath {
   GenJetFinder
   FastJetFinder
   CAJetFinder
-  FastJetbLJet
 
   ConstituentFilter
 
@@ -477,32 +476,6 @@ module FastJetFinder FastJetFinder {
   set JetPTMin 20.0
 }
 
-# FastJetbLJet
-
-module FastJetFinder FastJetbLJet {
-#  set InputArray Calorimeter/towers
-  set InputArray EFlowMerger/eflow
-  
-  set OutputArray jets
-
-  # algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
-  set JetAlgorithm 6
-  set ParameterR 0.7
-  
-  set ConeRadius 0.5
-  set SeedThreshold 1.0
-  set ConeAreaFraction 1.0
-  set AdjacencyCut 2.0
-  set OverlapThreshold 0.75
-
-  set MaxIterations 100
-  set MaxPairSize 2
-  set Iratch 1
-
-  set JetPTMin 20.0
-}
-
-
 
 ############
 # Cambridge-Aachen Jet finder
@@ -528,7 +501,6 @@ module ConstituentFilter ConstituentFilter {
 
 # add JetInputArray InputArray
   add JetInputArray GenJetFinder/jets
-#  add JetInputArray FastJetFinder/jets
   add JetInputArray CAJetFinder/jets
 
 # add ConstituentInputArray InputArray OutputArray
@@ -546,10 +518,9 @@ module BTagging BTagging {
   set PartonInputArray Delphes/partons
   set JetInputArray FastJetFinder/jets
 
+  set BitNumber 0
   set DeltaR 0.5
-
   set PartonPTMin 1.0
-
   set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
@@ -577,12 +548,11 @@ module BTagging BTagging {
 
 module BTagging BTaggingLoose {
   set PartonInputArray Delphes/partons
-  set JetInputArray FastJetbLJet/jets
+  set JetInputArray FastJetFinder/jets
 
+  set BitNumber 1
   set DeltaR 0.5
-
   set PartonPTMin 1.0
-
   set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
@@ -636,7 +606,6 @@ module UniqueObjectFinder UniqueObjectFinder {
   add InputArray PhotonIsolation/photons photons
   add InputArray ElectronIsolation/electrons electrons
   add InputArray FastJetFinder/jets jets
-  add InputArray FastJetbLJet/jets bljets
 }
 
 ##################
@@ -647,7 +616,6 @@ module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
 #  add Branch Delphes/allParticles Particle GenParticle
   add Branch StatusPid/filteredParticles Particle GenParticle
-
   add Branch TrackMerger/tracks Track Track
 #  add Branch Calorimeter/towers Tower Tower
   add Branch ConstituentFilter/eflowTracks EFlowTrack Track
@@ -658,7 +626,6 @@ module TreeWriter TreeWriter {
   add Branch UniqueObjectFinder/jets Jet Jet
   add Branch UniqueObjectFinder/electrons Electron Electron
   add Branch UniqueObjectFinder/photons Photon Photon
-  add Branch UniqueObjectFinder/bljets BLJets Jet
   add Branch MuonIsolation/muons Muon Muon
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT

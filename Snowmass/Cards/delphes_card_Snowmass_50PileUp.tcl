@@ -26,7 +26,7 @@ set ExecutionPath {
   CAJetFinder
   GenJetFinder
   JetPileUpSubtractor
-  JetPileUpbLJet
+  CAJetPileUpSubtractor
 
   ConstituentFilter
 
@@ -397,6 +397,7 @@ module FastJetFinder FastJetFinder {
   set JetPTMin 20.0
 }
 
+
 ############
 # Cambridge-Aachen Jet finder
 ############
@@ -406,12 +407,12 @@ module FastJetFinder CAJetFinder {
   set InputArray EFlowMerger/eflow
   set OutputArray jets
   # algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
+  set AreaAlgorithm 5
   set JetAlgorithm 5
   set ParameterR 0.8
   # 200 GeV needed for boosted W bosons, 300 GeV is safe for boosted tops
   set JetPTMin 200.0
 }
-
 
 ####################
 # Constituent filter
@@ -421,16 +422,17 @@ module ConstituentFilter ConstituentFilter {
 
 # add JetInputArray InputArray
   add JetInputArray GenJetFinder/jets
-#  add JetInputArray FastJetFinder/jets
   add JetInputArray CAJetFinder/jets
 
-
+  
 # add ConstituentInputArray InputArray OutputArray
   add ConstituentInputArray Delphes/stableParticles stableParticles
   add ConstituentInputArray TrackPileUpSubtractor/eflowTracks eflowTracks
   add ConstituentInputArray Calorimeter/eflowTowers eflowTowers
   add ConstituentInputArray MuonMomentumSmearing/muons muons
 }
+
+
 
 ###########################
 # Jet Pile-Up Subtraction
@@ -445,14 +447,10 @@ module JetPileUpSubtractor JetPileUpSubtractor {
   set JetPTMin 20.0
 }
 
-## Loose btag
-
-module JetPileUpSubtractor JetPileUpbLJet {
-  set JetInputArray FastJetFinder/jets
+module JetPileUpSubtractor CAJetPileUpSubtractor {
+  set JetInputArray CAJetFinder/jets
   set RhoInputArray Rho/rho
-
   set OutputArray jets
-
   set JetPTMin 20.0
 }
 
@@ -595,10 +593,9 @@ module BTagging BTagging {
 #  set JetInputArray FastJetFinder/jets
   set JetInputArray JetPileUpSubtractor/jets
 
+  set BitNumber 0
   set DeltaR 0.5
-
   set PartonPTMin 1.0
-
   set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
@@ -622,19 +619,14 @@ module BTagging BTagging {
                               (abs(eta) > 2.5)                                  * (0.000)}
 }
 
-## JetPileUpbLJet
-
-#### BTaggingLoose ###################
-
 module BTagging BTaggingLoose {
   set PartonInputArray Delphes/partons
 #  set JetInputArray FastJetFinder/jets
-  set JetInputArray JetPileUpbLJet/jets
+  set JetInputArray JetPileUpSubtractor/jets
 
+  set BitNumber 1
   set DeltaR 0.5
-
   set PartonPTMin 1.0
-
   set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
@@ -689,7 +681,6 @@ module UniqueObjectFinder UniqueObjectFinder {
   add InputArray PhotonIsolation/photons photons
   add InputArray ElectronIsolation/electrons electrons
   add InputArray JetPileUpSubtractor/jets jets
-  add InputArray JetPileUpbLJet/jets bljets
 }
 
 ##################
@@ -706,13 +697,13 @@ module TreeWriter TreeWriter {
   add Branch ConstituentFilter/eflowTowers EFlowTower Tower
   add Branch ConstituentFilter/muons EFlowMuon Muon
   add Branch GenJetFinder/jets GenJet Jet
-  add Branch CAJetFinder/jets CAJet Jet
+  add Branch CAJetPileUpSubtractor/jets CAJet Jet
   add Branch UniqueObjectFinder/jets Jet Jet
   add Branch UniqueObjectFinder/electrons Electron Electron
   add Branch UniqueObjectFinder/photons Photon Photon
   add Branch MuonIsolation/muons Muon Muon
-  add Branch UniqueObjectFinder/bljets BLJets Jet
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
+  add Branch Rho/rho Rho ScalarHT
 }
 
