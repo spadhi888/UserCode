@@ -45,7 +45,9 @@ set ExecutionPath {
   BTaggingLoose
   TauTagging
 
-  UniqueObjectFinder
+  UniqueObjectFinderGJ
+  UniqueObjectFinderEJ
+  UniqueObjectFinderMJ
 
   ScalarHT
 
@@ -573,13 +575,12 @@ module Merger MissingET {
 ##################
 # Scalar HT merger
 ##################
-
 module Merger ScalarHT {
 # add InputArray InputArray
-  add InputArray UniqueObjectFinder/jets
-  add InputArray UniqueObjectFinder/electrons
-  add InputArray UniqueObjectFinder/photons
-  add InputArray MuonIsolation/muons
+  add InputArray UniqueObjectFinderMJ/jets
+  add InputArray UniqueObjectFinderEJ/electrons
+  add InputArray UniqueObjectFinderGJ/photons
+  add InputArray UniqueObjectFinderMJ/muons
   set EnergyOutputArray energy
 }
 
@@ -675,13 +676,29 @@ module TauTagging TauTagging {
 # Find uniquely identified photons/electrons/tau/jets
 #####################################################
 
-module UniqueObjectFinder UniqueObjectFinder {
+#module UniqueObjectFinder UniqueObjectFinder {
 # earlier arrays take precedence over later ones
 # add InputArray InputArray OutputArray
-  add InputArray PhotonIsolation/photons photons
-  add InputArray ElectronIsolation/electrons electrons
-  add InputArray JetPileUpSubtractor/jets jets
+#  add InputArray PhotonIsolation/photons photons
+#  add InputArray ElectronIsolation/electrons electrons
+#  add InputArray JetPileUpSubtractor/jets jets
+#}
+
+module UniqueObjectFinder UniqueObjectFinderGJ {
+   add InputArray PhotonIsolation/photons photons
+   add InputArray JetPileUpSubtractor/jets jets
 }
+
+module UniqueObjectFinder UniqueObjectFinderEJ {
+   add InputArray ElectronIsolation/electrons electrons
+   add InputArray UniqueObjectFinderGJ/jets jets
+}
+
+module UniqueObjectFinder UniqueObjectFinderMJ {
+   add InputArray MuonIsolation/muons muons
+   add InputArray UniqueObjectFinderEJ/jets jets
+}
+
 
 ##################
 # ROOT tree writer
@@ -698,10 +715,11 @@ module TreeWriter TreeWriter {
   add Branch ConstituentFilter/muons EFlowMuon Muon
   add Branch GenJetFinder/jets GenJet Jet
   add Branch CAJetPileUpSubtractor/jets CAJet Jet
-  add Branch UniqueObjectFinder/jets Jet Jet
-  add Branch UniqueObjectFinder/electrons Electron Electron
-  add Branch UniqueObjectFinder/photons Photon Photon
-  add Branch MuonIsolation/muons Muon Muon
+  add Branch UniqueObjectFinderMJ/jets Jet Jet
+  add Branch UniqueObjectFinderEJ/electrons Electron Electron
+  add Branch UniqueObjectFinderGJ/photons Photon Photon
+  add Branch UniqueObjectFinderMJ/muons Muon Muon
+#  add Branch MuonIsolation/muons Muon Muon
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
   add Branch Rho/rho Rho ScalarHT

@@ -23,10 +23,8 @@ set ExecutionPath {
 
   Rho
   FastJetFinder
-  CAJetFinder
   GenJetFinder
   JetPileUpSubtractor
-  CAJetPileUpSubtractor
 
   ConstituentFilter
 
@@ -45,7 +43,9 @@ set ExecutionPath {
   BTaggingLoose
   TauTagging
 
-  UniqueObjectFinder
+  UniqueObjectFinderGJ
+  UniqueObjectFinderEJ
+  UniqueObjectFinderMJ
 
   ScalarHT
 
@@ -398,22 +398,6 @@ module FastJetFinder FastJetFinder {
 }
 
 
-############
-# Cambridge-Aachen Jet finder
-############
-
-module FastJetFinder CAJetFinder {
-#  set InputArray Calorimeter/towers
-  set InputArray EFlowMerger/eflow
-  set OutputArray jets
-  # algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
-  set AreaAlgorithm 5
-  set JetAlgorithm 5
-  set ParameterR 0.8
-  # 200 GeV needed for boosted W bosons, 300 GeV is safe for boosted tops
-  set JetPTMin 200.0
-}
-
 ####################
 # Constituent filter
 ####################
@@ -422,7 +406,7 @@ module ConstituentFilter ConstituentFilter {
 
 # add JetInputArray InputArray
   add JetInputArray GenJetFinder/jets
-  add JetInputArray CAJetFinder/jets
+  add JetInputArray FastJetFinder/jets
 
   
 # add ConstituentInputArray InputArray OutputArray
@@ -444,13 +428,6 @@ module JetPileUpSubtractor JetPileUpSubtractor {
 
   set OutputArray jets
 
-  set JetPTMin 20.0
-}
-
-module JetPileUpSubtractor CAJetPileUpSubtractor {
-  set JetInputArray CAJetFinder/jets
-  set RhoInputArray Rho/rho
-  set OutputArray jets
   set JetPTMin 20.0
 }
 
@@ -573,13 +550,12 @@ module Merger MissingET {
 ##################
 # Scalar HT merger
 ##################
-
 module Merger ScalarHT {
 # add InputArray InputArray
-  add InputArray UniqueObjectFinder/jets
-  add InputArray UniqueObjectFinder/electrons
-  add InputArray UniqueObjectFinder/photons
-  add InputArray MuonIsolation/muons
+  add InputArray UniqueObjectFinderMJ/jets
+  add InputArray UniqueObjectFinderEJ/electrons
+  add InputArray UniqueObjectFinderGJ/photons
+  add InputArray UniqueObjectFinderMJ/muons
   set EnergyOutputArray energy
 }
 
@@ -675,13 +651,29 @@ module TauTagging TauTagging {
 # Find uniquely identified photons/electrons/tau/jets
 #####################################################
 
-module UniqueObjectFinder UniqueObjectFinder {
+#module UniqueObjectFinder UniqueObjectFinder {
 # earlier arrays take precedence over later ones
 # add InputArray InputArray OutputArray
-  add InputArray PhotonIsolation/photons photons
-  add InputArray ElectronIsolation/electrons electrons
-  add InputArray JetPileUpSubtractor/jets jets
+#  add InputArray PhotonIsolation/photons photons
+#  add InputArray ElectronIsolation/electrons electrons
+#  add InputArray JetPileUpSubtractor/jets jets
+#}
+
+module UniqueObjectFinder UniqueObjectFinderGJ {
+   add InputArray PhotonIsolation/photons photons
+   add InputArray JetPileUpSubtractor/jets jets
 }
+
+module UniqueObjectFinder UniqueObjectFinderEJ {
+   add InputArray ElectronIsolation/electrons electrons
+   add InputArray UniqueObjectFinderGJ/jets jets
+}
+
+module UniqueObjectFinder UniqueObjectFinderMJ {
+   add InputArray MuonIsolation/muons muons
+   add InputArray UniqueObjectFinderEJ/jets jets
+}
+
 
 ##################
 # ROOT tree writer
@@ -697,11 +689,11 @@ module TreeWriter TreeWriter {
   add Branch ConstituentFilter/eflowTowers EFlowTower Tower
   add Branch ConstituentFilter/muons EFlowMuon Muon
   add Branch GenJetFinder/jets GenJet Jet
-  add Branch CAJetPileUpSubtractor/jets CAJet Jet
-  add Branch UniqueObjectFinder/jets Jet Jet
-  add Branch UniqueObjectFinder/electrons Electron Electron
-  add Branch UniqueObjectFinder/photons Photon Photon
-  add Branch MuonIsolation/muons Muon Muon
+  add Branch UniqueObjectFinderMJ/jets Jet Jet
+  add Branch UniqueObjectFinderEJ/electrons Electron Electron
+  add Branch UniqueObjectFinderGJ/photons Photon Photon
+  add Branch UniqueObjectFinderMJ/muons Muon Muon
+#  add Branch MuonIsolation/muons Muon Muon
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
   add Branch Rho/rho Rho ScalarHT
