@@ -26,8 +26,6 @@ set ExecutionPath {
   GenJetFinder
   JetPileUpSubtractor
 
-  ConstituentFilter
-
   PhotonEfficiency
   PhotonIsolation
 
@@ -402,19 +400,19 @@ module FastJetFinder FastJetFinder {
 # Constituent filter
 ####################
 
-module ConstituentFilter ConstituentFilter {
+#module ConstituentFilter ConstituentFilter {
 
 # add JetInputArray InputArray
-  add JetInputArray GenJetFinder/jets
-  add JetInputArray FastJetFinder/jets
+#  add JetInputArray GenJetFinder/jets
+#  add JetInputArray FastJetFinder/jets
 
   
 # add ConstituentInputArray InputArray OutputArray
-  add ConstituentInputArray Delphes/stableParticles stableParticles
-  add ConstituentInputArray TrackPileUpSubtractor/eflowTracks eflowTracks
-  add ConstituentInputArray Calorimeter/eflowTowers eflowTowers
-  add ConstituentInputArray MuonMomentumSmearing/muons muons
-}
+#  add ConstituentInputArray Delphes/stableParticles stableParticles
+#  add ConstituentInputArray TrackPileUpSubtractor/eflowTracks eflowTracks
+#  add ConstituentInputArray Calorimeter/eflowTowers eflowTowers
+#  add ConstituentInputArray MuonMomentumSmearing/muons muons
+#}
 
 
 
@@ -685,9 +683,9 @@ module TreeWriter TreeWriter {
   add Branch StatusPid/filteredParticles Particle GenParticle
 #  add Branch TrackMerger/tracks Track Track
 #  add Branch Calorimeter/towers Tower Tower
-  add Branch ConstituentFilter/eflowTracks EFlowTrack Track
-  add Branch ConstituentFilter/eflowTowers EFlowTower Tower
-  add Branch ConstituentFilter/muons EFlowMuon Muon
+#  add Branch ConstituentFilter/eflowTracks EFlowTrack Track
+#  add Branch ConstituentFilter/eflowTowers EFlowTower Tower
+#  add Branch ConstituentFilter/muons EFlowMuon Muon
   add Branch GenJetFinder/jets GenJet Jet
   add Branch UniqueObjectFinderMJ/jets Jet Jet
   add Branch UniqueObjectFinderEJ/electrons Electron Electron

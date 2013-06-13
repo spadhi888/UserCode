@@ -502,11 +502,11 @@ module FastJetFinder CAJetFinder {
 module ConstituentFilter ConstituentFilter {
 
 # add JetInputArray InputArray
-  add JetInputArray GenJetFinder/jets
+#  add JetInputArray GenJetFinder/jets
   add JetInputArray CAJetFinder/jets
 
 # add ConstituentInputArray InputArray OutputArray
-  add ConstituentInputArray Delphes/stableParticles stableParticles
+#  add ConstituentInputArray Delphes/stableParticles stableParticles
   add ConstituentInputArray Calorimeter/eflowTracks eflowTracks
   add ConstituentInputArray Calorimeter/eflowTowers eflowTowers
   add ConstituentInputArray MuonMomentumSmearing/muons muons
