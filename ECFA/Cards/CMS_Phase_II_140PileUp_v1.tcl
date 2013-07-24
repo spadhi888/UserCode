@@ -492,8 +492,8 @@ module Efficiency PhotonEfficiency {
   # efficiency formula for photons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
                                            (abs(eta) <= 1.5) * (pt > 10.0)  * (0.9635) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.9624) + \
-                         (abs(eta) > 2.5)                                   * (0.00)}
+                         (abs(eta) > 1.5 && abs(eta) <= 4.0) * (pt > 10.0)  * (0.9624) + \
+                         (abs(eta) > 4.0)                                   * (0.00)}
 }
 
 ##################
@@ -527,8 +527,8 @@ module Efficiency ElectronEfficiency {
   # efficiency formula for electrons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
                                            (abs(eta) <= 1.5) * (pt > 10.0)  * (0.98) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.90) + \
-                         (abs(eta) > 2.5)                                   * (0.00)}
+                         (abs(eta) > 1.5 && abs(eta) <= 4.0) * (pt > 10.0)  * (0.90) + \
+                         (abs(eta) > 4.0)                                   * (0.00)}
 }
 
 ####################
@@ -562,8 +562,8 @@ module Efficiency MuonEfficiency {
   # efficiency formula for muons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
                                            (abs(eta) <= 1.5) * (pt > 10.0)  * (0.99) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.4) * (pt > 10.0)  * (0.97) + \
-                         (abs(eta) > 2.4)                                   * (0.00)}
+                         (abs(eta) > 1.5 && abs(eta) <= 4.0) * (pt > 10.0)  * (0.97) + \
+                         (abs(eta) > 4.0)                                   * (0.00)}
 }
 
 ################
@@ -619,7 +619,7 @@ module BTagging BTagging {
   set BitNumber 0
   set DeltaR 0.5
   set PartonPTMin 1.0
-  set PartonEtaMax 2.5
+  set PartonEtaMax 4.0
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
   # PDG code = the highest PDG code of a quark or gluon inside DeltaR cone around jet axis
@@ -632,14 +632,14 @@ module BTagging BTagging {
   # efficiency formula for c-jets (misidentification rate)
   add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.1873*tanh(pt*0.0183 - 0.2196)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.1898*tanh(pt*0.00997 - 0.143)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.1898*tanh(pt*0.00997 - 0.143)) + \
+                              (abs(eta) > 4.0)                                  * (0.000)}
 
   # efficiency formula for b-jets
   add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.7*tanh(pt*0.01317 - 0.062)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.6*tanh(pt*0.0105 - 0.101)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.6*tanh(pt*0.0105 - 0.101)) + \
+                              (abs(eta) > 4.0)                                  * (0.000)}
 }
 
 module BTagging BTaggingLoose {
@@ -650,7 +650,7 @@ module BTagging BTaggingLoose {
   set BitNumber 1
   set DeltaR 0.5
   set PartonPTMin 1.0
-  set PartonEtaMax 2.5
+  set PartonEtaMax 4.0
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
   # PDG code = the highest PDG code of a quark or gluon inside DeltaR cone around jet axis
@@ -663,14 +663,14 @@ module BTagging BTaggingLoose {
   # efficiency formula for c-jets (misidentification rate)
   add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.29*tanh(pt*0.0183 - 0.2196)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.29*tanh(pt*0.00997 - 0.143)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.29*tanh(pt*0.00997 - 0.143)) + \
+                              (abs(eta) > 4.0)                                  * (0.000)}
 
   # efficiency formula for b-jets
   add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.75*tanh(pt*0.01317 - 0.062)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.69*tanh(pt*0.0105 - 0.101)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.69*tanh(pt*0.0105 - 0.101)) + \
+                              (abs(eta) > 4.0)                                  * (0.000)}
 }
 
 
@@ -684,7 +684,7 @@ module TauTagging TauTagging {
 
   set TauPTMin 1.0
 
-  set TauEtaMax 2.5
+  set TauEtaMax 4.0
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
 
