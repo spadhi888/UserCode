@@ -120,9 +120,7 @@ module Efficiency ChargedHadronTrackingEfficiency {
 (abs(eta) <= 1.2) * (pt > 1.0) * (0.97) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 0.2 && pt <= 1.0) * (pt*0.85) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 1.0) * (0.87) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 0.2 && pt <= 1.0) * (pt*0.8) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 1.0) * (0.82) + \
-(abs(eta) > 4.0) * (0.00)}
+(abs(eta) > 2.5) * (0.00)}
 }
 
 ##############################
@@ -142,10 +140,7 @@ module Efficiency ElectronTrackingEfficiency {
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 0.2 && pt <= 1.0) * (pt*0.85) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 1.0 && pt <= 10.0) * (0.82+pt*0.01) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 10.0) * (0.90) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 0.2 && pt <= 1.0) * (pt*0.8) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 1.0 && pt <= 10.0) * (0.8+pt*0.01) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 10.0) * (0.85) + \
-(abs(eta) > 4.0) * (0.00)}
+(abs(eta) > 2.5) * (0.00)}
 }
 
 ##########################
@@ -165,9 +160,7 @@ module Efficiency MuonTrackingEfficiency {
 (abs(eta) <= 1.2) * (pt > 1.0) * (0.998) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 0.2 && pt <= 1.0) * (pt*0.99) + \
 (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 1.0) * (0.99) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 0.2 && pt <= 1.0) * (pt*0.95) + \
-(abs(eta) > 2.5 && abs(eta) <= 4.0) * (pt > 1.0) * (0.95) + \
-(abs(eta) > 4.0) * (0.00)}
+(abs(eta) > 2.5) * (0.00)}
 }
 
 ########################################
@@ -187,15 +180,7 @@ module MomentumSmearing ChargedHadronMomentumSmearing {
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0   && pt <= 1.0e1) * (0.015) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.025) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.03) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 1.0   && pt <= 10.0)  * (0.03) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 10.0  && pt <= 100.0) * (0.03) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 100.0)                * (0.20) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 1.0   && pt <= 10.0)  * (0.04) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 10.0  && pt <= 100.0) * (0.09) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 100.0)                * (1.00) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 1.0   && pt <= 10.0)  * (0.06) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 10.0  && pt <= 100.0) * (0.12) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 100.0)                * (1.00)}
+                  	       (abs(eta) > 2.5)                                                  * (0.00)}
 }
 
 #################################
@@ -209,7 +194,7 @@ module EnergySmearing ElectronEnergySmearing {
   # set ResolutionFormula {resolution formula as a function of eta and energy}
  set ResolutionFormula { (abs(eta) <= 1.5) * (energy > 0.1   && energy <= 2.5e1) * (energy*0.015) + \
                           (abs(eta) <= 1.5) * (energy > 2.5e1)                    * sqrt(energy^2*0.005^2 + energy*0.027^2 + 0.15^2) + \
-			  (abs(eta) > 1.5 && abs(eta) <= 4.0)                     * sqrt(energy^2*0.008^2 + energy*0.092^2 + 0.088^2)}
+			  (abs(eta) > 1.5 && abs(eta) <= 2.5)                     * sqrt(energy^2*0.008^2 + energy*0.092^2 + 0.088^2)}
 }
 
 ###############################
@@ -231,16 +216,8 @@ module MomentumSmearing MuonMomentumSmearing {
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 0.1   && pt <= 1.0)   * (0.015) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0   && pt <= 1.0e1) * (0.015) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.03) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.03) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 1.0   && pt <= 10.0)  * (0.03) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 10.0  && pt <= 100.0) * (0.05) + \
-                         (abs(eta) > 2.5 && abs(eta) <= 3.0) * (pt > 100.0)                * (0.20) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 1.0   && pt <= 10.0)  * (0.04) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 10.0  && pt <= 100.0) * (0.09) + \
-                         (abs(eta) > 3.0 && abs(eta) <= 3.5) * (pt > 100.0)                * (1.00) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 1.0   && pt <= 10.0)  * (0.06) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 10.0  && pt <= 100.0) * (0.12) + \
-                         (abs(eta) > 3.5 && abs(eta) <= 4.0) * (pt > 100.0)                * (1.00)}
+					       (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.03)} 
+
 }
 
 ##############
@@ -494,8 +471,8 @@ module Efficiency PhotonEfficiency {
   # efficiency formula for photons
   set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
                                            (abs(eta) <= 1.5) * (pt > 10.0)  * (0.9635) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 4.0) * (pt > 10.0)  * (0.9624) + \
-                         (abs(eta) > 4.0)                                   * (0.00)}
+                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.9624) + \
+                         (abs(eta) > 2.5)                                   * (0.00)}
 }
 
 ##################
@@ -544,12 +521,12 @@ module Efficiency ElectronEfficiency {
                          (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 30.0 && pt <= 50.0)  * (0.95) + \                          
                          (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 50.0 && pt <= 70.0)  * (0.95) + \          
                          (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 70.0 )  * (1.0) + \   
-                         (abs(eta) >= 2.0 && abs(eta) <= 4.0 ) * (pt >  4.0 && pt <= 10.0)  * (0.65) + \
-                         (abs(eta) >= 2.0 && abs(eta) <= 4.0 ) * (pt > 10.0 && pt <= 30.0)  * (0.75) + \                                                      
-                         (abs(eta) >= 2.0 && abs(eta) <= 4.0 ) * (pt > 30.0 && pt <= 50.0)  * (0.90) + \                          
-                         (abs(eta) >= 2.0 && abs(eta) <= 4.0 ) * (pt > 50.0 && pt <= 70.0)  * (0.90) + \          
-                         (abs(eta) >= 2.0 && abs(eta) <= 4.0 ) * (pt > 70.0 )  * (0.90) + \                                                                                                              
-                          (abs(eta) > 4.0)                              * (0.00)}
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt >  4.0 && pt <= 10.0)  * (0.65) + \
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 10.0 && pt <= 30.0)  * (0.75) + \                                                      
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 30.0 && pt <= 50.0)  * (0.90) + \                          
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 50.0 && pt <= 70.0)  * (0.90) + \          
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 70.0 )  * (0.90) + \                                                                                                              
+                          (abs(eta) > 2.5)                              * (0.00)}
 
 }
 
@@ -583,13 +560,13 @@ module Efficiency MuonEfficiency {
 
   # efficiency formula for muons
     set EfficiencyFormula {                                    (pt <= 2.0)  * (0.00) + \  
-                         (abs(eta) <= 4.00) * (pt >  2.0 && pt <= 3.0)  * (0.51) + \
-                         (abs(eta) <= 4.00) * (pt >  3.0 && pt <= 4.0)  * (0.85) + \ 
-                         (abs(eta) <= 4.00) * (pt >  4.0 && pt <= 11.0) * (0.93) + \               
-                         (abs(eta) <= 4.00) * (pt >  11. && pt <= 50.)  * (0.96) + \   
-                         (abs(eta) <= 4.00) * (pt >  50. && pt <= 70.)  * (0.98) + \                      
-                         (abs(eta) <= 4.00) * (pt > 70.0 )  * (1.00) + \   
-                         (abs(eta) > 4.00)  * (0.00)}
+                         (abs(eta) <= 2.5) * (pt >  2.0 && pt <= 3.0)  * (0.51) + \
+                         (abs(eta) <= 2.5) * (pt >  3.0 && pt <= 4.0)  * (0.85) + \ 
+                         (abs(eta) <= 2.5) * (pt >  4.0 && pt <= 11.0) * (0.93) + \               
+                         (abs(eta) <= 2.5) * (pt >  11. && pt <= 50.)  * (0.96) + \   
+                         (abs(eta) <= 2.5) * (pt >  50. && pt <= 70.)  * (0.98) + \                      
+                         (abs(eta) <= 2.5) * (pt > 70.0 )  * (1.00) + \   
+                         (abs(eta) > 2.5)  * (0.00)}
 
 }
 
@@ -646,7 +623,7 @@ module BTagging BTagging {
   set BitNumber 0
   set DeltaR 0.5
   set PartonPTMin 1.0
-  set PartonEtaMax 4.0
+  set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
   # PDG code = the highest PDG code of a quark or gluon inside DeltaR cone around jet axis
@@ -659,14 +636,14 @@ module BTagging BTagging {
   # efficiency formula for c-jets (misidentification rate)
   add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.1873*tanh(pt*0.0183 - 0.2196)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.1898*tanh(pt*0.00997 - 0.143)) + \
-                              (abs(eta) > 4.0)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.1898*tanh(pt*0.00997 - 0.143)) + \
+                              (abs(eta) > 2.5)                                  * (0.000)}
 
   # efficiency formula for b-jets
     add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.629858*tanh(pt*0.0166188 + 0.300119)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.584522*tanh(pt*0.0144387 + 0.397034)) + \
-									 (abs(eta) > 4.0)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.584522*tanh(pt*0.0144387 + 0.397034)) + \
+									 (abs(eta) > 2.5)                                  * (0.000)}
 }
 
 module BTagging BTaggingLoose {
@@ -677,7 +654,7 @@ module BTagging BTaggingLoose {
   set BitNumber 1
   set DeltaR 0.5
   set PartonPTMin 1.0
-  set PartonEtaMax 4.0
+  set PartonEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
   # PDG code = the highest PDG code of a quark or gluon inside DeltaR cone around jet axis
@@ -690,15 +667,15 @@ module BTagging BTaggingLoose {
   # efficiency formula for c-jets (misidentification rate)
   add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.29*tanh(pt*0.0183 - 0.2196)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.29*tanh(pt*0.00997 - 0.143)) + \
-                              (abs(eta) > 4.0)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.29*tanh(pt*0.00997 - 0.143)) + \
+                              (abs(eta) > 2.5)                                  * (0.000)}
 
   # efficiency formula for b-jets
 
     add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
                                                 (abs(eta) <= 1.2) * (pt > 15.0) * (0.629858*tanh(pt*0.0166188 + 0.300119)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 4.0) * (pt > 15.0) * (0.584522*tanh(pt*0.0144387 + 0.397034)) + \
-									 (abs(eta) > 4.0)                                  * (0.000)}
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.584522*tanh(pt*0.0144387 + 0.397034)) + \
+									 (abs(eta) > 2.5)                                  * (0.000)}
 
 }
 
@@ -713,7 +690,7 @@ module TauTagging TauTagging {
 
   set TauPTMin 1.0
 
-  set TauEtaMax 4.0
+  set TauEtaMax 2.5
 
   # add EfficiencyFormula {abs(PDG code)} {efficiency formula as a function of eta and pt}
 

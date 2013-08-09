@@ -215,14 +215,14 @@ module MomentumSmearing MuonMomentumSmearing {
   # set ResolutionFormula {resolution formula as a function of eta and pt}
 
   # resolution formula for muons
-  set ResolutionFormula {                  (abs(eta) <= 1.5) * (pt > 0.1   && pt <= 1.0)   * (0.015) + \
-                                           (abs(eta) <= 1.5) * (pt > 1.0   && pt <= 1.0e1) * (0.013) + \
-                                           (abs(eta) <= 1.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.02) + \
-                                           (abs(eta) <= 1.5) * (pt > 2.0e2)                * (0.05) + \
+    set ResolutionFormula {                  (abs(eta) <= 1.5) * (pt > 0.1   && pt <= 1.0)   * (0.015) + \
+                                           (abs(eta) <= 1.5) * (pt > 1.0   && pt <= 1.0e1) * (0.012) + \
+                                           (abs(eta) <= 1.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.0015) + \
+                                           (abs(eta) <= 1.5) * (pt > 2.0e2)                * (0.03) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 0.1   && pt <= 1.0)   * (0.015) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0   && pt <= 1.0e1) * (0.015) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.04) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.05)}
+                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.025) + \
+			 (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.03)}
 }
 
 ##############
@@ -308,8 +308,8 @@ module Calorimeter Calorimeter {
                              (abs(eta) > 3.0 && abs(eta) <= 5.0) * sqrt(energy^2*0.08^2 + energy*1.97^2)}
 
   # set HCalResolutionFormula {resolution formula as a function of eta and energy}
-  set HCalResolutionFormula {                  (abs(eta) <= 3.0) * sqrt(energy^2*0.050^2 + energy*1.10^2) + \
-                             (abs(eta) > 3.0 && abs(eta) <= 5.0) * sqrt(energy^2*0.130^2 + energy*2.70^2)}
+    set HCalResolutionFormula {                  (abs(eta) <= 3.0) * sqrt(energy^2*0.050^2 + energy*0.706^2) + \
+						     (abs(eta) > 3.0 && abs(eta) <= 5.0) * sqrt(energy^2*0.050^2 + energy*1.00^2)}
 }
 
 ##########################
@@ -488,7 +488,7 @@ module Isolation PhotonIsolation {
 
   set PTMin 1.0
 
-  set PTRatioMax 0.1
+  set PTRatioMax 0.4
 }
 
 #####################
@@ -502,10 +502,31 @@ module Efficiency ElectronEfficiency {
   # set EfficiencyFormula {efficiency formula as a function of eta and pt}
 
   # efficiency formula for electrons
-  set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
-                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.98) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 10.0)  * (0.90) + \
-                         (abs(eta) > 2.5)                                   * (0.00)}
+
+    set EfficiencyFormula {                                      (pt <= 4.0)  * (0.00) + \
+                         (abs(eta) <= 1.45 ) * (pt >  4.0 && pt <= 6.0)   * (0.50) + \
+                         (abs(eta) <= 1.45 ) * (pt >  6.0 && pt <= 8.0)   * (0.70) + \
+                         (abs(eta) <= 1.45 ) * (pt >  8.0 && pt <= 10.0)  * (0.85) + \
+                         (abs(eta) <= 1.45 ) * (pt > 10.0 && pt <= 30.0)  * (0.94) + \                                                      
+                         (abs(eta) <= 1.45 ) * (pt > 30.0 && pt <= 50.0)  * (0.97) + \                          
+                         (abs(eta) <= 1.45 ) * (pt > 50.0 && pt <= 70.0)  * (0.98) + \          
+                         (abs(eta) <= 1.45 ) * (pt > 70.0 )  * (1.0) + \                                                                                                                               
+                         (abs(eta) > 1.45  && abs(eta) <= 1.55) * (pt >  4.0 && pt <= 10.0)   * (0.35) + \
+                         (abs(eta) > 1.45  && abs(eta) <= 1.55) * (pt > 10.0 && pt <= 30.0)   * (0.40) + \   
+                         (abs(eta) > 1.45  && abs(eta) <= 1.55) * (pt > 30.0 && pt <= 70.0)   * (0.45) + \                                 
+                         (abs(eta) > 1.45  && abs(eta) <= 1.55) * (pt > 70.0 )  * (0.45) + \    
+                         (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt >  4.0 && pt <= 10.0)  * (0.75) + \
+                         (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 10.0 && pt <= 30.0)  * (0.85) + \                                                      
+                         (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 30.0 && pt <= 50.0)  * (0.95) + \                          
+                         (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 50.0 && pt <= 70.0)  * (0.95) + \          
+                         (abs(eta) >= 1.55 && abs(eta) <= 2.0 ) * (pt > 70.0 )  * (1.0) + \   
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt >  4.0 && pt <= 10.0)  * (0.65) + \
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 10.0 && pt <= 30.0)  * (0.75) + \                                                      
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 30.0 && pt <= 50.0)  * (0.85) + \                          
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 50.0 && pt <= 70.0)  * (0.85) + \          
+                         (abs(eta) >= 2.0 && abs(eta) <= 2.5 ) * (pt > 70.0 )  * (0.85) + \                                                                                                              
+                        (abs(eta) > 2.5)                              * (0.00)}
+
 }
 
 ####################
@@ -523,7 +544,7 @@ module Isolation ElectronIsolation {
 
   set PTMin 1.0
 
-  set PTRatioMax 0.1
+  set PTRatioMax 0.4
 }
 
 #################
@@ -537,10 +558,15 @@ module Efficiency MuonEfficiency {
   # set EfficiencyFormula {efficiency as a function of eta and pt}
 
   # efficiency formula for muons
-  set EfficiencyFormula {                                      (pt <= 10.0) * (0.00) + \
-                                           (abs(eta) <= 1.5) * (pt > 10.0)  * (0.99) + \
-                         (abs(eta) > 1.5 && abs(eta) <= 2.4) * (pt > 10.0)  * (0.97) + \
-                         (abs(eta) > 2.4)                                   * (0.00)}
+    set EfficiencyFormula {                                    (pt <= 2.0)  * (0.00) + \  
+                         (abs(eta) <= 2.40) * (pt >  2.0 && pt <= 3.0)  * (0.51) + \
+                         (abs(eta) <= 2.40) * (pt >  3.0 && pt <= 4.0)  * (0.85) + \ 
+                         (abs(eta) <= 2.40) * (pt >  4.0 && pt <= 11.0) * (0.93) + \               
+                         (abs(eta) <= 2.40) * (pt >  11. && pt <= 50.)  * (0.96) + \   
+                         (abs(eta) <= 2.40) * (pt >  50. && pt <= 70.)  * (0.98) + \                      
+                         (abs(eta) <= 2.40) * (pt > 70.0 )  * (1.00) + \   
+	(abs(eta) > 2.40)  * (0.00)}
+
 }
 
 ################
@@ -558,7 +584,7 @@ module Isolation MuonIsolation {
 
   set PTMin 1.0
 
-  set PTRatioMax 0.1
+  set PTRatioMax 0.4
 }
 
 ###################
@@ -613,10 +639,10 @@ module BTagging BTagging {
                               (abs(eta) > 2.5)                                  * (0.000)}
 
   # efficiency formula for b-jets
-  add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
-                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.7*tanh(pt*0.01317 - 0.062)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.6*tanh(pt*0.0105 - 0.101)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+    add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
+                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.728035*tanh(pt*0.0322418 + 0.18372)) + \
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.634646*tanh(pt*0.0334927 + 0.12732)) + \
+									 (abs(eta) > 2.5)                                  * (0.000)}
 }
 
 module BTagging BTaggingLoose {
@@ -635,7 +661,7 @@ module BTagging BTaggingLoose {
 
   # https://twiki.cern.ch/twiki/bin/view/CMSPublic/PhysicsResultsBTV
   # default efficiency formula (misidentification rate)
-  add EfficiencyFormula {0} {0.03}
+  add EfficiencyFormula {0} {0.02}
 
   # efficiency formula for c-jets (misidentification rate)
   add EfficiencyFormula {4} {                                      (pt <= 15.0) * (0.000) + \
@@ -644,10 +670,10 @@ module BTagging BTaggingLoose {
                               (abs(eta) > 2.5)                                  * (0.000)}
 
   # efficiency formula for b-jets
-  add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
-                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.75*tanh(pt*0.01317 - 0.062)) + \
-                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.69*tanh(pt*0.0105 - 0.101)) + \
-                              (abs(eta) > 2.5)                                  * (0.000)}
+    add EfficiencyFormula {5} {                                      (pt <= 15.0) * (0.000) + \
+                                                (abs(eta) <= 1.2) * (pt > 15.0) * (0.728035*tanh(pt*0.0322418 + 0.18372)) + \
+                              (abs(eta) > 1.2 && abs(eta) <= 2.5) * (pt > 15.0) * (0.634646*tanh(pt*0.0334927 + 0.12732)) + \
+									 (abs(eta) > 2.5)                                  * (0.000)}
 }
 
 
