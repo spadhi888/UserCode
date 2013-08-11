@@ -355,7 +355,7 @@ module FastJetFinder Rho {
 
   # jet algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
   set JetAlgorithm 4
-  set ParameterR 0.6
+  set ParameterR 0.4
   set GhostEtaMax 5.0
   set RhoEtaMax 5.0
 
