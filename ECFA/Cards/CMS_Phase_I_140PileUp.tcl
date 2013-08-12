@@ -307,8 +307,9 @@ module Calorimeter Calorimeter {
 
 
     # set HCalResolutionFormula {resolution formula as a function of eta and energy}
-    set HCalResolutionFormula {                  (abs(eta) <= 3.0) * sqrt(energy^2*0.050^2 + energy*0.706^2) + \
-						     (abs(eta) > 3.0 && abs(eta) <= 5.0) * sqrt(energy^2*0.050^2 + energy*1.00^2)}
+    set HCalResolutionFormula {                  (abs(eta) <= 1.7) * sqrt(energy^2*0.0302^2 + energy*0.5205^2 + 1.59^2) + \
+                             (abs(eta) > 1.7 && abs(eta) <= 3.2) * sqrt(energy^2*0.050^2 + energy*0.706^2) + \
+                             (abs(eta) > 3.0 && abs(eta) <= 4.9) * sqrt(energy^2*0.05^2 + energy*1.00^2)}
 
 
 }
