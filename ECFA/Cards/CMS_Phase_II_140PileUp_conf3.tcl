@@ -180,7 +180,7 @@ module MomentumSmearing ChargedHadronMomentumSmearing {
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0   && pt <= 1.0e1) * (0.015) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 1.0e1 && pt <= 2.0e2) * (0.025) + \
                          (abs(eta) > 1.5 && abs(eta) <= 2.5) * (pt > 2.0e2)                * (0.03) + \
-                  	       (abs(eta) > 2.5)                                                  * (0.00)}
+                  	       (abs(eta) > 2.5)                                           * (0.00)}
 }
 
 #################################
@@ -206,7 +206,6 @@ module MomentumSmearing MuonMomentumSmearing {
   set OutputArray muons
 
   # set ResolutionFormula {resolution formula as a function of eta and pt}
-
   # resolution formula for muons
 
   set ResolutionFormula {                  (abs(eta) <= 1.5) * (pt > 0.1   && pt <= 1.0)   * (0.015) + \
