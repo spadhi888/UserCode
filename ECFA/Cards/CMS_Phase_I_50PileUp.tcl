@@ -726,11 +726,11 @@ module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
 #  add Branch Delphes/allParticles Particle GenParticle
   add Branch StatusPid/filteredParticles Particle GenParticle
-  add Branch TrackMerger/tracks Track Track
-  add Branch Calorimeter/towers Tower Tower
-  add Branch ConstituentFilter/eflowTracks EFlowTrack Track
-  add Branch ConstituentFilter/eflowTowers EFlowTower Tower
-  add Branch ConstituentFilter/muons EFlowMuon Muon
+#  add Branch TrackMerger/tracks Track Track
+#  add Branch Calorimeter/towers Tower Tower
+#  add Branch ConstituentFilter/eflowTracks EFlowTrack Track
+#  add Branch ConstituentFilter/eflowTowers EFlowTower Tower
+#  add Branch ConstituentFilter/muons EFlowMuon Muon
   add Branch GenJetFinder/jets GenJet Jet
   add Branch CAJetPileUpSubtractor/jets CAJet Jet
   add Branch UniqueObjectFinderMJ/jets Jet Jet
